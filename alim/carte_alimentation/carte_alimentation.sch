@@ -1,0 +1,734 @@
+EESchema Schematic File Version 4
+LIBS:carte_alimentation-cache
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Regulator_Switching:LM2576T-5 U2
+U 1 1 5DDFFFDA
+P 5500 3850
+F 0 "U2" H 5500 4217 50  0000 C CNN
+F 1 "LM2576T-5" H 5500 4126 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical" H 5500 3600 50  0001 L CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2576.pdf" H 5500 3850 50  0001 C CNN
+	1    5500 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C22
+U 1 1 5DE01F50
+P 7500 4100
+F 0 "C22" H 7385 4054 50  0000 R CNN
+F 1 "C" H 7385 4145 50  0000 R CNN
+F 2 "" H 7538 3950 50  0001 C CNN
+F 3 "~" H 7500 4100 50  0001 C CNN
+	1    7500 4100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:L L2
+U 1 1 5DE03C89
+P 7000 3950
+F 0 "L2" V 7190 3950 50  0000 C CNN
+F 1 "L" V 7099 3950 50  0000 C CNN
+F 2 "" H 7000 3950 50  0001 C CNN
+F 3 "~" H 7000 3950 50  0001 C CNN
+	1    7000 3950
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Schottky D2
+U 1 1 5DE065A7
+P 6500 4100
+F 0 "D2" V 6454 4179 50  0000 L CNN
+F 1 "D_Schottky" V 6545 4179 50  0000 L CNN
+F 2 "" H 6500 4100 50  0001 C CNN
+F 3 "~" H 6500 4100 50  0001 C CNN
+	1    6500 4100
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6850 3950 6500 3950
+Connection ~ 6500 3950
+Wire Wire Line
+	6500 3950 6000 3950
+Wire Wire Line
+	7150 3950 7500 3950
+$Comp
+L power:GND #PWR0101
+U 1 1 5DE09AC4
+P 6500 4350
+F 0 "#PWR0101" H 6500 4100 50  0001 C CNN
+F 1 "GND" H 6505 4177 50  0000 C CNN
+F 2 "" H 6500 4350 50  0001 C CNN
+F 3 "" H 6500 4350 50  0001 C CNN
+	1    6500 4350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 5DE0A319
+P 7500 4350
+F 0 "#PWR0102" H 7500 4100 50  0001 C CNN
+F 1 "GND" H 7505 4177 50  0000 C CNN
+F 2 "" H 7500 4350 50  0001 C CNN
+F 3 "" H 7500 4350 50  0001 C CNN
+	1    7500 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 4350 7500 4250
+Wire Wire Line
+	6500 4350 6500 4250
+$Comp
+L power:GND #PWR0103
+U 1 1 5DE0AD54
+P 5500 4350
+F 0 "#PWR0103" H 5500 4100 50  0001 C CNN
+F 1 "GND" H 5505 4177 50  0000 C CNN
+F 2 "" H 5500 4350 50  0001 C CNN
+F 3 "" H 5500 4350 50  0001 C CNN
+	1    5500 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 4150 5500 4350
+$Comp
+L power:GND #PWR0104
+U 1 1 5DE0B4A6
+P 5000 4350
+F 0 "#PWR0104" H 5000 4100 50  0001 C CNN
+F 1 "GND" H 5005 4177 50  0000 C CNN
+F 2 "" H 5000 4350 50  0001 C CNN
+F 3 "" H 5000 4350 50  0001 C CNN
+	1    5000 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 3750 7500 3750
+Wire Wire Line
+	7500 3750 7500 3950
+Connection ~ 7500 3950
+Wire Wire Line
+	5000 3750 4500 3750
+Wire Wire Line
+	4500 3750 4500 3950
+Wire Wire Line
+	4500 3750 4000 3750
+Connection ~ 4500 3750
+$Comp
+L Device:C C21
+U 1 1 5DE0DA4F
+P 4500 4100
+F 0 "C21" H 4615 4146 50  0000 L CNN
+F 1 "C" H 4615 4055 50  0000 L CNN
+F 2 "" H 4538 3950 50  0001 C CNN
+F 3 "~" H 4500 4100 50  0001 C CNN
+	1    4500 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0105
+U 1 1 5DE0F4AF
+P 4500 4350
+F 0 "#PWR0105" H 4500 4100 50  0001 C CNN
+F 1 "GND" H 4505 4177 50  0000 C CNN
+F 2 "" H 4500 4350 50  0001 C CNN
+F 3 "" H 4500 4350 50  0001 C CNN
+	1    4500 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 3950 5000 4350
+Wire Wire Line
+	4500 4250 4500 4350
+$Comp
+L Regulator_Switching:LM2576T-5 U1
+U 1 1 5DE22997
+P 5500 2100
+F 0 "U1" H 5500 2467 50  0000 C CNN
+F 1 "LM2576T-5" H 5500 2376 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical" H 5500 1850 50  0001 L CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2576.pdf" H 5500 2100 50  0001 C CNN
+	1    5500 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C12
+U 1 1 5DE2299D
+P 7500 2350
+F 0 "C12" H 7385 2304 50  0000 R CNN
+F 1 "C" H 7385 2395 50  0000 R CNN
+F 2 "" H 7538 2200 50  0001 C CNN
+F 3 "~" H 7500 2350 50  0001 C CNN
+	1    7500 2350
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:L L1
+U 1 1 5DE229A3
+P 7000 2200
+F 0 "L1" V 7190 2200 50  0000 C CNN
+F 1 "L" V 7099 2200 50  0000 C CNN
+F 2 "" H 7000 2200 50  0001 C CNN
+F 3 "~" H 7000 2200 50  0001 C CNN
+	1    7000 2200
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Schottky D1
+U 1 1 5DE229A9
+P 6500 2350
+F 0 "D1" V 6454 2429 50  0000 L CNN
+F 1 "D_Schottky" V 6545 2429 50  0000 L CNN
+F 2 "" H 6500 2350 50  0001 C CNN
+F 3 "~" H 6500 2350 50  0001 C CNN
+	1    6500 2350
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6850 2200 6500 2200
+Connection ~ 6500 2200
+Wire Wire Line
+	6500 2200 6000 2200
+Wire Wire Line
+	7150 2200 7500 2200
+$Comp
+L power:GND #PWR0106
+U 1 1 5DE229B3
+P 6500 2600
+F 0 "#PWR0106" H 6500 2350 50  0001 C CNN
+F 1 "GND" H 6505 2427 50  0000 C CNN
+F 2 "" H 6500 2600 50  0001 C CNN
+F 3 "" H 6500 2600 50  0001 C CNN
+	1    6500 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0107
+U 1 1 5DE229B9
+P 7500 2600
+F 0 "#PWR0107" H 7500 2350 50  0001 C CNN
+F 1 "GND" H 7505 2427 50  0000 C CNN
+F 2 "" H 7500 2600 50  0001 C CNN
+F 3 "" H 7500 2600 50  0001 C CNN
+	1    7500 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 2600 7500 2500
+Wire Wire Line
+	6500 2600 6500 2500
+$Comp
+L power:GND #PWR0108
+U 1 1 5DE229C1
+P 5500 2600
+F 0 "#PWR0108" H 5500 2350 50  0001 C CNN
+F 1 "GND" H 5505 2427 50  0000 C CNN
+F 2 "" H 5500 2600 50  0001 C CNN
+F 3 "" H 5500 2600 50  0001 C CNN
+	1    5500 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 2400 5500 2600
+$Comp
+L power:GND #PWR0109
+U 1 1 5DE229C8
+P 5000 2600
+F 0 "#PWR0109" H 5000 2350 50  0001 C CNN
+F 1 "GND" H 5005 2427 50  0000 C CNN
+F 2 "" H 5000 2600 50  0001 C CNN
+F 3 "" H 5000 2600 50  0001 C CNN
+	1    5000 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 2000 7500 2000
+Wire Wire Line
+	7500 2000 7500 2200
+Connection ~ 7500 2200
+Wire Wire Line
+	5000 2000 4500 2000
+Wire Wire Line
+	4500 2000 4500 2200
+Connection ~ 4500 2000
+$Comp
+L Device:C C11
+U 1 1 5DE229D6
+P 4500 2350
+F 0 "C11" H 4615 2396 50  0000 L CNN
+F 1 "C" H 4615 2305 50  0000 L CNN
+F 2 "" H 4538 2200 50  0001 C CNN
+F 3 "~" H 4500 2350 50  0001 C CNN
+	1    4500 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 5DE229DC
+P 4500 2600
+F 0 "#PWR0110" H 4500 2350 50  0001 C CNN
+F 1 "GND" H 4505 2427 50  0000 C CNN
+F 2 "" H 4500 2600 50  0001 C CNN
+F 3 "" H 4500 2600 50  0001 C CNN
+	1    4500 2600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 2200 5000 2600
+Wire Wire Line
+	4500 2500 4500 2600
+$Comp
+L Regulator_Switching:LM2576T-5 U3
+U 1 1 5DE26275
+P 5500 5600
+F 0 "U3" H 5500 5967 50  0000 C CNN
+F 1 "LM2576T-5" H 5500 5876 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical" H 5500 5350 50  0001 L CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2576.pdf" H 5500 5600 50  0001 C CNN
+	1    5500 5600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C32
+U 1 1 5DE2627B
+P 7500 5850
+F 0 "C32" H 7385 5804 50  0000 R CNN
+F 1 "C" H 7385 5895 50  0000 R CNN
+F 2 "" H 7538 5700 50  0001 C CNN
+F 3 "~" H 7500 5850 50  0001 C CNN
+	1    7500 5850
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:L L3
+U 1 1 5DE26281
+P 7000 5700
+F 0 "L3" V 7190 5700 50  0000 C CNN
+F 1 "L" V 7099 5700 50  0000 C CNN
+F 2 "" H 7000 5700 50  0001 C CNN
+F 3 "~" H 7000 5700 50  0001 C CNN
+	1    7000 5700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:D_Schottky D3
+U 1 1 5DE26287
+P 6500 5850
+F 0 "D3" V 6454 5929 50  0000 L CNN
+F 1 "D_Schottky" V 6545 5929 50  0000 L CNN
+F 2 "" H 6500 5850 50  0001 C CNN
+F 3 "~" H 6500 5850 50  0001 C CNN
+	1    6500 5850
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	6850 5700 6500 5700
+Connection ~ 6500 5700
+Wire Wire Line
+	6500 5700 6000 5700
+Wire Wire Line
+	7150 5700 7500 5700
+$Comp
+L power:GND #PWR0111
+U 1 1 5DE26291
+P 6500 6100
+F 0 "#PWR0111" H 6500 5850 50  0001 C CNN
+F 1 "GND" H 6505 5927 50  0000 C CNN
+F 2 "" H 6500 6100 50  0001 C CNN
+F 3 "" H 6500 6100 50  0001 C CNN
+	1    6500 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0112
+U 1 1 5DE26297
+P 7500 6100
+F 0 "#PWR0112" H 7500 5850 50  0001 C CNN
+F 1 "GND" H 7505 5927 50  0000 C CNN
+F 2 "" H 7500 6100 50  0001 C CNN
+F 3 "" H 7500 6100 50  0001 C CNN
+	1    7500 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7500 6100 7500 6000
+Wire Wire Line
+	6500 6100 6500 6000
+$Comp
+L power:GND #PWR0113
+U 1 1 5DE2629F
+P 5500 6100
+F 0 "#PWR0113" H 5500 5850 50  0001 C CNN
+F 1 "GND" H 5505 5927 50  0000 C CNN
+F 2 "" H 5500 6100 50  0001 C CNN
+F 3 "" H 5500 6100 50  0001 C CNN
+	1    5500 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5500 5900 5500 6100
+$Comp
+L power:GND #PWR0114
+U 1 1 5DE262A6
+P 5000 6100
+F 0 "#PWR0114" H 5000 5850 50  0001 C CNN
+F 1 "GND" H 5005 5927 50  0000 C CNN
+F 2 "" H 5000 6100 50  0001 C CNN
+F 3 "" H 5000 6100 50  0001 C CNN
+	1    5000 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6000 5500 7500 5500
+Wire Wire Line
+	7500 5500 7500 5700
+Connection ~ 7500 5700
+Wire Wire Line
+	5000 5500 4500 5500
+Wire Wire Line
+	4500 5500 4500 5700
+Connection ~ 4500 5500
+$Comp
+L Device:C C31
+U 1 1 5DE262B4
+P 4500 5850
+F 0 "C31" H 4615 5896 50  0000 L CNN
+F 1 "C" H 4615 5805 50  0000 L CNN
+F 2 "" H 4538 5700 50  0001 C CNN
+F 3 "~" H 4500 5850 50  0001 C CNN
+	1    4500 5850
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0115
+U 1 1 5DE262BA
+P 4500 6100
+F 0 "#PWR0115" H 4500 5850 50  0001 C CNN
+F 1 "GND" H 4505 5927 50  0000 C CNN
+F 2 "" H 4500 6100 50  0001 C CNN
+F 3 "" H 4500 6100 50  0001 C CNN
+	1    4500 6100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5000 5700 5000 6100
+Wire Wire Line
+	4500 6000 4500 6100
+Text Notes 9350 5700 0    50   ~ 0
+5V logique
+Text Notes 9700 4000 0    50   ~ 0
+5V puissance
+Text Notes 9800 2300 0    50   ~ 0
+12V puissance \nChanger buck ou ajouter R !!!\n
+Text Notes 850  1700 0    50   ~ 0
+BAT\n
+$Comp
+L power:GND #PWR0119
+U 1 1 5DE0F4B5
+P 2100 1200
+F 0 "#PWR0119" H 2100 950 50  0001 C CNN
+F 1 "GND" H 2105 1027 50  0000 C CNN
+F 2 "" H 2100 1200 50  0001 C CNN
+F 3 "" H 2100 1200 50  0001 C CNN
+	1    2100 1200
+	1    0    0    -1  
+$EndComp
+Text Notes 2750 2200 0    50   ~ 0
+arret urgence\n
+Wire Wire Line
+	4000 2000 4000 3750
+Connection ~ 4000 2000
+Wire Wire Line
+	4000 2000 4500 2000
+$Comp
+L Connector:Conn_01x02_Male J42
+U 1 1 5DE1629E
+P 2950 1800
+F 0 "J42" V 3012 1844 50  0000 L CNN
+F 1 "Conn_01x02_Male" V 3103 1844 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 2950 1800 50  0001 C CNN
+F 3 "~" H 2950 1800 50  0001 C CNN
+	1    2950 1800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	2850 2000 2450 2000
+Wire Wire Line
+	1500 2000 1500 1700
+Wire Wire Line
+	2450 5500 2450 2000
+Wire Wire Line
+	2450 5500 4500 5500
+Connection ~ 2450 2000
+Wire Wire Line
+	2950 2000 4000 2000
+$Comp
+L Connector:Conn_01x02_Male J40
+U 1 1 5DE0DFE5
+P 1300 1600
+F 0 "J40" H 1408 1781 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 1408 1690 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 1300 1600 50  0001 C CNN
+F 3 "~" H 1300 1600 50  0001 C CNN
+	1    1300 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2100 1200 2100 950 
+Wire Wire Line
+	2100 950  1500 950 
+Wire Wire Line
+	1500 950  1500 1600
+Wire Wire Line
+	2450 2000 2050 2000
+$Comp
+L Connector:Conn_01x02_Male J41
+U 1 1 5DE5159F
+P 2050 1800
+F 0 "J41" V 2112 1844 50  0000 L CNN
+F 1 "Conn_01x02_Male" V 2203 1844 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 2050 1800 50  0001 C CNN
+F 3 "~" H 2050 1800 50  0001 C CNN
+	1    2050 1800
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1950 2000 1900 2000
+Text Notes 1750 2200 0    50   ~ 0
+arret general
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5DE53A18
+P 2100 950
+F 0 "#FLG0101" H 2100 1025 50  0001 C CNN
+F 1 "PWR_FLAG" H 2100 1123 50  0000 C CNN
+F 2 "" H 2100 950 50  0001 C CNN
+F 3 "~" H 2100 950 50  0001 C CNN
+	1    2100 950 
+	1    0    0    -1  
+$EndComp
+Connection ~ 2100 950 
+$Comp
+L Connector:Conn_01x02_Male J32
+U 1 1 5DE5EE88
+P 8350 5400
+F 0 "J32" V 8458 5581 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8458 5490 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 8350 5400 50  0001 C CNN
+F 3 "~" H 8350 5400 50  0001 C CNN
+	1    8350 5400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8250 5700 8250 5600
+Wire Wire Line
+	7500 5700 8250 5700
+$Comp
+L Connector:Conn_01x02_Male J31
+U 1 1 5DE3B539
+P 8750 5400
+F 0 "J31" H 8858 5581 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8858 5490 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 8750 5400 50  0001 C CNN
+F 3 "~" H 8750 5400 50  0001 C CNN
+	1    8750 5400
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8650 5600 8650 5700
+Wire Wire Line
+	8650 5700 8250 5700
+Connection ~ 8250 5700
+$Comp
+L power:GND #PWR0116
+U 1 1 5DE6D1FD
+P 8350 5900
+F 0 "#PWR0116" H 8350 5650 50  0001 C CNN
+F 1 "GND" H 8355 5727 50  0000 C CNN
+F 2 "" H 8350 5900 50  0001 C CNN
+F 3 "" H 8350 5900 50  0001 C CNN
+	1    8350 5900
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0117
+U 1 1 5DE6D612
+P 8750 5900
+F 0 "#PWR0117" H 8750 5650 50  0001 C CNN
+F 1 "GND" H 8755 5727 50  0000 C CNN
+F 2 "" H 8750 5900 50  0001 C CNN
+F 3 "" H 8750 5900 50  0001 C CNN
+	1    8750 5900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8750 5900 8750 5600
+Wire Wire Line
+	8350 5600 8350 5900
+$Comp
+L Connector:Conn_01x02_Male J43
+U 1 1 5DE73A34
+P 4100 1300
+F 0 "J43" V 4162 1344 50  0000 L CNN
+F 1 "Conn_01x02_Male" V 4253 1344 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 4100 1300 50  0001 C CNN
+F 3 "~" H 4100 1300 50  0001 C CNN
+	1    4100 1300
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4000 2000 4000 1500
+$Comp
+L power:GND #PWR0118
+U 1 1 5DE759C9
+P 4100 1500
+F 0 "#PWR0118" H 4100 1250 50  0001 C CNN
+F 1 "GND" H 4105 1327 50  0000 C CNN
+F 2 "" H 4100 1500 50  0001 C CNN
+F 3 "" H 4100 1500 50  0001 C CNN
+	1    4100 1500
+	1    0    0    -1  
+$EndComp
+Text Notes 3800 750  0    50   ~ 0
+puissance moteurs\n
+$Comp
+L Device:Fuse F4
+U 1 1 5DE79EE7
+P 1750 2000
+F 0 "F4" V 1553 2000 50  0000 C CNN
+F 1 "Fuse" V 1644 2000 50  0000 C CNN
+F 2 "" V 1680 2000 50  0001 C CNN
+F 3 "~" H 1750 2000 50  0001 C CNN
+	1    1750 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1600 2000 1500 2000
+$Comp
+L Connector:Conn_01x02_Male J21
+U 1 1 5DE9992D
+P 8450 3650
+F 0 "J21" V 8558 3831 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8558 3740 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 8450 3650 50  0001 C CNN
+F 3 "~" H 8450 3650 50  0001 C CNN
+	1    8450 3650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8350 3950 8350 3850
+$Comp
+L Connector:Conn_01x02_Male J22
+U 1 1 5DE99935
+P 8850 3650
+F 0 "J22" H 8958 3831 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8958 3740 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 8850 3650 50  0001 C CNN
+F 3 "~" H 8850 3650 50  0001 C CNN
+	1    8850 3650
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8750 3850 8750 3950
+Wire Wire Line
+	8750 3950 8350 3950
+Connection ~ 8350 3950
+$Comp
+L power:GND #PWR0120
+U 1 1 5DE9993E
+P 8450 4150
+F 0 "#PWR0120" H 8450 3900 50  0001 C CNN
+F 1 "GND" H 8455 3977 50  0000 C CNN
+F 2 "" H 8450 4150 50  0001 C CNN
+F 3 "" H 8450 4150 50  0001 C CNN
+	1    8450 4150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0121
+U 1 1 5DE99944
+P 8850 4150
+F 0 "#PWR0121" H 8850 3900 50  0001 C CNN
+F 1 "GND" H 8855 3977 50  0000 C CNN
+F 2 "" H 8850 4150 50  0001 C CNN
+F 3 "" H 8850 4150 50  0001 C CNN
+	1    8850 4150
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8850 4150 8850 3850
+Wire Wire Line
+	8450 3850 8450 4150
+$Comp
+L Connector:Conn_01x02_Male J11
+U 1 1 5DEA04CC
+P 8400 1900
+F 0 "J11" V 8508 2081 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8508 1990 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 8400 1900 50  0001 C CNN
+F 3 "~" H 8400 1900 50  0001 C CNN
+	1    8400 1900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8300 2200 8300 2100
+$Comp
+L Connector:Conn_01x02_Male J12
+U 1 1 5DEA04D4
+P 8800 1900
+F 0 "J12" H 8908 2081 50  0000 C CNN
+F 1 "Conn_01x02_Male" H 8908 1990 50  0000 C CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 8800 1900 50  0001 C CNN
+F 3 "~" H 8800 1900 50  0001 C CNN
+	1    8800 1900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	8700 2100 8700 2200
+Wire Wire Line
+	8700 2200 8300 2200
+Connection ~ 8300 2200
+$Comp
+L power:GND #PWR0122
+U 1 1 5DEA04DD
+P 8400 2400
+F 0 "#PWR0122" H 8400 2150 50  0001 C CNN
+F 1 "GND" H 8405 2227 50  0000 C CNN
+F 2 "" H 8400 2400 50  0001 C CNN
+F 3 "" H 8400 2400 50  0001 C CNN
+	1    8400 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0123
+U 1 1 5DEA04E3
+P 8800 2400
+F 0 "#PWR0123" H 8800 2150 50  0001 C CNN
+F 1 "GND" H 8805 2227 50  0000 C CNN
+F 2 "" H 8800 2400 50  0001 C CNN
+F 3 "" H 8800 2400 50  0001 C CNN
+	1    8800 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8800 2400 8800 2100
+Wire Wire Line
+	8400 2100 8400 2400
+Wire Wire Line
+	7500 2200 8300 2200
+Wire Wire Line
+	7500 3950 8350 3950
+$EndSCHEMATC

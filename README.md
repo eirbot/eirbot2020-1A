@@ -5,4 +5,4 @@ Schéma des connexions : (à discuter)
 ![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/schema_bloc_connexions.png)
 
 Dernier rapport : 
-![all text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/reunion.pdf)
+![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/reunion.pdf)

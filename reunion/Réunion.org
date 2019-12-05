@@ -1,0 +1,30 @@
+#+TITLE: Réunion 05/12
+* Point méca
+En train de finir l'étage du bas pour ensuite découper
+faire pleins de trous
+beaucoup de trous
+voir avec nans et elsa pour les profilés
+* Point phare
+Marius a fait un bras robot grave stylé, l'impression devrait commencer faire
+chier nans avec du beau PLA
+* Point asserv + info haut niveau
+début C++
+encodeur émile
+* URGENT Point alimentation
+Mettre filipe sur la puissance
+ça avance bien coeur ptit lu
+* URGENT Point puissance
+se tenir au courant de martin
+* PLUS BAS Point actionneur
+pas urgent tout de suite
+
+
+* Liste à envoyer à Elsa
+Martin Vidal
+Emile neveu
+Valentin
+Maxime alberty
+Léo pajot
+Marius
+Julien Poupon
+Yohann varoqui

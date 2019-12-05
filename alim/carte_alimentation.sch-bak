@@ -699,27 +699,14 @@ Wire Wire Line
 Wire Wire Line
 	8200 3950 9050 3950
 $Comp
-L Relay:DIPxx-1Axx-11x K4
-U 1 1 5DE5847D
-P 2850 1800
-F 0 "K4" V 2283 1800 50  0000 C CNN
-F 1 "DIPxx-1Axx-11x" V 2374 1800 50  0000 C CNN
-F 2 "Relay_THT:Relay_StandexMeder_DIP_LowProfile" H 3200 1750 50  0001 L CNN
-F 3 "https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_DIP.pdf" H 2850 1800 50  0001 C CNN
-	1    2850 1800
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2550 2000 2450 2000
-$Comp
 L Connector:Conn_01x02_Male J42
 U 1 1 5DE1629E
-P 3250 1400
-F 0 "J42" V 3312 1444 50  0000 L CNN
-F 1 "Conn_01x02_Male" V 3403 1444 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 3250 1400 50  0001 C CNN
-F 3 "~" H 3250 1400 50  0001 C CNN
-	1    3250 1400
+P 3150 1800
+F 0 "J42" V 3212 1844 50  0000 L CNN
+F 1 "Conn_01x02_Male" V 3303 1844 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 3150 1800 50  0001 C CNN
+F 3 "~" H 3150 1800 50  0001 C CNN
+	1    3150 1800
 	0    1    1    0   
 $EndComp
 $Comp
@@ -738,26 +725,10 @@ Wire Wire Line
 Connection ~ 2450 2000
 Wire Wire Line
 	4700 2000 3150 2000
-$Comp
-L power:GND #PWR?
-U 1 1 5DE8EA76
-P 3250 1600
-F 0 "#PWR?" H 3250 1350 50  0001 C CNN
-F 1 "GND" H 3255 1427 50  0000 C CNN
-F 2 "" H 3250 1600 50  0001 C CNN
-F 3 "" H 3250 1600 50  0001 C CNN
-	1    3250 1600
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2550 1600 1950 1600
-Wire Wire Line
-	1950 1600 1950 2000
-Wire Wire Line
-	1900 2000 1950 2000
-Wire Wire Line
-	1950 2000 2150 2000
-Connection ~ 1950 2000
 Text Notes 4600 1150 0    50   ~ 0
 puissance moteurs\n
+Wire Wire Line
+	1900 2000 2150 2000
+Wire Wire Line
+	2450 2000 3050 2000
 $EndSCHEMATC

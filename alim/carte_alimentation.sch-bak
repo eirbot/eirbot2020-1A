@@ -446,13 +446,8 @@ F 3 "" H 2100 1200 50  0001 C CNN
 	1    2100 1200
 	1    0    0    -1  
 $EndComp
-Text Notes 3100 1200 0    50   ~ 0
+Text Notes 2950 1700 0    50   ~ 0
 arret urgence NC\n
-Wire Wire Line
-	4700 2000 4700 3750
-Connection ~ 4700 2000
-Wire Wire Line
-	4700 2000 5200 2000
 Wire Wire Line
 	1500 2000 1500 1700
 Wire Wire Line
@@ -550,40 +545,36 @@ Wire Wire Line
 $Comp
 L Connector:Conn_01x02_Male J43
 U 1 1 5DE73A34
-P 4800 1300
-F 0 "J43" V 4862 1344 50  0000 L CNN
-F 1 "Conn_01x02_Male" V 4953 1344 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 4800 1300 50  0001 C CNN
-F 3 "~" H 4800 1300 50  0001 C CNN
-	1    4800 1300
+P 4150 1350
+F 0 "J43" V 4212 1394 50  0000 L CNN
+F 1 "Conn_01x02_Male" V 4303 1394 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 4150 1350 50  0001 C CNN
+F 3 "~" H 4150 1350 50  0001 C CNN
+	1    4150 1350
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	4700 2000 4700 1500
 $Comp
 L power:GND #PWR0118
 U 1 1 5DE759C9
-P 4800 1500
-F 0 "#PWR0118" H 4800 1250 50  0001 C CNN
-F 1 "GND" H 4805 1327 50  0000 C CNN
-F 2 "" H 4800 1500 50  0001 C CNN
-F 3 "" H 4800 1500 50  0001 C CNN
-	1    4800 1500
+P 4150 1550
+F 0 "#PWR0118" H 4150 1300 50  0001 C CNN
+F 1 "GND" H 4155 1377 50  0000 C CNN
+F 2 "" H 4150 1550 50  0001 C CNN
+F 3 "" H 4150 1550 50  0001 C CNN
+	1    4150 1550
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:Fuse F4
+L Device:Fuse F41
 U 1 1 5DE79EE7
-P 1750 2000
-F 0 "F4" V 1553 2000 50  0000 C CNN
-F 1 "Fuse" V 1644 2000 50  0000 C CNN
-F 2 "" V 1680 2000 50  0001 C CNN
-F 3 "~" H 1750 2000 50  0001 C CNN
-	1    1750 2000
-	0    1    1    0   
+P 4050 1850
+F 0 "F41" V 3853 1850 50  0000 C CNN
+F 1 "Fuse" V 3944 1850 50  0000 C CNN
+F 2 "" V 3980 1850 50  0001 C CNN
+F 3 "~" H 4050 1850 50  0001 C CNN
+	1    4050 1850
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	1600 2000 1500 2000
 $Comp
 L Connector:Conn_01x02_Male J21
 U 1 1 5DE9992D
@@ -723,12 +714,35 @@ $EndComp
 Wire Wire Line
 	2250 2000 2450 2000
 Connection ~ 2450 2000
-Wire Wire Line
-	4700 2000 3150 2000
-Text Notes 4600 1150 0    50   ~ 0
+Text Notes 3950 1200 0    50   ~ 0
 puissance moteurs\n
 Wire Wire Line
-	1900 2000 2150 2000
-Wire Wire Line
 	2450 2000 3050 2000
+$Comp
+L Device:Fuse F42
+U 1 1 5DEE6FC7
+P 4400 2000
+F 0 "F42" V 4203 2000 50  0000 C CNN
+F 1 "Fuse" V 4294 2000 50  0000 C CNN
+F 2 "" V 4330 2000 50  0001 C CNN
+F 3 "~" H 4400 2000 50  0001 C CNN
+	1    4400 2000
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4050 1700 4050 1550
+Wire Wire Line
+	3150 2000 4050 2000
+Wire Wire Line
+	1500 2000 2150 2000
+Connection ~ 4050 2000
+Wire Wire Line
+	4050 2000 4250 2000
+Wire Wire Line
+	4550 2000 4700 2000
+Wire Wire Line
+	4700 3750 4700 2000
+Connection ~ 4700 2000
+Wire Wire Line
+	4700 2000 5200 2000
 $EndSCHEMATC

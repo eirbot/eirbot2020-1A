@@ -1,0 +1,8 @@
+datasheet buck :
+http://www.ti.com/lit/ds/symlink/lm2576hv.pdf
+
+Moteurs : 3A/moteurs -> largeurs des pistes
+Logique 5V 1.5A : 150uH
+Puissance 5V 3A: 100uH 
+Puissance 12V 3A : 100uH (ajouter en série feedback 5.74kOhms
+

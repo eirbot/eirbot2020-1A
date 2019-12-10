@@ -73,14 +73,14 @@
  \includegraphics[scale=0.075]{65508.png}
  }
 
-\section{Jeudi 24 Octobre}
-\subsection{Ordre du jour}
+\section*{Jeudi 24 Octobre}
+\paragraph*{Ordre du jour.}
 \begin{itemize}
 \item Définir les différentes tâches que doit remplir le robot
 \item Donner une première idée de ce que les gens doivent faire
 \end{itemize}
 \begin{multicols}{2}
-\subsection{Tâches à faire par le robot}
+\paragraph*{Tâches à faire par le robot.}
 Une version détaillée est disponible en \ref{taches}
 \begin{itemize}
 \item Se mouvoir (soft)
@@ -95,8 +95,9 @@ Une version détaillée est disponible en \ref{taches}
 \item Phare
 \end{itemize}
 \columnbreak
-\subsection{Répartition des tâches}
+\paragraph*{Répartition des tâches.}
 Une version détaillé est disponible en \ref{repartition}
+\begin{itemize}
 \item Liam, Emile, Clément, SD
 \item Erwann, Valentin, Marion
 \item Martin, Liam
@@ -110,25 +111,26 @@ Une version détaillé est disponible en \ref{repartition}
 \end{itemize}
 \end{multicols}
 
-\subsection{Objectifs de la prochaine réunion}
+\paragraph*{Objectifs de la prochaine réunion.}
 \begin{itemize}
 \item Spécifier les robots
 \item Définir précisément les tâches
 \item Penser à la stratégie
 \end{itemize}
 
-\section{Jeudi 31 Octobre}
+\newpage
+\section*{Jeudi 31 Octobre}
 Pas de réunion : vacances
 \newpage
-\section{Jeudi 7 Octobre}
-\subsection{Ordre du jour}
+\section*{Jeudi 7 Octobre}
+\paragraph*{Ordre du jour.}
 \begin{itemize}
 \item Définir les actions à faire
 \item Définir une hiérarchie de difficulté dans les actions
 \item Définir la mécanique du robot
 \end{itemize}
 
-\subsection{Définition des méthodes}
+\paragraph*{Définition des méthodes.}
 \begin{center}
 \begin{tikzpicture}
 \tikzstyle{lien}=[->,>=stealth,rounded corners=20pt,thick]
@@ -168,7 +170,7 @@ individu/.default={white}}
 \end{tikzpicture}
 \end{center}
 
-\subsection{Description du robot}
+\paragraph*{Description du robot.}
 Pour l'instant il se dessine selon 5 étages
 \begin{enumerate}
 	\item Switch pour le côté de jeu, diode de vérification, porte balise, ON/OFF, Boutons d'arrêt d'urgence.
@@ -178,7 +180,7 @@ Pour l'instant il se dessine selon 5 étages
 	\item moteur, batterie, moteur
 \end{enumerate}
 
-\subsection{Objectif de la prochaine réunion}
+\paragraph*{Objectif de la prochaine réunion.}
 \begin{itemize}
 	\item Avancement table
 	\item Avancement méca
@@ -187,16 +189,16 @@ Pour l'instant il se dessine selon 5 étages
 \end{itemize}
 
 \newpage
-\section{Jeudi 14 Novembre}
-\subsection{Point mécanique}
+\section*{Jeudi 14 Novembre}
+\paragraph*{Point mécanique.}
 Erwann à produit un prototype du robot, il n'est pas complet mais nous donne une idée de ce que nous allons faire. La création du robot est donc en cours.
 Pour les premiers test, nous pouvons utiliser la base métallique.
 
-\subsection{Point phare}
+\paragraph*{Point phare.}
 La mécanique du phare est au point, il faut rajouter un module de musique, l'actionneur sera identique à celui des manches à air.
 Sur le planning le phare pourrait être construit d'ici la prochaine réunion.
 
-\subsection{Point asservissement}
+\paragraph*{Point asservissement.}
 Liam, Emile et Clément commencent à travailler dessus. Ils se sont familiarisés avec les encodeurs et chapterent sur la nucléo.\\
 Un résumé de la formation de Mathieu sur l'odométrie : \\
 On définit $v_L$ , $v_R$ comme la vitesse gauche et la vitesse droite.
@@ -213,12 +215,12 @@ On définit $v_L$ , $v_R$ comme la vitesse gauche et la vitesse droite.
 Toutes les codes et les explications sont disponibles sur le github : \url{https://github.com/eirbot/eirbot2019-2A/tree/master/soft/include}
 
 \newpage
-\section{Jeudi 21 Novembre}
+\section*{Jeudi 21 Novembre}
 Open perdu
 
 \newpage
-\section{Jeudi 28 Novembre}
-\subsection{Point Mécanique}
+\section*{Jeudi 28 Novembre}
+\paragraph*{Point Mécanique.}
 La table est bien avancée, il ne reste plus qu'à fixer les derniers éléments (le
 meuble pour les gobelets c'est le feu). Emile n'a plus le droit de toucher au
 bois et à la découpe laser en même temps suite à ses exploits pour tenter de
@@ -227,14 +229,14 @@ Niveau robot, le design du robot est acté, on chapter sur une base et un toit
 octogonal, les étages seront carré. On attend Nans pour la commande des
 profilés. La base avec les moteurs peut chapterir en production.
 
-\subsection{Point phare}
+\paragraph*{Point phare.}
 \label{sec:phare}
 Nous avons un doute sur l'homologation du premier phare, il sera donc transformé
 en canon quand on aura changé le moteur. \\
 Concernant le nouveau phare l'idée était de chapterir sur un bras robot (Nans sera
 content).
 
-\subsection{Point Asservissement + Info}
+\paragraph*{Point Asservissement + Info.}
 Le choix de l'odométrie à été posé, la table sera modélisée comme une grille. Le
 robot pourra se déplacer à chaque intersection de la grille sera un point où le
 robot pourra se déplacer.\\
@@ -270,12 +272,9 @@ phare en Ascii.
     |  /|
     | / |
     |/  |
-    |  /|
-    | / |
-    |/  |
   \end{lstlisting}
 \end{figure}
-\subsection{Point Alimentation}
+\paragraph*{Point Alimentation.}
 La carte d'Alimentation a été pensée, le groupe s'occupant de cette dernière
 recherche un moyen de travailler sur Kicad en groupe. \textit{Elle est où la
   carte ?}.
@@ -285,12 +284,48 @@ recherche un moyen de travailler sur Kicad en groupe. \textit{Elle est où la
   \caption{Schéma de principe de l'alimentation}
 \end{figure}
 
-\subsection{Point Puissance}
+\paragraph*{Point Puissance.}
 Nous réutilisons les moteurs des 2A, le groupe travaillant dessus commence à
 travailler.
 
-\subsection{Point actionneur}
-Pas grand chose à dire
+\paragraph*{Point actionneur.}
+Cnf tenaq pubfr à qver
+
+\newpage
+\section*{Jeudi 5 Décembre}
+C'est bientôt Noël
+\paragraph*{Point Table.}
+Tous les éléments sont découpés et assemblés. Les manches à air sont montés et
+la boussole est en cours de montage. Il restera les balises et au un écueil.
+
+\paragraph*{Point Mécanique.}
+L'étage du bas est modélisé, en attente de découpage. Nans a commandé les
+profilés, la base pourra donc être montée sous peu.
+
+\paragraph*{Point Phare.}
+Le projet de l'ancien phare est correctement entéré. Marius est parti sur un
+nouveau phare avec une base de bras robot comme ci contre.
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.3]{phare.jpg}
+  \caption{Version 2 du phare}
+\end{figure}
+
+\paragraph*{Point Asservissement + Info.}
+Sébastien et Emile se battent avec le C++, Emile travaille sur les informations
+renvoyées par les encodeurs pendant que Sébastien réflechit aux structures
+qui permettrons au robot de correctement se déplacer.
+
+\paragraph*{Point Alimentation.}
+La carte d'alimentation avance bien, le travail de conception est en cours le
+schéma de la carte d'alimentation sera disponible la semaine prochaine.
+
+\paragraph*{Point Puissance.}
+Y'vqér rfg q'nggraqer Znegva , cnepr dh'vy nvzr znatre qrf enqvngrhef nanybtvdhrf
+
+\paragraph*{Point Actionneur.}
+Les actionneurs sont au point morts pour l'instant, ce n'est pas l'urgence.
+
 
 \part{Description des projets}
 \chapter{Description générale de l'organisation}
@@ -505,8 +540,8 @@ individu/.default={white}}
 \node[individu] (A1) at (-3,-2) {Martin};
 \node[individu] (A2) at (-1,-2) {\xout{Julien}};
 \node[individu] (A3) at (1,-2) {Valentin};
-\node[individu] (A4) at (3,-2) {\xout{Aurélian}};
-
+\node[individu] (A4) at (3,-2) {Filipe};
+ 
 \draw[lien] (A) -- (A1);
 \draw[lien] (A) -- (A2);
 \draw[lien] (A) -- (A3);
@@ -602,7 +637,7 @@ individu/.default={white}}
 \node[individu=green] (A) at (0,0) {\textsc{Elévation drapeau}};
 \node[individu] (A1) at (-3,-2) {Filipe};
 \node[individu] (A2) at (3,-2) {Erwann};
-\node[individu] (A3) at (0,-2) {\xout{Valentin}};
+\node[individu] (A3) at (0,-2) {Valentin};
 
 \draw[lien] (A) -- (A1);
 \draw[lien] (A) -- (A2);
@@ -617,7 +652,7 @@ individu/.default={white}}
 \tikzset{individu/.style={draw,thick,fill=#1!25},
 individu/.default={white}}
 \node[individu=green] (A) at (0,0) {\textsc{Manche à air}};
-\node[individu] (A1) at (-3,-2) {Jeremy};
+\node[individu] (A1) at (-3,-2) {\xout{Jeremy}};
 \node[individu] (A2) at (3,-2) {Marius};
 \node[individu] (A3) at (0,-2) {Filipe};
 

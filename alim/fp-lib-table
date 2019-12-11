@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name fusible)(type KiCad)(uri /home/lucas/Documents/eirbot/robot_coupe_1A/eirbot2020-1A/alim/alim.pretty)(options "")(descr ""))
+)

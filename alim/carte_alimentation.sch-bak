@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:carte_alimentation-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -570,7 +569,7 @@ U 1 1 5DE79EE7
 P 4050 1850
 F 0 "F41" V 3853 1850 50  0000 C CNN
 F 1 "Fuse" V 3944 1850 50  0000 C CNN
-F 2 "" V 3980 1850 50  0001 C CNN
+F 2 "fusible:fusible_alim" V 3980 1850 50  0001 C CNN
 F 3 "~" H 4050 1850 50  0001 C CNN
 	1    4050 1850
 	-1   0    0    1   
@@ -724,7 +723,7 @@ U 1 1 5DEE6FC7
 P 4400 2000
 F 0 "F42" V 4203 2000 50  0000 C CNN
 F 1 "Fuse" V 4294 2000 50  0000 C CNN
-F 2 "" V 4330 2000 50  0001 C CNN
+F 2 "fusible:fusible_alim" V 4330 2000 50  0001 C CNN
 F 3 "~" H 4400 2000 50  0001 C CNN
 	1    4400 2000
 	0    1    1    0   

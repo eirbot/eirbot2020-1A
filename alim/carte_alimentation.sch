@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:carte_alimentation-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -570,7 +569,7 @@ U 1 1 5DE79EE7
 P 4050 1850
 F 0 "F41" V 3853 1850 50  0000 C CNN
 F 1 "Fuse" V 3944 1850 50  0000 C CNN
-F 2 "" V 3980 1850 50  0001 C CNN
+F 2 "fusible:fusible_alim" V 3980 1850 50  0001 C CNN
 F 3 "~" H 4050 1850 50  0001 C CNN
 	1    4050 1850
 	-1   0    0    1   
@@ -724,7 +723,7 @@ U 1 1 5DEE6FC7
 P 4400 2000
 F 0 "F42" V 4203 2000 50  0000 C CNN
 F 1 "Fuse" V 4294 2000 50  0000 C CNN
-F 2 "" V 4330 2000 50  0001 C CNN
+F 2 "fusible:fusible_alim" V 4330 2000 50  0001 C CNN
 F 3 "~" H 4400 2000 50  0001 C CNN
 	1    4400 2000
 	0    1    1    0   
@@ -801,5 +800,38 @@ F 2 "" H 3700 1300 50  0001 C CNN
 F 3 "" H 3700 1300 50  0001 C CNN
 	1    3700 1300
 	-1   0    0    1   
+$EndComp
+$Comp
+L Mechanical:Heatsink HS1
+U 1 1 5DF31D2D
+P 6200 1600
+F 0 "HS1" H 6342 1721 50  0000 L CNN
+F 1 "Heatsink" H 6342 1630 50  0000 L CNN
+F 2 "" H 6212 1600 50  0001 C CNN
+F 3 "~" H 6212 1600 50  0001 C CNN
+	1    6200 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:Heatsink HS2
+U 1 1 5DF33999
+P 6150 3400
+F 0 "HS2" H 6292 3521 50  0000 L CNN
+F 1 "Heatsink" H 6292 3430 50  0000 L CNN
+F 2 "" H 6162 3400 50  0001 C CNN
+F 3 "~" H 6162 3400 50  0001 C CNN
+	1    6150 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:Heatsink HS3
+U 1 1 5DF33D93
+P 5700 5150
+F 0 "HS3" H 5842 5271 50  0000 L CNN
+F 1 "Heatsink" H 5842 5180 50  0000 L CNN
+F 2 "" H 5712 5150 50  0001 C CNN
+F 3 "~" H 5712 5150 50  0001 C CNN
+	1    5700 5150
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

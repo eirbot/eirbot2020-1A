@@ -1,30 +1,30 @@
 #+TITLE: Réunion 05/12
 * Point méca
-En train de finir l'étage du bas pour ensuite découper
-faire pleins de trous
-beaucoup de trous
-voir avec nans et elsa pour les profilés
+Mise sur git du dossier méca en attente des profilés
 * Point phare
-Marius a fait un bras robot grave stylé, l'impression devrait commencer faire
-chier nans avec du beau PLA
+il est en train d'être imprimé (quelques jours)
+vis necessaire
+* Point puissance
+code de controle des moteurs
+on a vu avec avec alban : utilisation de 2 LMD18200 , moteurs fonctionnent en
+16V donc direct sur la batterie, Petit lu et Martin s'entendent bien
 * Point asserv + info haut niveau
-début C++
-encodeur émile
-* URGENT Point alimentation
-Mettre filipe sur la puissance
-ça avance bien coeur ptit lu
-* URGENT Point puissance
-se tenir au courant de martin
-* PLUS BAS Point actionneur
-pas urgent tout de suite
+Liam taf pas dessus donc ça me casse les couilles donc il arrete de toute facon
+il faisait pas grand chose avant
+emile : moteurs sont bons il est en train de tester les encodeurs, matthieu lui
+a donné des infos sur la nucléo
+le code à commencé
+liam s'élève
+on attend clément
+* Point alimentation
+Manger 5 fruits et légumes par jour c'est bon pour la santé
+Choix du radiateur (c'est en F4) : rectification on en met pas. Le robot va
+bruler en fait
+Tous les composants sont bons
+Début rootage
+* Point informatique
+ouais je sais quoi mettre
+oui
 
 
-* Liste à envoyer à Elsa
-Martin Vidal
-Emile neveu
-Valentin
-Maxime alberty
-Léo pajot
-Marius
-Julien Poupon
-Yohann varoqui
+yosheirb

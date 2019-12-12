@@ -3,7 +3,7 @@
   (general
     (thickness 1.6)
     (drawings 0)
-    (tracks 0)
+    (tracks 13)
     (zones 0)
     (modules 30)
     (nets 15)
@@ -34,7 +34,8 @@
   )
 
   (setup
-    (last_trace_width 0.25)
+    (last_trace_width 3)
+    (user_trace_width 3)
     (trace_clearance 0.2)
     (zone_clearance 0.508)
     (zone_45_only no)
@@ -130,7 +131,7 @@
   )
 
   (module Capacitor_THT:CP_Radial_D10.0mm_P5.00mm (layer F.Cu) (tedit 5AE50EF1) (tstamp 5DF24381)
-    (at 66.909647 71.145001)
+    (at 294.64 62.23)
     (descr "CP, Radial series, Radial, pin pitch=5.00mm, , diameter=10mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 5.00mm  diameter 10mm Electrolytic Capacitor")
     (path /5DE229D6)
@@ -352,7 +353,7 @@
   )
 
   (module Capacitor_THT:CP_Radial_D10.0mm_P5.00mm (layer F.Cu) (tedit 5AE50EF1) (tstamp 5DF24120)
-    (at 76.449647 59.235001)
+    (at 262.89 110.49)
     (descr "CP, Radial series, Radial, pin pitch=5.00mm, , diameter=10mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 5.00mm  diameter 10mm Electrolytic Capacitor")
     (path /5DE2299D)
@@ -574,7 +575,7 @@
   )
 
   (module Capacitor_THT:CP_Radial_D10.0mm_P5.00mm (layer F.Cu) (tedit 5AE50EF1) (tstamp 5DF23EBF)
-    (at 93.099647 54.085001)
+    (at 259.08 85.09)
     (descr "CP, Radial series, Radial, pin pitch=5.00mm, , diameter=10mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 5.00mm  diameter 10mm Electrolytic Capacitor")
     (path /5DE0DA4F)
@@ -796,7 +797,7 @@
   )
 
   (module Capacitor_THT:CP_Radial_D10.0mm_P5.00mm (layer F.Cu) (tedit 5AE50EF1) (tstamp 5DF23C5E)
-    (at 119.289647 37.025001)
+    (at 250.19 55.88)
     (descr "CP, Radial series, Radial, pin pitch=5.00mm, , diameter=10mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 5.00mm  diameter 10mm Electrolytic Capacitor")
     (path /5DE01F50)
@@ -1018,7 +1019,7 @@
   )
 
   (module Capacitor_THT:CP_Radial_D10.0mm_P5.00mm (layer F.Cu) (tedit 5AE50EF1) (tstamp 5DF239C1)
-    (at 78.719647 70.785001)
+    (at 220.98 102.87)
     (descr "CP, Radial series, Radial, pin pitch=5.00mm, , diameter=10mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 5.00mm  diameter 10mm Electrolytic Capacitor")
     (path /5DE262B4)
@@ -1240,7 +1241,7 @@
   )
 
   (module Capacitor_THT:CP_Radial_D10.0mm_P5.00mm (layer F.Cu) (tedit 5AE50EF1) (tstamp 5DF2363A)
-    (at 90.529647 65.635001)
+    (at 226.06 120.65)
     (descr "CP, Radial series, Radial, pin pitch=5.00mm, , diameter=10mm, Electrolytic Capacitor")
     (tags "CP Radial series Radial pin pitch 5.00mm  diameter 10mm Electrolytic Capacitor")
     (path /5DE2627B)
@@ -1462,7 +1463,7 @@
   )
 
   (module Diode_THT:D_DO-27_P12.70mm_Horizontal (layer F.Cu) (tedit 5AE50CD5) (tstamp 5DF24556)
-    (at 48.695001 73.965001)
+    (at 194.31 92.71)
     (descr "Diode, DO-27 series, Axial, Horizontal, pin pitch=12.7mm, , length*diameter=9.52*5.33mm^2, , http://www.slottechforum.com/slotinfo/Techstuff/CD2%20Diodes%20and%20Transistors/Cases/Diode%20DO-27.jpg")
     (tags "Diode DO-27 series Axial Horizontal pin pitch 12.7mm  length 9.52mm diameter 5.33mm")
     (path /5DE229A9)
@@ -1515,7 +1516,7 @@
   )
 
   (module Diode_THT:D_DO-27_P12.70mm_Horizontal (layer F.Cu) (tedit 5AE50CD5) (tstamp 5DF245EC)
-    (at 101.075001 34.695001)
+    (at 212.09 92.71)
     (descr "Diode, DO-27 series, Axial, Horizontal, pin pitch=12.7mm, , length*diameter=9.52*5.33mm^2, , http://www.slottechforum.com/slotinfo/Techstuff/CD2%20Diodes%20and%20Transistors/Cases/Diode%20DO-27.jpg")
     (tags "Diode DO-27 series Axial Horizontal pin pitch 12.7mm  length 9.52mm diameter 5.33mm")
     (path /5DE065A7)
@@ -1568,7 +1569,7 @@
   )
 
   (module Diode_THT:D_DO-27_P12.70mm_Horizontal (layer F.Cu) (tedit 5AE50CD5) (tstamp 5DF247AB)
-    (at 48.695001 80.855001)
+    (at 185.42 142.24)
     (descr "Diode, DO-27 series, Axial, Horizontal, pin pitch=12.7mm, , length*diameter=9.52*5.33mm^2, , http://www.slottechforum.com/slotinfo/Techstuff/CD2%20Diodes%20and%20Transistors/Cases/Diode%20DO-27.jpg")
     (tags "Diode DO-27 series Axial Horizontal pin pitch 12.7mm  length 9.52mm diameter 5.33mm")
     (path /5DE26287)
@@ -1744,8 +1745,8 @@
     )
   )
 
-  (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF238CE)
-    (at 104.605001 60.705001)
+  (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF2D453)
+    (at 182.88 24.13)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE9992D)
@@ -1901,7 +1902,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF21D59)
-    (at 160.075 154.94)
+    (at 158.75 154.94)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE0DFE5)
@@ -2018,7 +2019,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF24903)
-    (at 160.02 69.85)
+    (at 158.75 69.85)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE73A34)
@@ -2057,7 +2058,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF247FB)
-    (at 160.075 81.28)
+    (at 158.75 81.28)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DEFFDEA)
@@ -2337,7 +2338,7 @@
   )
 
   (module Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical (layer F.Cu) (tedit 5AF05A31) (tstamp 5DF2464A)
-    (at 101.605001 43.415001)
+    (at 199.39 83.82)
     (descr "TO-220F-5, Vertical, RM 1.7mm, PentawattF-, MultiwattF-5, staggered type-2")
     (tags "TO-220F-5 Vertical RM 1.7mm PentawattF- MultiwattF-5 staggered type-2")
     (path /5DE22997)
@@ -2393,7 +2394,7 @@
   )
 
   (module Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical (layer F.Cu) (tedit 5AF05A31) (tstamp 5DF24845)
-    (at 65.875001 82.195001)
+    (at 212.09 83.82)
     (descr "TO-220F-5, Vertical, RM 1.7mm, PentawattF-, MultiwattF-5, staggered type-2")
     (tags "TO-220F-5 Vertical RM 1.7mm PentawattF- MultiwattF-5 staggered type-2")
     (path /5DDFFFDA)
@@ -2449,7 +2450,7 @@
   )
 
   (module Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical (layer F.Cu) (tedit 5AF05A31) (tstamp 5DF246B0)
-    (at 103.875001 52.435001)
+    (at 187.96 132.08)
     (descr "TO-220F-5, Vertical, RM 1.7mm, PentawattF-, MultiwattF-5, staggered type-2")
     (tags "TO-220F-5 Vertical RM 1.7mm PentawattF- MultiwattF-5 staggered type-2")
     (path /5DE26275)
@@ -2503,5 +2504,19 @@
       (rotate (xyz 0 0 0))
     )
   )
+
+  (segment (start 177.8 100.062) (end 177.8 95.062) (width 3) (layer B.Cu) (net 2))
+  (segment (start 163.865 139.7) (end 163.865 132.08) (width 3) (layer B.Cu) (net 5))
+  (segment (start 163.83 100.25) (end 163.83 95.25) (width 3) (layer B.Cu) (net 10))
+  (segment (start 163.83 69.85) (end 163.83 81.28) (width 3) (layer B.Cu) (net 10))
+  (segment (start 163.83 81.28) (end 163.83 95.25) (width 3) (layer B.Cu) (net 10))
+  (segment (start 163.83 110.25) (end 163.83 115.25) (width 3) (layer B.Cu) (net 11))
+  (segment (start 177.8 110.062) (end 177.8 115.062) (width 3) (layer B.Cu) (net 11))
+  (segment (start 164.018 115.062) (end 163.83 115.25) (width 3) (layer B.Cu) (net 11))
+  (segment (start 177.8 115.062) (end 164.018 115.062) (width 3) (layer B.Cu) (net 11))
+  (segment (start 163.83 126.965) (end 163.865 127) (width 3) (layer B.Cu) (net 11))
+  (segment (start 163.83 115.25) (end 163.83 126.965) (width 3) (layer B.Cu) (net 11))
+  (segment (start 163.865 154.905) (end 163.83 154.94) (width 3) (layer B.Cu) (net 12))
+  (segment (start 163.865 144.78) (end 163.865 154.905) (width 3) (layer B.Cu) (net 12))
 
 )

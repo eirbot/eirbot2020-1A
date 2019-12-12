@@ -326,6 +326,32 @@ Y'vqér rfg q'nggraqer Znegva , cnepr dh'vy nvzr znatre qrf enqvngrhef nanybtvdh
 \paragraph*{Point Actionneur.}
 Les actionneurs sont au point morts pour l'instant, ce n'est pas l'urgence.
 
+\newpage
+\section*{Jeudi 12 Décembre}
+Y avait du monde
+\paragraph{Point Mécanique.}
+Le dossier github de le méca a été crée et actualisé, on attend les profilés.
+\paragraph{Point Phare.}
+Le phare est en cours d'impression cela va prendre plusieurs jours.
+\paragraph{Point Puissance.}
+Le code de contrôle des moteurs a été conçu par Emile. L'utilisation de deux
+ponts en H (LMD18200) est actée. Les moteurs fonctionnent en 16V ils seront donc
+directement mis sur la batterie. La communication entre Ptit Lu et Martin est
+faite.
+\paragraph{Point Asservissement.}
+L'idée est plutot d'attendre Clément et son expérience. Emile a testé les deux
+moteurs ils sont bons, les encodeurs sont en cours de test. Grâce à Matthieu,
+Emile arrive à utiliser la Nucléo. Le code a été commencé, Liam réfléchit à la
+théorie de manière assez poussée.
+\paragraph{Point Informatique.}
+Grâce à OpenClassRoom Sébastien sait faire du C++ (enfin en théorie).
+L'algorithme de recherche de chemin est semi-implémenté grâce au projet ours.
+L'interface du robot n'a pas commencé.
+\paragraph{Point Alimentation.}
+Ptit Lu a dit : ``Mangez 5 fruits et légumes, c'est bon pour la santé.''
+Le rootage de la carte doit débuter ce soir et on met pas de radiateur pour
+faire en sorte que le robot ait plus de chance de bruler. Le récapitulatif du
+schéma électrique est disponible ici \ref{schema1}.
 
 \part{Description des projets}
 \chapter{Description générale de l'organisation}
@@ -794,6 +820,18 @@ individu/.default={white}}
 
 \chapter{Electronique}
 \section{Alimentation}
+\paragraph{Objectif.} La carte d'alimentation doit distribuer l'énergie et
+convertir les tensions. Elle récupère l'énergie de la batterie et elle possède
+les caractéristiques suivantes :
+\begin{itemize}
+\item Moteurs : 3A/moteurs
+\item Logique 5V 1.5A
+\item Puissance 5V 3A
+\item Puissance 12V 3A
+\end{itemize}
+\paragraph{Schéma électrique.}
+\includepdf{schema_alim.pdf}
+\label{schema1}
 \section{Puissance}
 \section{Actionneur}
 

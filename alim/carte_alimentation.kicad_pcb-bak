@@ -1621,7 +1621,7 @@
   )
 
   (module fusible:fusible_alim (layer F.Cu) (tedit 5DF141A8) (tstamp 5DF24522)
-    (at 149.86 143.51 180)
+    (at 163.83 95.25 180)
     (path /5DE79EE7)
     (fp_text reference F41 (at -4.9 3.9) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
@@ -1644,7 +1644,7 @@
   )
 
   (module fusible:fusible_alim (layer F.Cu) (tedit 5DF141A8) (tstamp 5DF2517A)
-    (at 163.83 163.322)
+    (at 177.8 115.062)
     (path /5DEE6FC7)
     (fp_text reference F42 (at -4.9 3.9) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
@@ -1901,7 +1901,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF21D59)
-    (at 146.105 203.2)
+    (at 160.075 154.94)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE0DFE5)
@@ -1940,7 +1940,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF21D6E)
-    (at 149.895 187.96 270)
+    (at 163.865 139.7 270)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE5159F)
@@ -1979,7 +1979,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF21D83)
-    (at 149.895 175.26 270)
+    (at 163.865 127 270)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE1629E)
@@ -2018,7 +2018,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF24903)
-    (at 127.965001 56.375001)
+    (at 160.02 69.85)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DE73A34)
@@ -2057,7 +2057,7 @@
   )
 
   (module TerminalBlock:TerminalBlock_bornier-2_P5.08mm (layer F.Cu) (tedit 59FF03AB) (tstamp 5DF247FB)
-    (at 146.105 129.54)
+    (at 160.075 81.28)
     (descr "simple 2-pin terminal block, pitch 5.08mm, revamped version of bornier2")
     (tags "terminal block bornier2")
     (path /5DEFFDEA)

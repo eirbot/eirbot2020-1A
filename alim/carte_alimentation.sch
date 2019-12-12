@@ -4,10 +4,10 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Carte Alim"
+Date "dec 2019"
+Rev "v1"
+Comp "EirBoat"
 Comment1 ""
 Comment2 ""
 Comment3 ""
@@ -800,38 +800,5 @@ F 2 "" H 3700 1300 50  0001 C CNN
 F 3 "" H 3700 1300 50  0001 C CNN
 	1    3700 1300
 	-1   0    0    1   
-$EndComp
-$Comp
-L Mechanical:Heatsink HS1
-U 1 1 5DF31D2D
-P 6200 1600
-F 0 "HS1" H 6342 1721 50  0000 L CNN
-F 1 "Heatsink" H 6342 1630 50  0000 L CNN
-F 2 "" H 6212 1600 50  0001 C CNN
-F 3 "~" H 6212 1600 50  0001 C CNN
-	1    6200 1600
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Heatsink HS2
-U 1 1 5DF33999
-P 6150 3400
-F 0 "HS2" H 6292 3521 50  0000 L CNN
-F 1 "Heatsink" H 6292 3430 50  0000 L CNN
-F 2 "" H 6162 3400 50  0001 C CNN
-F 3 "~" H 6162 3400 50  0001 C CNN
-	1    6150 3400
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:Heatsink HS3
-U 1 1 5DF33D93
-P 5700 5150
-F 0 "HS3" H 5842 5271 50  0000 L CNN
-F 1 "Heatsink" H 5842 5180 50  0000 L CNN
-F 2 "" H 5712 5150 50  0001 C CNN
-F 3 "~" H 5712 5150 50  0001 C CNN
-	1    5700 5150
-	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

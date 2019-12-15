@@ -25,17 +25,6 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm2576.pdf" H 6200 3850 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C22
-U 1 1 5DE01F50
-P 8200 4100
-F 0 "C22" H 8085 4054 50  0000 R CNN
-F 1 "1000u" H 8085 4145 50  0000 R CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8238 3950 50  0001 C CNN
-F 3 "~" H 8200 4100 50  0001 C CNN
-	1    8200 4100
-	-1   0    0    1   
-$EndComp
-$Comp
 L Device:L L2
 U 1 1 5DE03C89
 P 7700 3950
@@ -63,7 +52,7 @@ Connection ~ 7200 3950
 Wire Wire Line
 	7200 3950 6700 3950
 Wire Wire Line
-	7850 3950 8200 3950
+	7850 3950 8000 3950
 $Comp
 L power:GND #PWR0101
 U 1 1 5DE09AC4
@@ -162,17 +151,6 @@ F 2 "Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical" H
 F 3 "http://www.ti.com/lit/ds/symlink/lm2576.pdf" H 6200 2100 50  0001 C CNN
 	1    6200 2100
 	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C12
-U 1 1 5DE2299D
-P 8200 2350
-F 0 "C12" H 8085 2304 50  0000 R CNN
-F 1 "1000u" H 8085 2395 50  0000 R CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8238 2200 50  0001 C CNN
-F 3 "~" H 8200 2350 50  0001 C CNN
-	1    8200 2350
-	-1   0    0    1   
 $EndComp
 $Comp
 L Device:L L1
@@ -299,17 +277,6 @@ F 2 "Package_TO_SOT_THT:TO-220F-5_P3.4x2.06mm_StaggerEven_Lead1.86mm_Vertical" H
 F 3 "http://www.ti.com/lit/ds/symlink/lm2576.pdf" H 5500 5600 50  0001 C CNN
 	1    5500 5600
 	1    0    0    -1  
-$EndComp
-$Comp
-L Device:C C32
-U 1 1 5DE2627B
-P 7500 5850
-F 0 "C32" H 7385 5804 50  0000 R CNN
-F 1 "1000u" H 7385 5895 50  0000 R CNN
-F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 7538 5700 50  0001 C CNN
-F 3 "~" H 7500 5850 50  0001 C CNN
-	1    7500 5850
-	-1   0    0    1   
 $EndComp
 $Comp
 L Device:L L3
@@ -800,5 +767,42 @@ F 2 "" H 3700 1300 50  0001 C CNN
 F 3 "" H 3700 1300 50  0001 C CNN
 	1    3700 1300
 	-1   0    0    1   
+$EndComp
+Text Notes 7150 1650 0    50   ~ 0
+Hack feedback\n5.74 KOhms
+$Comp
+L Device:CP C22
+U 1 1 5DF78C22
+P 8200 4100
+F 0 "C22" H 8318 4146 50  0000 L CNN
+F 1 "1000u" H 8318 4055 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8238 3950 50  0001 C CNN
+F 3 "~" H 8200 4100 50  0001 C CNN
+	1    8200 4100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8000 3950 8200 3950
+$Comp
+L Device:CP C12
+U 1 1 5DF7D5A2
+P 8200 2350
+F 0 "C12" H 8318 2396 50  0000 L CNN
+F 1 "1000u" H 8318 2305 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 8238 2200 50  0001 C CNN
+F 3 "~" H 8200 2350 50  0001 C CNN
+	1    8200 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C32
+U 1 1 5DF817D2
+P 7500 5850
+F 0 "C32" H 7618 5896 50  0000 L CNN
+F 1 "1000u" H 7618 5805 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 7538 5700 50  0001 C CNN
+F 3 "~" H 7500 5850 50  0001 C CNN
+	1    7500 5850
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

@@ -51,8 +51,6 @@ Wire Wire Line
 Connection ~ 7200 3950
 Wire Wire Line
 	7200 3950 6700 3950
-Wire Wire Line
-	7850 3950 8000 3950
 $Comp
 L power:GND #PWR0101
 U 1 1 5DE09AC4
@@ -437,8 +435,6 @@ Wire Wire Line
 	2100 950  1500 950 
 Wire Wire Line
 	1500 950  1500 1600
-Text Notes 1750 2200 0    50   ~ 0
-arret general
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5DE53A18
@@ -666,19 +662,6 @@ F 3 "~" H 3150 1800 50  0001 C CNN
 	1    3150 1800
 	0    1    1    0   
 $EndComp
-$Comp
-L Connector:Conn_01x02_Male J41
-U 1 1 5DE5159F
-P 2250 1800
-F 0 "J41" V 2312 1844 50  0000 L CNN
-F 1 "Conn_01x02_Male" V 2403 1844 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 2250 1800 50  0001 C CNN
-F 3 "~" H 2250 1800 50  0001 C CNN
-	1    2250 1800
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2250 2000 2450 2000
 Connection ~ 2450 2000
 Text Notes 3950 1200 0    50   ~ 0
 puissance moteurs\n
@@ -699,8 +682,6 @@ Wire Wire Line
 	4050 1700 4050 1600
 Wire Wire Line
 	3150 2000 4050 2000
-Wire Wire Line
-	1500 2000 2150 2000
 Connection ~ 4050 2000
 Wire Wire Line
 	4050 2000 4250 2000
@@ -781,8 +762,6 @@ F 3 "~" H 8200 4100 50  0001 C CNN
 	1    8200 4100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8000 3950 8200 3950
 $Comp
 L Device:CP C12
 U 1 1 5DF7D5A2
@@ -805,4 +784,8 @@ F 3 "~" H 7500 5850 50  0001 C CNN
 	1    7500 5850
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	7850 3950 8200 3950
+Wire Wire Line
+	1500 2000 2450 2000
 $EndSCHEMATC

@@ -101,13 +101,13 @@
 Github est un service en ligne qui permet d'héberger ses repositories de code.
 Github est un outil gratuit pour héberger du code open source.
 Pour commencer à utiliser Github il faut créer son compte sur la page
-\href{https://github.com/join?source=header-home}{page d'accueil}, rentrer son
+\href{https://github.com/join?source=header-home}{page d'acceuil}, rentrer son
 nom d'utilisateur , un mot de passe etc. Une fois cela fait, il faut
 penser à communiquer son pseudo pour pouvoir accéder au dossier d'eirbot. \\
 Sur Linux il suffit d'avoir un terminal pour faire toutes les commandes git. En
 revanche si vous êtes sur Windows...tant pis\footnote{L'utilisation de logiciel
   comme \href{https://gitforwindows.org/}{Git SCM} permettra de réaliser toutes
-  les actions après chacun peut utiliser son logiciel préféré, vive \textsc{Emacs}}
+  les actions après chacun peut utiliser son logiciel préféré, vive \textsc{emacs}}
 
 \subsection*{Récupérer du code d'un autre d'un autre repository}
 Une fois le compte Github créé, du code d'un autre
@@ -125,7 +125,7 @@ Une fois le lien copié on tape dans un bash la commande suivante
       \textbf{git clone} https://github.com/eirbot/eirbot2020-1A.git
   \end{tabular}
 \end{center}
-Cela permet de créer une copie locale du dossier sur notre machine.
+Cela permet de créér une copie locale du dossier sur notre machine.
 
 \subsection*{Envoyer du code sur Github}
 Maintenant qu'une copie locale du dossier existe sur la machine, le code (ou
@@ -179,7 +179,7 @@ Cela va ouvrir un éditeur de texte, il faut ajouter un commentaire. Une fois le
 commentaire validé la révision a été créé.\\ \textcolor{red}{Attention !} Les
 commentaires des commits sont les premières choses que les collaborateurs vont
 voir, un commit comme ``pause dej'' n'a aucun intéret\footnote{Cela a plutôt
-  tendance à énerver vos collègues et les conduire à détruire chacun de vos
+  tendance à énerver vos collègues et les conduire à détruire chaqu'un de vos
   commits (oui oui c'est possible)}, les collaborateurs ne peuvent pas
 comprendre ce que vous avez fait. Il est donc conseillé de commit fichier par
 fichier en expliquant correctement les modifications réalisées sur chaque
@@ -205,85 +205,6 @@ faut utiliser la commande la commande
       \textbf{git pull} origin master
   \end{tabular}
 \end{center}
-Lorsque l'on réalise un \textbf{git pull} on effectue un fetch puis
-un merge. Dans nos conditions de travail, il est préférable de
-réaliser un rebase pour que cela soit automatique il faut taper la commande
-suivante.
-\begin{center}
-  \begin{tabular}{c}
-    \rowcolor{lightgray!50!white}
-      git config - - global branch.master.rebase true
-  \end{tabular}
-\end{center}
-
-\newpage
-\HRule
-\begin{center}
-  \LARGE \textbf{Guide avancé pour Git}
-\end{center}
-\HRule \\
-
-\subsection*{Gérer un conflit sur du code}
-Du fait de la présence de multiples dépôts dans lesquels le code peut être
-modifié, il est possible que la même branche master ait divergé entre deux
-dépôts (typiquement avec la même branche sur un dépôt distant, comme
-origin/master). Dans ce cas, une fusion/merge risque d'amener à un conflit. Il
-convient de ne surtout pas paniquer, cela fait partie des tracas standards du
-développement logiciel.\\
-Mettons que la dernière fusion/merge ait amené au résultat suivant :
-\begin{lstlisting}
-Auto-merging nom_du_fichier
-CONFLICT (content): Merge conflict in nom_du_fichier
-Automatic merge failed; fix conflicts and then commit the result.
-\end{lstlisting}
-Il faut bien noter que l'opération de fusion/merge ne s'est pas terminée ("no
-changes added to commit"). Git vous met dans un état où il est possible de
-l'assister à terminer cette fusion correctement.\\
-Pour chaque fichier en conflit, appliquer la procédure suivante :
-\begin{enumerate}
-\item Ouvrir le fichier dans un éditeur (dans notre exemple nom\_du\_fichier).
-\item Rechercher dans l'éditeur les blocs de la forme suivante :
-  \begin{lstlisting}
-    <<<<<<< HEAD
-    Teddy , le programmeur extrémiste.
-    =======
-    Teddy , le programmeur de l'extrême.
-    >>>>>>> origin/master
-  \end{lstlisting}
-Git a modifié de lui-même le fichier pour inclure, aux endroits qui lui
-semblaient différents, les deux versions. Il est facile de rechercher ces blocs
-car les marqueurs $<<<<<<<, =======$ et $>>>>>>>$ ne sont quasiment jamais utilisés.\\
-La zone délimitée par $<<<<<<<$ et $=======$ représente la version locale du
-code (branche master).\\ La zone délimitée par $=======$ et $>>>>>>>$ représente la
-version distante du code (branche origin/master). Modifier le code de manière à
-éliminer tous les marqueurs. Il est ainsi facile de choisir une version des deux
-versions à garder, ou de faire une sorte de mélange des deux si besoin.
-\item A la fin des modifications, ajouter le code au commit (ici le fichier en conflit)
-\begin{center}
-  \begin{tabular}{c}
-    \rowcolor{lightgray!50!white}
-      \textbf{git add} nom\_du\_fichier
-  \end{tabular}
-\end{center}
-\item Une fois tous les fichiers en conflit gérés, terminer la fusion (un message de commit est généré automatiquement) :
-\begin{center}
-  \begin{tabular}{c}
-    \rowcolor{lightgray!50!white}
-      \textbf{git commit}
-  \end{tabular}
-\end{center}
-\end{enumerate}
-
-\subsection*{Authentification via clé SSH}
-Pour modifier son authentification vers ssh il faut tout d'abbord générer une
-clé privée et une clé publique sur le poste client.
-\begin{center}
-  \begin{tabular}{c}
-    \rowcolor{lightgray!50!white}
-      ssh-keygen -t rsa
-  \end{tabular}
-\end{center}
-Par défaut la clé publique et privée sont enregistrée dans le répertoire $.ssh$
 
 \newpage
 \end{spacing}

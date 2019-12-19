@@ -829,7 +829,10 @@ les caractéristiques suivantes :
 \item Puissance 5V 3A
 \item Puissance 12V 3A
 \end{itemize}
-\paragraph{Schéma électrique.}
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.4]{schema_bloc_connexions.png}
+\end{figure}
 \includepdf{schema_alim.pdf}
 \label{schema1}
 \section{Puissance}
@@ -838,7 +841,54 @@ les caractéristiques suivantes :
 \chapter{Informatique}
 \section{Asservissement}
 \section{Stratégie}
+\subsection{Modélisation de la table}
+\subsection{Détection d'un robot adverse}
+\subsection{Recherche de Chemin - Algorithme A$\ast$}
+\paragraph{Objectif.} L'idée est d'implémenter un algorithme permettant de
+calculer un chemin pour notre robot. L'idée est qu'il puisse, d'un point donné
+aller à un autre point tout en évitant les obstacles. Ces obstacles seront soit
+défini directement (comme les gobelets) ou défini en fonction de la détection
+des robots adverses. Nous supposons ici que nous avons donc une représentation
+de la table comme un tableau. Chaque case pouvant avoir deux états, occupée ou
+non.
+\paragraph{Description.}
+A*\footnote{\url{https://fr.wikipedia.org/wiki/Algorithme_A*}} commence à un
+nœud choisi. Il applique à ce dernier un cout initial, il estime ensuite la
+distance entre ce noeud et le but à atteindre. Le coût additionné à l'évaluation
+représentent le \textit{cout heuristique} assignné au chemin menant à ce noeud.
+Le noeud est alors ajouté à une file d'attente prioritaire, appelée \textit{open
+list}.
 
+Premièrement l'algorithme récupère le premier noeud de l'\textit{open list}. Si
+elle est vide, il n'y a aucun chemin du noeud initial à celui d'arrivé,
+l'algorithme est en erreur. Si le noeud est celui d'arrivé, l'algorithme va
+reconstruire\footnote{Cette reconstruction se fait grâce aux informations de la
+  \textit{closed list}} le chemin complet et renvoyer le résultat.
+
+Ensuite, si le noeud n'est pas le noeud d'arrivée alors de nouveaux noeuds sont
+crées pour tous les noeuds contigus admissibles\footnote{Dans notre cas si il
+  est libre ou non}. L'A$\ast$ calcule ensuite son coût et le stocke avec le
+noeud. Ce coût est calculé à partir de la somme du coût de son ancêtre et du
+coût de l'opération pour atteindre ce nouveau noeud.
+
+En parallèle l'algorithme conserve la liste des noeuds qui ont été vérifiés,
+c'est la \textit{closed list}. Si un noeud nouvellement produit est déjà dans
+cette liste avec un coût égal ou inférieur, on ne fait rien.
+
+Après, l'évaluation de la distance du nouveau noeud au noeud d'arrivée est ajoutée
+au coût pour former l'heuristique du noeud. Ce noeud est alors ajouté à la liste
+d'attente prioritaire, à moins qu'un noeud identique dans cette liste ne possède
+déjà une heuristique inférieure ou égale.
+
+Une fois ces étapes effectuées pour chaque nouveau noeud contigu, le noeud
+original pris de la file d'attente prioritaire est ajouté à la liste des noeuds
+vérifiés. Le prochain noeud est alors retiré de la file d'attente prioritaire et
+le processus recommence.
+
+\paragraph{Pseudo Code.}
+
+\subsection{Gestion des actionneurs}
+\subsection{Boucle de jeu principale}
 \newpage
 \end{spacing}
 \end{document}

@@ -205,6 +205,86 @@ faut utiliser la commande la commande
       \textbf{git pull} origin master
   \end{tabular}
 \end{center}
+Lorsque l'on réalise un \textbf{git pull} on effectue un fetch puis
+un merge. Dans nos conditions de travail, il est préférable de
+réaliser un rebase pour que cela soit automatique il faut taper la commande
+suivante.
+\begin{center}
+  \begin{tabular}{c}
+    \rowcolor{lightgray!50!white}
+      git config - - global branch.master.rebase true
+  \end{tabular}
+\end{center}
+
+\newpage
+\HRule
+\begin{center}
+  \LARGE \textbf{Guide avancé pour Git}
+\end{center}
+\HRule \\
+
+\subsection*{Gérer un conflit sur du code}
+Du fait de la présence de multiples dépôts dans lesquels le code peut être
+modifié, il est possible que la même branche master ait divergé entre deux
+dépôts (typiquement avec la même branche sur un dépôt distant, comme
+origin/master). Dans ce cas, une fusion/merge risque d'amener à un conflit. Il
+convient de ne surtout pas paniquer, cela fait partie des tracas standards du
+développement logiciel.\\
+Mettons que la dernière fusion/merge ait amené au résultat suivant :
+\begin{lstlisting}
+Auto-merging nom_du_fichier
+CONFLICT (content): Merge conflict in nom_du_fichier
+Automatic merge failed; fix conflicts and then commit the result.
+\end{lstlisting}
+Il faut bien noter que l'opération de fusion/merge ne s'est pas terminée ("no
+changes added to commit"). Git vous met dans un état où il est possible de
+l'assister à terminer cette fusion correctement.\\
+Pour chaque fichier en conflit, appliquer la procédure suivante :
+\begin{enumerate}
+\item Ouvrir le fichier dans un éditeur (dans notre exemple nom\_du\_fichier).
+\item Rechercher dans l'éditeur les blocs de la forme suivante :
+  \begin{lstlisting}
+    <<<<<<< HEAD
+    Teddy , le programmeur extrémiste.
+    =======
+    Teddy , le programmeur de l'extrême.
+    >>>>>>> origin/master
+  \end{lstlisting}
+Git a modifié de lui-même le fichier pour inclure, aux endroits qui lui
+semblaient différents, les deux versions. Il est facile de rechercher ces blocs
+car les marqueurs $<<<<<<<, =======$ et $>>>>>>>$ ne sont quasiment jamais utilisés.\\
+La zone délimitée par $<<<<<<<$ et $=======$ représente la version locale du
+code (branche master).\\ La zone délimitée par $=======$ et $>>>>>>>$ représente la
+version distante du code (branche origin/master). Modifier le code de manière à
+éliminer tous les marqueurs. Il est ainsi facile de choisir une version des deux
+versions à garder, ou de faire une sorte de mélange des deux si besoin.
+\item A la fin des modifications, ajouter le code au commit (ici le fichier en conflit)
+\begin{center}
+  \begin{tabular}{c}
+    \rowcolor{lightgray!50!white}
+      \textbf{git add} nom\_du\_fichier
+  \end{tabular}
+\end{center}
+\item Une fois tous les fichiers en conflit gérés, terminer la fusion (un message de commit est généré automatiquement) :
+\begin{center}
+  \begin{tabular}{c}
+    \rowcolor{lightgray!50!white}
+      \textbf{git commit}
+  \end{tabular}
+\end{center}
+\end{enumerate}
+
+\subsection*{Authentification via clé SSH}
+Pour modifier son authentification vers ssh il faut tout d'abbord générer une
+clé privée et une clé publique sur le poste client.
+\begin{center}
+  \begin{tabular}{c}
+    \rowcolor{lightgray!50!white}
+      ssh-keygen -t rsa
+  \end{tabular}
+\end{center}
+Par défaut la clé publique et privée sont enregistrée dans le répertoire $.ssh$
+
 
 \newpage
 \end{spacing}

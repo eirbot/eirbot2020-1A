@@ -45,6 +45,7 @@ Navigation::Navigation(Node src, Node dst)
 
 }
 
+//Gros merci à Openclassroom xD
 std::vector<Node> Navigation::Astar(Node src, Node dest)
 {
     vector<Node> empty;
@@ -118,16 +119,33 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
             for (int j=-1; j<=1; j++) {
                 double fNew,gNew,hNew;
                 if (isValid(x+i,y+j)) {
+                    //Si on trouve la destination finale
                     if (isDestination(x+i,y+j,dest)) {
                         allMap[x+i][y+j].parentX=x;
                         allMap[x+i][y+j].parentY=y;
                         destinationReach=true;
                         //TODO makepath
                     }
+                    else if (closedList[x+i][y+j]==false) {
+                        gNew=node.gcost+1.0;
+                        hNew=calculateE(x+i,y+j,dest);
+                        fNew=gNew+hNew;
+                        //Verifier si le chemin est meilleur que le précédent chemin
+                        if (allMap[x+i][y+j].fcost==FLT_MAX || allMap[x+i][y+j].fcost>fNew) {
+                            allMap[x+i][y+j].fcost=fNew;
+                            allMap[x+i][y+j].gcost=gNew;
+                            allMap[x+i][y+j].hcost=hNew;
+                            allMap[x+i][y+j].parentX=x;
+                            allMap[x+i][y+j].parentY=y;
+                            openList.emplace_back(allMap[x+i][y+j]);
+                        }
+                    }
                 }
             }
-
+        }
+        if(destinationReach==false){
+            printf("You can cry");
+            return empty;
         }
     }
-
 }

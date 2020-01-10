@@ -8,8 +8,10 @@
 #include <array>
 #include <cfloat>
 
-#define X_MAX 3000 //Longueur de la table
-#define Y_MAX 2000 //Largeur de la table
+#define X_MAX 300 //Longueur de la table
+#define Y_MAX 200 //Largeur de la table
+
+static int test=0;
 
 struct Node{
         ushort x;

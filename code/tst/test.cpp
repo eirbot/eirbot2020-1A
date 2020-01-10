@@ -2,7 +2,7 @@
 int main(int argc, char *argv[]) {
     printf("Test en cours veuillez patienter");
     Node src;
-    src.x=12;
+    src.x=0;
     src.y=0;
     Node dest;
     dest.x=0;

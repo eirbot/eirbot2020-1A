@@ -9,9 +9,9 @@
 #include <cfloat>
 
 #include "navigation.h"
-#include "asserv.hpp"
-#include "detection.hpp"
-#include "actionneur.hpp"
+//#include "asserv.hpp"
+//#include "detection.hpp"
+//#include "actionneur.hpp"
 
 
 int main(int argc, char *argv[]);

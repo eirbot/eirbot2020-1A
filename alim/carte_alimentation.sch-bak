@@ -51,8 +51,6 @@ Wire Wire Line
 Connection ~ 7200 3950
 Wire Wire Line
 	7200 3950 6700 3950
-Wire Wire Line
-	7850 3950 8000 3950
 $Comp
 L power:GND #PWR0101
 U 1 1 5DE09AC4
@@ -437,8 +435,6 @@ Wire Wire Line
 	2100 950  1500 950 
 Wire Wire Line
 	1500 950  1500 1600
-Text Notes 1750 2200 0    50   ~ 0
-arret general
 $Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5DE53A18
@@ -666,19 +662,6 @@ F 3 "~" H 3150 1800 50  0001 C CNN
 	1    3150 1800
 	0    1    1    0   
 $EndComp
-$Comp
-L Connector:Conn_01x02_Male J41
-U 1 1 5DE5159F
-P 2250 1800
-F 0 "J41" V 2312 1844 50  0000 L CNN
-F 1 "Conn_01x02_Male" V 2403 1844 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 2250 1800 50  0001 C CNN
-F 3 "~" H 2250 1800 50  0001 C CNN
-	1    2250 1800
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	2250 2000 2450 2000
 Connection ~ 2450 2000
 Text Notes 3950 1200 0    50   ~ 0
 puissance moteurs\n
@@ -699,8 +682,6 @@ Wire Wire Line
 	4050 1700 4050 1600
 Wire Wire Line
 	3150 2000 4050 2000
-Wire Wire Line
-	1500 2000 2150 2000
 Connection ~ 4050 2000
 Wire Wire Line
 	4050 2000 4250 2000
@@ -781,8 +762,6 @@ F 3 "~" H 8200 4100 50  0001 C CNN
 	1    8200 4100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8000 3950 8200 3950
 $Comp
 L Device:CP C12
 U 1 1 5DF7D5A2
@@ -803,6 +782,46 @@ F 1 "1000u" H 7618 5805 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D10.0mm_P5.00mm" H 7538 5700 50  0001 C CNN
 F 3 "~" H 7500 5850 50  0001 C CNN
 	1    7500 5850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7850 3950 8200 3950
+Wire Wire Line
+	1500 2000 2450 2000
+$Comp
+L Device:LED D4
+U 1 1 5E198AD9
+P 1500 2650
+F 0 "D4" V 1539 2533 50  0000 R CNN
+F 1 "LED" V 1448 2533 50  0000 R CNN
+F 2 "LED_THT:LED_D3.0mm" H 1500 2650 50  0001 C CNN
+F 3 "~" H 1500 2650 50  0001 C CNN
+	1    1500 2650
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 5E19B823
+P 1500 2350
+F 0 "R4" H 1570 2396 50  0000 L CNN
+F 1 "R" H 1570 2305 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_Horizontal" V 1430 2350 50  0001 C CNN
+F 3 "~" H 1500 2350 50  0001 C CNN
+	1    1500 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1500 2200 1500 2000
+Connection ~ 1500 2000
+$Comp
+L power:GND #PWR0125
+U 1 1 5E19D884
+P 1500 2800
+F 0 "#PWR0125" H 1500 2550 50  0001 C CNN
+F 1 "GND" H 1505 2627 50  0000 C CNN
+F 2 "" H 1500 2800 50  0001 C CNN
+F 3 "" H 1500 2800 50  0001 C CNN
+	1    1500 2800
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

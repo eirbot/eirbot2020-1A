@@ -32,10 +32,10 @@ double Navigation::calculateE(int x, int y, Node dest) //Permet de calculer la d
 
 bool Navigation::onTable(Node pos)
 {
-    if(pos.x>3000){
+    if(pos.x>=X_MAX){
         return false;
     }
-    if(pos.y>2000){
+    if(pos.y>=Y_MAX){
         return false;
     }
     return true;
@@ -116,8 +116,8 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
                     itNode=it;
                 }
             }
-                node =*itNode;
-                openList.erase(itNode);
+            node =*itNode;
+            openList.erase(itNode);
 
         }while(isValid(node.x,node.y)==false);
         x=node.x;
@@ -133,9 +133,7 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
                         allMap[x+i][y+j].parentX=x;
                         allMap[x+i][y+j].parentY=y;
                         destinationReach=true;
-                        //TODO makepath
-                        test+=1; //Variable de test
-                        return empty;
+                        return MakePath(allMap,dest);
                     }
                     else if (closedList[x+i][y+j]==false) {
                         gNew=node.gcost+1.0;
@@ -155,4 +153,98 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
             return empty;
         }
     return empty;
+}
+
+std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Node dest)
+{
+    vector<Node> empty;
+  try {     printf("Found a path \n");
+   int x = dest.x;
+    int y = dest.y;
+    stack<Node> path;
+    vector<Node> usablePath;
+    while (!(map[x][y].parentX ==x && map[x][y].parentY==y)){
+        path.push(map[x][y]);
+        int tmpX=map[x][y].parentX;
+        int tmpY=map[x][y].parentY;
+        x=tmpX;
+        y=tmpY;
+    }
+    path.push(map[x][y]);
+    while(!path.empty())
+    {
+        Node top=path.top();
+        path.pop();
+        usablePath.emplace_back(top);
+    }
+    return usablePath;
+  }
+  catch(const exception& e){
+      printf("Erreur");
+  }
+  return  empty;
+}
+
+void Navigation::Print_path(vector<Node> usablePath)
+{
+    Node tmp;
+    for (size_t i=0; i<usablePath.size(); i++) {
+        tmp=usablePath.operator[](i);
+        printf(" x : %d ; y : %d \n",tmp.x,tmp.y);
+    }
+}
+
+void Navigation::Navigate_to_asserv(vector<Node>usablePath)
+{
+    Node tmp;
+    int j=0;
+    tmp.x=usablePath.operator[](0).x;
+    tmp.y=usablePath.operator[](0).y;
+    ushort size=usablePath.size();
+    ushort dep_x=0; //déplacement à faire en x
+    ushort dep_y=0; //déplacement à faire en y
+    int i=0; //compteur
+    int mv=0; //Flag pour savoir si il faut bouger
+    while(j<size-1){
+        while(1+usablePath.operator[](i).x == usablePath.operator[](i+1).x && usablePath.operator[](i).y==usablePath.operator[](i+1).y){
+            i=i+1;
+            dep_x+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y});
+            mv=0;
+            dep_x=0;
+            tmp.x+=dep_x;
+            j+=i;
+        }
+        while(1+usablePath.operator[](i).y == usablePath.operator[](i+1).y && usablePath.operator[](i).x==usablePath.operator[](i+1).x){
+            i=i+1;
+            dep_y+=1;
+            mv=1;
+
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x, .y=tmp.y+dep_y});
+            mv=0;
+            dep_y=0;
+            tmp.y+=dep_y;
+            j+=i;
+        }
+        while(1+usablePath.operator[](i).y == usablePath.operator[](i+1).y && 1+usablePath.operator[](i).x==usablePath.operator[](i+1).x){
+            i=i+1;
+            dep_y+=1;
+            dep_x+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y+dep_x});
+            mv=0;
+            dep_y=dep_x=0;
+            tmp.x+=dep_x;
+            tmp.y+=dep_y;
+            j+=i;
+        }
+    }
+    j+=1;
 }

@@ -9,12 +9,13 @@ all: project
 
 code :
 	g++ $(CFLAGS) -c src/navigation.cpp
+	g++ $(CFLAGS) -c src/asserv.cpp
 
 project: code
-	g++ $(CFLAGS) navigation.o src/main.cpp -o project
+	g++ $(CFLAGS) navigation.o asserv.o src/main.cpp -o project
 
 test: code
-	g++ $(CFLAGS) navigation.o tst/test.cpp -o test
+	g++ $(CFLAGS) navigation.o asserv.o tst/test.cpp -o test
 
 clean:
 	rm -f *.o project test

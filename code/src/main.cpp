@@ -12,6 +12,6 @@ int main(int argc, char *argv[]) {
     dest.y=atoi(argv[2]);
     std::vector<Node> result;
     result=Navigation::Astar(src,dest);
-
+    Navigation::Navigate_to_asserv(result);
     return 0;
 }

@@ -1,4 +1,4 @@
-CFLAGS = -Wall -Wextra -std=c++11 -g
+CFLAGS = -Wall -Wextra -std=c++11 -g -O3
 FILE=navigation.o asserv.o world.o
 ##
 # Project Title

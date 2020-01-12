@@ -21,20 +21,19 @@ class Navigation
 //Méthode
         public:
                 Navigation();
-                Navigation(Node src, Node dest);
-                static bool isDestination(int x, int y, Node dest); //Permet de savoir si le noeud est la destination ou non
-                static double calculateE(int x, int y, Node dest);//Permet de calculer la distance euclidienne entre deux noeuds
-                static std::vector<Node> Astar(Node src, Node dest, std::vector<obstacle> list_obstacles); //Coeur de l'algorithme A*
-                static std::vector<Node> MakePath(std::array<std::array<Node,Y_MAX>,X_MAX> map, Node dest); //Permet de recréer le chemin
-                static bool onTable(Node pos); //Permet de savoir si on est sur la table
+                Navigation(Node node);
+                static std::vector<Node> Astar(Navigation src, Navigation dest, std::vector<obstacle> list_obstacles); //Coeur de l'algorithme A*
+                static std::vector<Node> MakePath(std::array<std::array<Node,Y_MAX>,X_MAX> map, Navigation dest); //Permet de recréer le chemin
                 static void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
                 static void Navigate_to_asserv(std::vector<Node>usablePath); //Permet de convertir un chemin en instruction asserv
                 ~Navigation();
 
 //Attributs
-    private:
-        Node src;
-        Node dest;
+        private:
+        static bool isDestination(int x, int y, Navigation dest); //Permet de savoir si le noeud est la destination ou non
+        static double calculateE(int x, int y, Navigation dest,double E);//Permet de calculer la distance euclidienne entre deux noeuds
+        static bool onTable(Navigation pos); //Permet de savoir si on est sur la table
+        Node node;
 };
 
 #endif

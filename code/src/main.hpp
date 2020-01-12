@@ -9,7 +9,8 @@
 #include <cfloat>
 
 #include "navigation.h"
-//#include "asserv.hpp"
+#include "world.hpp"
+#include "asserv.hpp"
 //#include "detection.hpp"
 //#include "actionneur.hpp"
 

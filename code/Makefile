@@ -1,4 +1,5 @@
 CFLAGS = -Wall -Wextra -std=c++11 -g
+FILE=navigation.o asserv.o world.o
 ##
 # Project Title
 #
@@ -8,14 +9,15 @@ CFLAGS = -Wall -Wextra -std=c++11 -g
 all: project
 
 code :
+	g++ $(CFLAGS) -c src/world.cpp
 	g++ $(CFLAGS) -c src/navigation.cpp
 	g++ $(CFLAGS) -c src/asserv.cpp
 
 project: code
-	g++ $(CFLAGS) navigation.o asserv.o src/main.cpp -o project
+	g++ $(CFLAGS) world.o navigation.o asserv.o src/main.cpp -o project
 
 test: code
-	g++ $(CFLAGS) navigation.o asserv.o tst/test.cpp -o test
+	g++ $(CFLAGS) $(FILE) tst/test.cpp -o test
 
 clean:
 	rm -f *.o project test

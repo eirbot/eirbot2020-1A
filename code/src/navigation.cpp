@@ -7,14 +7,6 @@ inline bool operator < (const Node& lhs, const Node& rhs)
     return lhs.fcost < rhs.fcost;
 }
 
-bool Navigation::isValid(int x, int y) //Permet de savoir si un noeud est un obstacle (renvoie vrai si ce n'est pas un obstacle)
-{
-    //TODO Penser à la faire quand world sera pret
-    x=x;
-    y=y;
-    return true;
-
-}
 
 bool Navigation::isDestination(int x, int y, Node dest) //Permet de savoir si o est arrivé à destination
 {
@@ -55,10 +47,10 @@ Navigation::Navigation(Node src, Node dst): src(src),dest(dst)
 }
 
 //Gros merci à Openclassroom xD
-std::vector<Node> Navigation::Astar(Node src, Node dest)
+std::vector<Node> Navigation::Astar(Node src, Node dest,std::vector<obstacle> list_obstacles)
 {
     vector<Node> empty;
-    if (Navigation::isValid(dest.x, dest.y)==false){
+    if (World::isValid(dest.x,dest.y,list_obstacles)==false){
         printf("Destination is an obstacle \n");
         return empty;
         //Si l'arrivée est un obstacle on ne fait rien
@@ -90,8 +82,8 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
     }
 
     //Initialise le point où l'on est
-    int x=src.x;
-    int y=src.y;
+    short x=src.x;
+    short y=src.y;
     allMap[x][y].fcost=0.0;
     allMap[x][y].gcost=0.0;
     allMap[x][y].hcost=0.0;
@@ -104,13 +96,14 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
     bool destinationReach=false;
 
     //Boucle principale permettant de faire le chemin
+    Node n;
+    Node node;
+    vector<Node>::iterator itNode; //Merci Openclassroom
     while(!openList.empty()&&openList.size()<(X_MAX*Y_MAX)){
-        Node node;
+    float tmp=FLT_MAX;
         do{
-            float tmp=FLT_MAX;
-            vector<Node>::iterator itNode; //Merci Openclassroom
             for (vector<Node>::iterator it=openList.begin(); it!=openList.end() ; it=next(it)) {
-                Node n= *it;
+                n=*it;
                 if (n.fcost<tmp) {
                     tmp=n.fcost;
                     itNode=it;
@@ -119,15 +112,15 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
             node =*itNode;
             openList.erase(itNode);
 
-        }while(isValid(node.x,node.y)==false);
+        }while(World::isValid(node.x,node.y,list_obstacles)==false);
+        double fNew,gNew,hNew;
         x=node.x;
         y=node.y;
         closedList[x][y]=true;
         //On ajoute les voisins dans la closed list
-        for (int i= -1 ; i<=1; i++) {
-            for (int j=-1; j<=1; j++) {
-                double fNew,gNew,hNew;
-                if (isValid(x+i,y+j)==true) {
+        for (short i= -1 ; i<=1; i++) {
+            for (short j=-1; j<=1; j++) {
+                if (World::isValid(x+i,y+j,list_obstacles)==true) {
                     //Si on trouve la destination finale
                     if (isDestination(x+i,y+j,dest)==true) {
                         allMap[x+i][y+j].parentX=x;
@@ -141,7 +134,13 @@ std::vector<Node> Navigation::Astar(Node src, Node dest)
                         fNew=gNew+hNew;
                         //Verifier si le chemin est meilleur que le précédent chemin
                         if (allMap[x + i][y + j].fcost == FLT_MAX ||
-                            allMap[x + i][y + j].fcost > fNew) {                           allMap[x + i][y + j].fcost = fNew;                           allMap[x + i][y + j].gcost = gNew;                           allMap[x + i][y + j].hcost = hNew;                           allMap[x + i][y + j].parentX = x;                           allMap[x + i][y + j].parentY = y;                           openList.emplace_back(allMap[x + i][y + j]);
+                            allMap[x + i][y + j].fcost > fNew) {
+                            allMap[x + i][y + j].fcost = fNew;
+                            allMap[x + i][y + j].gcost = gNew;
+                            allMap[x + i][y + j].hcost = hNew;
+                            allMap[x + i][y + j].parentX = x;
+                            allMap[x + i][y + j].parentY = y;
+                            openList.emplace_back(allMap[x + i][y + j]);
                         }
                     }
                 }
@@ -171,9 +170,10 @@ std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Node 
         y=tmpY;
     }
     path.push(map[x][y]);
+    Node top;
     while(!path.empty())
     {
-        Node top=path.top();
+        top=path.top();
         path.pop();
         usablePath.emplace_back(top);
     }
@@ -196,16 +196,18 @@ void Navigation::Print_path(vector<Node> usablePath)
 
 void Navigation::Navigate_to_asserv(vector<Node>usablePath)
 {
+    printf("Conversion \n");
     Node tmp;
     int j=0;
     tmp.x=usablePath.operator[](0).x;
     tmp.y=usablePath.operator[](0).y;
-    ushort size=usablePath.size();
-    ushort dep_x=0; //déplacement à faire en x
-    ushort dep_y=0; //déplacement à faire en y
+    short size=usablePath.size();
+    short dep_x=0; //déplacement à faire en x
+    short dep_y=0; //déplacement à faire en y
     int i=0; //compteur
     int mv=0; //Flag pour savoir si il faut bouger
     while(j<size-1){
+        //x positif
         while(1+usablePath.operator[](i).x == usablePath.operator[](i+1).x && usablePath.operator[](i).y==usablePath.operator[](i+1).y){
             i=i+1;
             dep_x+=1;
@@ -214,10 +216,25 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath)
         if (mv==1) {
             Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y});
             mv=0;
-            dep_x=0;
             tmp.x+=dep_x;
+            dep_x=0;
             j+=i;
         }
+        //x négatif
+                while(usablePath.operator[](i).x-1 == usablePath.operator[](i+1).x && usablePath.operator[](i).y==usablePath.operator[](i+1).y){
+            i=i+1;
+            dep_x+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x-dep_x, .y=tmp.y});
+            mv=0;
+            tmp.x-=dep_x;
+            dep_x=0;
+            j+=i;
+        }
+
+        //y positif
         while(1+usablePath.operator[](i).y == usablePath.operator[](i+1).y && usablePath.operator[](i).x==usablePath.operator[](i+1).x){
             i=i+1;
             dep_y+=1;
@@ -227,10 +244,27 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath)
         if (mv==1) {
             Asservissement::go_to({.x=tmp.x, .y=tmp.y+dep_y});
             mv=0;
-            dep_y=0;
             tmp.y+=dep_y;
+            dep_y=0;
             j+=i;
         }
+
+        //y négatif
+        while(usablePath.operator[](i).y-1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x==usablePath.operator[](i+1).x){
+            i=i+1;
+            dep_y+=1;
+            mv=1;
+
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x, .y=tmp.y-dep_y});
+            mv=0;
+            tmp.y-=dep_y;
+            dep_y=0;
+            j+=i;
+        }
+
+        //diag haut droite
         while(1+usablePath.operator[](i).y == usablePath.operator[](i+1).y && 1+usablePath.operator[](i).x==usablePath.operator[](i+1).x){
             i=i+1;
             dep_y+=1;
@@ -240,11 +274,60 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath)
         if (mv==1) {
             Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y+dep_x});
             mv=0;
-            dep_y=dep_x=0;
             tmp.x+=dep_x;
             tmp.y+=dep_y;
+            dep_y=dep_x=0;
             j+=i;
         }
+
+        //diag bas gauche
+        while(usablePath.operator[](i).y-1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x-1==usablePath.operator[](i+1).x){
+            i=i+1;
+            dep_y+=1;
+            dep_x+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x-dep_x, .y=tmp.y-dep_y});
+            mv=0;
+            tmp.x-=dep_x;
+            tmp.y-=dep_y;
+            dep_y=dep_x=0;
+            j+=i;
+        }
+
+        //diag bas droite
+        while(usablePath.operator[](i).y+1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x-1==usablePath.operator[](i+1).x){
+            i=i+1;
+            dep_y+=1;
+            dep_x+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x-dep_x, .y=tmp.y+dep_y});
+            mv=0;
+            tmp.x+=dep_x;
+            tmp.y-=dep_y;
+            dep_y=dep_x=0;
+            j+=i;
+        }
+
+        //diag haut gauche
+        while(usablePath.operator[](i).y-1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x+1==usablePath.operator[](i+1).x){
+            i=i+1;
+            dep_y+=1;
+            dep_x+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y-dep_y});
+            mv=0;
+            tmp.x+=dep_x;
+            tmp.y-=dep_y;
+            dep_y=dep_x=0;
+            j+=i;
+        }
+
     }
     j+=1;
 }

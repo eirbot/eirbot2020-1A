@@ -2,11 +2,12 @@
 
 struct shape robot={30,30};
 struct shape eco_cup={7,7};
+struct shape stone_area={10,100};
 
 std::vector<obstacle> World::fillVector()
 {
 
-    std::vector<obstacle> list_obstacles(1);
+    std::vector<obstacle> list_obstacles;
     list_obstacles.push_back({100,100,eco_cup});
     return list_obstacles;
 }

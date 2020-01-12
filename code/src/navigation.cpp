@@ -8,54 +8,54 @@ inline bool operator < (const Node& lhs, const Node& rhs)
 }
 
 
-bool Navigation::isDestination(int x, int y, Node dest) //Permet de savoir si o est arrivé à destination
+bool Navigation::isDestination(int x, int y, Navigation dest) //Permet de savoir si o est arrivé à destination
 {
-    if (x==dest.x && y==dest.y){
+    if (x==dest.node.x && y==dest.node.y){
         return true;
     }
     return false;
 }
 
-double Navigation::calculateE(int x, int y, Node dest) //Permet de calculer la distance euclidienne
+double Navigation::calculateE(int x, int y, Navigation dest,double E) //Permet de calculer la distance euclidienne
 {
-    double E = (sqrt((x - dest.x)*(x - dest.x) + (y - dest.y)*(y - dest.y)));
+    E = (sqrt((x - dest.node.x)*(x - dest.node.x) + (y - dest.node.y)*(y - dest.node.y)));
     return E;
 }
 
-bool Navigation::onTable(Node pos)
+bool Navigation::onTable(Navigation pos)
 {
-    if(pos.x>=X_MAX){
+    if(pos.node.x>=X_MAX){
         return false;
     }
-    if(pos.y>=Y_MAX){
+    if(pos.node.y>=Y_MAX){
         return false;
     }
     return true;
 }
 
 Node first={0,0,0,0,0,0,0};
-Node second={0,0,0,0,0,0,0};
 
-Navigation::Navigation():src(first),dest(second)
+Navigation::Navigation():node(first)
 {
 
 }
 
-Navigation::Navigation(Node src, Node dst): src(src),dest(dst)
+Navigation::Navigation(Node node): node(node)
 {
 
 }
 
 //Gros merci à Openclassroom xD
-std::vector<Node> Navigation::Astar(Node src, Node dest,std::vector<obstacle> list_obstacles)
+std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<obstacle> list_obstacles)
 {
+    double E=0;
     vector<Node> empty;
-    if (World::isValid(dest.x,dest.y,list_obstacles)==false){
+    if (World::isValid(dest.node.x,dest.node.y,list_obstacles)==false){
         printf("Destination is an obstacle \n");
         return empty;
         //Si l'arrivée est un obstacle on ne fait rien
     }
-    if (Navigation::isDestination(src.x, src.y, dest)==true){
+    if (Navigation::isDestination(src.node.x, src.node.y, dest)==true){
         printf("You are the destination \n");
         return empty;
         //Si la source et l'arrivée sont confondues
@@ -82,8 +82,8 @@ std::vector<Node> Navigation::Astar(Node src, Node dest,std::vector<obstacle> li
     }
 
     //Initialise le point où l'on est
-    short x=src.x;
-    short y=src.y;
+    short x=src.node.x;
+    short y=src.node.y;
     allMap[x][y].fcost=0.0;
     allMap[x][y].gcost=0.0;
     allMap[x][y].hcost=0.0;
@@ -126,11 +126,12 @@ std::vector<Node> Navigation::Astar(Node src, Node dest,std::vector<obstacle> li
                         allMap[x+i][y+j].parentX=x;
                         allMap[x+i][y+j].parentY=y;
                         destinationReach=true;
+                        printf("je le fais !\n");
                         return MakePath(allMap,dest);
                     }
                     else if (closedList[x+i][y+j]==false) {
                         gNew=node.gcost+1.0;
-                        hNew=calculateE(x+i,y+j,dest);
+                        hNew=calculateE(x+i,y+j,dest,E);
                         fNew=gNew+hNew;
                         //Verifier si le chemin est meilleur que le précédent chemin
                         if (allMap[x + i][y + j].fcost == FLT_MAX ||
@@ -140,7 +141,7 @@ std::vector<Node> Navigation::Astar(Node src, Node dest,std::vector<obstacle> li
                             allMap[x + i][y + j].hcost = hNew;
                             allMap[x + i][y + j].parentX = x;
                             allMap[x + i][y + j].parentY = y;
-                            openList.emplace_back(allMap[x + i][y + j]);
+                            openList.push_back(allMap[x + i][y + j]);
                         }
                     }
                 }
@@ -154,12 +155,12 @@ std::vector<Node> Navigation::Astar(Node src, Node dest,std::vector<obstacle> li
     return empty;
 }
 
-std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Node dest)
+std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navigation dest)
 {
     vector<Node> empty;
   try {     printf("Found a path \n");
-   int x = dest.x;
-    int y = dest.y;
+   int x = dest.node.x;
+    int y = dest.node.y;
     stack<Node> path;
     vector<Node> usablePath;
     while (!(map[x][y].parentX ==x && map[x][y].parentY==y)){
@@ -330,4 +331,9 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath)
 
     }
     j+=1;
+}
+
+Navigation::~Navigation()
+{
+
 }

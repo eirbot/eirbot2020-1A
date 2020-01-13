@@ -1,4 +1,4 @@
-#include "navigation.h"
+#include "navigation.hpp"
 
 using namespace std;
 
@@ -193,9 +193,139 @@ void Navigation::Print_path(vector<Node> usablePath)
     }
 }
 
-void Navigation::Navigate_to_asserv(vector<Node>usablePath)
+
+void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
 {
     printf("Conversion \n");
+    int j=0;
+    int size=usablePath.size();
+    struct Node position=usablePath.operator[](0);
+    printf("Je commence x:%d y:%d \n", position.x, position.y);
+    short dep_x=0;
+    short dep_y=0;
+    bool mv=0;
+    while (j<size-1 && position.x!=dest.node.x && position.y!=dest.node.y) {
+        //x croissant
+        while(1+usablePath.operator[](j).x==usablePath.operator[](j+1).x && usablePath.operator[](j).y==usablePath.operator[](j+1).y){
+            dep_x+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x+dep_x,.y=position.y});
+            mv=0;
+            position.x+=dep_x;
+            dep_x=0;
+        }
+
+        //x décroissant
+        while (usablePath.operator[](j).x-1==usablePath.operator[](j+1).x &&usablePath.operator[](j).y==usablePath.operator[](j+1).y) {
+            dep_x+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x-dep_x,.y=position.y});
+            mv=0;
+            position.x-=dep_x;
+            dep_x=0;
+        }
+
+        //y croissant
+        while (usablePath.operator[](j).x==usablePath.operator[](j+1).x && 1+usablePath.operator[](j).y==usablePath.operator[](j+1).y) {
+            dep_y+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x,.y=position.y+dep_y});
+            mv=0;
+            position.y+=dep_y;
+            dep_y=0;
+        }
+
+        //y décroissant
+        while (usablePath[j].x==usablePath.operator[](j+1).x && usablePath.operator[](j).y-1==usablePath.operator[](j+1).y) {
+            dep_y+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x,.y=position.y-dep_y});
+            mv=0;
+            position.y-=dep_y;
+            dep_y=0;
+        }
+
+        //x croissant y croissant
+        while (usablePath.operator[](j).x+1==usablePath.operator[](j+1).x && usablePath.operator[](j).y+1==usablePath.operator[](j+1).y) {
+            dep_x+=1;
+            dep_y+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x+dep_x,.y=position.y+dep_y});
+            mv=0;
+            position.y+=dep_y;
+            position.x+=dep_x;
+            dep_x=0;
+            dep_y=0;
+                j-=1;
+        }
+
+        //x croissant y décroissant
+        while (usablePath.operator[](j).x+1==usablePath.operator[](j+1).x && usablePath.operator[](j).y-1==usablePath.operator[](j+1).y) {
+            dep_x+=1;
+            dep_y+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x+dep_x,.y=position.y-dep_y});
+            mv=0;
+            position.y-=dep_y;
+            position.x+=dep_x;
+            dep_x=0;
+            dep_y=0;
+                j-=1;
+        }
+        //x décroissant y croissant
+        while (usablePath.operator[](j).x-1==usablePath.operator[](j+1).x && usablePath.operator[](j).y+1==usablePath.operator[](j+1).y) {
+            dep_x+=1;
+            dep_y+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x-dep_x,.y=position.y+dep_y});
+            mv=0;
+            position.y+=dep_y;
+            position.x-=dep_x;
+            dep_x=0;
+            dep_y=0;
+                j-=1;
+        }
+
+        //x décroissant y décroissant
+        while (usablePath.operator[](j).x-1==usablePath.operator[](j+1).x && usablePath.operator[](j).y-1==usablePath.operator[](j+1).y) {
+            dep_x+=1;
+            dep_y+=1;
+            j+=1;
+            mv=1;
+        }
+        if (mv==1) {
+            Asservissement::go_to({.x=position.x-dep_x,.y=position.y-dep_y});
+            mv=0;
+            position.y-=dep_y;
+            position.x-=dep_x;
+            dep_x=0;
+            dep_y=0;
+                j-=1;
+        }
+        j+=1;
+    }
+    Asservissement::go_to({.x=dest.node.x,.y=dest.node.y});
 }
 
 Navigation::~Navigation()

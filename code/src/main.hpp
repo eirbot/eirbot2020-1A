@@ -8,13 +8,15 @@
 #include <array>
 #include <cfloat>
 
-#include "navigation.h"
+#include "navigation.hpp"
 #include "world.hpp"
 #include "asserv.hpp"
-//#include "detection.hpp"
-//#include "actionneur.hpp"
+#include "detection.hpp"
+#include "actionneur.hpp"
 
 
+void setup();
+void loop();
 int main(int argc, char *argv[]);
 
 

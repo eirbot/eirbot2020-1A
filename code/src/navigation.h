@@ -27,13 +27,13 @@ class Navigation
                 static void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
                 static void Navigate_to_asserv(std::vector<Node>usablePath); //Permet de convertir un chemin en instruction asserv
                 ~Navigation();
+                Node node;
 
 //Attributs
         private:
         static bool isDestination(int x, int y, Navigation dest); //Permet de savoir si le noeud est la destination ou non
         static double calculateE(int x, int y, Navigation dest,double E);//Permet de calculer la distance euclidienne entre deux noeuds
         static bool onTable(Navigation pos); //Permet de savoir si on est sur la table
-        Node node;
 };
 
 #endif

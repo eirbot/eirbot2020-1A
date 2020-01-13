@@ -17,7 +17,11 @@ struct position{
 class Asservissement
 {
     public:
-        static void go_to(struct position dest);
+        static void go_to(struct position dest); //Permet au robot de se tourner vers la destination et d'aller à la destination
+        static void rotate(short angle); //Permet de faire tourner le robot d'un certain angle (le type de angle est à définir)
+        static struct position robot_position(); //Renvoie la position du robot
+        static void backward(); //Met les moteurs en marche arrière
+        static void forward(); //Met les moteurs en marche avant
     private:
 
 };

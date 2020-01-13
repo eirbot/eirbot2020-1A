@@ -12,8 +12,6 @@
 #include "world.hpp"
 #include "asserv.hpp"
 
-#define X_MAX 300 //Longueur de la table
-#define Y_MAX 200 //Largeur de la table
 
 class Navigation
 {
@@ -24,7 +22,7 @@ class Navigation
                 static std::vector<Node> Astar(Navigation src, Navigation dest, std::vector<obstacle> list_obstacles); //Coeur de l'algorithme A*
                 static std::vector<Node> MakePath(std::array<std::array<Node,Y_MAX>,X_MAX> map, Navigation dest); //Permet de recréer le chemin
                 static void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
-                static void Navigate_to_asserv(std::vector<Node>usablePath); //Permet de convertir un chemin en instruction asserv
+                static void Navigate_to_asserv(std::vector<Node>usablePath, Navigation dest); //Permet de convertir un chemin en instruction asserv
                 ~Navigation();
                 Node node;
 

@@ -2,9 +2,9 @@
 
 using namespace std;
 
-inline bool operator < (const Node& lhs, const Node& rhs)
+inline bool operator <(const Navigation& lhs, const Navigation& rhs)
 {//We need to overload "<" to put our struct into a set
-    return lhs.fcost < rhs.fcost;
+    return lhs.node.fcost < rhs.node.fcost;
 }
 
 
@@ -96,14 +96,13 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
     bool destinationReach=false;
 
     //Boucle principale permettant de faire le chemin
-    Node n;
-    Node node;
-    vector<Node>::iterator itNode; //Merci Openclassroom
     while(!openList.empty()&&openList.size()<(X_MAX*Y_MAX)){
-    float tmp=FLT_MAX;
+        Node node;
         do{
+            float tmp=FLT_MAX;
+            vector<Node>::iterator itNode; //Merci Openclassroom
             for (vector<Node>::iterator it=openList.begin(); it!=openList.end() ; it=next(it)) {
-                n=*it;
+                Node n=*it;
                 if (n.fcost<tmp) {
                     tmp=n.fcost;
                     itNode=it;
@@ -126,7 +125,6 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
                         allMap[x+i][y+j].parentX=x;
                         allMap[x+i][y+j].parentY=y;
                         destinationReach=true;
-                        printf("je le fais !\n");
                         return MakePath(allMap,dest);
                     }
                     else if (closedList[x+i][y+j]==false) {
@@ -198,139 +196,6 @@ void Navigation::Print_path(vector<Node> usablePath)
 void Navigation::Navigate_to_asserv(vector<Node>usablePath)
 {
     printf("Conversion \n");
-    Node tmp;
-    int j=0;
-    tmp.x=usablePath.operator[](0).x;
-    tmp.y=usablePath.operator[](0).y;
-    short size=usablePath.size();
-    short dep_x=0; //déplacement à faire en x
-    short dep_y=0; //déplacement à faire en y
-    int i=0; //compteur
-    int mv=0; //Flag pour savoir si il faut bouger
-    while(j<size-1){
-        //x positif
-        while(1+usablePath.operator[](i).x == usablePath.operator[](i+1).x && usablePath.operator[](i).y==usablePath.operator[](i+1).y){
-            i=i+1;
-            dep_x+=1;
-            mv=1;
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y});
-            mv=0;
-            tmp.x+=dep_x;
-            dep_x=0;
-            j+=i;
-        }
-        //x négatif
-                while(usablePath.operator[](i).x-1 == usablePath.operator[](i+1).x && usablePath.operator[](i).y==usablePath.operator[](i+1).y){
-            i=i+1;
-            dep_x+=1;
-            mv=1;
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x-dep_x, .y=tmp.y});
-            mv=0;
-            tmp.x-=dep_x;
-            dep_x=0;
-            j+=i;
-        }
-
-        //y positif
-        while(1+usablePath.operator[](i).y == usablePath.operator[](i+1).y && usablePath.operator[](i).x==usablePath.operator[](i+1).x){
-            i=i+1;
-            dep_y+=1;
-            mv=1;
-
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x, .y=tmp.y+dep_y});
-            mv=0;
-            tmp.y+=dep_y;
-            dep_y=0;
-            j+=i;
-        }
-
-        //y négatif
-        while(usablePath.operator[](i).y-1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x==usablePath.operator[](i+1).x){
-            i=i+1;
-            dep_y+=1;
-            mv=1;
-
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x, .y=tmp.y-dep_y});
-            mv=0;
-            tmp.y-=dep_y;
-            dep_y=0;
-            j+=i;
-        }
-
-        //diag haut droite
-        while(1+usablePath.operator[](i).y == usablePath.operator[](i+1).y && 1+usablePath.operator[](i).x==usablePath.operator[](i+1).x){
-            i=i+1;
-            dep_y+=1;
-            dep_x+=1;
-            mv=1;
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y+dep_x});
-            mv=0;
-            tmp.x+=dep_x;
-            tmp.y+=dep_y;
-            dep_y=dep_x=0;
-            j+=i;
-        }
-
-        //diag bas gauche
-        while(usablePath.operator[](i).y-1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x-1==usablePath.operator[](i+1).x){
-            i=i+1;
-            dep_y+=1;
-            dep_x+=1;
-            mv=1;
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x-dep_x, .y=tmp.y-dep_y});
-            mv=0;
-            tmp.x-=dep_x;
-            tmp.y-=dep_y;
-            dep_y=dep_x=0;
-            j+=i;
-        }
-
-        //diag bas droite
-        while(usablePath.operator[](i).y+1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x-1==usablePath.operator[](i+1).x){
-            i=i+1;
-            dep_y+=1;
-            dep_x+=1;
-            mv=1;
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x-dep_x, .y=tmp.y+dep_y});
-            mv=0;
-            tmp.x+=dep_x;
-            tmp.y-=dep_y;
-            dep_y=dep_x=0;
-            j+=i;
-        }
-
-        //diag haut gauche
-        while(usablePath.operator[](i).y-1 == usablePath.operator[](i+1).y && usablePath.operator[](i).x+1==usablePath.operator[](i+1).x){
-            i=i+1;
-            dep_y+=1;
-            dep_x+=1;
-            mv=1;
-        }
-        if (mv==1) {
-            Asservissement::go_to({.x=tmp.x+dep_x, .y=tmp.y-dep_y});
-            mv=0;
-            tmp.x+=dep_x;
-            tmp.y-=dep_y;
-            dep_y=dep_x=0;
-            j+=i;
-        }
-
-    }
-    j+=1;
 }
 
 Navigation::~Navigation()

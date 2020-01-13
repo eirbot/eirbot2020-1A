@@ -8,10 +8,13 @@ FILE=navigation.o asserv.o world.o
 
 all: project
 
-code :
-	g++ $(CFLAGS) -c src/world.cpp
-	g++ $(CFLAGS) -c src/navigation.cpp
-	g++ $(CFLAGS) -c src/asserv.cpp
+%.o: src/%.cpp
+	g++ $(CFLAGS) -c $@ $<
+
+code : world.o navigation.o asserv.o
+	# g++ $(CFLAGS) -c src/world.cpp
+	# g++ $(CFLAGS) -c src/navigation.cpp
+	# g++ $(CFLAGS) -c src/asserv.cpp
 
 project: code
 	g++ $(CFLAGS) world.o navigation.o asserv.o src/main.cpp -o project

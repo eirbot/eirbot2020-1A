@@ -11,7 +11,6 @@
 
 #include "world.hpp"
 #include "asserv.hpp"
-#include "main.hpp"
 
 #define X_MAX 300 //Longueur de la table
 #define Y_MAX 200 //Largeur de la table

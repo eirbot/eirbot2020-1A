@@ -22,6 +22,8 @@ class Asservissement
         static struct position robot_position(); //Renvoie la position du robot
         static void backward(); //Met les moteurs en marche arrière
         static void forward(); //Met les moteurs en marche avant
+        static void initialise_x(); //Fait la calibration par rapport au grand coté de la table
+        static void initialise_y(); //Fait la calibration par rapport au petit coté de la table
     private:
 
 };

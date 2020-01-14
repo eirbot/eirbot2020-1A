@@ -34,7 +34,7 @@
   )
 
   (setup
-    (last_trace_width 3)
+    (last_trace_width 0.25)
     (user_trace_width 1)
     (user_trace_width 1.8)
     (user_trace_width 3)
@@ -2614,7 +2614,7 @@
   )
 
   (gr_text Bot (at 111.76 130.81) (layer B.Cu)
-    (effects (font (size 1.5 1.5) (thickness 0.3)))
+    (effects (font (size 1.5 1.5) (thickness 0.3)) (justify mirror))
   )
   (gr_text "Top\n" (at 111.76 128.27) (layer F.Cu)
     (effects (font (size 1.5 1.5) (thickness 0.3)))

@@ -21,4 +21,6 @@ void good_port(short result_x, short result_y, short dest_x, short dest_y);
 
 void print_optimisated();
 
+void print_summarise();
+
 #endif // __AFFICHAGE_H_

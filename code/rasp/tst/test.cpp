@@ -3,6 +3,13 @@ using namespace std;
 
 bool debug=false;
 vector<Node> debugPath(2);
+int total_optimized;
+int unoptimized;
+int total_deplacement;
+int success_deplacement;
+int total_reach;
+int success_reach;
+int timeout;
 
 int which_side=0;
 struct Node Phare={30,side(16),0,0,0,0,0};
@@ -22,6 +29,7 @@ void test_base()
 {
   vector<obstacle> list_obstacles = World::fillVector();
   std::vector<Node> result;
+  total_reach=4;
     printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
 
   result = Navigation::Astar(Port, Phare, list_obstacles);
@@ -58,6 +66,7 @@ void test_base()
 
 void test_libre(short x, short y, short dest_x,short dest_y)
 {
+  total_reach=1;
   vector<obstacle> list_obstacles = World::fillVector();
   std::vector<Node> result;
   Navigation src({x,y,0,0,0,0,0}), dest({dest_x,dest_y,0,0,0,0,0});
@@ -79,9 +88,12 @@ int main(int argc, char *argv[]) {
     printf("'debug' : permet d'analyser de manière détaillée une trajectoire libre ou balisée via les mots clés 'Port' 'Phare' 'Manche_1' 'Manche_2' \n");
     return 0;
   }
-  if (strcmp(argv[2],"debug")==0 || strcmp(argv[6],"debug")==0 || strcmp(argv[4],"debug")==0) {
-    debug=true;
-    printf("Je rentre en mode debug \n");
+  if(argc>2){
+    if (strcmp(argv[2], "debug") == 0 || strcmp(argv[6], "debug") == 0 ||
+        strcmp(argv[4], "debug") == 0) {
+      debug = true;
+      printf("Je rentre en mode debug \n");
+    }
   }
   if (strcmp(argv[1],"libre")==0) {
     if(argv[2]==NULL || argv[3]==NULL){
@@ -94,9 +106,11 @@ int main(int argc, char *argv[]) {
     else{
       test_libre(atoi(argv[2]),atoi(argv[3]),atoi(argv[4]),atoi(argv[5]));
     }
+    print_summarise();
   }
   if(strcmp(argv[1],"base")==0){
     test_base();
+    print_summarise();
   }
   return 0;
 }

@@ -51,17 +51,20 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
     double E=0;
     vector<Node> empty;
     if (World::isValid(dest.node.x,dest.node.y,list_obstacles)==false){
-        printf("Destination is an obstacle \n");
+        printf("La destination est un obstacle ........................... ");
+        print_fail();
         return empty;
         //Si l'arrivée est un obstacle on ne fait rien
     }
     if (Navigation::isDestination(src.node.x, src.node.y, dest)==true){
-        printf("You are the destination \n");
+        printf("Vous etes à la destination ............................... ");
+        print_fail();
         return empty;
         //Si la source et l'arrivée sont confondues
     }
     if (Navigation::onTable(dest)==false){
-        printf("Think outside the box \n");
+        printf("La destination n'est pas sur le plateau de jeu ........... ");
+        print_fail();
         return empty;
         //Si on veut aller en dehors de la table
     }
@@ -156,7 +159,7 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
 std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navigation dest)
 {
     vector<Node> empty;
-  try {     printf("Found a path \n");
+  try {     printf("Found a path ............................................. ");
    int x = dest.node.x;
     int y = dest.node.y;
     stack<Node> path;
@@ -176,10 +179,11 @@ std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navig
         path.pop();
         usablePath.emplace_back(top);
     }
+    affichage(TIMEOUT);
     return usablePath;
   }
   catch(const exception& e){
-      printf("Erreur");
+      printf("\033[31m ERREUR \n \033[0m");
   }
   return  empty;
 }
@@ -196,11 +200,10 @@ void Navigation::Print_path(vector<Node> usablePath)
 
 void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
 {
-    printf("Conversion \n");
+    printf("Conversion ............................................... \n");
     int j=0;
     int size=usablePath.size();
     struct Node position=usablePath.operator[](0);
-    printf("Je commence x:%d y:%d \n", position.x, position.y);
     short dep_x=0;
     short dep_y=0;
     bool mv=0;

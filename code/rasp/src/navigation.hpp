@@ -11,7 +11,7 @@
 
 #include "world.hpp"
 #include "asserv.hpp"
-
+#include "affichage.hpp"
 
 class Navigation
 {
@@ -28,9 +28,9 @@ class Navigation
 
 //Attributs
         private:
-        static bool isDestination(int x, int y, Navigation dest); //Permet de savoir si le noeud est la destination ou non
-        static double calculateE(int x, int y, Navigation dest,double E);//Permet de calculer la distance euclidienne entre deux noeuds
-        static bool onTable(Navigation pos); //Permet de savoir si on est sur la table
+                static bool isDestination(int x, int y, Navigation dest); //Permet de savoir si le noeud est la destination ou non
+                static double calculateE(int x, int y, Navigation dest,double E);//Permet de calculer la distance euclidienne entre deux noeuds
+                static bool onTable(Navigation pos); //Permet de savoir si on est sur la table
 };
 
 #endif

@@ -25,7 +25,7 @@
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 \usepackage{amsthm}
 \usepackage{listings}
-\setlength{\parindent}{0cm}
+\setlength{\parindent}{1cm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 \newcommand{\hsp}{\hspace{20pt}}
 \newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
@@ -52,6 +52,7 @@
   \end{sffamily}
 \end{titlepage}
 \setcounter{tocdepth}{2}
+\tableofcontents
 \newpage
 \pagestyle{fancy}
 \lhead{}
@@ -555,7 +556,36 @@ sur github.
 \section{Asservissement}
 \section{Stratégie}
 \subsection{Modélisation de la table - Définition des obstacles}
-\subsection{Détection d'un robot adverse}
+\paragraph{Objectif.} Cette section de la stratégie est la première section,
+elle a pour but de définir l'environnement dans lequel le robot va évoluer.
+Cette définition de l'environnement sera cruciale pour la recherche de chemin.
+L'objectif est donc de créer un système permettant de définir des obstacles et
+des méthodes permettant de verifier si il y a des obstacles à un endroit.
+
+\paragraph{Définition d'un obstacle.} La structure permettant de définir un
+obstacle est relativement simple, elle contient la position du centre d'un
+obstacle, sa largeur et sa longueur. Avec cette définition tous nos obstacles
+sont rectangulaires. Par la suite, nous avons renseigné les positions de tous
+les obstacles et leurs types (eco cup, petit taquet, grand taquet). Nous mettons
+toutes ces informations dans un vecteur. Ce vecteur sera l'élément de base pour
+détecter les collisions entre notre robot et les obstacles.
+
+\paragraph{Prévision de collision.} L'idée est d'obtenir une méthode permettant
+de savoir si notre robot peut aller à un point donné sans toucher d'obstacles.
+Nous réalisons un test mathématique simple qui permet de nous donner en fonction
+de coordonées $x,y$, d'une forme d'obstacle et d'une liste contenant tous les
+obstacles si la case est valide ou non. Le fait de pouvoir tester les
+différentes formes d'obstacles nous permet dans des cas critiques de désactiver
+les tests sur les objets qui sont mobiles et ainsi nous sortir d'une situation
+délicate. \\
+
+\indent En somme nous disposons maintenant d'une modélisation simple de la table ce qui
+nous permettra de pouvoir calculer les déplacements du robot tout en évitant les
+obstacles. Nous ajoutons aussi une fonctionalité permettant de ne pas prendre en
+compte toutes les obstacles ce qui nous permet de prioriser l'évitemment de
+certains obstacles (nous préférons rentrer en collision avec une eco\_cup
+qu'avec un robot).
+
 \subsection{Recherche de Chemin - Algorithme A$\ast$}
 \paragraph{Objectif.} L'idée est d'implémenter un algorithme permettant de
 calculer un chemin pour notre robot. L'idée est qu'il puisse, d'un point donné
@@ -605,21 +635,26 @@ chemin. L'algorithme qui au coeur de cette recherche de chemin à déjà été
 présenté. Nous allons donc décrire la classe \textit{Navigation}, le but de
 cette classe est de récupérer une destination souhaitée, de trouver le chemin
 (tout en évitant les obstacles) via l'A* et enfin d'effectuer les déplacements
-en appelant la classe d'Asservissement.\\ Cette classe aura donc 2 attributs, un
-Noeud de départ et un Noeud d'arrivée (un noeud contient la position $x,y$, les
-différents cout $fcost, gcost, hcost$ et les parents du noeud
-$parentX,parentY$). Elle possède 3 méthodes principales, tout d'abord Astar qui
-permet d'executer l'Astar, cette méthode appelle MakePath qui a pour but de
-construire un vecteur contenant le chemin final. Cepedant à ce stade nous avons
-une description du chemin très précise (centimètre par centimètre), nous devons
-fournir quelque chose de moins précis à l'asservissement (au risque d'avoir un
-papybot). Pour cela nous avons la méthode NavigateToAsserv qui permet de
-transformer ce chemin en suite de segment ce qui nous permet de nous déplacer.\\
-A ce stade nous avons un moyen de trouver notre chemin et faire deplacer un
-robot de manière assez brutale, il faudrait développer un algorithme de lissage
-de la trajectoire (pour avoir des changements de direction moins brutaux).
+en appelant la classe d'Asservissement via le protocole de
+communication.\\ Cette classe aura donc des noeuds comme attribut, (un noeud
+contient la position $x,y$, les différents cout $fcost, gcost, hcost$ et les
+parents du noeud $parentX,parentY$). Elle possède 3 méthodes principales, tout
+d'abord Astar qui permet d'executer l'Astar, cette méthode appelle MakePath qui
+a pour but de construire un vecteur contenant le chemin final. Cepedant à ce
+stade nous avons une description du chemin très précise (centimètre par
+centimètre), nous devons fournir quelque chose de moins précis à
+l'asservissement (au risque d'avoir un papybot). Pour cela nous avons la méthode
+NavigateToAsserv qui permet de transformer ce chemin en suite de segment ce qui
+nous permet de nous déplacer.\\ A ce stade nous avons un moyen de trouver notre
+chemin et faire deplacer un robot de manière assez brutale, il faudrait
+développer un algorithme de lissage de la trajectoire (pour avoir des
+changements de direction moins brutaux).
+\subsection{Détection des adversaires}
 \subsection{Gestion des actionneurs}
 \subsection{Boucle de jeu principale}
+\subsection{Mise en place de tests}
+\paragraph{Objectif.}
 
+\section{Protocole de communication Stratégie $\rightarrow$ Asservissement}
 \end{spacing}
 \end{document}

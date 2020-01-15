@@ -1,6 +1,6 @@
 # Equipe Eirboat 
 ### Eirbot2020-1A
-Le dépôt de l'équipe de 1A de l'association de robotique Eirbot.
+Le dépôt de l'équipe de 1A de l'association de robotique Eirbot. La description de l'avancement des différents projets est disponible [ici](https://github.com/eirbot/eirbot2020-1A/blob/master/description/descrption.pdf).
 ![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/eirbot_logo.png)
 
 ## Mécanique
@@ -16,3 +16,6 @@ Le dépôt de l'équipe de 1A de l'association de robotique Eirbot.
 ## Phare
 ![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/reunion/phare.jpg)
 ## Actionneur
+
+## Stratégie
+Les choix pour la stratégie, le pathfinding, les procédures d'évitement et "l'interface" de test sont disponible [ici](https://github.com/eirbot/eirbot2020-1A/tree/master/code/rasp/src)

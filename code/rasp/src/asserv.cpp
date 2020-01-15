@@ -15,9 +15,6 @@ void Asservissement::go_to(struct position dest)
         }
     }
     affichage(TIMEOUT);
-    if(debug==1){
-
-    }
 }
 
 

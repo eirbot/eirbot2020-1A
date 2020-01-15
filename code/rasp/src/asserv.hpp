@@ -8,6 +8,16 @@
 #include <array>
 #include <cfloat>
 #include <stack>
+#include <cstdlib>
+
+#include  "affichage.hpp"
+#include "world.hpp"
+#include <vector>
+
+using namespace std;
+
+extern bool debug;
+extern vector<Node> debugPath;
 
 struct position{
     int x;

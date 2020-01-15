@@ -1,5 +1,5 @@
 CFLAGS = -Wall -Wextra -std=c++11 -g -O3
-FILE=navigation.o asserv.o world.o
+OBJS=navigation.o asserv.o affichage.o world.o
 ##
 # Project Title
 #
@@ -8,22 +8,17 @@ FILE=navigation.o asserv.o world.o
 
 all: project
 
-%.o: src/%.cpp
-	g++ $(CFLAGS) -c $@ $<
+%.o: rasp/src/%.cpp
+	g++ $(CFLAGS) -c $<
 
-code : world.o navigation.o asserv.o
-	# g++ $(CFLAGS) -c src/world.cpp
-	# g++ $(CFLAGS) -c src/navigation.cpp
-	# g++ $(CFLAGS) -c src/asserv.cpp
+project: $(OBJS)
+	g++ $(CFLAGS) $(OBJS) rasp/src/main.cpp -o project
 
-project: code
-	g++ $(CFLAGS) world.o navigation.o asserv.o src/main.cpp -o project
-
-test: code
-	g++ $(CFLAGS) $(FILE) tst/test.cpp -o test
+test: $(OBJS) rasp/tst/test.cpp
+	g++ $(CFLAGS) $(OBJS) rasp/tst/test.cpp -o test
 
 clean:
-	rm -f *.o project test
+	rm -f *.o project test massif.out.*
 
 launch:
 	./project

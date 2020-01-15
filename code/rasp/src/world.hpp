@@ -1,8 +1,8 @@
 #ifndef __WORLD_H_
 #define __WORLD_H_
 
-#include "asserv.hpp"
-
+#include <vector>
+using namespace std;
 
 #define ROBOT_WIDTH 32
 #define ROBOT_LENGTH 32
@@ -28,7 +28,7 @@ struct shape{
 struct obstacle{
     short center_x;
     short center_y;
-    struct shape shape;
+    struct shape *shape;
 };
 
 

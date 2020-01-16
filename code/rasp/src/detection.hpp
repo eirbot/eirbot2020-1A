@@ -7,19 +7,22 @@
 // 0.72 -> 10 cm
 // O.19 -> 50 cm
 
-
+enum GP2{
+gauche_avant,centre_avant,droite_avant
+}
 
 class GP2{
 
     public:
-        GP2();
-        GP2(int intput,int activated,int distance_seuil);
-        void activate(); //Active la detection
-        void disactivate(); //Désactive la detection
-        bool gp2Obstacle(int distance_seuil, GP2 input);
-        ~GP2();
+                GP2();
+                GP2(int intput,int activated,int distance_seuil);
+                void activate(); //Active la detection
+                void disactivate(); //Désactive la detection
+                bool gp2Obstacle(int distance_seuil, GP2 input);
+                void EVITEMENT(GP2 gauche_avant, GP2 centre_avant, GP2 droite_avant, );
+                ~GP2();
     private:
-        int input;
+        int input; //identifiant du GP2
         int activated;
         int distance_seuil;
 };

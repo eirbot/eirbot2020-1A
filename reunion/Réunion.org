@@ -1,30 +1,3 @@
-#+TITLE: Réunion 05/12
-* Point méca
-Mise sur git du dossier méca en attente des profilés
-* Point phare
-il est en train d'être imprimé (quelques jours)
-vis necessaire
-* Point puissance
-code de controle des moteurs
-on a vu avec avec alban : utilisation de 2 LMD18200 , moteurs fonctionnent en
-16V donc direct sur la batterie, Petit lu et Martin s'entendent bien
-* Point asserv + info haut niveau
-Liam taf pas dessus donc ça me casse les couilles donc il arrete de toute facon
-il faisait pas grand chose avant
-emile : moteurs sont bons il est en train de tester les encodeurs, matthieu lui
-a donné des infos sur la nucléo
-le code à commencé
-liam s'élève
-on attend clément
-* Point alimentation
-Manger 5 fruits et légumes par jour c'est bon pour la santé
-Choix du radiateur (c'est en F4) : rectification on en met pas. Le robot va
-bruler en fait
-Tous les composants sont bons
-Début rootage
-* Point informatique
-ouais je sais quoi mettre
-oui
-
+#+TITLE: Réunion 12/12
 
 yosheirb

@@ -2,7 +2,7 @@
 ![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/eirbot_logo.png)
 Ceci est le dépôt de l'équipe de 1A de l'association de robotique Eirbot. La
 description de l'avancement des différents projets est disponible via la 
-[descrition](https://github.com/eirbot/eirbot2020-1A/blob/master/description/descrption.pdf) de nos projets. Le projet se divise en plusieures catégories allant du plus plus bas au plus au niveau (en terme de raprochement avec le hard). 
+[descrition](https://github.com/eirbot/eirbot2020-1A/blob/master/description/descrption.pdf) de nos projets. Le projet se divise en plusieures catégories allant du plus bas au plus au niveau (en terme de raprochement avec le côté physique). 
 
 
 ## Mécanique

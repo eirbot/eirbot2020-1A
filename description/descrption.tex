@@ -783,13 +783,32 @@ individu/.default={white}, rounded corners=4pt}
 \end{multicols}
 Il faut encore gérer le cas ou la nucléo ne répond plus du tout, nous réalisons
 alors un branchement, si nous obtenons une succession de timeout alors nous
-arretons la rasp et nous lançons un programme de survie pour que la nucléo
-fasse un programme minimal. Nous devons encore définir comment activer ce
+arretons la rasp et nous lançons un programme d'urgence pour que la nucléo
+fasse un programme minimal (c'est à dire rentrer au port). Nous devons encore définir comment activer ce
 programme minimal.
 
 \subsection{Détection}
 Le protole de communication pour la détection va fonctionner de manière très
-similaire à l'asservissement. La principale différence est A FINIR
+similaire à l'asservissement. La principale différence réside dans le fait que
+la nucléo peut envoyer une interuption à la rasp pour lui indiquer que l'on
+détecte un robot adverse. \\
+Dans le cas d'une détection, automatiquement la nucléo va stopper les moteurs et
+envoyer à la rasp l'information via le protocole de communication. La rasp va
+alors recevoir les informations de tous les GP2 actifs sur les différentes
+distances seuils. Une fois cela effectué, la rasp va déterminer la position et
+l'angle du robot, elle va alors pouvoir créer un nouvel obstacle et recalculer
+une trajectoire tout en évitant le robot. Si l'on évite correctement le robot
+adversaire nous continuons notre trajectoire. Dans le cas contraire, les GP2
+redetecte quelque chose, la nucléo renvoie une interuption etc. Si l'on arrive
+dans un cas de figure où nous avons des interuptions sans arret alors nous
+réalisons une manoeuvre d'évitement de grande ampleur. Qui consiste à reculer et
+faire un détour pour être sur de l'éviter. \\
+Il reste un dernier cas à traiter si lorsque nous détectons un robot et que la
+navigation de la rasp ne trouve pas de chemin. Dans ce cas nous devons tout de
+même nous sortir de la situation. Ainsi la navigation va supprimer les obstacles
+du type eco\_cup et s'échapper tout en renversant les écocups. \\
+Ainsi nous avons théoriquement un système qui nous permet de détecter et
+d'éviter un robot adverse.
 
 \end{spacing}
 \end{document}

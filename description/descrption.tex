@@ -55,11 +55,11 @@
 \tableofcontents
 \newpage
 \pagestyle{fancy}
-\lhead{}
-\chead{\textbf{}}
+\lhead{Eirbot 1A}
+\chead{\textbf{Description du projet}}
 \rhead{\thepage}
-\lfoot{}
-\cfoot{}
+\lfoot{2019-2020}
+\cfoot{Equipe Eirboat}
  \fancyfoot[R]
  {
  \includegraphics[scale=0.075]{65508.png}
@@ -68,7 +68,14 @@
  \setcounter{part}{1}
 \part{Description des projets}
 \chapter{Description générale de l'organisation}
+Ce chapitre a pour but de mettre en place l'organisation générale du travail. Il
+faut comprendre que lors de cette division nous nous connaissions peu. Ce genre
+de brain storming nous a alors appris à nous connaitre et à définir gloablement
+les objectifs du robot.
 \section{Arbres des tâches à réaliser par le robot}
+Dans un premier temps nous réalisons un schéma des différentes tâches à
+effectuer par le robot. Ces dernières nous permettrons de cadrer le robot et
+plutard de mettre en place la stratégie de ce dernier.
 \label{taches}
 \HRule
 \begin{center}
@@ -268,6 +275,8 @@ individu/.default={white}}
 
 \newpage
 \section{Répartition des tâches}
+Dans un second temps nous nous répartissons de manière globale les tâches à
+réaliser. \\
 \label{repartition}
 \HRule
 \begin{center}
@@ -278,7 +287,7 @@ individu/.default={white}}
 \node[individu=blue] (A) at (0,0) {\textsc{Se mouvoir} Carte puissance};
 \node[individu] (A1) at (-3,-2) {Martin};
 \node[individu] (A2) at (-1,-2) {\xout{Julien}};
-\node[individu] (A3) at (1,-2) {Valentin};
+\node[individu] (A3) at (1,-2) {\xout{Valentin}};
 \node[individu] (A4) at (3,-2) {Filipe};
 
 \draw[lien] (A) -- (A1);
@@ -294,7 +303,8 @@ individu/.default={white}}
 \tikzstyle{lien}=[->,>=stealth,rounded corners=20pt,thick]
 \tikzset{individu/.style={draw,thick,fill=#1!25},
 individu/.default={white}}
-\node[individu=blue] (A) at (0,0) {\textsc{Se mouvoir} Odométrie \& Asservissement};
+\node[individu=blue] (A) at (0,0) {\textsc{Se mouvoir} Odométrie, Asservissement
+\& Haut niveau};
 \node[individu] (A1) at (-5,-2) {\xout{Raphaël}};
 \node[individu] (A2) at (0,-2) {Clément};
 \node[individu] (A3) at (5,-2) {SD};
@@ -356,8 +366,8 @@ individu/.default={white}}
 individu/.default={white}}
 \node[individu=red] (A) at (0,0) {\textsc{Lire boussole}};
 \node[individu] (A1) at (-2,-2) {Maxime};
-\node[individu] (A2) at (0,-2) {Emile};
-\node[individu] (A3) at (2,-2) {Léo};
+\node[individu] (A2) at (0,-2) {\xout{Emile}};
+\node[individu] (A3) at (2,-2) {\xout{Léo}};
 
 \draw[lien] (A) -- (A1);
 \draw[lien] (A) -- (A2);
@@ -376,7 +386,7 @@ individu/.default={white}}
 \node[individu=green] (A) at (0,0) {\textsc{Elévation drapeau}};
 \node[individu] (A1) at (-3,-2) {Filipe};
 \node[individu] (A2) at (3,-2) {Erwann};
-\node[individu] (A3) at (0,-2) {Valentin};
+\node[individu] (A3) at (0,-2) {\xout{Valentin}};
 
 \draw[lien] (A) -- (A1);
 \draw[lien] (A) -- (A2);
@@ -434,7 +444,7 @@ individu/.default={white}}
 \node[individu] (A2) at (-0,-2) {Ptit Lu};
 \node[individu] (A3) at (3,-2) {Yohann};
 \node[individu] (A4) at (5,-2) {\xout{Théo}};
-\node[individu] (A5) at (-5,-2) {Léo};
+\node[individu] (A5) at (-5,-2) {\xout{Léo}};
 
 \draw[lien] (A) -- (A1);
 \draw[lien] (A) -- (A2);
@@ -534,25 +544,48 @@ individu/.default={white}}
 \chapter{Electronique}
 \section{Alimentation}
 \paragraph{Objectif.} La carte d'alimentation doit distribuer l'énergie et
-convertir les tensions. Elle récupère l'énergie de la batterie et elle possède
-les caractéristiques suivantes :
+convertir les tensions vers tous les modules du robot. Elle récupère l'énergie
+de la batterie et elle possède les caractéristiques suivantes :
 \begin{itemize}
 \item Moteurs : 3A/moteurs
 \item Logique 5V 1.5A
 \item Puissance 5V 3A
 \item Puissance 12V 3A
 \end{itemize}
+\paragraph{Mise en oeuvre.} Voici un schéma récapitulatif des principales fonctionnalité de la carte d'alimentation.
 \begin{figure}[H]
   \center
   \includegraphics[scale=0.4]{schema_bloc_connexions.png}
+  \caption{Schéma de principe de la carte d'alimentation}
 \end{figure}
 Les détails techniques sont disponibles dans le dossier
 \href{https://github.com/eirbot/eirbot2020-1A/tree/master/alim}{alimentation}
 sur github.
+\paragraph{Résultat.}
 \section{Puissance}
+\paragraph{Objectif.} Les cartes de puissance permettent de récupérer
+l'alimentation fournies par l'alimentation et de transmettre au moteur la bonne
+puissance selon les commandes de l'asservissement. Elle permet aussi au moteur
+de réaliser une marche arrière via un pont en H.
+\paragraph{Mise en oeuvre.}
+
+\paragraph{Résultat.}
+
 \section{Actionneur}
 
 \chapter{Informatique}
+L'idée de cette partie est de donner un description de tous le soft que nous
+avons mis en place. Cette partie est la plus volumineuse car c'est la plus
+abstraite. Nous avons divisé ce chapitre en trois parties. Tout d'abbord une
+partie Asservissement qui est basé sur la nucléo et qui permet d'envoyer de
+réaliser les déplacements ``unitaire'' de robot. Dans un second temps nous avons
+la partie Stratégie. Cette dernière est basée sur la raspberry et permet de
+réaliser les calculs de trajectoire, les gestions des manoeuvres d'évitemment et
+la comptabilisations des points. Finalement un protocole de communication permet
+de garder un contact entre les deux cartes. \\
+Il est à noter que nous avons réfléchis à un certain nombre de cas critiques
+(perte de la communication rasp/nucléo etc) pour éviter de se retrouver bloqué
+au milieu de la table.
 \section{Asservissement}
 \section{Stratégie}
 \subsection*{Introduction}

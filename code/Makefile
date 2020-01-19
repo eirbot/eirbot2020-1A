@@ -1,5 +1,5 @@
 CFLAGS = -Wall -Wextra -std=c++11 -g -O3
-FILE=navigation.o asserv.o world.o affichage.o
+FILE=navigation.o detection.o asserv.o world.o affichage.o
 ##
 # Project Title
 #
@@ -11,10 +11,10 @@ all: project
 %.o: rasp/src/%.cpp
 	g++ $(CFLAGS) -c $<
 
-project: $(FILE)
+project: $(FILE) rasp/src/main.cpp
 	g++ $(CFLAGS) $(FILE) rasp/src/main.cpp -o project
 
-test: $(FILE)
+test: $(FILE) rasp/tst/test.cpp
 	g++ $(CFLAGS) $(FILE) rasp/tst/test.cpp -o test
 
 test_protocole: protocole.o

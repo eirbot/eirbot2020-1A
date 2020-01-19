@@ -21,8 +21,8 @@ struct Node Port_S={16,side(120),0,0,0,0,0};
 
 short side(short y)
 {
-    if(which_side==1){
-        return Y_MAX-y;
+  if(which_side==1){
+        return (Y_MAX-y);
     }
     return y;
 }
@@ -72,8 +72,8 @@ void test_libre(short x, short y, short dest_x,short dest_y)
   total_reach=1;
   vector<obstacle> list_obstacles = World::fillVector();
   std::vector<Node> result;
-  Navigation src({x,y,0,0,0,0,0}), dest({dest_x,dest_y,0,0,0,0,0});
-  printf("\033[33mJe pars de x:%d y:%d et je vais à x:%d y:%d \033[0m \n",x,y,dest_x,dest_y);
+  Navigation src({x,side(y),0,0,0,0,0}), dest({dest_x,dest_y,0,0,0,0,0});
+  printf("\033[33mJe pars de x:%d y:%d et je vais à x:%d y:%d \033[0m \n",x,side(y),dest_x,dest_y);
   result = Navigation::Astar(src, dest, list_obstacles);
   short size=result.size();
   if (result.size() != 0) {

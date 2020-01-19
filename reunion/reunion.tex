@@ -355,21 +355,65 @@ schéma électrique est disponible dans les descriptions.
 
 
 \newpage
-\section*{Jeudi 16 2020}
+\section*{Jeudi 16 Janvier}
 \paragraph{Point Mécanique.}
-La base du robot a été découpé ce jeudi.
+La base du robot a été découpé ce jeudi. Le montage devrait avoir lieu dans la semaine
 \paragraph{Point Phare.}
-Le phare est en cours d'impression cela va prendre plusieurs jours.
+Le phare est en cours d'impression cela va prendre plusieurs jours. Mais il est
+stylé de ouf.
 \paragraph{Point Puissance.}
 Le design est fait à priori.
 \paragraph{Point Asservissement.}
-Retour de Clément ! Il a fabriqué un banc de test et commencer à tester quelques codes.
+Retour de Clément ! Il a fabriqué un banc de test et commencer à tester quelques
+codes. Alban a dispensé une petite formation sur mbed pour les aider.
 \paragraph{Point Informatique.}
 Discussions sur le protocole de communication entre la Raspberry Pi et la
 Nucléo. Utilisation d'une liaison série (via USB sûrement).
+Présentation des avancements de la stratégie et schéma récapitulatif de cette dernière :
+\begin{center}
+  \begin{tikzpicture}
+  \tikzstyle{lien}=[->,>=stealth,rounded corners=20pt,thick]
+\tikzset{individu/.style={draw,thick,fill=#1!25},
+individu/.default={white}, rounded corners=4pt}
+\node[individu=violet] (A) at (0,0){\textsc{Main}};
+\draw(1,0) node[right]{Envoie les ordres};
+\draw(1,-0.5) node[right]{au fur et à mesure};
+\node[individu=blue!50!black] (B) at (0,2){Navigation};
+\draw(1,2) node[right]{$\leftarrow$ Calcul d'un};
+\draw(1,1.5) node[right]{\; \; chemin précis};
+\draw(-1,2) node[left]{Transformation en $\leftarrow$};
+\draw(-1,1.5) node[left]{chemin global \;\;\;};
+
+\node[individu=blue] (C) at (3,4){World};
+\draw (4,4) node[right]{Renseigne position};
+\draw (4,3.5) node[right]{obstacles};
+\node[individu=green] (D) at (-3,4){Asservissement};
+\draw (-4.5,4) node[left]{Permet d'envoyer};
+\draw (-4.5,3.5) node[left]{requete déplacement};
+\node[individu=blue!50!black] (E) at (-4,0){Evitemment};
+\draw (-5,0) node[left]{Court circuite};
+\draw (-5,-0.5) node[left]{le main};
+\node[individu=green] (F) at (-3,-2){Détection};
+\draw (-3,-2.5) node[below]{Renseigne GP2};
+\node[individu=green] (G) at (3,-2){Actionneur};
+\node[individu] (H) at (3,-4){Affichage};
+
+\draw[lien] (A) -- (B);
+\draw[lien] (A) -- (F);
+\draw[lien] (A) -- (G);
+\draw[lien] (F) -- (A);
+\draw[lien] (B) -- (D);
+\draw[lien] (C) -- (B);
+\draw[lien] (E) -- (B);
+\draw[lien] (F) -- (E);
+
+
+  \end{tikzpicture}
+\end{center}
+
 \paragraph{Point Alimentation.}
-La 3ème tentative de fabrication de la carte d'alimentation a réussie ! Perçage
-fini et soudures finies jeudi soir.
+La 3ème tentative de fabrication de la carte d'alimentation a réussie (L'auteur
+de ce rapport en a quand même raté deux :)) ! Perçage fini et soudures finies jeudi soir.
 
 \newpage
 \end{spacing}

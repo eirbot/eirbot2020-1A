@@ -15,10 +15,10 @@ class Protocole
 
         // position
         void set_position(short x, short y); //x et y en cm
-        std::vector<short> get_position(); //vector ou struct en retour ?
+        std::vector<short> get_position(); //vector ou struct en retour ? => un struct position, le struc est définit dans le fichier "asserv.hpp"
 
         //rotation
-        void set_angle(short angle); // angle en deg entre 0 et 360 ?
+        void set_angle(short angle); // angle en deg entre 0 et 360 ? => plutot entre 0 et 360
         short get_angle();
 
         // GP2

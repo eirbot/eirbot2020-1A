@@ -3,7 +3,9 @@
 
 
 #include <stdio.h>
+#include <math.h>
 #include "world.hpp"
+#include "asserv.hpp"
 // Pris sur les anciens dépots a modifier !!!!
 // 1.0  -> 6 cm
 // 0.4  -> 10 cm
@@ -21,7 +23,7 @@ enum GP2_name {
 
 struct GP2_information{
     enum GP2_name input;
-    int mask; //Valeur entre 1 et 4
+    short mask; //Valeur entre 1 et 4
 };
 
 class GP2{

@@ -1,17 +1,15 @@
 #include "world.hpp"
 
-
-
 struct shape robot={32,32};
 struct shape eco_cup={7,7};
-struct shape stone_area={2,15};
+struct shape stone_area={2,15};//15
 struct shape stone_area_big={2,30};
 std::vector<obstacle> World::fillVector()
 {
 
     std::vector<obstacle> list_obstacles;
     list_obstacles.push_back({30,40,&eco_cup}); //Port nord 1
-    list_obstacles.push_back({45,51,&eco_cup}); //45 51
+    list_obstacles.push_back({45,51,&eco_cup});
     list_obstacles.push_back({67,10,&eco_cup});
     list_obstacles.push_back({95,40,&eco_cup});
     list_obstacles.push_back({200,40,&eco_cup});

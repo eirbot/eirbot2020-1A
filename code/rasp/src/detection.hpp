@@ -31,8 +31,8 @@ class GP2{
     public:
                 GP2();
                 GP2(enum GP2_name input,int activated,int distance_seuil);
-                static void activate(GP2 input); //Active la detection
-                static void disactivate(GP2 input); //Désactive la detection
+                static void activate(); //Active la detection
+                static void disactivate(); //Désactive la detection
                 static void gp2Obstacle(); //Creer une interuption si les GP2 activés détectent quelque chose
                 ~GP2();
     private:

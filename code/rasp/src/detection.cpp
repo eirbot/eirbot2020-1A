@@ -10,16 +10,16 @@ GP2::GP2(enum GP2_name input,int activated,int distance_seuil):input(input),acti
 
 }
 
-void GP2::activate(GP2 input)
+void GP2::activate()
 {
-    input.activated=1;
-    printf("Envoie de la requète de d'activation du GP2 : %d \n", input.input);
+    printf("Envoie de la requète de d'activation des GP2 ............. ");
+    affichage(TIMEOUT);
 }
 
-void GP2::disactivate(GP2 input)
+void GP2::disactivate()
 {
-    input.activated=0;
-    printf("Envoie de la requète de désactivation du GP2 : %d \n", input.input);
+    printf("Envoie de la requète de désactivation des GP2 ............ ");
+    affichage(TIMEOUT);
 }
 
 extern vector<obstacle> list_obstacles;
@@ -33,11 +33,11 @@ static void gp2Obstacle()
     // On vérifie si il y a des informations
     for (int i=0; i < 3; i++) {
         if (nucleo_value[i]==0) {
-            tot+=1; //Pas d'interuption
+            tot+=1;
         }
     }
     if (tot==3) {
-        return;
+        return; //Pas d'interuptions
     }
 
     //Si il y a des informations on transforme ces dernières et on les place des deux tableaux (avant et arrière)

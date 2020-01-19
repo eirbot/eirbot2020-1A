@@ -8,6 +8,7 @@
 #include <errno.h> // Error integer and strerror() function
 #include <termios.h> // Contains POSIX terminal control definitions
 #include <unistd.h> // write(), read(), close()
+#include <cstdarg>
 
 
 Protocole::Protocole(std::string device) {
@@ -15,6 +16,7 @@ Protocole::Protocole(std::string device) {
     serial_port = open(device.c_str(), O_RDWR);
 
     memset(&tty, 0, sizeof tty);
+    memset(&readBuffer, 0, READ_BUF_SIZE);
 
     // Read in existing settings, and handle any error
     if(tcgetattr(serial_port, &tty) != 0) {
@@ -53,13 +55,6 @@ Protocole::Protocole(std::string device) {
     }
 
     /* EXEMPLE READ WRITE
-    // Write to serial port
-    unsigned char msg[] = { 'H', 'e', 'l', 'l', 'o', '\r' };
-    write(serial_port, "Hello, world!", sizeof(msg));
-
-    // Allocate memory for read buffer, set size according to your needs
-    char read_buf [256];
-    memset(&read_buf, '\0', sizeof(read_buf));
 
     // Read bytes. The behaviour of read() (e.g. does it block?,
     // how long does it block for?) depends on the configuration
@@ -70,10 +65,6 @@ Protocole::Protocole(std::string device) {
     if (num_bytes < 0) {
         printf("Error reading: %s", strerror(errno));
     }
-
-    // Here we assume we received ASCII data, but you might be sending raw bytes (in that case, don't try and
-    // print it to the screen like this!)
-    printf("Read %i bytes. Received message: %s", num_bytes, read_buf);
     */
 
 }
@@ -82,30 +73,45 @@ Protocole::~Protocole() {
     close(serial_port);
 }
 
-// position
-void Protocole::set_position(short x, short y) {
-    sprintf(writeBuffer, "SPO%hd,%hd\n", x, y);
+/*
+ * command format comme dans printf
+ * ex: send("SPO%hd%hd\n", x, y)
+ */
+void Protocole::send(const char *command, ...) {
+    std::va_list args;
+    va_start(args, command);
+    vsprintf(writeBuffer, command, args);
+    va_end(args);
     write(serial_port, writeBuffer, strlen(writeBuffer));
 }
 
-/*std::vector<short> get_position() {
-    return 0;
+void read_hard_buffer() {
+}
+
+// position
+void Protocole::set_position(short x, short y) {
+    send("SPO%hd,%hd\n", x, y);
+}
+
+struct position Protocole::get_position() {
+    send("GPO\n");
+    struct position pos = {.x = 0, .y = 0};
+    return pos;
 }
 
 //rotation
-void set_angle(short angle) {
+void Protocole::set_angle(short angle) {
 
 }
 
-short get_angle() {
+short Protocole::get_angle() {
     return 0;
 }
 
 // GP2
-void set_seuils_GP2(char id, char palier, short distance) {
+void Protocole::set_seuils_GP2(char id, char palier, short distance) {
 
 }
 
-std::vector<short> get_etats_GP2() {
-    return 0;
-}*/
+void Protocole::get_etats_GP2(short etats[]) {
+}

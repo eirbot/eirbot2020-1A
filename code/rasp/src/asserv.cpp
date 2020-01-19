@@ -20,6 +20,32 @@ void Asservissement::go_to(struct position dest)
 
 void Asservissement::rotate(short angle)
 {
-    printf("Envoie de la requete de rotation de theta:%d",angle);
+    printf("Envoie de la requete de rotation de theta:%3d ............ ",angle);
+    affichage(TIMEOUT);
+}
+
+struct position Asservissement::robot_position()
+{
+    printf("Envoie de la requete d'information sur la position ....... ");
+    affichage(TIMEOUT);
+    return {.x=16,.y=80};
+}
+
+short Asservissement::angle()
+{
+    printf("Envoie de la requete d'information sur l'angle ........... ");
+    affichage(TIMEOUT);
+    return 0; //Pour l'instant
+}
+
+void Asservissement::initialise_x()
+{
+    printf("Envoie de la requete d'initialisation en x ............... ");
+    affichage(TIMEOUT);
+}
+
+void Asservissement::initialise_y()
+{
+    printf("Envoie de la requete d'initialisation en y ............... ");
     affichage(TIMEOUT);
 }

@@ -27,22 +27,21 @@ extern vector<obstacle> list_obstacles;
 static void gp2Obstacle()
 {
     //On récupère la valeur de la nucléo
-    int nucleo_value[6]={0,0,0,0,0,0}; //set:detection() pour récupérer l'information selon le protocole de com
+    int nucleo_value[3]={0,0,0}; //set:detection() pour récupérer l'information selon le protocole de com
     int tot=0;
 
     // On vérifie si il y a des informations
-    for (int i=0; i < 6; i++) {
+    for (int i=0; i < 3; i++) {
         if (nucleo_value[i]==0) {
             tot+=1; //Pas d'interuption
         }
     }
-    if (tot==6) {
+    if (tot==3) {
         return;
     }
 
     //Si il y a des informations on transforme ces dernières et on les place des deux tableaux (avant et arrière)
     struct GP2_information information_avant[3];
-    struct GP2_information information_arriere[3];
     for (int i=0; i < 3; i++) {
         information_avant[i].mask=(nucleo_value[i]%2);
         nucleo_value[i]=nucleo_value[i]/2;
@@ -53,16 +52,6 @@ static void gp2Obstacle()
         information_avant[i].mask+=(nucleo_value[i]%2);
         nucleo_value[i]=nucleo_value[i]/2;
         information_avant[i].input=(enum GP2_name) i;
-
-        information_arriere[i].mask=(nucleo_value[i+3]%2);
-        nucleo_value[i]=nucleo_value[i+3]/2;
-        information_arriere[i].mask+=(nucleo_value[i+3]%2);
-        nucleo_value[i]=nucleo_value[i+3]/2;
-        information_arriere[i].mask+=(nucleo_value[i+3]%2);
-        nucleo_value[i]=nucleo_value[i+3]/2;
-        information_arriere[i].mask+=(nucleo_value[i+3]%2);
-        nucleo_value[i]=nucleo_value[i+3]/2;
-        information_arriere[i].input=(enum GP2_name) (i+3);
     }
 
     //On trouve le mask le plus proche de nous
@@ -72,13 +61,9 @@ static void gp2Obstacle()
     // 1 -> 50 cm
     // 0 -> rien
     short max_mask_avant=0;
-    short max_mask_arriere=0;
     for (int i=0; i < 3; i++) {
         if(max_mask_avant<information_avant[i].mask){
             max_mask_avant=information_avant[i].mask;
-        }
-        if (max_mask_arriere < information_arriere[i].mask){
-            max_mask_arriere = information_arriere[i].mask;
         }
     }
 
@@ -87,12 +72,26 @@ static void gp2Obstacle()
     short position_y=Asservissement::robot_position().y;
     short angle=Asservissement::angle();
     struct shape robot={34,34};
-    float calcul_x=position_x+(max_mask_avant+32)*cos(angle);
-    float calcul_y=position_y+(max_mask_avant+32)*sin(angle);
+    short mask_to_distance;
+    switch (max_mask_avant) {
+        case 4:
+            mask_to_distance=6;
+            break;
+        case 3:
+            mask_to_distance=15;
+            break;
+        case 2:
+            mask_to_distance=25;
+            break;
+        case 1:
+            mask_to_distance=50;
+            break;
+    }
+
+    float calcul_x=position_x+(mask_to_distance+32)*cos(angle);
+    float calcul_y=position_y+(mask_to_distance+32)*sin(angle);
     list_obstacles.push_back({(short)calcul_x, (short)calcul_y, &robot});
 }
-
-//Creer une interuption si les GP2 activés détectent quelque chose
 
 
 GP2::~GP2()

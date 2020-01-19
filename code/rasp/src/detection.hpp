@@ -1,30 +1,42 @@
 #ifndef __DETECTION_H__
 #define __DETECTION_H__
 
-//Pris sur les anciens dépots a modifier !!!!
+
+#include <stdio.h>
+#include "world.hpp"
+// Pris sur les anciens dépots a modifier !!!!
 // 1.0  -> 6 cm
-// 0.4  -> 20 cm
-// 0.72 -> 10 cm
+// 0.4  -> 10 cm
+// 0.72 -> 20 cm
 // O.19 -> 50 cm
 
-// enum GP2{
-// gauche_avant,centre_avant,droite_avant
-// };
+enum GP2_name {
+  gauche_avant,
+  centre_avant,
+  droite_avant,
+  gauche_arriere,
+  centre_arriere,
+  droite_arriere,
+};
 
-// class GP2{
+struct GP2_information{
+    enum GP2_name input;
+    int mask; //Valeur entre 1 et 4
+};
 
-//     public:
-//                 GP2();
-//                 GP2(int intput,int activated,int distance_seuil);
-//                 void activate(); //Active la detection
-//                 void disactivate(); //Désactive la detection
-//                 bool gp2Obstacle(int distance_seuil, GP2 input);
-//                 void EVITEMENT(GP2 gauche_avant, GP2 centre_avant, GP2 droite_avant, );
-//                 ~GP2();
-//     private:
-//         int input; //identifiant du GP2
-//         int activated;
-//         int distance_seuil;
-// };
+class GP2{
+
+    public:
+                GP2();
+                GP2(enum GP2_name input,int activated,int distance_seuil);
+                static void activate(GP2 input); //Active la detection
+                static void disactivate(GP2 input); //Désactive la detection
+                static void gp2Obstacle(); //Creer une interuption si les GP2 activés détectent quelque chose
+                ~GP2();
+    private:
+        enum GP2_name input; //identifiant du GP2
+        int activated; //0 si désactivé 1 sinon
+        int distance_seuil;
+};
 
 #endif // __DETECTION_H__

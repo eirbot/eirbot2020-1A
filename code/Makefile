@@ -17,7 +17,7 @@ project: $(FILE)
 test: $(FILE)
 	g++ $(CFLAGS) $(FILE) rasp/tst/test.cpp -o test
 
-test_protocole: $(FILE)
+test_protocole: protocole.o
 	g++ $(CFLAGS) protocole.o rasp/tst/test_protocole.cpp -o test_protocole
 
 clean:

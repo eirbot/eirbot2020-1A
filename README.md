@@ -27,6 +27,7 @@ Un autre étape cruciale de notre robot est la distribution de l'énergie dans c
 ### Schéma de principe
 ![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/schema_bloc_connexions.png)
 ### Résultat
+![alt text](https://github.com/eirbot/eirbot2020-1A/blob/master/reunion/alimentation.jpg)
 
 ## Actionneur
 Nous allons avoir besoin d'un actionneur principal pour réaliser nos principales actions. Cet actionneur possèdera un mouvement vertical par rapport à la table. Il permettra d'une part d'actionner les manches à air et d'autre part d'actionner le phare (i.e. de réaliser toutes nos actions) cette partie est gérée par **Filipe**

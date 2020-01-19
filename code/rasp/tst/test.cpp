@@ -16,6 +16,8 @@ struct Node Phare={30,side(16),0,0,0,0,0};
 struct Node Manche_1={23,side(184),0,0,0,0,0};
 struct Node Manche_2={63,side(184),0,0,0,0,0};
 struct Node Port={16,side(80),0,0,0,0,0};
+struct Node Port_N={16,side(40),0,0,0,0,0};
+struct Node Port_S={16,side(120),0,0,0,0,0};
 
 short side(short y)
 {
@@ -56,10 +58,11 @@ void test_base()
      printf("\n");
  }
   printf("\033[33mJe pars de MANCHE_2 et je vais au PORT \033[0m \n");
-  result = Navigation::Astar(Manche_2, Port, list_obstacles);
+  list_obstacles.erase(list_obstacles.begin());
+  result = Navigation::Astar(Manche_2, Port_N, list_obstacles);
   if (result.size() != 0) {
-    Navigation::Navigate_to_asserv(result,Port);
-    good_port(result[result.size()-1].x, result[result.size()-1].y, Port.x, Port.y);
+    Navigation::Navigate_to_asserv(result,Port_N);
+    good_port(result[result.size()-1].x, result[result.size()-1].y, Port_N.x, Port_N.y);
      printf("\n");
      }
 }

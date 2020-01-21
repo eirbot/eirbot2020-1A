@@ -16,7 +16,7 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
-        void read_hard_buffer();
+        void update_buffer();
 
         // position
         void set_position(short x, short y); //x et y en cm
@@ -28,7 +28,7 @@ class Protocole
 
         // GP2
         void set_seuils_GP2(char id, char palier, short distance);
-        void get_etats_GP2(short etats[]);
+        void get_etats_GP2();
 
     private:
         int serial_port;
@@ -38,6 +38,7 @@ class Protocole
         short GP2_etats[6];
 
         void send(const char *command, ...);
+       
 //        std::string recv();
 
 };

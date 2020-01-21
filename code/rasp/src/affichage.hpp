@@ -2,9 +2,16 @@
 #define __AFFICHAGE_H_
 
 #include <cstdio>
+#include "detection.hpp"
+#include "world.hpp"
+#include "navigation.hpp"
 
 #ifndef TIMEOUT
 #define TIMEOUT 0
+#endif
+
+#ifndef DETECTION
+#define DETECTION 0
 #endif
 
 extern bool debug;
@@ -15,7 +22,9 @@ void print_success();
 
 void print_fail();
 
-void affichage(int timeout);
+void print_detection();
+
+void affichage(int timeout,int detection);
 
 void good_port(short result_x, short result_y, short dest_x, short dest_y);
 

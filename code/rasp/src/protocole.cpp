@@ -3,6 +3,7 @@
 #include "protocole.hpp"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <fcntl.h> // Contains file controls like O_RDWR
 #include <errno.h> // Error integer and strerror() function
@@ -85,7 +86,14 @@ void Protocole::send(const char *command, ...) {
     write(serial_port, writeBuffer, strlen(writeBuffer));
 }
 
-void read_hard_buffer() {
+void Protocole::update_buffer() {
+    int num_bytes = read(serial_port, readBuffer, READ_BUF_SIZE);
+    printf("readBuffer : \n");
+    for (int i = 0; i < READ_BUF_SIZE; i++) {
+        printf(" %x ", readBuffer[i] & 0xff);
+        if(i%10 == 0) printf("\n");
+    }
+    printf("\n");
 }
 
 // position
@@ -101,17 +109,19 @@ struct position Protocole::get_position() {
 
 //rotation
 void Protocole::set_angle(short angle) {
-
+    send("SRO%hd\n", angle); // angle absolu en deg
 }
 
 short Protocole::get_angle() {
+    send("GRO\n"); // angle absolu en deg
     return 0;
 }
 
 // GP2
 void Protocole::set_seuils_GP2(char id, char palier, short distance) {
-
+    send("SGS%c,%c,%hd\n", id, palier, distance); //Set Gp2 seuils
 }
 
-void Protocole::get_etats_GP2(short etats[]) {
+void Protocole::get_etats_GP2() {
+    send("GGE\n"); //Get Gp2 Etats (short etats[])
 }

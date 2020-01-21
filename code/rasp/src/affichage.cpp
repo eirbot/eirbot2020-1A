@@ -8,7 +8,8 @@ extern int total_obstacles;
 extern int total_reach;
 extern int success_reach;
 extern int timeout;
-
+extern int robot_adv;
+class Navigation;
 
 void print_timeout()
 {
@@ -32,11 +33,21 @@ void print_optimisated()
   printf("\033[33m UNOPTIMISED \033[0m ");
 }
 
-void affichage(int timeout)
+void print_detection()
+{
+  robot_adv+=1;
+  printf(".......................................................... \033[31m OBSTACLE \033[0m \n");
+}
+
+
+void affichage(int timeout, int detection)
 {
   if(timeout==1){
     timeout+=1;
     print_timeout();
+  }
+  if(detection==1){
+    print_detection();
     }
   else{
     success_deplacement+=1;
@@ -71,6 +82,8 @@ void print_summarise()
   printf("     \033[31m TIMEOUT \033[0m ......................................  (%d/%d) \n", timeout, success_deplacement+timeout);
   printf("Reach");
   printf("     \033[32m SUCCESS \033[0m ......................................  (%d/%d) \n", success_reach, total_reach);
+  printf("Robots");
+  printf("    \033[31m OBSTACLE \033[0m .....................................  (%2d)    \n", robot_adv);
   printf("___________________________________________________________________\n");
   printf("___________________________________________________________________\n");
 

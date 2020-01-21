@@ -179,7 +179,7 @@ std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navig
         path.pop();
         usablePath.emplace_back(top);
     }
-    affichage(TIMEOUT);
+    affichage(TIMEOUT,DETECTION);
     return usablePath;
   }
   catch(const exception& e){
@@ -198,7 +198,7 @@ void Navigation::Print_path(vector<Node> usablePath)
 }
 
 
-void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
+int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vector<obstacle> list_obstacles) //Renvoie 1 ou 2 si timeout ou obstacles
 {
     printf("Conversion ............................................... \n");
     int j=0;
@@ -207,6 +207,7 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
     short dep_x=0;
     short dep_y=0;
     bool mv=0;
+    int back;
     while (j<size-1 && position.x!=dest.node.x && position.y!=dest.node.y) {
         //x croissant
         while(1+usablePath.operator[](j).x==usablePath.operator[](j+1).x && usablePath.operator[](j).y==usablePath.operator[](j+1).y){
@@ -215,10 +216,13 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x+dep_x,.y=position.y});
+            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y});
             mv=0;
             position.x+=dep_x;
             dep_x=0;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
 
         //x décroissant
@@ -228,10 +232,13 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x-dep_x,.y=position.y});
+            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y});
             mv=0;
             position.x-=dep_x;
             dep_x=0;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
 
         //y croissant
@@ -241,10 +248,13 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x,.y=position.y+dep_y});
+            back=Asservissement::go_to({.x=position.x,.y=position.y+dep_y});
             mv=0;
             position.y+=dep_y;
             dep_y=0;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
 
         //y décroissant
@@ -254,10 +264,13 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x,.y=position.y-dep_y});
+            back=Asservissement::go_to({.x=position.x,.y=position.y-dep_y});
             mv=0;
             position.y-=dep_y;
             dep_y=0;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
 
         //x croissant y croissant
@@ -268,13 +281,17 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x+dep_x,.y=position.y+dep_y});
+            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y+dep_y});
+            back_effect(back, dest, list_obstacles);
             mv=0;
             position.y+=dep_y;
             position.x+=dep_x;
             dep_x=0;
             dep_y=0;
-                j-=1;
+            j-=1;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
 
         //x croissant y décroissant
@@ -285,13 +302,16 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x+dep_x,.y=position.y-dep_y});
-            mv=0;
+            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y-dep_y});
+       mv=0;
             position.y-=dep_y;
             position.x+=dep_x;
             dep_x=0;
             dep_y=0;
-                j-=1;
+            j-=1;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
         //x décroissant y croissant
         while (usablePath.operator[](j).x-1==usablePath.operator[](j+1).x && usablePath.operator[](j).y+1==usablePath.operator[](j+1).y) {
@@ -301,13 +321,16 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x-dep_x,.y=position.y+dep_y});
-            mv=0;
+            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y+dep_y});
+           mv=0;
             position.y+=dep_y;
             position.x-=dep_x;
             dep_x=0;
             dep_y=0;
-                j-=1;
+            j-=1;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
 
         //x décroissant y décroissant
@@ -318,17 +341,50 @@ void Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest)
             mv=1;
         }
         if (mv==1) {
-            Asservissement::go_to({.x=position.x-dep_x,.y=position.y-dep_y});
-            mv=0;
+            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y-dep_y});
+           mv=0;
             position.y-=dep_y;
             position.x-=dep_x;
             dep_x=0;
             dep_y=0;
-                j-=1;
+            j-=1;
+            if (back==1 || back==2) {
+                return back;
+            }
         }
         j+=1;
     }
-    Asservissement::go_to({.x=dest.node.x,.y=dest.node.y});
+    back=Asservissement::go_to({.x=dest.node.x,.y=dest.node.y});
+    if (back==1 || back==2) {
+        return back;
+    }
+    return 0;
+}
+
+void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_obstacles)
+{
+    if(back==0){
+        return;
+    }
+    if(back==1){
+        struct position my_position=Asservissement::robot_position();
+        struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
+        struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
+        vector<Node> result=Navigation::Astar(node_position,node_dest,list_obstacles);
+        Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+    }
+    if(back==2){
+        GP2::gp2Obstacle();
+        struct position my_position=Asservissement::robot_position();
+        my_position.x=39;
+        my_position.y=58;
+        struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
+        struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
+        vector<Node> result=Navigation::Astar(node_position,node_dest,list_obstacles);
+        print_detection();
+        Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+
+    }
 }
 
 Navigation::~Navigation()

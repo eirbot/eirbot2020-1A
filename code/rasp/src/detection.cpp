@@ -13,18 +13,18 @@ GP2::GP2(enum GP2_name input,int activated,int distance_seuil):input(input),acti
 void GP2::activate()
 {
     printf("Envoie de la requète de d'activation des GP2 ............. ");
-    affichage(TIMEOUT);
+    affichage(TIMEOUT,DETECTION);
 }
 
 void GP2::disactivate()
 {
     printf("Envoie de la requète de désactivation des GP2 ............ ");
-    affichage(TIMEOUT);
+    affichage(TIMEOUT,DETECTION);
 }
 
 extern vector<obstacle> list_obstacles;
 
-static void gp2Obstacle()
+void GP2::gp2Obstacle()
 {
     //On récupère la valeur de la nucléo
     int nucleo_value[3]={0,0,0}; //set:detection() pour récupérer l'information selon le protocole de com

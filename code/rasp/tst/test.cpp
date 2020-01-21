@@ -10,6 +10,7 @@ int success_deplacement;
 int total_reach;
 int success_reach;
 int timeout;
+int robot_adv;
 
 int which_side=0;
 struct Node Phare={30,side(16),0,0,0,0,0};
@@ -29,6 +30,7 @@ short side(short y)
 
 void test_base()
 {
+  int back;
   vector<obstacle> list_obstacles = World::fillVector();
   std::vector<Node> result;
   total_reach=4;
@@ -36,7 +38,8 @@ void test_base()
 
   result = Navigation::Astar(Port, Phare, list_obstacles);
   if (result.size() != 0) {
-    Navigation::Navigate_to_asserv(result,Phare);
+    back=Navigation::Navigate_to_asserv(result,Phare,list_obstacles);
+    Navigation::back_effect(back,Phare,list_obstacles);
     good_port(result[result.size()-1].x, result[result.size()-1].y, Phare.x, Phare.y);
     printf("\n");
 
@@ -45,7 +48,8 @@ void test_base()
 
     result = Navigation::Astar(Phare, Manche_1, list_obstacles);
     if (result.size() != 0) {
-      Navigation::Navigate_to_asserv(result,Manche_1);
+      back=Navigation::Navigate_to_asserv(result,Manche_1,list_obstacles);
+      Navigation::back_effect(back,Phare,list_obstacles);
       good_port(result[result.size()-1].x, result[result.size()-1].y, Manche_1.x, Manche_1.y);
           printf("\n");
 
@@ -53,7 +57,8 @@ void test_base()
   printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
   result = Navigation::Astar(Manche_1, Manche_2, list_obstacles);
   if (result.size() != 0) {
-    Navigation::Navigate_to_asserv(result,Manche_2);
+    back=Navigation::Navigate_to_asserv(result,Manche_2,list_obstacles);
+    Navigation::back_effect(back,Phare,list_obstacles);
     good_port(result[result.size()-1].x, result[result.size()-1].y, Manche_2.x, Manche_2.y);
      printf("\n");
  }
@@ -61,7 +66,8 @@ void test_base()
   list_obstacles.erase(list_obstacles.begin());
   result = Navigation::Astar(Manche_2, Port_N, list_obstacles);
   if (result.size() != 0) {
-    Navigation::Navigate_to_asserv(result,Port_N);
+    back=Navigation::Navigate_to_asserv(result,Port_N, list_obstacles);
+    Navigation::back_effect(back,Phare,list_obstacles);
     good_port(result[result.size()-1].x, result[result.size()-1].y, Port_N.x, Port_N.y);
      printf("\n");
      }
@@ -77,9 +83,14 @@ void test_libre(short x, short y, short dest_x,short dest_y)
   result = Navigation::Astar(src, dest, list_obstacles);
   short size=result.size();
   if (result.size() != 0) {
-    Navigation::Navigate_to_asserv(result,dest);
+    Navigation::Navigate_to_asserv(result,dest, list_obstacles);
     good_port(result[size-1].x, result[size-1].y,dest_x,dest_y);
   }
+}
+
+void test_detection()
+{
+ 
 }
 
 

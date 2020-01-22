@@ -22,23 +22,11 @@ void GP2::disactivate()
     affichage(TIMEOUT,DETECTION);
 }
 
-extern vector<obstacle> list_obstacles;
 
-void GP2::gp2Obstacle()
+vector<obstacle> GP2::gp2Obstacle(vector<obstacle> list_obstacles, struct position position)
 {
     //On récupère la valeur de la nucléo
     int nucleo_value[3]={0,0,0}; //set:detection() pour récupérer l'information selon le protocole de com
-    int tot=0;
-
-    // On vérifie si il y a des informations
-    for (int i=0; i < 3; i++) {
-        if (nucleo_value[i]==0) {
-            tot+=1;
-        }
-    }
-    if (tot==3) {
-        return; //Pas d'interuptions
-    }
 
     //Si il y a des informations on transforme ces dernières et on les place des deux tableaux (avant et arrière)
     struct GP2_information information_avant[3];
@@ -68,8 +56,8 @@ void GP2::gp2Obstacle()
     }
 
     //On trouve maintenant la configuration (gauche, centre gauche, centre, centre droit, droit) et on place le nouvel obstacle
-    short position_x=Asservissement::robot_position().x;
-    short position_y=Asservissement::robot_position().y;
+    short position_x=position.x;
+    short position_y=position.y;
     short angle=Asservissement::angle();
     struct shape robot={34,34};
     short mask_to_distance;
@@ -87,10 +75,12 @@ void GP2::gp2Obstacle()
             mask_to_distance=50;
             break;
     }
-
+    mask_to_distance=130;
+    angle=90;
     float calcul_x=position_x+(mask_to_distance+32)*cos(angle);
     float calcul_y=position_y+(mask_to_distance+32)*sin(angle);
     list_obstacles.push_back({(short)calcul_x, (short)calcul_y, &robot});
+    return list_obstacles;
 }
 
 

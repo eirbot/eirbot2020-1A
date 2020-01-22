@@ -33,7 +33,7 @@ class GP2{
                 GP2(enum GP2_name input,int activated,int distance_seuil);
                 static void activate(); //Active la detection
                 static void disactivate(); //Désactive la detection
-                static void gp2Obstacle(); //Creer une interuption si les GP2 activés détectent quelque chose
+                static vector<obstacle> gp2Obstacle(std::vector<obstacle> list_obstacles, struct position position); //Creer une interuption si les GP2 activés détectent quelque chose
                 ~GP2();
     private:
         enum GP2_name input; //identifiant du GP2

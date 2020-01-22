@@ -10,7 +10,7 @@ int main(int argc, char *argv[]) {
         proto.get_angle();
         proto.get_etats_GP2();
         proto.set_seuils_GP2('0','0',30);
-        sleep(5);
+        //sleep(5);
         proto.update_buffer();
     }
     else {

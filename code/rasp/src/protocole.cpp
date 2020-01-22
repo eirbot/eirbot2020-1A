@@ -47,8 +47,10 @@ Protocole::Protocole(std::string device) {
     tty.c_cc[VMIN] = 0;
 
     // Set in/out baud rate to be 115200
-    cfsetispeed(&tty, B115200);
-    cfsetospeed(&tty, B115200);
+    cfsetispeed(&tty, B9600);
+    cfsetospeed(&tty, B9600);
+    //debug
+    //cfmakeraw(&tty);
 
     // Save tty settings, also checking for error
     if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
@@ -88,9 +90,14 @@ void Protocole::send(const char *command, ...) {
 
 void Protocole::update_buffer() {
     int num_bytes = read(serial_port, readBuffer, READ_BUF_SIZE);
-    printf("readBuffer : \n");
+    printf("numBytes : %d \n", num_bytes);
     for (int i = 0; i < READ_BUF_SIZE; i++) {
         printf(" %x ", readBuffer[i] & 0xff);
+        if(i%10 == 0) printf("\n");
+    }
+    printf("\n");
+    for (int i = 0; i < READ_BUF_SIZE; i++) {
+        printf(" %c ", readBuffer[i]);
         if(i%10 == 0) printf("\n");
     }
     printf("\n");

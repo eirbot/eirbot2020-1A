@@ -5,7 +5,7 @@
 extern vector<obstacle> list_obstacles;
 int Asservissement::go_to(struct position dest)
 {
-    if(dest.x==39 && dest.y==58){
+    if(dest.x==38 && dest.y==58){
         return 2;
     }
     if(debug==1){

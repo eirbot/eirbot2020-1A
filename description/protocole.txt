@@ -1,0 +1,28 @@
+Côté Raspberry pi
+
+Changer la valeur d'une ou plusieurs variables (set): S
+Récupérer variable (get): G
+
+Côté Nucléo
+
+Réponse sur l'état (reponse): R
+Renvoie valeur d'une variable (valeur): V
+
+Étiquettes :
+- Position: PO
+- Rotation: RO
+- États GP2: GE
+- Seuils GP2: GS
+
+Fin de commande: \n
+
+Listes des commandes possibles:
+Rasp         <-------->       Nucléo
+SPO40,60                      RPOOK ou RPOOUT
+GPO                           VPO40,60
+
+SRO90                         RROOK
+GRO                           VRO90
+
+GGE                           VGEetat0,etat1,etat2  #recup etats des GP2 avant
+SGSid,palier,distance         RGSOK

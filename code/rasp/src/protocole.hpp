@@ -16,6 +16,9 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
+        enum etat {};
+
+        enum etat update();
 
         // position
         void set_position(short x, short y); //x et y en cm
@@ -38,7 +41,7 @@ class Protocole
 
         void send(const char *command, ...);
         int update_buffer();
-        void print_buffer(int num_bytes);
+        void print_buffer(); //debug
         void flush_buffer();
         void parse();
 };

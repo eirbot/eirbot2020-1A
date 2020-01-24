@@ -97,8 +97,7 @@ void Protocole::flush_buffer() {
     memset(&readBuffer, 0, READ_BUF_SIZE);
 }
 
-void Protocole::print_buffer(int num_bytes) {
-    printf("numBytes : %d \n", num_bytes);
+void Protocole::print_buffer() {
     for (int i = 0; i < READ_BUF_SIZE; i++) {
         printf(" %x ", readBuffer[i] & 0xff);
         if(i%10 == 0) printf("\n");
@@ -149,17 +148,35 @@ void Protocole::parse() {
 }
 
 // ------    PUBLIC    --------
+
+// void Protocole::update() {
+//     update_buffer();
+//     parse();
+//     flush_buffer();
+// }
+
 // position
 void Protocole::set_position(short x, short y) {
     send("SPO%hd,%hd\n", x, y);
+    usleep(100000);
+    while(update_buffer()) {} //oui
+    printf("Message recu\n");
+    print_buffer();
+    int res_sscanf = sscanf(readBuffer, "RPOOK\n");
+    printf("res sscanf : %d \n", res_sscanf);
+    if(res_sscanf) {
+        printf("Wow la position c'est ok\n");
+    }
+    else if(sscanf(readBuffer, "RPOOUT\n")) {
+        printf("Aaaaarg position timeout\n");
+    }
+    flush_buffer();
+
 }
 
 struct position Protocole::get_position() {
     struct position pos = {.x = 0, .y = 0};
     send("GPO\n");
-    update_buffer();
-    parse();
-    flush_buffer();
     return pos;
 }
 

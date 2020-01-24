@@ -76,6 +76,7 @@ Protocole::~Protocole() {
     close(serial_port);
 }
 
+// --------    PRIVATE       ------------
 /*
  * command format comme dans printf
  * ex: send("SPO%hd%hd\n", x, y)
@@ -88,30 +89,77 @@ void Protocole::send(const char *command, ...) {
     write(serial_port, writeBuffer, strlen(writeBuffer));
 }
 
-void Protocole::update_buffer() {
-    int num_bytes = read(serial_port, readBuffer, READ_BUF_SIZE);
+int Protocole::update_buffer() {
+    return read(serial_port, readBuffer, READ_BUF_SIZE);
+}
+
+void Protocole::flush_buffer() {
+    memset(&readBuffer, 0, READ_BUF_SIZE);
+}
+
+void Protocole::print_buffer(int num_bytes) {
     printf("numBytes : %d \n", num_bytes);
     for (int i = 0; i < READ_BUF_SIZE; i++) {
         printf(" %x ", readBuffer[i] & 0xff);
         if(i%10 == 0) printf("\n");
     }
     printf("\n");
-/*    for (int i = 0; i < READ_BUF_SIZE; i++) {
-        printf(" %c ", readBuffer[i]);
-        if(i%10 == 0) printf("\n");
-    }*/
     printf(readBuffer);
     printf("\n");
 }
 
+
+void Protocole::parse() {
+    if(readBuffer[0] == 'R') {
+        if(readBuffer[1] == 'P' && readBuffer[2] == 'O') {
+            if(readBuffer[3] == 'O' && readBuffer[4] == 'K') {
+                printf("POsition OK\n");
+            }
+            else if(readBuffer[3] == 'O' && readBuffer[4] == 'U' && readBuffer[5] == 'T') {
+                printf("POsition timeOUT\n");
+            }
+            else {
+                printf("PRO MSG Error\n");
+            }
+        }
+        else if(readBuffer[1] == 'R' && readBuffer[2] == 'O') {
+            if(readBuffer[3] == 'O' && readBuffer[4] == 'K') {
+                printf("ROtation OK\n");
+            }
+            else if(readBuffer[3] == 'O' && readBuffer[4] == 'U' && readBuffer[5] == 'T') {
+                printf("ROtation timeOUT\n");
+            }
+            else {
+                printf("RRO MSG Error\n");
+            }
+        }
+
+    }
+    else if(readBuffer[0] == 'V') {
+        if(readBuffer[1] == 'P' && readBuffer[2] == 'O') {
+        }
+        else if(readBuffer[1] == 'R' && readBuffer[2] == 'O') {
+        }
+    }
+    else {
+        printf("Parsing Error\n");
+    }
+
+
+}
+
+// ------    PUBLIC    --------
 // position
 void Protocole::set_position(short x, short y) {
     send("SPO%hd,%hd\n", x, y);
 }
 
 struct position Protocole::get_position() {
-    send("GPO\n");
     struct position pos = {.x = 0, .y = 0};
+    send("GPO\n");
+    update_buffer();
+    parse();
+    flush_buffer();
     return pos;
 }
 

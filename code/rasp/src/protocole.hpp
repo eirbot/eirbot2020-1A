@@ -16,7 +16,6 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
-        void update_buffer();
 
         // position
         void set_position(short x, short y); //x et y en cm
@@ -38,9 +37,10 @@ class Protocole
         short GP2_etats[6];
 
         void send(const char *command, ...);
-       
-//        std::string recv();
-
+        int update_buffer();
+        void print_buffer(int num_bytes);
+        void flush_buffer();
+        void parse();
 };
 
 #endif // __PROTOCOLE_H_

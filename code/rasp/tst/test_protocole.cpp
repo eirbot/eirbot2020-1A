@@ -12,10 +12,11 @@ int main(int argc, char *argv[]) {
         // proto.update_buffer();
 
         proto.set_position(10, 10);
-        // usleep(500000); //0.5s
+        usleep(500000); //0.5s
+        printf("ANGLE:\n");
         // proto.update_buffer();
 
-        // proto.set_angle(90);
+        proto.set_angle(90);
         // usleep(500000); //0.5s
         // proto.update_buffer();
 

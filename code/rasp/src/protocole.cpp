@@ -13,7 +13,6 @@
 
 
 Protocole::Protocole(std::string device) {
-    // Open the serial port. Change device path as needed (currently set to an standard FTDI USB-UART cable type device)
     serial_port = open(device.c_str(), O_RDWR);
 
     memset(&tty, 0, sizeof tty);
@@ -40,8 +39,6 @@ Protocole::Protocole(std::string device) {
 
     tty.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes (e.g. newline chars)
     tty.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
-    // tty.c_oflag &= ~OXTABS; // Prevent conversion of tabs to spaces (NOT PRESENT ON LINUX)
-    // tty.c_oflag &= ~ONOEOT; // Prevent removal of C-d chars (0x004) in output (NOT PRESENT ON LINUX)
 
     tty.c_cc[VTIME] = 10;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
     tty.c_cc[VMIN] = 0;
@@ -49,27 +46,11 @@ Protocole::Protocole(std::string device) {
     // Set in/out baud rate to be 115200
     cfsetispeed(&tty, B115200);
     cfsetospeed(&tty, B115200);
-    //debug
-    //cfmakeraw(&tty);
 
     // Save tty settings, also checking for error
     if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
         printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
     }
-
-    /* EXEMPLE READ WRITE
-
-    // Read bytes. The behaviour of read() (e.g. does it block?,
-    // how long does it block for?) depends on the configuration
-    // settings above, specifically VMIN and VTIME
-    int num_bytes = read(serial_port, &read_buf, sizeof(read_buf));
-
-    // n is the number of bytes read. n may be 0 if no bytes were received, and can also be -1 to signal an error.
-    if (num_bytes < 0) {
-        printf("Error reading: %s", strerror(errno));
-    }
-    */
-
 }
 
 Protocole::~Protocole() {
@@ -108,67 +89,20 @@ void Protocole::print_buffer() {
 }
 
 
-void Protocole::parse() {
-    if(readBuffer[0] == 'R') {
-        if(readBuffer[1] == 'P' && readBuffer[2] == 'O') {
-            if(readBuffer[3] == 'O' && readBuffer[4] == 'K') {
-                printf("POsition OK\n");
-            }
-            else if(readBuffer[3] == 'O' && readBuffer[4] == 'U' && readBuffer[5] == 'T') {
-                printf("POsition timeOUT\n");
-            }
-            else {
-                printf("PRO MSG Error\n");
-            }
-        }
-        else if(readBuffer[1] == 'R' && readBuffer[2] == 'O') {
-            if(readBuffer[3] == 'O' && readBuffer[4] == 'K') {
-                printf("ROtation OK\n");
-            }
-            else if(readBuffer[3] == 'O' && readBuffer[4] == 'U' && readBuffer[5] == 'T') {
-                printf("ROtation timeOUT\n");
-            }
-            else {
-                printf("RRO MSG Error\n");
-            }
-        }
-
-    }
-    else if(readBuffer[0] == 'V') {
-        if(readBuffer[1] == 'P' && readBuffer[2] == 'O') {
-        }
-        else if(readBuffer[1] == 'R' && readBuffer[2] == 'O') {
-        }
-    }
-    else {
-        printf("Parsing Error\n");
-    }
-
-
-}
-
 // ------    PUBLIC    --------
-
-// void Protocole::update() {
-//     update_buffer();
-//     parse();
-//     flush_buffer();
-// }
 
 // position
 void Protocole::set_position(short x, short y) {
     send("SPO%hd,%hd\n", x, y);
     usleep(100000);
-    while(update_buffer()) {} //oui
+    while(update_buffer()) {} //TODO: timeout local
     printf("Message recu\n");
     print_buffer();
-    int res_sscanf = sscanf(readBuffer, "RPOOK\n");
-    printf("res sscanf : %d \n", res_sscanf);
-    if(res_sscanf) {
-        printf("Wow la position c'est ok\n");
+    if(strcmp(readBuffer, "RPOOK\n") == 0) {
+        printf("Confirmation set position\n");
     }
-    else if(sscanf(readBuffer, "RPOOUT\n")) {
-        printf("Aaaaarg position timeout\n");
+    else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
+        printf("Time out position\n");
     }
     flush_buffer();
 
@@ -183,6 +117,18 @@ struct position Protocole::get_position() {
 //rotation
 void Protocole::set_angle(short angle) {
     send("SRO%hd\n", angle); // angle absolu en deg
+
+    usleep(100000);
+    while(update_buffer()) {} //TODO: timeout local
+    printf("Message recu\n");
+    print_buffer();
+    if(strcmp(readBuffer, "RROOK\n") == 0) {
+        printf("Confirmation set rotation\n");
+    }
+    else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
+        printf("Time out rotation\n");
+    }
+    flush_buffer();
 }
 
 short Protocole::get_angle() {

@@ -7,7 +7,7 @@
 #include <string>
 #include "asserv.hpp"
 
-#define READ_BUF_SIZE 256
+#define READ_BUF_SIZE 128
 
 
 class Protocole
@@ -16,9 +16,7 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
-        enum etat {};
-
-        enum etat update();
+        enum etat {OK, TIMEOUT, OBSTACLE};
 
         // position
         void set_position(short x, short y); //x et y en cm
@@ -40,8 +38,8 @@ class Protocole
         short GP2_etats[6];
 
         void send(const char *command, ...);
-        int update_buffer();
         void print_buffer(); //debug
+        int update_buffer();
         void flush_buffer();
         void parse();
 };

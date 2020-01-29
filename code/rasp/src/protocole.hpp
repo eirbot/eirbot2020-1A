@@ -7,7 +7,7 @@
 #include <string>
 #include "asserv.hpp"
 
-#define READ_BUF_SIZE 128
+#define READ_BUF_SIZE 32
 
 
 class Protocole
@@ -16,7 +16,7 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
-        enum etat {OK, TIMEOUT, OBSTACLE};
+        enum etat {OK, TIME_OUT, OBSTACLE};
 
         // position
         void set_position(short x, short y); //x et y en cm
@@ -27,8 +27,8 @@ class Protocole
         short get_angle();
 
         // GP2
-        void set_seuils_GP2(char id, char palier, short distance);
-        void get_etats_GP2();
+        void set_detection_GP2(char actif); //actif = '1' ou '0'
+        void get_etats_GP2(char etats[3]);
 
     private:
         int serial_port;

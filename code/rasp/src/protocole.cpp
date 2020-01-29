@@ -10,6 +10,7 @@
 #include <termios.h> // Contains POSIX terminal control definitions
 #include <unistd.h> // write(), read(), close()
 #include <cstdarg>
+#include <ctime>
 
 
 Protocole::Protocole(std::string device) {
@@ -40,7 +41,7 @@ Protocole::Protocole(std::string device) {
     tty.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes (e.g. newline chars)
     tty.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
 
-    tty.c_cc[VTIME] = 10;    // Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
+    tty.c_cc[VTIME] = 1;    // 10=Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
     tty.c_cc[VMIN] = 0;
 
     // Set in/out baud rate to be 115200
@@ -70,8 +71,18 @@ void Protocole::send(const char *command, ...) {
     write(serial_port, writeBuffer, strlen(writeBuffer));
 }
 
-int Protocole::update_buffer() {
-    return read(serial_port, readBuffer, READ_BUF_SIZE);
+int Protocole::update_buffer(int timeout) {
+    clock_t begin = std::clock();
+    while(read(serial_port, readBuffer, READ_BUF_SIZE)) {
+        usleep(1);
+        printf("%f\n", float(std::clock() - begin)/CLOCKS_PER_SEC);
+        if(float(std::clock() - begin)/CLOCKS_PER_SEC > (float)timeout) {
+            printf("read OUT\n");
+            return -1;
+        }
+    }
+    printf("read OK\n");
+    return 0;
 }
 
 void Protocole::flush_buffer() {
@@ -81,7 +92,6 @@ void Protocole::flush_buffer() {
 void Protocole::print_buffer() {
     for (int i = 0; i < READ_BUF_SIZE; i++) {
         printf(" %x ", readBuffer[i] & 0xff);
-        if(i%10 == 0) printf("\n");
     }
     printf("\n");
     printf(readBuffer);
@@ -96,7 +106,7 @@ struct position Protocole::get_position() {
     short int x, y;
     send("GPO\n");
     usleep(10000);
-    while(update_buffer()) {} //TODO: timeout local
+    update_buffer(1);
     print_buffer();
     if(sscanf(readBuffer, "VPO%hd,%hd\n", &x, &y) == 2) {
         printf("POS: x: %d, y: %d\n", x, y);
@@ -112,7 +122,7 @@ short Protocole::get_angle() {
     short int angle;
     send("GRO\n"); // angle absolu en deg
     usleep(10000);
-    while(update_buffer()) {} //TODO: timeout local
+    update_buffer(1);
     print_buffer();
     if(sscanf(readBuffer, "VRO%hd\n", &angle) == 1) {
         printf("RO: angle: %hd\n", angle);
@@ -128,7 +138,7 @@ void Protocole::get_etats_GP2(char etats[3]) {
     char e0, e1, e2;
     send("GGE\n"); //Get Gp2 Etats (short etats[])
     usleep(10000);
-    while(update_buffer()) {} //TODO: timeout local
+    update_buffer(1);
     print_buffer();
     if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
         printf("Etats GP2: %c, %c, %c\n", e0, e1, e2);
@@ -147,7 +157,7 @@ void Protocole::get_etats_GP2(char etats[3]) {
 void Protocole::set_angle(short angle) {
     send("SRO%hd\n", angle); // angle absolu en deg
     usleep(10000);
-    while(update_buffer()) {} //TODO: timeout local
+    update_buffer(1);
     print_buffer();
     if(strcmp(readBuffer, "RROOK\n") == 0) {
         printf("Confirmation set rotation\n");
@@ -163,7 +173,7 @@ void Protocole::set_angle(short angle) {
 void Protocole::set_detection_GP2(char actif) {
     send("SGA%c\n", actif); //Set Gp2 seuils
     usleep(10000);
-    while(update_buffer()) {} //TODO: timeout local
+    update_buffer(1);
     print_buffer();
     if(strcmp(readBuffer, "RGAOK\n") == 0) {
         printf("Confirmation set detection GP2\n");
@@ -175,22 +185,32 @@ void Protocole::set_detection_GP2(char actif) {
 }
 
 // position
-enum Protocole::Etat Protocole::set_position(short x, short y) {
+enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3]) {
+    char e0, e1, e2;
     send("SPO%hd,%hd\n", x, y);
     usleep(10000);
-    while(update_buffer()) {} //TODO: timeout local
+    update_buffer(1);
     print_buffer();
     if(strcmp(readBuffer, "RPOOK\n") == 0) {
         printf("Confirmation set position\n");
+        flush_buffer();
         return Etat::OK;
     }
     else if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
         printf("Obstacle");
+        etats[0] = e0;
+        etats[1] = e1;
+        etats[2] = e2;
+        flush_buffer();
         return Etat::OBSTACLE;
     }
     else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
         printf("Time out position\n");
+        flush_buffer();
         return Etat::TIME_OUT;
     }
-    flush_buffer();
+    else {
+        printf("Erreur de parsing\n");
+        return Etat::ERROR;
+    }
 }

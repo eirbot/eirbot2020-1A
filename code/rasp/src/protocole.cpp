@@ -175,17 +175,22 @@ void Protocole::set_detection_GP2(char actif) {
 }
 
 // position
-void Protocole::set_position(short x, short y) {
+enum Protocole::Etat Protocole::set_position(short x, short y) {
     send("SPO%hd,%hd\n", x, y);
     usleep(10000);
     while(update_buffer()) {} //TODO: timeout local
     print_buffer();
     if(strcmp(readBuffer, "RPOOK\n") == 0) {
         printf("Confirmation set position\n");
+        return Etat::OK;
+    }
+    else if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
+        printf("Obstacle");
+        return Etat::OBSTACLE;
     }
     else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
         printf("Time out position\n");
+        return Etat::TIME_OUT;
     }
     flush_buffer();
-
 }

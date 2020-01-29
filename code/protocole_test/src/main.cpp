@@ -7,8 +7,10 @@ DigitalOut info_led(LED1);
 DigitalOut debug_led(LED2);
 DigitalOut data_led(LED3);
 RawSerial _serial(USBTX, USBRX);
-short x, y, angle, dist;
-char id, palier;
+short x, y, angle;
+char GP2_on;
+char GP2_etats[3] = {'1', '0', '1'};
+
 char readBuffer[64];
 int buf_index = 0;
 
@@ -29,6 +31,19 @@ void parse() {
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
         _serial.printf("RROOK\n");
+    }
+    else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
+        _serial.printf("RGAOK\n");
+    }
+    //GET
+    else if(strcmp(readBuffer, "GPO\n") == 0) {
+        _serial.printf("VPO%hd,%hd\n", x, y);
+    }
+    else if(strcmp(readBuffer, "GRO\n") == 0) {
+        _serial.printf("VRO%hd\n", angle);
+    }
+    else if(strcmp(readBuffer, "GGE\n") == 0) {
+        _serial.printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
     data_led = 0;
 }
@@ -62,6 +77,7 @@ int main(int argc, char *argv[]) {
             blink(data_led, 5, 0.05f);
             _serial.printf("x: %hd, y: %hd\n", x, y);
             _serial.printf("angle: %hd\n", angle);
+            _serial.printf("detection GP2: %c\n", GP2_on);
         }
     }
 

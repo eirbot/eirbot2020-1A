@@ -28,49 +28,42 @@ short side(short y)
     return y;
 }
 
+void one_step(Node src, Node dest, vector<obstacle> list_obstacles)
+{
+  std::vector<Node> result;
+  int back;
+  result = Navigation::Astar(src, dest, list_obstacles);
+  if (result.size()!= 0) {
+    back=Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+    Navigation::back_effect(back,dest,list_obstacles);
+    good_port(result[result.size()-1].x, result[result.size()-1].y, dest.x, dest.y);
+    printf("\n");
+  }
+  else{
+    printf("%lu \n",list_obstacles.size());
+    list_obstacles=Navigation::stun(list_obstacles);
+    printf("%lu \n",list_obstacles.size());
+    back=Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+    Navigation::back_effect(back,dest,list_obstacles);
+    good_port(result[result.size()-1].x, result[result.size()-1].y, dest.x, dest.y);
+    list_obstacles=World::fillVector();
+    printf("\n");
+  }
+
+}
+
 void test_base()
 {
-  int back;
   vector<obstacle> list_obstacles = World::fillVector();
-  std::vector<Node> result;
   total_reach=4;
-    printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
-
-  result = Navigation::Astar(Port, Phare, list_obstacles);
-  if (result.size() != 0) {
-    back=Navigation::Navigate_to_asserv(result,Phare,list_obstacles);
-    Navigation::back_effect(back,Phare,list_obstacles);
-    good_port(result[result.size()-1].x, result[result.size()-1].y, Phare.x, Phare.y);
-    printf("\n");
-
-
-  }  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-
-    result = Navigation::Astar(Phare, Manche_1, list_obstacles);
-    if (result.size() != 0) {
-      back=Navigation::Navigate_to_asserv(result,Manche_1,list_obstacles);
-      Navigation::back_effect(back,Phare,list_obstacles);
-      good_port(result[result.size()-1].x, result[result.size()-1].y, Manche_1.x, Manche_1.y);
-          printf("\n");
-
-    }
+  printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
+  one_step(Port,Phare,list_obstacles);
+  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
+  one_step(Phare,Manche_1,list_obstacles);
   printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
-  result = Navigation::Astar(Manche_1, Manche_2, list_obstacles);
-  if (result.size() != 0) {
-    back=Navigation::Navigate_to_asserv(result,Manche_2,list_obstacles);
-    Navigation::back_effect(back,Phare,list_obstacles);
-    good_port(result[result.size()-1].x, result[result.size()-1].y, Manche_2.x, Manche_2.y);
-     printf("\n");
- }
+  one_step(Manche_1,Manche_2,list_obstacles);
   printf("\033[33mJe pars de MANCHE_2 et je vais au PORT \033[0m \n");
-  list_obstacles.erase(list_obstacles.begin());
-  result = Navigation::Astar(Manche_2, Port_N, list_obstacles);
-  if (result.size() != 0) {
-    back=Navigation::Navigate_to_asserv(result,Port_N, list_obstacles);
-    Navigation::back_effect(back,Phare,list_obstacles);
-    good_port(result[result.size()-1].x, result[result.size()-1].y, Port_N.x, Port_N.y);
-     printf("\n");
-     }
+  one_step(Manche_2,Port,list_obstacles);
 }
 
 void test_libre(short x, short y, short dest_x,short dest_y)
@@ -86,11 +79,6 @@ void test_libre(short x, short y, short dest_x,short dest_y)
     Navigation::Navigate_to_asserv(result,dest, list_obstacles);
     good_port(result[size-1].x, result[size-1].y,dest_x,dest_y);
   }
-}
-
-void test_detection()
-{
- 
 }
 
 

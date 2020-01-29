@@ -20,5 +20,5 @@ short side(short y);
 void test_libre();
 void test_base();
 void test_debug();
-
+void one_step(Node src, Node dest, vector<obstacle> list_obstacles); //Permet de réaliser une étape ie aller d'un noeud à l'autre
 #endif // __TEST_H_

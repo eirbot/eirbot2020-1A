@@ -5,7 +5,7 @@
 extern vector<obstacle> list_obstacles;
 int Asservissement::go_to(struct position dest)
 {
-    if(dest.x==38 && dest.y==58){
+    if(dest.x==42 && dest.y==55){
         return 2;
     }
     if(debug==1){
@@ -43,7 +43,7 @@ struct position Asservissement::robot_position()
 {
     printf("Envoie de la requete d'information sur la position ....... ");
     affichage(TIMEOUT,DETECTION);
-    return {.x=16,.y=80};
+    return {.x=43,.y=55};
 }
 
 short Asservissement::angle()

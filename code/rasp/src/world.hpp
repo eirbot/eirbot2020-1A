@@ -35,11 +35,9 @@ struct obstacle{
 class World{
     public:
         static std::vector<obstacle> fillVector(); //Permet de remplir un vecteur avec la liste des obstacles
-        static bool who_here(short x, short y,struct shape shape, std::vector<obstacle> list_obstacles); //Permet de savoir si un obstacle rentre en conflit avec le robot
         static bool isValid(short x, short y,std::vector<obstacle> list_obstacles); //Renvoie faux si la case n'est pas valide
     private:
-       
-    
+        static bool who_here(short x, short y,struct shape shape, std::vector<obstacle> list_obstacles); //Permet de savoir si un obstacle rentre en conflit avec le robot
 };
 
 

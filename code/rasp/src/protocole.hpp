@@ -15,7 +15,6 @@ class Protocole
     public:
         Protocole(std::string device);
         ~Protocole();
-
         enum class Etat {OK, TIME_OUT, OBSTACLE};
 
         // position
@@ -32,6 +31,7 @@ class Protocole
 
     private:
         int serial_port;
+        void update_buffer();
         struct termios tty;
         char writeBuffer[64];
         char readBuffer[READ_BUF_SIZE];

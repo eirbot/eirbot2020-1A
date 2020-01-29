@@ -4,6 +4,7 @@ struct shape robot={32,32};
 struct shape eco_cup={7,7};
 struct shape stone_area={2,15};//15
 struct shape stone_area_big={2,30};
+
 std::vector<obstacle> World::fillVector()
 {
 

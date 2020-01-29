@@ -15,10 +15,11 @@ class Protocole
     public:
         Protocole(std::string device);
         ~Protocole();
-        enum class Etat {OK, TIME_OUT, OBSTACLE};
+
+        enum class Etat {OK, TIME_OUT, OBSTACLE, ERROR};
 
         // position
-        enum Etat set_position(short x, short y); //x et y en cm
+        enum Etat set_position(short x, short y, char etats[3]); //x et y en cm
         struct position get_position();
 
         //rotation
@@ -39,7 +40,7 @@ class Protocole
 
         void send(const char *command, ...);
         void print_buffer(); //debug
-        int update_buffer();
+        int update_buffer(int timeout);
         void flush_buffer();
         void parse();
 };

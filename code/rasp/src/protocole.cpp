@@ -90,37 +90,64 @@ void Protocole::print_buffer() {
 
 
 // ------    PUBLIC    --------
-
-// position
-void Protocole::set_position(short x, short y) {
-    send("SPO%hd,%hd\n", x, y);
-    usleep(100000);
+//GET
+struct position Protocole::get_position() {
+    struct position pos = {.x = 0, .y = 0};
+    short int x, y;
+    send("GPO\n");
+    usleep(10000);
     while(update_buffer()) {} //TODO: timeout local
-    printf("Message recu\n");
     print_buffer();
-    if(strcmp(readBuffer, "RPOOK\n") == 0) {
-        printf("Confirmation set position\n");
+    if(sscanf(readBuffer, "VPO%hd,%hd\n", &x, &y) == 2) {
+        printf("POS: x: %d, y: %d\n", x, y);
     }
     else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
         printf("Time out position\n");
     }
     flush_buffer();
-
-}
-
-struct position Protocole::get_position() {
-    struct position pos = {.x = 0, .y = 0};
-    send("GPO\n");
     return pos;
 }
 
+short Protocole::get_angle() {
+    short int angle;
+    send("GRO\n"); // angle absolu en deg
+    usleep(10000);
+    while(update_buffer()) {} //TODO: timeout local
+    print_buffer();
+    if(sscanf(readBuffer, "VRO%hd\n", &angle) == 1) {
+        printf("RO: angle: %hd\n", angle);
+    }
+    else if(strcmp(readBuffer, "RROOUT\n") == 0) {
+        printf("Time out position\n");
+    }
+    flush_buffer();
+    return angle;
+}
+
+void Protocole::get_etats_GP2(char etats[3]) {
+    char e0, e1, e2;
+    send("GGE\n"); //Get Gp2 Etats (short etats[])
+    usleep(10000);
+    while(update_buffer()) {} //TODO: timeout local
+    print_buffer();
+    if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
+        printf("Etats GP2: %c, %c, %c\n", e0, e1, e2);
+    }
+    else if(strcmp(readBuffer, "RGEOUT\n") == 0) {
+        printf("Time out set etat\n");
+    }
+    flush_buffer();
+    etats[0] = e0;
+    etats[1] = e1;
+    etats[2] = e2;
+}
+
+//SET
 //rotation
 void Protocole::set_angle(short angle) {
     send("SRO%hd\n", angle); // angle absolu en deg
-
-    usleep(100000);
+    usleep(10000);
     while(update_buffer()) {} //TODO: timeout local
-    printf("Message recu\n");
     print_buffer();
     if(strcmp(readBuffer, "RROOK\n") == 0) {
         printf("Confirmation set rotation\n");
@@ -131,16 +158,34 @@ void Protocole::set_angle(short angle) {
     flush_buffer();
 }
 
-short Protocole::get_angle() {
-    send("GRO\n"); // angle absolu en deg
-    return 0;
-}
 
 // GP2
-void Protocole::set_seuils_GP2(char id, char palier, short distance) {
-    send("SGS%c,%c,%hd\n", id, palier, distance); //Set Gp2 seuils
+void Protocole::set_detection_GP2(char actif) {
+    send("SGA%c\n", actif); //Set Gp2 seuils
+    usleep(10000);
+    while(update_buffer()) {} //TODO: timeout local
+    print_buffer();
+    if(strcmp(readBuffer, "RGAOK\n") == 0) {
+        printf("Confirmation set detection GP2\n");
+    }
+    else if(strcmp(readBuffer, "RGAOUT\n") == 0) {
+        printf("Time out detection\n");
+    }
+    flush_buffer();
 }
 
-void Protocole::get_etats_GP2() {
-    send("GGE\n"); //Get Gp2 Etats (short etats[])
+// position
+void Protocole::set_position(short x, short y) {
+    send("SPO%hd,%hd\n", x, y);
+    usleep(10000);
+    while(update_buffer()) {} //TODO: timeout local
+    print_buffer();
+    if(strcmp(readBuffer, "RPOOK\n") == 0) {
+        printf("Confirmation set position\n");
+    }
+    else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
+        printf("Time out position\n");
+    }
+    flush_buffer();
+
 }

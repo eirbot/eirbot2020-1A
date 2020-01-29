@@ -12,12 +12,13 @@ Renvoie valeur d'une variable (valeur): V
 - Position: PO
 - Rotation: RO
 - États GP2: GE
-- Seuils GP2: GS
+- Activation GP2: GA
 
 Fin de commande: \n
 
 Listes des commandes possibles:
 Rasp         <-------->       Nucléo
+
 SPO40,60                      RPOOK ou RPOOUT
 GPO                           VPO40,60
 
@@ -25,4 +26,4 @@ SRO90                         RROOK
 GRO                           VRO90
 
                               VGEetat0,etat1,etat2  #recup etats des GP2 avant
-SGSid,palier,distance         RGSOK
+SGA0			      RGAOK

@@ -24,6 +24,7 @@ class Navigation
                 static void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
                 static int Navigate_to_asserv(std::vector<Node>usablePath, Navigation dest, std::vector<obstacle> list_obstacles); //Permet de convertir un chemin en instruction asserv
                 static void back_effect(int back, Navigation dest, std::vector<obstacle> list_obstacles); //Permet de faire un branchement de stratégie pour renvoyer un effet
+                static std::vector<obstacle> stun(std::vector<obstacle> list_obstacles); //Permet de réagir si on est totalement bloqué
                 ~Navigation();
                 Node node;
 

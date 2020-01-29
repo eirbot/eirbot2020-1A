@@ -16,10 +16,10 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
-        enum etat {OK, TIME_OUT, OBSTACLE};
+        enum class Etat {OK, TIME_OUT, OBSTACLE};
 
         // position
-        void set_position(short x, short y); //x et y en cm
+        enum Etat set_position(short x, short y); //x et y en cm
         struct position get_position();
 
         //rotation

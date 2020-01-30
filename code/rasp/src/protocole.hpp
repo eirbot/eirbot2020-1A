@@ -16,19 +16,52 @@ class Protocole
         Protocole(std::string device);
         ~Protocole();
 
+        //ERROR c'est grave, si ça arrive c'est la merde
+        //-> réception de données erronées
         enum class Etat {OK, TIME_OUT, OBSTACLE, ERROR};
 
-        // position
-        enum Etat set_position(short x, short y, char etats[3]); //x et y en cm
-        struct position get_position();
+        // #################      SET      ###################
 
-        //rotation
-        void set_angle(short angle); // angle en deg entre 0 et 360
-        short get_angle();
+        /*
+         * set_position
+         * entrees:
+         *   x et y en cm position absolue
+         *   etats tableaux de char TODO: definir signification ou enum
+         *   timeout en s
+         * sortie:
+         *   Etat OK, TIME_OUT, OBSTACLE ou ERROR
+         */
+        enum Etat set_position(short x, short y, char etats[3], int timeout);
 
-        // GP2
-        void set_detection_GP2(char actif); //actif = '1' ou '0'
-        void get_etats_GP2(char etats[3]);
+        /*
+         * set_detection_GP2
+         * entrees:
+         *   actif '1' = actif et '0' = desactive, /!\ caractère '1', pas 1
+         * sortie:
+         *   Etat OK, TIME_OUT, ou ERROR
+         */
+        enum Etat set_detection_GP2(char actif);
+
+        /*
+         * set_angle
+         * entrees:
+         *   angle entre 0 et 360 deg
+         * sortie:
+         *   Etat OK, TIME_OUT, ou ERROR
+         */
+        enum Etat set_angle(short angle);
+
+        // #################      GET      ###################
+        /*
+         * get_*
+         * entrees:
+         *   pointeur vers la valeur à maj
+         * sortie:
+         *   Etat OK, TIME_OUT, ou ERROR
+         */
+        enum Etat get_angle(short *angle);
+        enum Etat get_position(struct position *pos);
+        enum Etat get_etats_GP2(char etats[3]);
 
     private:
         int serial_port;

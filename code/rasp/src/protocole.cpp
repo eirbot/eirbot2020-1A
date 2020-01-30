@@ -17,7 +17,7 @@ Protocole::Protocole(std::string device) {
     serial_port = open(device.c_str(), O_RDWR);
 
     memset(&tty, 0, sizeof tty);
-    memset(&readBuffer, 0, READ_BUF_SIZE);
+    flush_buffer();
 
     // Read in existing settings, and handle any error
     if(tcgetattr(serial_port, &tty) != 0) {
@@ -71,6 +71,10 @@ void Protocole::send(const char *command, ...) {
     write(serial_port, writeBuffer, strlen(writeBuffer));
 }
 
+void Protocole::flush_buffer() {
+    memset(&readBuffer, 0, READ_BUF_SIZE);
+}
+
 int Protocole::update_buffer(int timeout) {
     clock_t begin = std::clock();
     while(read(serial_port, readBuffer, READ_BUF_SIZE) == 0) {
@@ -87,10 +91,6 @@ int Protocole::update_buffer(int timeout) {
     return 0;
 }
 
-void Protocole::flush_buffer() {
-    memset(&readBuffer, 0, READ_BUF_SIZE);
-}
-
 void Protocole::print_buffer() {
     for (int i = 0; i < READ_BUF_SIZE; i++) {
         printf(" %x ", readBuffer[i] & 0xff);
@@ -103,49 +103,58 @@ void Protocole::print_buffer() {
 
 // ------    PUBLIC    --------
 //GET
-struct position Protocole::get_position() {
-    struct position pos = {.x = 0, .y = 0};
+enum Protocole::Etat Protocole::get_position(struct position *pos) {
     short int x, y;
     send("GPO\n");
     usleep(10000);
-    update_buffer(1);
+    if(update_buffer(1) == -1) return Etat::TIME_OUT;
     if(sscanf(readBuffer, "VPO%hd,%hd\n", &x, &y) == 2) {
+        pos->x = x;
+        pos->y = y;
         printf("POS: x: %d, y: %d\n", x, y);
+        return Etat::OK;
     }
-    else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
-        printf("Time out position\n");
+    else {
+        printf("Erreur de parsing\n");
+        return Etat::ERROR;
     }
-    flush_buffer();
-    return pos;
 }
 
-short Protocole::get_angle() {
-    short int angle;
+enum Protocole::Etat Protocole::get_angle(short *angle) {
     send("GRO\n"); // angle absolu en deg
     usleep(10000);
     update_buffer(1);
-    if(sscanf(readBuffer, "VRO%hd\n", &angle) == 1) {
-        printf("RO: angle: %hd\n", angle);
+    if(sscanf(readBuffer, "VRO%hd\n", angle) == 1) {
+        printf("RO: angle: %hd\n", *angle);
+        return Etat::OK;
     }
     else if(strcmp(readBuffer, "RROOUT\n") == 0) {
         printf("Time out position\n");
+        return Etat::TIME_OUT;
     }
-    flush_buffer();
-    return angle;
+    else {
+        printf("Erreur de parsing\n");
+        return Etat::ERROR;
+    }
 }
 
-void Protocole::get_etats_GP2(char etats[3]) {
+enum Protocole::Etat Protocole::get_etats_GP2(char etats[3]) {
     char e0, e1, e2;
     send("GGE\n"); //Get Gp2 Etats (short etats[])
     usleep(10000);
     update_buffer(1);
     if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
         printf("Etats GP2: %c, %c, %c\n", e0, e1, e2);
+        return Etat::OK;
     }
     else if(strcmp(readBuffer, "RGEOUT\n") == 0) {
         printf("Time out set etat\n");
+        return Etat::TIME_OUT;
     }
-    flush_buffer();
+    else {
+        printf("Erreur de parsing\n");
+        return Etat::ERROR;
+    }
     etats[0] = e0;
     etats[1] = e1;
     etats[2] = e2;
@@ -153,7 +162,7 @@ void Protocole::get_etats_GP2(char etats[3]) {
 
 //SET
 //rotation
-void Protocole::set_angle(short angle) {
+enum Protocole::Etat Protocole::set_angle(short angle) {
     send("SRO%hd\n", angle); // angle absolu en deg
     usleep(10000);
     update_buffer(1);
@@ -163,12 +172,15 @@ void Protocole::set_angle(short angle) {
     else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
         printf("Time out rotation\n");
     }
-    flush_buffer();
+    else {
+        printf("Erreur de parsing\n");
+        return Etat::ERROR;
+    }
 }
 
 
 // GP2
-void Protocole::set_detection_GP2(char actif) {
+enum Protocole::Etat Protocole::set_detection_GP2(char actif) {
     send("SGA%c\n", actif); //Set Gp2 seuils
     usleep(10000);
     update_buffer(1);
@@ -178,7 +190,10 @@ void Protocole::set_detection_GP2(char actif) {
     else if(strcmp(readBuffer, "RGAOUT\n") == 0) {
         printf("Time out detection\n");
     }
-    flush_buffer();
+    else {
+        printf("Erreur de parsing\n");
+        return Etat::ERROR;
+    }
 }
 
 // position
@@ -189,7 +204,6 @@ enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3], in
     update_buffer(timeout);
     if(strcmp(readBuffer, "RPOOK\n") == 0) {
         printf("Confirmation set position\n");
-        flush_buffer();
         return Etat::OK;
     }
     else if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
@@ -197,12 +211,10 @@ enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3], in
         etats[0] = e0;
         etats[1] = e1;
         etats[2] = e2;
-        flush_buffer();
         return Etat::OBSTACLE;
     }
     else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
         printf("Time out position\n");
-        flush_buffer();
         return Etat::TIME_OUT;
     }
     else {

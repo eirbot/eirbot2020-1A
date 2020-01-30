@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
         printf("=================================\n");
 
         printf("Set Position\n");
-        proto.set_position(10, 10, etats);
+        proto.set_position(10, 10, etats, 1);
         //usleep(100000); //0.1s
         printf("ANGLE:\n");
         printf("=================================\n");
@@ -24,13 +24,15 @@ int main(int argc, char *argv[]) {
         //usleep(100000); //0.1s
         printf("=================================\n");
 
+        struct position pos;
         printf("Get Position\n");
-        proto.get_position();
+        proto.get_position(&pos);
         //usleep(100000); //0.1s
         printf("=================================\n");
 
+        short int angle;
         printf("Get angle\n");
-        proto.get_angle();
+        proto.get_angle(&angle);
         //usleep(100000); //0.1s
         printf("=================================\n");
 

@@ -23,7 +23,7 @@ class Protocole
         struct position get_position();
 
         //rotation
-        void set_angle(short angle); // angle en deg entre 0 et 360 ? => plutot entre 0 et 360
+        void set_angle(short angle); // angle en deg entre 0 et 360
         short get_angle();
 
         // GP2

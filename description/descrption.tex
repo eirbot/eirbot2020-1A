@@ -733,6 +733,33 @@ chemin et faire deplacer un robot de manière assez brutale, il faudrait
 développer un algorithme de lissage de la trajectoire (pour avoir des
 changements de direction moins brutaux).
 \subsection{Détection des adversaires}
+\paragraph{Objectif.} L'idée de cette partie est de montrer comment nous avons
+utilisé les différents détecteurs (GP2) pour mettre au point un système de
+détection et surtout de réaction pour la détection. Dans un premier temps nous
+avons pensé à court circuiter la nucléo et la rasp lorsque nous avons une
+interuption de détection. Nous avons ensuite trouvé un moyen de l'intégrer dans
+la boucle principale.
+\paragraph{Mise en oeuvre.} Le code de haut niveau est relativement simple, il
+consiste à utiliser la définition des obstacles. Lorsque nous détectons un robot
+adverse, la stratégie prend un branchement, récupère l'information sur la
+distance par rapport au robot et place un obstacle de la taille d'un robot puis
+relance la navigation ce qui permet d'éviter l'obstacle. A la fin du branchement
+l'obstacle est détruit. Il s'agit maintenant de transmettre l'information entre
+les GP2, la nucléo et la raspberry. En parallèle de la détection ``normale''
+nous allons réutiliser le point que nous avons soulevé lors de la définition des
+obstacles c'est à dire le fait que nous pouvons supprimer des obstacles. En
+effet supposons que nous détectons un robot, nous plaçons un nouvel obstacle
+puis nous relançons la navigation. Cependant le nouvel obstacle pourrait
+conduire à un échec de la navigation, notre robot peut être dans le cas où il
+est bloqué. Nous créons alors une autre étape dans notre branchement. Lorsque
+nous relançons la navigation si cette dernière ne trouve pas de chemin car nous
+sommes bloqué alors nous enlevons tous les obstacles du type ``eco cup''. Cela
+nous permet alors de nous sortir de notre situation de bloquage (tout en
+poussant des eco cup). A ce stade nous avons un système permettant de détecter
+et de réagir lorsque nous avons un robot adverse face à nous.
+
+Nous allons maintenant décrire comment
+s'organise la communication.
 \subsection{Gestion des actionneurs}
 \subsection{Boucle de jeu principale}
 \subsection{Mise en place de tests}
@@ -741,13 +768,14 @@ changements de direction moins brutaux).
 \section{Protocole de communication Stratégie $\rightarrow$ Asservissement}
 \subsection{Asservissement}
 Commençons par le cas d'utilisation classique, nous estimons que la nucléo ne
-rencontre aucun problème particulier. Dans ce cas normal la rasp peut envoyer trois
-types de requêtes, une de position, une d'angle et une d'initialisation. Le
-protocole de communication transforme ces requêtes en instructions pour la
+rencontre aucun problème particulier. Dans ce cas normal la rasp peut envoyer
+trois types de requêtes, une de position, une d'angle et une d'initialisation.
+Le protocole de communication transforme ces requêtes en instructions pour la
 nucléo. La nucléo execute les actions et renvoie une confirmation d'execution de
-la requete ce qui informe la rasp que l'action a correctement été réalisée. \\
-Dans un second temps nous présentons le mécanisme qui se met en place si la rasp
-transmet un ordre mais qu'aucune réponse n'est receptionnée sur une action. \\
+la requete ce qui informe la rasp que l'action a correctement été réalisée.
+\\ Dans un second temps nous présentons le mécanisme qui se met en place si la
+rasp transmet un ordre mais qu'aucune réponse n'est receptionnée sur une action.
+\\
 \begin{multicols}{2}
 \begin{center}
   \begin{tikzpicture}

@@ -5,6 +5,7 @@
 #include "detection.hpp"
 #include "world.hpp"
 #include "navigation.hpp"
+#include "protocole.hpp"
 
 #ifndef TIMEOUT
 #define TIMEOUT 0
@@ -24,7 +25,7 @@ void print_fail();
 
 void print_detection();
 
-void affichage(int timeout,int detection);
+void affichage(enum Protocole::Etat asserv_back);
 
 void good_port(short result_x, short result_y, short dest_x, short dest_y);
 

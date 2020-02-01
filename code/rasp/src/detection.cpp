@@ -13,13 +13,13 @@ GP2::GP2(enum GP2_name input,int activated,int distance_seuil):input(input),acti
 void GP2::activate()
 {
     printf("Envoie de la requète de d'activation des GP2 ............. ");
-    affichage(TIMEOUT,DETECTION);
+    affichage(Protocole::Etat::OK);
 }
 
 void GP2::disactivate()
 {
     printf("Envoie de la requète de désactivation des GP2 ............ ");
-    affichage(TIMEOUT,DETECTION);
+    affichage(Protocole::Etat::OK);
 }
 
 

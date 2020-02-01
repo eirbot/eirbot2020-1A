@@ -179,7 +179,7 @@ std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navig
         path.pop();
         usablePath.emplace_back(top);
     }
-    affichage(TIMEOUT,DETECTION);
+    //affichage(TIMEOUT,DETECTION);
     return usablePath;
   }
   catch(const exception& e){

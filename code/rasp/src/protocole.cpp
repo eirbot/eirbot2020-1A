@@ -145,6 +145,9 @@ enum Protocole::Etat Protocole::get_etats_GP2(char etats[3]) {
     update_buffer(1);
     if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
         printf("Etats GP2: %c, %c, %c\n", e0, e1, e2);
+        etats[0] = e0;
+        etats[1] = e1;
+        etats[2] = e2;
         return Etat::OK;
     }
     else if(strcmp(readBuffer, "RGEOUT\n") == 0) {
@@ -155,9 +158,6 @@ enum Protocole::Etat Protocole::get_etats_GP2(char etats[3]) {
         printf("Erreur de parsing\n");
         return Etat::ERROR;
     }
-    etats[0] = e0;
-    etats[1] = e1;
-    etats[2] = e2;
 }
 
 //SET
@@ -168,9 +168,11 @@ enum Protocole::Etat Protocole::set_angle(short angle) {
     update_buffer(1);
     if(strcmp(readBuffer, "RROOK\n") == 0) {
         printf("Confirmation set rotation\n");
+        return Etat::OK;
     }
     else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
         printf("Time out rotation\n");
+        return Etat::TIME_OUT;
     }
     else {
         printf("Erreur de parsing\n");
@@ -186,9 +188,11 @@ enum Protocole::Etat Protocole::set_detection_GP2(char actif) {
     update_buffer(1);
     if(strcmp(readBuffer, "RGAOK\n") == 0) {
         printf("Confirmation set detection GP2\n");
+        return Etat::OK;
     }
     else if(strcmp(readBuffer, "RGAOUT\n") == 0) {
         printf("Time out detection\n");
+        return Etat::TIME_OUT;
     }
     else {
         printf("Erreur de parsing\n");

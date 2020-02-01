@@ -14,6 +14,7 @@
 #include "../src/detection.hpp"
 #include "../src/actionneur.hpp"
 #include "../src/affichage.hpp"
+#include "../src/protocole.hpp"
 
 int main(int argc, char *argv[]);
 short side(short y);

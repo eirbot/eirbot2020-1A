@@ -15,22 +15,22 @@ int Asservissement::go_to(struct position dest)
     }
     int size=debugPath.size();
     printf("Envoie de la requête de déplacement vers x:%3d ; y:%3d ... ",dest.x,dest.y);
-    enum Protocole::Etat asserv_back=Protocole.set_position((short) dest.x, (short) dest.y, etats,3);
+    int asserv_back=(int) Protocole.set_position((short) dest.x, (short) dest.y, etats,3);
     if(debug==1){
         if(abs(debugPath[size-1].x-debugPath[size-2].x)<3 && abs(debugPath[size-1].y-debugPath[size-2].y)<3){
             print_optimisated();
         }
     }
-    affichage(asserv_back);
+    //affichage(asserv_back);
     return Asservissement::call_back(asserv_back);
 }
 
-int Asservissement::call_back(enum Protocole::Etat asserv_back)
+int Asservissement::call_back(int asserv_back)
 {
-    if(asserv_back==Protocole::Etat::TIME_OUT){
+    if(asserv_back==2){
         return 1;
     }
-    if(asserv_back==Protocole::Etat::OBSTACLE){
+    if(asserv_back==3){
         return 2;
     }
     return 0;
@@ -39,31 +39,31 @@ int Asservissement::call_back(enum Protocole::Etat asserv_back)
 void Asservissement::rotate(short angle)
 {
     printf("Envoie de la requete de rotation de theta:%3d ............ ",angle);
-    affichage(Protocole::Etat::OK);
+    affichage(1);
 }
 
 struct position Asservissement::robot_position()
 {
     printf("Envoie de la requete d'information sur la position ....... ");
-    affichage(Protocole::Etat::OK);
+    affichage(1);
     return {.x=43,.y=55};
 }
 
 short Asservissement::angle()
 {
     printf("Envoie de la requete d'information sur l'angle ........... ");
-    affichage(Protocole::Etat::OK);
+    affichage(1);
     return 0; //Pour l'instant
 }
 
 void Asservissement::initialise_x()
 {
     printf("Envoie de la requete d'initialisation en x ............... ");
-    affichage(Protocole::Etat::OK);
+    affichage(1);
 }
 
 void Asservissement::initialise_y()
 {
     printf("Envoie de la requete d'initialisation en y ............... ");
-    affichage(Protocole::Etat::OK);
+    affichage(1);
 }

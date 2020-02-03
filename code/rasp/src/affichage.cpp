@@ -42,11 +42,11 @@ void print_detection()
 
 void affichage(int asserv_back)
 {
-  if(asserv_back==2){
+  if(asserv_back==1){
     timeout+=1;
     print_timeout();
   }
-  if(asserv_back==3){
+  if(asserv_back==2){
     print_detection();
     }
   else{

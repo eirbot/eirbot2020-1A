@@ -83,9 +83,9 @@ void test_libre(short x, short y, short dest_x,short dest_y)
 
 
 
+class Protocole Protocole("/dev/ttyACM0");
+
 int main(int argc, char *argv[]) {
-  std::string port_usb="/dev/ttyACM0";
-  Protocole Protocole(port_usb);
   if(argv[1]==NULL){
     printf("Les options possibles sont : \n");
     printf("'libre' : permet de tester pour une position libre vers une position libre\n");

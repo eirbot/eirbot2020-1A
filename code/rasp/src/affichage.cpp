@@ -40,13 +40,13 @@ void print_detection()
 }
 
 
-void affichage(enum Protocole::Etat asserv_back)
+void affichage(int asserv_back)
 {
-  if(asserv_back==Protocole::Etat::TIME_OUT){
+  if(asserv_back==2){
     timeout+=1;
     print_timeout();
   }
-  if(asserv_back==Protocole::Etat::OBSTACLE){
+  if(asserv_back==3){
     print_detection();
     }
   else{

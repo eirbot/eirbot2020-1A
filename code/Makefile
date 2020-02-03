@@ -1,5 +1,5 @@
 CFLAGS = -Wall -Wextra -std=c++11 -g -O3
-FILE=navigation.o detection.o asserv.o world.o affichage.o protocole.o
+FILE=navigation.o detection.o protocole.o asserv.o world.o affichage.o
 ##
 # Project Title
 #

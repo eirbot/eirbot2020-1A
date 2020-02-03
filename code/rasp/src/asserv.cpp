@@ -27,10 +27,10 @@ int Asservissement::go_to(struct position dest)
 
 int Asservissement::call_back(int asserv_back)
 {
-    if(asserv_back==2){
+    if(asserv_back==1){
         return 1;
     }
-    if(asserv_back==3){
+    if(asserv_back==2){
         return 2;
     }
     return 0;
@@ -39,31 +39,31 @@ int Asservissement::call_back(int asserv_back)
 void Asservissement::rotate(short angle)
 {
     printf("Envoie de la requete de rotation de theta:%3d ............ ",angle);
-    affichage(1);
+    affichage(0);
 }
 
 struct position Asservissement::robot_position()
 {
     printf("Envoie de la requete d'information sur la position ....... ");
-    affichage(1);
-    return {.x=43,.y=55};
+    affichage(0);
+    return {.x=46,.y=53};
 }
 
 short Asservissement::angle()
 {
     printf("Envoie de la requete d'information sur l'angle ........... ");
-    affichage(1);
+    affichage(0);
     return 0; //Pour l'instant
 }
 
 void Asservissement::initialise_x()
 {
     printf("Envoie de la requete d'initialisation en x ............... ");
-    affichage(1);
+    affichage(0);
 }
 
 void Asservissement::initialise_y()
 {
     printf("Envoie de la requete d'initialisation en y ............... ");
-    affichage(1);
+    affichage(0);
 }

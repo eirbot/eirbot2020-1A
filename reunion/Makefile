@@ -5,7 +5,7 @@
 all: project
 
 project: 
-	pdflatex reunion.tex
+	xelatex reunion.tex
 
 # Build document.
 run:

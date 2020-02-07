@@ -159,7 +159,7 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
 std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navigation dest)
 {
     vector<Node> empty;
-  try {     printf("Found a path ............................................. ");
+  try {     printf("Found a path ............................................. \n");
    int x = dest.node.x;
     int y = dest.node.y;
     stack<Node> path;
@@ -368,6 +368,7 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
     }
     if(back==1){
         struct position my_position=Asservissement::robot_position();
+        my_position={.x=50,.y=50};
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
         struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
         vector<Node> result=Navigation::Astar(node_position,node_dest,list_obstacles);
@@ -377,8 +378,8 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
         print_detection();
         struct position my_position=Asservissement::robot_position();
         list_obstacles=GP2::gp2Obstacle(list_obstacles,my_position);
-        my_position.x=39;
-        my_position.y=58;
+        my_position.x=50;
+        my_position.y=50;
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
         struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
         vector<Node> result=Navigation::Astar(node_position,node_dest,list_obstacles);

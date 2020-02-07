@@ -1,5 +1,9 @@
 \documentclass[a4paper,10pt]{report}
+\fontdir[fonts/]
+\newcommand*{\sectiondir}{cv/}
+\colorlet{awesome}{awesome-red}
 \usepackage[utf8]{inputenc}
+\usepackage{fontawesome}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage{graphicx}
@@ -15,9 +19,9 @@
 \usepackage{multicol}
 \usepackage{setspace}
 \usepackage{tabularx,array}
-\usepackage[colorlinks=true]{hyperref}
 \usepackage{tikz, tkz-tab}
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage[colorlinks=true]{hyperref}
 \usepackage{amsthm}
 \usepackage{listings}
 \setlength{\parindent}{0cm}
@@ -26,16 +30,6 @@
 \newcommand{\HRule}{\rule{\linewidth}{0.1mm}}
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
-\DeclareMathOperator{\card}{card}
-\newtheorem{corollaire} {Corollaire}[section]
-\newtheorem{proposition} {Proposition} [section]
-\newtheorem{theoreme}{Théorème}[section]
-\newtheorem{lemme}{Lemme}[section]
-\theoremstyle{definition}
-\newtheorem{definition} {Définition}[section]
-\newtheorem{remarque} {Remarque}[section]
-\newtheorem{exemple} {Exemple}[section]
-\renewcommand{\proofname}{\textbf{Preuve.}}
 \begin{document}
 \begin{spacing}{1.5}
 \graphicspath{{image/}}
@@ -442,6 +436,31 @@ maintenant lors d'une requete de déplacement l'asserv peut renvoyer : ``ok'',
 et la navigation.
 \paragraph{Point compteur.} On a compris qu'il fallait compter les points,
 julien s'en occupe.
+
+\newpage
+\section*{Jeudi 6 Février}
+C'est le première réunion en salle de réunion, c'était sympa
+\paragraph{Point Mécanique.}
+A cause de la panne de la découpe laser les profilés n'ont pas pu être installé.
+On félicite Erwann pour le défaut de conception sur les manches à Air :).
+Plusieurs objectifs ont été fixé. Tout d'abbord Erwann devrait concevoir les
+supports de GP2. Il commence aussi à réflechir à la méthode de construction de
+la balise.
+\paragraph{Point Alimentation.} Le cas général fonctionne très bien. Il faut
+encore tester les cas critiques et commencer à les installer sur le robot.
+\paragraph{Point Puissance.} Martin et Filipe travaillent désormais ensemble.
+Ils se sont fixés deux semaines pour sortir une première version des cartes.
+\paragraph{Point Shield.} (Oui c'est un nouveau point) Yohann à réalisé une
+bonne partie de la conception, maintenant il faut qu'il récupère les
+informations de tout le monde pour être sur de réaliser un shield précis. La
+quête des informations commence.
+\paragraph{Point Asservissement.} Il a passé 3 heures à installer MatLab,
+malgrès sa modestie l'asservissement avance très bien. Le robot arrive à être
+commandé (sans faire n'importe quoi), Matthieu l'a aidé pour faire une méthode
+de caractérisation des moteurs. Cela prend du temps mais il avance très bien.
+\paragraph{Stratégie.} Nous avons fait le lien entre la stratégie et le
+protocole de Communication, actuellement lorsque la stratégie envoie une requête
+à la nucléo, la requête est très bien envoyée,
 \newpage
 \end{spacing}
 \end{document}

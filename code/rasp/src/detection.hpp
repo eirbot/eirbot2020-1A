@@ -6,6 +6,7 @@
 #include <math.h>
 #include "world.hpp"
 #include "asserv.hpp"
+#include "protocole.hpp"
 // Pris sur les anciens dépots a modifier !!!!
 // 1.0  -> 6 cm
 // 0.4  -> 10 cm

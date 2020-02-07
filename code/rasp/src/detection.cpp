@@ -1,5 +1,7 @@
 #include "detection.hpp"
 
+extern class Protocole Protocole;
+
 GP2::GP2():input(),activated(),distance_seuil()
 {
 
@@ -13,13 +15,15 @@ GP2::GP2(enum GP2_name input,int activated,int distance_seuil):input(input),acti
 void GP2::activate()
 {
     printf("Envoie de la requète de d'activation des GP2 ............. ");
-    affichage(1);
+    int activate_back=(int) Protocole.set_detection_GP2('1');
+    affichage(activate_back);
 }
 
 void GP2::disactivate()
 {
     printf("Envoie de la requète de désactivation des GP2 ............ ");
-    affichage(1);
+    int disactivate_back=(int) Protocole.set_detection_GP2('0');
+    affichage(disactivate_back);
 }
 
 

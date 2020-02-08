@@ -39,6 +39,10 @@ void print_detection()
   printf(".......................................................... \033[31m OBSTACLE \033[0m \n");
 }
 
+void print_panic()
+{
+  printf("\033[31m PANIC \033[0m \n");
+}
 
 void affichage(int asserv_back)
 {
@@ -49,10 +53,13 @@ void affichage(int asserv_back)
   if(asserv_back==2){
     print_detection();
     }
-  else{
+  if(asserv_back==0){
     success_deplacement+=1;
     print_success();
-    }
+  }
+  if(asserv_back==3){
+    print_panic();
+  }
 }
 
 void good_port(short result_x, short result_y, short dest_x, short dest_y)

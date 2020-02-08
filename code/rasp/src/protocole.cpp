@@ -76,6 +76,8 @@ void Protocole::flush_buffer() {
 }
 
 int Protocole::update_buffer(int timeout) {
+    flush_buffer();
+
     clock_t begin = std::clock();
     while(read(serial_port, readBuffer, READ_BUF_SIZE) == 0) {
         usleep(1);

@@ -361,12 +361,20 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
     return 0;
 }
 
+extern int timeout_after_timeout;
+
 void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_obstacles)
 {
     if(back==0){
+        timeout_after_timeout=0;
         return;
     }
     if(back==1){
+        timeout_after_timeout+=1;
+        if(timeout_after_timeout>=5){
+            printf("Communication perdue \n");
+            exit(EXIT_FAILURE);
+        }
         struct position my_position=Asservissement::robot_position();
         my_position={.x=50,.y=50};
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};

@@ -61,7 +61,8 @@ class Protocole
         enum Etat get_angle(short *angle);
         enum Etat get_position(struct position *pos);
         enum Etat get_etats_GP2(char etats[3]);
-        ~Protocole();
+        void print_buffer(); //debug
+                ~Protocole();
 
     private:
         int serial_port;
@@ -72,7 +73,6 @@ class Protocole
         short GP2_etats[6];
 
         void send(const char *command, ...);
-        void print_buffer(); //debug
         int update_buffer(int timeout);
         void flush_buffer();
         void parse();

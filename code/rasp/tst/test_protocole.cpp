@@ -47,6 +47,11 @@ int main(int argc, char *argv[]) {
         printf("POS = %d, %d\n", pos.x, pos.y);
         printf("=================================\n");
 
+        printf("Set Position : ");
+        ret = proto.set_position(40, 60, etats, 1);
+        message_retour(ret);
+        printf("=================================\n");
+
         short int angle;
         printf("Get angle : ");
         ret = proto.get_angle(&angle);

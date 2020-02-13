@@ -52,6 +52,8 @@ Protocole::Protocole(std::string device) {
     if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
         printf("Error %i from tcsetattr: %s\n", errno, strerror(errno));
     }
+
+    usleep(10000);
 }
 
 Protocole::~Protocole() {

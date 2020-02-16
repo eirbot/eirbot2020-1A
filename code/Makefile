@@ -30,4 +30,9 @@ clean:
 
 launch:
 	./test
+
+upload:
+	scp test_protocole pi@eirboat:~
+	ssh pi@eirboat ./test_protocole
+
 # end

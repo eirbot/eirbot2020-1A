@@ -1,7 +1,10 @@
 CFLAGS = -Wall -Wextra -std=c++11 -g -O3
 FILE=navigation.o detection.o protocole.o asserv.o world.o affichage.o
-#CC=/home/lucas/Documents/eirbot/robot_coupe_1A/tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
-CC=g++
+ifdef cross
+	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
+else
+	CC=g++
+endif
 ##
 # Project Title
 #

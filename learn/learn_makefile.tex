@@ -1,0 +1,182 @@
+%
+% file : learn_git.tex
+% date : jeudi 19 décembre 2019, 13:19:09 (UTC+0100)
+% author : sedelpeuch
+% description :
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+\usepackage{layout}
+\usepackage{multicol}
+\usepackage{setspace}
+\usepackage{csvsimple}
+\usepackage[table]{xcolor}
+\usepackage[colorlinks=true]{hyperref}
+\usepackage{tikz, tkz-tab}
+\usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+\usepackage{amsthm}
+\usepackage{listings}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+\newcommand{\hsp}{\hspace{20pt}}
+\newcommand{\HRule}{\rule{\linewidth}{0.1mm}}
+
+\definecolor{darkWhite}{rgb}{0.94,0.94,0.94}
+
+\lstset{
+ aboveskip=3mm,
+  belowskip=-2mm,
+  backgroundcolor=\color{white},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  commentstyle=\color{red},
+  deletekeywords={...},
+  escapeinside={\%*}{(*)},
+  extendedchars=true,
+  framexleftmargin=16pt,
+  framextopmargin=3pt,
+  framexbottommargin=6pt,
+  frame=tb,
+  keepspaces=true,
+  keywordstyle=\color{blue},
+  language=bash,
+  literate=
+  {²}{{\textsuperscript{2}}}1
+  {⁴}{{\textsuperscript{4}}}1
+  {⁶}{{\textsuperscript{6}}}1
+  {⁸}{{\textsuperscript{8}}}1
+  {€}{{\euro{}}}1
+  {é}{{\'e}}1
+  {è}{{\`{e}}}1
+  {ê}{{\^{e}}}1
+  {ë}{{\¨{e}}}1
+  {É}{{\'{E}}}1
+  {Ê}{{\^{E}}}1
+  {û}{{\^{u}}}1
+  {ù}{{\`{u}}}1
+  {â}{{\^{a}}}1
+  {à}{{\`{a}}}1
+  {á}{{\'{a}}}1
+  {ã}{{\~{a}}}1
+  {Á}{{\'{A}}}1
+  {Â}{{\^{A}}}1
+  {Ã}{{\~{A}}}1
+  {ç}{{\c{c}}}1
+  {Ç}{{\c{C}}}1
+  {õ}{{\~{o}}}1
+  {ó}{{\'{o}}}1
+  {ô}{{\^{o}}}1
+  {Õ}{{\~{O}}}1
+  {Ó}{{\'{O}}}1
+  {Ô}{{\^{O}}}1
+  {î}{{\^{i}}}1
+  {Î}{{\^{I}}}1
+  {í}{{\'{i}}}1
+  {Í}{{\~{Í}}}1,
+  morekeywords={*,...},
+  numbers=left,
+  numbersep=10pt,
+  numberstyle=\tiny\color{black},
+  rulecolor=\color{black},
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  stepnumber=1,
+  stringstyle=\color{gray},
+  tabsize=4,
+  title=\lstname,
+}
+\begin{document}
+\begin{spacing}{1.5}
+\graphicspath{{image/}}
+\setcounter{tocdepth}{2}
+\newpage
+\pagestyle{fancy} \lhead{} \chead{\textbf{Guide de survie Makefile}}
+\rhead{\thepage} \lfoot{} \cfoot{} \fancyfoot[R] {
+  \includegraphics[scale=0.075]{65508.png} }
+\HRule
+\begin{center}
+  \LARGE \textbf{Guide de survie pour Makefile}
+\end{center}
+\HRule \\
+
+\subsection*{Un Makefile c'est quoi ?}
+Les Makefiles sont des fichiers permettant d'executer un ensemble d'actions,
+comme la compilation d'un projet, la mise à jour d'un rapport, où l'archivage de
+données. Les Makefiles sont des fichiers shell particulier ils respectent
+cependant les conventions de codages du shell. L'idée de
+ce document est de présenté l'idée générale d'un Makefile via un exemple
+basique, puis d'aller vers un exemple plus complexe, le Makefile pour notre
+robot.
+
+\subsection*{Un exemple basique}
+Considérons un exemple de projet très basique, constitué de 3 fichiers :
+hello.c, hello.h et main.c. Nous pouvons faire le graphe des dépendances
+suivants
+\begin{center}
+\begin{tikzpicture}
+\tikzstyle{lien}=[-,>=stealth,rounded corners=20pt,thick]
+\tikzset{individu/.style={draw,thick,fill=#1!25},
+individu/.default={white}}
+\node[individu=blue] (A) at (0,0 ){main.c};
+\node[individu] (A1) at (2,2){hello.c};
+\node[individu] (A2) at (2,0){hello.h};
+
+
+\draw[lien] (A2) -- (A);
+\draw[lien] (A1) -- (A2);
+\end{tikzpicture}
+\end{center}
+De manière plus littérale nous avons définit des fonctions dans hello.c, ces
+fonctions sont reférencées par leurs prototypes dans hello.h. Par ailleurs nous
+avons définies des fonctions dans main.c, nous sous entendons que les fonctions
+de main.c font appels à celles de hello.c (d'où l'inclusion de hello.h dans
+main.c). \\
+
+Nous voulons donc compiler main.c pour créer un executable que nous appellerons
+\textit{project}. Si nous essayons directement de faire ``gcc -Wall -Werror
+-std=c99 main.c project'' nous allons avoir des références indéfinies. En effet
+il faut d'abbord compiler hello.c en hello.o pour que la machine connaisse les
+fonctions définit dans le hello.c (c'est le rôle du hello.o). Ainsi pour créer
+project il faut faire deux lignes de commande ``gcc -Wall -Werror -std=c99
+hello.c -c'' puis ``gcc -Wall -Werror -std=c99 hello.o main.c -o project''. \\
+
+Deux nouvelles options se présentent ``-c'' qui permet de dire au compilateur de
+créer un fichier ``.o'' et ``-o'' qui permet d'appeler le linker (c'est lui qui
+dit au compilateur que certainnes fonctions appelées dans main.c sont définies
+dans hello.o).\\
+
+Maintenant que nous avons compris comment nous pouvions compiler ce projet, nous
+allons regarder comment automatiser ces étapes. Pour cela regardons la synthaxe
+type d'un Makefile.
+
+\begin{lstlisting}
+  cible : dependances
+          commandes
+\end{lstlisting}
+
+Analysons ces deux lignes de commandes, le ``cible'' permet de donner un nom
+ainsi dans le shell nous pourrons taper ``make cible'' pour effectuer les
+actions correspondantes. Dans notre cas la cible serait ``project''. Ensuite les
+``dépendances'' sont les fichiers nécessaires à la création de la cible, dans
+notre cas cela serait ``hello.o''. Un exemple de
+
+\begin{lstlisting}
+  cible : dependances
+          commandes
+\end{lstlisting}
+
+\newpage
+\end{spacing}
+\end{document}

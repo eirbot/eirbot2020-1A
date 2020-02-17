@@ -11,8 +11,14 @@ extern int timeout;
 extern int robot_adv;
 class Navigation;
 
+extern int timeout_after_timeout;
 void print_timeout()
 {
+  timeout_after_timeout+=1;
+  if (timeout_after_timeout>=5) {
+    print_summarise();
+    exit(EXIT_FAILURE);
+  }
     printf("\033[31m TIMEOUT \033[0m \n");
 }
 
@@ -24,7 +30,8 @@ void print_fail()
 
 void print_success()
 {
-    printf("\033[32m SUCCESS \033[0m \n");
+  timeout_after_timeout=0;
+  printf("\033[32m SUCCESS \033[0m \n");
 }
 
 void print_optimisated()

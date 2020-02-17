@@ -1,9 +1,5 @@
 \documentclass[a4paper,10pt]{report}
-\fontdir[fonts/]
-\newcommand*{\sectiondir}{cv/}
-\colorlet{awesome}{awesome-red}
 \usepackage[utf8]{inputenc}
-\usepackage{fontawesome}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
 \usepackage{graphicx}
@@ -458,9 +454,42 @@ quête des informations commence.
 malgrès sa modestie l'asservissement avance très bien. Le robot arrive à être
 commandé (sans faire n'importe quoi), Matthieu l'a aidé pour faire une méthode
 de caractérisation des moteurs. Cela prend du temps mais il avance très bien.
-\paragraph{Stratégie.} Nous avons fait le lien entre la stratégie et le
+\paragraph{Point Stratégie.} Nous avons fait le lien entre la stratégie et le
 protocole de Communication, actuellement lorsque la stratégie envoie une requête
-à la nucléo, la requête est très bien envoyée,
+à la nucléo, la requête est très bien envoyée et le retour est pour l'instant générique.
+\paragraph{Point Nucléo.} Il faut réalisrr le cahier des charges pour Liam, il devra
+gérer les GP2 (activation / desactivation, gérer la récupération des informations
+), gérer les contacteurs et les actionneurs.
+\paragraph{Point Phare.} IL EST BEAU !!! Il manque une pièce (le haut du phare),
+il reste à faire le circuit imprimé et la communication avec le robot (433MHz).
+\paragraph{Point Compteur.} Julien connait la datasheet par coeur, et le schéma
+a été commencé sur Kicad.
+\paragraph{Global.} L'organisation physique du robot a été pensé.
+
+\section*{Jeudi 13 Février}
+\paragraph{Point Mécanique.} La découpe laser est réparée !! Le porte batterie
+est modélisé et en cours d'impression. Les profilés vont pouvoir être installé
+sous peu et les supports GP2 ne sont pas commencés. \\
+
+\paragraph{Point Alimentation.} ``NON''.
+
+\paragraph{Point Puissance.} Conception commencée.
+
+\paragraph{Point Shield.} Il a commencé la conception mais il attend que l'on soit sur
+de tous les pins etc.
+
+\paragraph{Point Asservissement.} Clément a pratiqué Matlab et il a trouvé les
+équations il faut encore faire les réglages du correcteur
+
+\paragraph{Point Stratégie.} Il faut encore changer quelques trucs (comme la
+prise en compte de la distance pour les obstacles)
+
+\paragraph{Point Nucléo.} La réunion avec Liam a été effectuée, le travail reste
+à faire
+
+\paragraph{Point Phare.} Une solution pour l'éclairage a été trouvé, avec une
+led 1W et un système de miroir comme un phare réel.
+
 \newpage
 \end{spacing}
 \end{document}

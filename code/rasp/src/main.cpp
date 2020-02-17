@@ -66,6 +66,9 @@ void setup()
   printf("Déplacement au point de départ");
   print_success();
   printf("Je suis prêt ! \n");
+  while (clou est la) {
+    loop()
+  }
 }
 
 //Boucle de jeu

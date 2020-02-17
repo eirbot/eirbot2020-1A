@@ -216,7 +216,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y});
+            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y},{.x=position.x,.y=position.y});
             mv=0;
             position.x+=dep_x;
             dep_x=0;
@@ -232,7 +232,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y});
+            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y},{.x=position.x,.y=position.y});
             mv=0;
             position.x-=dep_x;
             dep_x=0;
@@ -248,7 +248,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x,.y=position.y+dep_y});
+            back=Asservissement::go_to({.x=position.x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
             mv=0;
             position.y+=dep_y;
             dep_y=0;
@@ -264,7 +264,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x,.y=position.y-dep_y});
+            back=Asservissement::go_to({.x=position.x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
             mv=0;
             position.y-=dep_y;
             dep_y=0;
@@ -281,7 +281,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y+dep_y});
+            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
             back_effect(back, dest, list_obstacles);
             mv=0;
             position.y+=dep_y;
@@ -302,7 +302,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y-dep_y});
+            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
        mv=0;
             position.y-=dep_y;
             position.x+=dep_x;
@@ -321,7 +321,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y+dep_y});
+            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
            mv=0;
             position.y+=dep_y;
             position.x-=dep_x;
@@ -341,7 +341,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y-dep_y});
+            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
            mv=0;
             position.y-=dep_y;
             position.x-=dep_x;
@@ -354,27 +354,20 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
         }
         j+=1;
     }
-    back=Asservissement::go_to({.x=dest.node.x,.y=dest.node.y});
+    back=Asservissement::go_to({.x=dest.node.x,.y=dest.node.y},{.x=position.x,.y=position.y});
     if (back==1 || back==2) {
         return back;
     }
     return 0;
 }
 
-extern int timeout_after_timeout;
 
 void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_obstacles)
 {
     if(back==0){
-        timeout_after_timeout=0;
         return;
     }
     if(back==1){
-        timeout_after_timeout+=1;
-        if(timeout_after_timeout>=5){
-            printf("Communication perdue \n");
-            exit(EXIT_FAILURE);
-        }
         struct position my_position=Asservissement::robot_position();
         my_position={.x=50,.y=50};
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};

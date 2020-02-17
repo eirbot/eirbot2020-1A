@@ -3,14 +3,13 @@
 # date : jeudi 19 décembre 2019, 13:19:09 (UTC+0100)
 # author : sedelpeuch
 # description :
-all: project
+all: makefile
 
-project:
+git:
 	pdflatex learn_git.tex
 
-# Build document.
-run:
-	evince rapport.pdf &
+makefile:
+	pdflatex learn_makefile.tex
 
 # Clean directory
 clean:

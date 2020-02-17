@@ -47,7 +47,8 @@ void one_step(Node src, Node dest, vector<obstacle> list_obstacles)
     printf("%lu \n",list_obstacles.size());
     back=Navigation::Navigate_to_asserv(result,dest,list_obstacles);
     Navigation::back_effect(back,dest,list_obstacles);
-    good_port(result[result.size()-1].x, result[result.size()-1].y, dest.x, dest.y);
+    struct position my_position=Asservissement::robot_position();
+    good_port(my_position.x, my_position.y, dest.x, dest.y);
     list_obstacles=World::fillVector();
     printf("\n");
   }

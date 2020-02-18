@@ -188,9 +188,16 @@ nos codes mais seulement les principaux. Les autres codes sont disponibles sur
 notre dépot \href{https://github.com/eirbot/eirbot2020-1A}{Github}.
 
 \subsubsection{Protocole de communication}
-En choisissant de séparer sur deux cartes différentes nos codes, nous avons une
+En choisissant de séparer nos codes sur deux cartes différentes, nous avons une
 difficulté supplémentaire qui apparait. Il faut réaliser un protocole de
-communication entre les deux
+communication permettant d'envoyer des ordres de la carte maître (Raspberry
+Pi) vers la carte esclave (Nucléo). Cette dernière répond aux commandes par une
+action (déplacement, activation des actionneurs, ...) ou par des
+informations sur l'état du robo (position, capteurs de distance, ...). Nous
+avons choisi d'établir la communication via un port série et nous avons créer un
+protocole spécifique au besoin de notre projet. Le protocole implémente un
+système de confirmation des commandes et supporte des timeout.
+
 %ptit lu au secours
 
 \subsection{Electronique du robot}

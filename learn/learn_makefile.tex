@@ -25,6 +25,7 @@
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 \usepackage{amsthm}
 \usepackage{listings}
+\usepackage{verbatim}
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 \newcommand{\hsp}{\hspace{20pt}}
@@ -170,13 +171,170 @@ Analysons ces deux lignes de commandes, le ``cible'' permet de donner un nom
 ainsi dans le shell nous pourrons taper ``make cible'' pour effectuer les
 actions correspondantes. Dans notre cas la cible serait ``project''. Ensuite les
 ``dépendances'' sont les fichiers nécessaires à la création de la cible, dans
-notre cas cela serait ``hello.o''. Un exemple de
+notre cas cela serait ``hello.o''. Un exemple de Makefile complet pour ce projet
+serait le suivant
 
 \begin{lstlisting}
-  cible : dependances
-          commandes
+  hello.o:
+          gcc -Wall -Werror -std=c99 hello.c -c
+
+  project : hello.o
+            gcc -Wall -Werror -std=c99 hello.o main.c -o project
 \end{lstlisting}
 
+\subsection*{Un exemple plus complexe}
+Nous allons maintenant passer à un exemple plus complexe, l'exemple du Makefile
+utilisé pour le robot. Plusieurs complications et exigences vont se révéler avec ce projet
+\begin{enumerate}
+\item Beaucoup de fichiers pour le projet
+\item Des dépendances entre les fichiers
+\item Arreter de compiler les dépendances ``à la main''
+\item Avoir deux main (un main et un test)
+\item Nettoyer son dossier
+\item Vouloir changer les options de compilation / le compilateur facilement
+\item Avoir des fichiers dans différents dossier
+\end{enumerate}
+Commençons par présenter les différents fichiers du projet.
+\newpage
+\begin{multicols}{2}
+\begin{center}
+  \begin{tikzpicture}
+  \tikzstyle{lien}=[->,>=stealth,rounded corners=20pt,thick]
+\tikzset{individu/.style={draw,thick,fill=#1!25},
+individu/.default={white}, rounded corners=4pt}
+\node[individu=violet] (A) at (0,0){\textsc{Main}};
+\node[individu=blue!50!black] (B) at (0,2){Navigation};
+
+\node[individu=blue] (C) at (3,4){World};
+\node[individu=green] (D) at (-3,4){Asservissement};
+\node[individu=green] (F) at (-3,-2){Détection};
+\node[individu=green] (G) at (3,-2){Actionneur};
+\node[individu] (H) at (3,-4){Affichage};
+\node[individu] (I) at (-3,-4){Protocole};
+
+\draw[lien] (A) -- (B);
+\draw[lien] (A) -- (F);
+\draw[lien] (A) -- (G);
+\draw[lien] (F) -- (A);
+\draw[lien] (B) -- (D);
+\draw[lien] (C) -- (B);
+  \end{tikzpicture}
+\end{center}
+
+  \columnbreak
+\begin{verbatim}
+code/
+| Makefile
+| rasp
+|   | src
+|   |   | actionneur.hpp
+|   |   | affichage.cpp
+|   |   | affichage.hpp
+|   |   | asserv.cpp
+|   |   | asserv.hpp
+|   |   | detection.cpp
+|   |   | detection.hpp
+|   |   | main.cpp
+|   |   | main.hpp
+|   |   | navigation.cpp
+|   |   | navigation.hpp
+|   |   | protocole.cpp
+|   |   | protocole.hpp
+|   |   | world.cpp
+|   |   | world.hpp
+|   | tst
+|   |   | test.cpp
+|   |   | test.hpp
+|
+\end{verbatim}
+\end{multicols}
+Chaque figure de ce graphique correspond à un .cpp et un .hpp (même principe que
+un .c et un .h en c++). Cela soulève donc un premier point : beaucoup de fichier
+à gérer il va donc falloir créer tous les fichiers binaires (les .o) pour tout
+ces fichiers. Nous devons donc créer asserv.o, world.o, navigation.o,
+detection.o, protocole.o, affichage.o. Nous allons vouloir automatiser la
+création de ces binaires pour cela nous allons utiliser des commandes spéciales
+aux Makefile\footnote{Je passe sous silence les commandes spéciales, si vous
+  voulez des précision demandez à Lucas H. ou moi}. Pour automatiser la
+transformation des .cpp en .o nous avons les lignes suivantes
+\begin{lstlisting}
+%.o: rasp/src/%.cpp
+   $(CC) $(CFLAGS) -c $<
+\end{lstlisting}
+
+Cela constitue la première règle de notre Makefile, elle permet de transformer
+n'importe quel .cpp dans code/rasp/src/ en un .o (qui sera mis dans code/).
+Nous voyons apparaitre deux variables inconnues ``\$(CC)'' et ``\$(CFLAGS)'', ces
+variables seront définies en début de Makefile et permettent de régler le
+problème 6. En effet ``CC'' va contenir le compilateur et ``CFLAGS'' les options
+de compilation. Nous ajustons donc notre Makefile comme suit.
+\begin{lstlisting}
+CFLAGS = -Wall -Wextra -std=c++11 -g -O3
+CC=g++
+%.o: rasp/src/%.cpp
+	$(CC) $(CFLAGS) -c $<
+\end{lstlisting}
+
+Maintenant que nous avons obtenu un moyen de transformer tous les fichiers .cpp en
+fichier binaire .o nous allons voir comment créer nos deux executables que nous
+appelerons project (qui contiendra le projet en entier) et le test (qui
+contiendra le test à effectuer) nous créons alors deux règles :
+
+\begin{lstlisting}
+CFLAGS = -Wall -Wextra -std=c++11 -g -O3
+FILE=navigation.o detection.o protocole.o asserv.o world.o affichage.o
+CC=g++
+
+all: project
+
+%.o: rasp/src/%.cpp
+	$(CC) $(CFLAGS) -c $<
+
+project: $(FILE) rasp/src/main.cpp
+	$(CC) $(CFLAGS) $(FILE) rasp/src/main.cpp -o project
+
+test: $(FILE) rasp/tst/test.cpp
+	$(CC) $(CFLAGS) $(FILE) rasp/tst/test.cpp -o test
+
+\end{lstlisting}
+Nous voyons alors une nouvelle variable apparaitre, la variable ``\$FILE'',
+cette dernière va lister les dépendances (c'est à dire tous les fichier .o
+nécessaire pour la réalisation des règles). A ce stade il ne reste plus beaucoup
+de chose à faire sur le Makefile, si vous avez tout compris jusque là vous
+pourrez comprendre et créer un Makefile sans trop de soucis. Il faut encore
+rajouter deux règles qui sont très souvent présentes dans les Makefile ``all''
+et ``clean'' (qui permet de nettoyer le dossier). Nous fournissons alors le
+Makefile final qui permet de réaliser le projet. Ce Makefile est totalement
+générique et est réutilisable pour tous vos projets.
+
+\begin{lstlisting}
+CFLAGS = -Wall -Wextra -std=c++11 -g -O3
+FILE=navigation.o detection.o protocole.o asserv.o world.o affichage.o
+CC=g++
+
+##
+# Project Title
+#
+# @file
+# @version 0.1
+
+all: project
+
+%.o: rasp/src/%.cpp
+	$(CC) $(CFLAGS) -c $<
+
+project: $(FILE) rasp/src/main.cpp
+	$(CC) $(CFLAGS) $(FILE) rasp/src/main.cpp -o project
+
+test: $(FILE) rasp/tst/test.cpp
+	$(CC) $(CFLAGS) $(FILE) rasp/tst/test.cpp -o test
+
+clean:
+	rm -f *.o project test test_protocole
+
+# end
+
+\end{lstlisting}
 \newpage
 \end{spacing}
 \end{document}

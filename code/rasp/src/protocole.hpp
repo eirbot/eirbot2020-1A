@@ -12,8 +12,9 @@
 
 class Protocole
 {
-        public:
+    public:
         Protocole(std::string device);
+        ~Protocole();
 
         //ERROR c'est grave, si ça arrive c'est la merde
         //-> réception de données erronées
@@ -50,6 +51,16 @@ class Protocole
          */
         enum Etat set_angle(short angle);
 
+        /*
+         * set_actionneur
+         * entrees:
+         *   id : identifiant : 0 bras, 1 pavillon
+         *   on: 0 off, 1 on
+         * sortie:
+         *   Etat OK, TIME_OUT, ou ERROR
+         */
+        enum Etat set_actionneur(char id, char on);
+
         // #################      GET      ###################
         /*
          * get_*
@@ -62,7 +73,6 @@ class Protocole
         enum Etat get_position(struct position *pos);
         enum Etat get_etats_GP2(char etats[3]);
         void print_buffer(); //debug
-                ~Protocole();
 
     private:
         int serial_port;

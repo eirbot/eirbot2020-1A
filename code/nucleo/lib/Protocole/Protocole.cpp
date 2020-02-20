@@ -37,6 +37,9 @@ void Protocole::parse() {
     else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
         _serial->printf("RGAOK\n");
     }
+    else if(sscanf(readBuffer, "SAC%c,%c\n", &GP2_on)) {
+        _serial->printf("RACOK\n");
+    }
     //GET
     else if(strcmp(readBuffer, "GPO\n") == 0) {
         _serial->printf("VPO%hd,%hd\n", x, y);

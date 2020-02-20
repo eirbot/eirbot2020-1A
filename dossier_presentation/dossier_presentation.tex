@@ -26,12 +26,27 @@
 \usepackage{amsthm}
 \usepackage{listings}
 \usepackage{verbatim}
+\usepackage{transparent}
+\usepackage{eso-pic,graphicx}
+
+\AddToShipoutPicture*{
+    \unitlength=0cm
+    \put(0,0){\includegraphics{filigramme3.png}}
+
+}
+\AddToShipoutPicture{%
+  \unitlength=1cm
+    \put(1.6,8){\transparent{0.3}\includegraphics[width=18cm,
+        height=13cm]{filigrame.png}}
+  }
+
 \setlength{\parindent}{0.785cm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 \newcommand{\hsp}{\hspace{20pt}}
 \newcommand{\HRule}{\rule{\linewidth}{0.1mm}}
+\newcommand{\therule}{\rule{5cm}{0.05mm}}
 
-\usepackage{eso-pic,graphicx}
+
 \usepackage{xcolor}
 \begin{document}
 \begin{spacing}{1.5}
@@ -39,16 +54,16 @@
   \begin{titlepage}
 \begin{sffamily}
 \begin{center}
-\vspace*{\stretch{1}}
-\textsc{\LARGE Eirbot \\ Association de robotique de l'ENSEIRB-MATMECA}\\[2cm]
-\HRule \\[0.4cm]
-{\huge \bfseries Présentation des projets 2020 \\[0.4cm]}
+  \vspace*{\stretch{1}}
+\textbf{\textsc{\LARGE Eirbot \\ Association de robotique de
+    l'ENSEIRB-MATMECA}}\\[0.5cm]
+\HRule \\[0.2cm]
+       {\Huge \bfseries Présentation des projets 2020 \\
+       \HRule \\[0.5cm]
 
-\HRule \\[2cm]
-
-\textsc{\Large }\\[2cm]
-              \includegraphics[scale=0.3]{LogoEirbot.png} \vfill
 \vspace*{\stretch{1}}
+       \includegraphics[scale=0.5]{LogoEirbot.png}
+       \vfill}
   \end{center}
   \end{sffamily}
 \end{titlepage}
@@ -60,9 +75,7 @@
 \rhead{\thepage}
 \lfoot{}
 \cfoot{}
-\fancyfoot[R] {
-  \includegraphics[scale=0.075]{65508.png} }
-\section{Qui sommes nous ?}
+%% \section{Qui sommes nous ?}
 %% Association de robotique de l'ENSEIRB-MATMECA crée en 2003, Eirbot est avant
 %% tout un groupe de passionné d'électronique, d'informatique et de mécanique.
 %% Chaque année, Eirbot acceuille un certain nombre d'élève ingénieur de première,
@@ -72,8 +85,26 @@
 %% autour d'un projet commun : la coupe de france de robotique. \\
 %% Eirbot participe depuis sa création en tant que club (en 1997) à la coupe de
 %% France de robotique
-\newpage
-\section{Notre Projet}
+%% Les objectifs de l'association sont les suivants
+%% \begin{itemize}
+%% \item Participation à la coupe de France de robotique à la Roche sur Yon tous
+%% les ans
+%% \item Formations des éléves à la création d'un robot de A à Z (design/routage
+%% de cartes électroniques, design de pièces 3D et impression 3D, initiation aux
+%% systèmes embarqués)
+%% \item Participation aux robots Maker's Day et autres évéenements organisés
+%% dans l'école
+%% \item transmission du savoir entre les anciens et les nouveaux adhérents
+%% Nous disposons d'un local avec plusieurs outils mécanique et électroniques
+%% (scies à chantourner, fer à souder, imprimante 3D, etc) situé dans l'enceinte
+%% de l'école.
+%% \end{itemize}
+%% L'association est en partie financée par l'école et le reste par les
+%% partenariats professionnels. Dans l'objectif de continuer nos activités au
+%% mieux, nous sommes à la recherche de partenariats. Ce derniers peuvent être de
+%% toutes formes.
+%% \newpage
+\section{Notre projet}
 Cette année, Eirbot prend le large ! Nos robots doivent partir voguer à travers
 le monde. Nous allons devoir maitriser la navigation pour arriver à bon port.
 C'est après une tempête qu'il faudra reconstruire le chenal, réactiver le phare
@@ -119,7 +150,7 @@ l'avancement actuel de notre phare
 \begin{multicols}{2}
 \begin{figure}[H]
   \center
-  \includegraphics[scale=0.3, height=8cm]{phare_r.jpg}
+  \includegraphics[scale=0.3, height=8cm]{phare_r.png}
   \caption{Photo de l'état actuel de notre phare replié}
 \end{figure}
 \columnbreak
@@ -201,20 +232,75 @@ difficulté supplémentaire qui apparait. Il faut réaliser un protocole de
 communication permettant d'envoyer des ordres de la carte maître (Raspberry
 Pi) vers la carte esclave (Nucléo). Cette dernière répond aux commandes par une
 action (déplacement, activation des actionneurs, ...) ou par des
-informations sur l'état du robo (position, capteurs de distance, ...). Nous
-avons choisi d'établir la communication via un port série et nous avons créer un
-protocole spécifique au besoin de notre projet. Le protocole implémente un
-système de confirmation des commandes et supporte des timeout.
-
-%ptit lu au secours
+informations sur l'état du robot (position, capteurs de distance, ...). Nous
+avons choisi d'établir la communication via un port série et nous avons créé un
+protocole spécifique aux besoins de notre projet. Le protocole implémente un
+système de confirmation des commandes et supporte des timeout. Prenons un
+exemple simple, lorsque nous lançons la Navigation sur la Raspberry pi, l'A* va
+calculer les positions à rejoindre, au fur et à mesure que l'algorithme trouve
+les positions, il envoie une requete de déplacement via le port série, attend la
+réponse du protocole et si il n'y a pas de soucis envoie la prochaine instruction.
 
 \subsection{Electronique du robot}
+\subsubsection{Carte d'alimentation}
 
+La conception d'une carte d'alimentation est un étape fondamentale lors de la
+mise en oeuvre d'un projet d'électronique.Cette dernière assure l'alimentation
+du circuit à une tension souhaitée.La stabilité du signal doit être également
+maintenue malgré les pertubations liés au circuit.
+
+Pour le robot, nous avons opté pour une carte comportant 3 rails
+d'alimentations.
+
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.3]{carte.png}
+  \caption{Etat actuel de notre carte d'alimentation}
+\end{figure}
+
+Deux de ces rails fournissent une alimentation de 5V,le premier alimente la
+logique, le suivant les actionneurs. Le dernier est consacré aux moteurs,
+alimenté en 12V.
+
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.5]{schema.jpg}
+  \caption{Schéma de conception de la carte}
+\end{figure}
+
+Chaque rail d'alimentation est structurée autour d'un buck. Un buck est une convertisseur de tension continue.Alimentation à découpage de la
+micro-électronique, il possède un excellent rendement( 95 \% environ).
+
+\begin{multicols}{2}
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.1]{buck.jpg}
+  \caption{Image du composant électronique}
+\end{figure}
+\columnbreak
+\begin{figure}[H]
+  \center
+  \includegraphics[scale=0.4]{buck.PNG}
+  \caption{Schéma de conception d'un buck}
+\end{figure}
+\end{multicols}
+Mis à part les composants, l'intégralité de la carte a été conçue par nos soins.
+Le routage est une étape cruciale, elle consiste à relier les composants en
+optimisant l'espace utilisé et en évitant les phénomènes perturbateurs. En
+effet, la proximité physique des signaux peut provoquer,par exemple, des
+phénomènes d'induction. L'intégralité de notre routage a été réalisé grâce au
+logiciel kickad. On aboutit finalement à un calque du circuit. \\
+Une fois que nous avons obtenu ce calque nous pouvons passer à la réalisation de
+cette dernière grâce au matériel de l'ENSEIRB-MATMECA. Le perçage des trous et
+la soudure des éléments se réalise avec le matériel de l'association.
+
+\subsubsection{Carte de puissance}
+En plus de l'alimentation du robot, nous
 \newpage
 \section{Projets antérieurs}
 Notre association possède une certainne ancienté et en plus de participer à la
-coupe de France nous réalisons plusieurs projets voici quelques photos de ces
-derniers
+coupe de France nous réalisons plusieurs projets voici quelques photos des
+projets et des robots des années précédentes
 \begin{multicols}{2}
   \begin{figure}[H]
     \center
@@ -230,32 +316,24 @@ derniers
 \begin{multicols}{2}
   \begin{figure}[H]
     \center
-    \includegraphics[scale=0.3]{LogoEirbot.png}
+    \includegraphics[scale=0.3]{2A2018.png}
   \end{figure}
   \columnbreak
   \begin{figure}[H]
     \center
-    \includegraphics[scale=0.3]{LogoEirbot.png}
+    \includegraphics[scale=0.3]{2A2018(2).png}
   \end{figure}
 \end{multicols}
+
+  \begin{figure}[H]
+    \center
+    \includegraphics[scale=0.45]{brenda.png}
+  \end{figure}
 
 \begin{multicols}{2}
   \begin{figure}[H]
     \center
-    \includegraphics[scale=0.3]{LogoEirbot.png}
-  \end{figure}
-  \columnbreak
-  \begin{figure}[H]
-    \center
-    \includegraphics[scale=0.3]{LogoEirbot.png}
-  \end{figure}
-\end{multicols}
-
-\newpage
-\begin{multicols}{2}
-  \begin{figure}[H]
-    \center
-    \includegraphics[scale=0.3]{LogoEirbot.png}
+    \includegraphics[scale=0.2]{rubix_cube.jpg}
   \end{figure}
   \columnbreak
   \begin{figure}[H]
@@ -265,8 +343,14 @@ derniers
 \end{multicols}
 
 \newpage
-\section{Nous contacter}
-
-\newpage
 \end{spacing}
 \end{document}
+%%Brouillon du mail
+%%
+%%Bonjour,
+%%Suite à notre discussion à l'afterwork Cdiscount organisé par AEI, je vous
+%%envoie la plaquette de notre association et un dossier descriptif de nos
+%%projets.
+%%
+%%
+%

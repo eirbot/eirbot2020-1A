@@ -226,3 +226,24 @@ enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3], in
         return Etat::ERROR;
     }
 }
+
+
+//actionneur
+enum Protocole::Etat Protocole::set_actionneur(char id, char on) {
+    send("SAC%c,%c\n", id, on); //Set Gp2 seuils
+    usleep(10000);
+    if(update_buffer(1) == -1) return Etat::TIME_OUT;
+    if(strcmp(readBuffer, "RACOK\n") == 0) {
+        //printf("Confirmation set detection GP2\n");
+        return Etat::OK;
+    }
+    else if(strcmp(readBuffer, "RACOUT\n") == 0) {
+        //printf("Time out detection\n");
+        return Etat::TIME_OUT;
+    }
+    else {
+        //printf("Erreur de parsing\n");
+        return Etat::ERROR;
+    }
+
+}

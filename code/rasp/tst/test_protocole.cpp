@@ -40,6 +40,11 @@ int main(int argc, char *argv[]) {
         message_retour(ret);
         printf("=================================\n");
 
+        printf("Set actionneur: ");
+        ret = proto.set_actionneur('1', '1');
+        message_retour(ret);
+        printf("=================================\n");
+
         struct position pos;
         printf("Get Position : ");
         ret = proto.get_position(&pos);

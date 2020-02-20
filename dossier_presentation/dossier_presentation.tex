@@ -56,13 +56,13 @@
 \begin{center}
   \vspace*{\stretch{1}}
 \textbf{\textsc{\LARGE Eirbot \\ Association de robotique de
-    l'ENSEIRB-MATMECA}}\\[0.5cm]
+    l'ENSEIRB-MATMECA}}\\[1cm]
 \HRule \\[0.2cm]
-       {\Huge \bfseries Présentation des projets 2020 \\
+       {\Huge \bfseries \fontsize{30}{30}\selectfont Présentation des projets 2020 \\
        \HRule \\[0.5cm]
 
 \vspace*{\stretch{1}}
-       \includegraphics[scale=0.5]{LogoEirbot.png}
+       \includegraphics[scale=0.4]{LogoEirbot.png}
        \vfill}
   \end{center}
   \end{sffamily}
@@ -99,16 +99,15 @@
 %% (scies à chantourner, fer à souder, imprimante 3D, etc) situé dans l'enceinte
 %% de l'école.
 %% \end{itemize}
-%% L'association est en partie financée par l'école et le reste par les
-%% partenariats professionnels. Dans l'objectif de continuer nos activités au
+%% L'association est en partie finans l'objectif de continuer nos activités au
 %% mieux, nous sommes à la recherche de partenariats. Ce derniers peuvent être de
 %% toutes formes.
 %% \newpage
 \section{Notre projet}
 Cette année, Eirbot prend le large ! Nos robots doivent partir voguer à travers
-le monde. Nous allons devoir maitriser la navigation pour arriver à bon port.
+le monde. Nous allons devoir maîtriser la navigation pour arriver à bon port.
 C'est après une tempête qu'il faudra reconstruire le chenal, réactiver le phare
-et redresser les manches à air pour espérer gagner. Nos robots évolurons sur la
+et redresser les manches à air pour espérer gagner. Nos robots évolueront sur la
 table suivante
 \begin{figure}[H]
   \center
@@ -118,7 +117,7 @@ table suivante
 En plus de l'environnement de jeu nous devons suivre des règles précises
 disponibles sur ce \href{https://www.coupederobotique.fr/wp-content/uploads/Eurobot2020_Rules_Cup_OFFICIAL_FR.pdf}{lien}.
 \subsection{Vue d'ensemble du projet et objectif de l'association}
-Voyons tout d'abbord l'objectif que nous allons nous fixer pour ce projet. Nous
+Voyons tout d'abord l'objectif que nous allons nous fixer pour ce projet. Nous
 avons décidé en commun des différentes actions et des différentes tâches à
 réaliser. Nous décidons de réaliser les actions suivantes, activer le phare,
 redresser les deux manches à air, décoder la boussole et retourner à bon port.
@@ -134,47 +133,54 @@ précise du robot) et la stratégie (recherche de chemin, choix des actions à
 faire etc).
 \subsection{Plans du robot}
 Nous avons ensuite réalisé les plans de notre robot. Nous avons pu le rendre
-concret en majeur partie grâce à la découpe laser du FabLab de l'ENSEIRB MATMECA
+concret en majeure partie grâce à la découpe laser du FabLab de l'ENSEIRB MATMECA
 et à notre imprimante 3D. En addition nous utilisons des profilés pour monter la
-structure et créer des étages facile à monter et démonter.
+structure et créer des étages faciles à monter et démonter.
 \begin{figure}[H]
   \center
   \includegraphics[scale=0.3]{LogoEirbot.png}
-  \caption{Photo de l'état actuel de notre robot}
+  \caption{Etat actuel de notre robot}
 \end{figure}
-Concernant notre phare, il doit se deployer et réaliser un balayage lumineux (il
+Concernant notre phare, il doit se déployer et réaliser un balayage lumineux (il
 doit faire moins de 30 cm avant l'activation et plus de 70 cm après). Nous optons
-pour imprimer grâce à notre imprimante 3D un bras robotique, le système
+pour une impression, grâce à notre imprimante 3D, d'un bras robotique, le système
 d'éclairage de notre phare sera similaire à celui d'un vrai phare. Voici
 l'avancement actuel de notre phare
 \begin{multicols}{2}
 \begin{figure}[H]
   \center
   \includegraphics[scale=0.3, height=8cm]{phare_r.png}
-  \caption{Photo de l'état actuel de notre phare replié}
+  \caption{Etat actuel de notre phare replié}
 \end{figure}
 \columnbreak
 \begin{figure}[H]
   \center
   \includegraphics[scale=0.3, height=8cm]{phare_d.png}
-  \caption{Photo de l'état actuel de notre phare déplié}
+  \caption{Etat actuel de notre phare déplié}
 \end{figure}
 \end{multicols}
 \subsection{Fonctionnement général du robot}
 Comme dit précédemment nous misons sur la qualité de nos actions plutôt que la
 quantité. Nous divisons alors le travail informatique en deux parties. D'une
-part l'Asservissement qui est implémenté sur une Nucléo-F429ZI. D'autre part, la
+part l'asservissement qui est implémenté sur une Nucléo-F429ZI. D'autre part, la
 stratégie qui est implémentée sur une Raspberry pi 3b+. En addition nous avons du
 créer un protocole de communication entre les deux cartes.\\
 
 \subsubsection{Asservissement}
 Nous pouvons commencer par décrire succinctement l'asservissement que nous avons
-élaboré \\ %mettre paragraphe de clément si il existe
+élaboré. L'étape d'asservissement est cruciale. En effet elle va nous permettre
+de déplacer notre robot avec précision, sans cela les stratégies que nous allons
+mettre en place dans le suite ne pourrons pas aboutir. L'asservissement de ce
+robot se base sur les encodeurs placés sur les côtes des moteurs, tout le travail de
+l'asservissement est de calculer la différence entre la consigne donnée et ce
+qui se passe réellement. Cela passe par la création d'un correcteur PID. La
+qualité de ce PID détermine la précision de nos déplacements et donc augmente le
+champ des possibles pour nos stratégies.
 
 \subsubsection{Stratégie}
 Nous pouvons maintenant décrire notre stratégie. La stratégie dépend de deux
 facteurs principaux, notre capacité à naviguer sur la table et notre capacité à
-détecter les adversaires et à réagir lorsque nous tombons face à l'un de.
+détecter les adversaires et à réagir lorsque nous tombons face à l'un d'eux.
 \\ \indent Pour la navigation nous implémentons un algorithme de recherche de
 chemin connu dérivé de l'algorithme de Dijikstra : l'algorithme A*. Nous
 décrivons rapidement son fonctionnement dans le paragraphe suivant, une
@@ -183,14 +189,14 @@ animation expliquant le principe de ce dernier est disponible sur ce
 Nous avons modélisé la table comme une grille chaque case faisant $1 cm \times 1
 cm$. Ainsi nous avons pu renseigner la position de tous les obstacles fixes. A
 partir de cela nous pouvons expliquer le fonctionnement de l'algorithme. l'A*
-commence à un noeud choisi. Il applique à ce dernier un cout initial, il estime
+commence à un noeud choisi. Il applique à ce dernier un coût initial, il estime
 ensuite la distance entre ce noeud et le but à atteindre. Le noeud est alors
 ajouté à une liste d'attente prioritaire, appelée \textit{open list}. \\ \indent
 Premièrement l'algorithme récupère le premier noeud de l'\textit{open list}. Si
-elle est vide, il n'y a aucun chemin du noeud initial à celui d'arrivé,
-l'algorithme est en erreur. Si le noeud est celui d'arrivé, l'algorithme va
+elle est vide, il n'y a aucun chemin du noeud initial à celui d'arrivée,
+l'algorithme est en erreur. Si le noeud est celui d'arrivée, l'algorithme va
 reconstruire le chemin complet et renvoyer le résultat. Ensuite, si le noeud
-n'est pas le noeud d'arrivée alors de nouveaux noeuds sont crées pour tous les
+n'est pas le noeud d'arrivée alors de nouveaux noeuds sont créés pour tous les
 noeuds contigus admissibles . L'A* calcule ensuite son coût et le stocke avec le
 noeud. Ce coût est calculé à partir de la somme du coût de son ancêtre et du
 coût de l'opération pour atteindre ce nouveau noeud. En parallèle l'algorithme
@@ -205,7 +211,7 @@ contigu, le noeud original pris de la file d'attente prioritaire est ajouté à 
 liste des noeuds vérifiés. Le prochain noeud est alors retiré de la file
 d'attente prioritaire et le processus recommence.
 
-Les détails technique des notre implémentation sont disponibles sur notre
+Les détails techniques de notre implémentation sont disponibles sur notre
 \href{https://github.com/eirbot/eirbot2020-1A/blob/master/code/rasp/src/navigation.cpp}{Github}.
 A ce stade, notre algorithme est opérationnel et nous pouvons d'un point $x,y$
 donné rejoindre n'importe quel point $x',y'$ en évitant les obstacles fixes.
@@ -218,11 +224,11 @@ considérés comme des obstacles fixes, nous ne voulons pas les détecter avec l
 système infrarouge). Lorsque nous détectons un robot adverse, la stratégie prend
 un branchement, récupère l'information sur la distance que nous fournit le
 système infrarouge, ajoute un obstacle puis relance la navigation ce qui permet d'éviter l'obstacle.
-A la fin du branchement l'obstacle est détruit. A ce stade nous pouvons avons un
+A la fin du branchement l'obstacle est détruit. A ce stade nous avons un
 système de détection nous permettant d'éviter les robots adverses en les
-contournants.
+contournant.
 
-Nous avons présentés nos principales stratégies, nous n'avons pas décrit tous
+Nous avons présenté nos principales stratégies, nous n'avons pas décrit tous
 nos codes mais seulement les principaux. Les autres codes sont disponibles sur
 notre dépot \href{https://github.com/eirbot/eirbot2020-1A}{Github}.
 
@@ -239,18 +245,18 @@ système de confirmation des commandes et supporte des timeout. Prenons un
 exemple simple, lorsque nous lançons la Navigation sur la Raspberry pi, l'A* va
 calculer les positions à rejoindre, au fur et à mesure que l'algorithme trouve
 les positions, il envoie une requete de déplacement via le port série, attend la
-réponse du protocole et si il n'y a pas de soucis envoie la prochaine instruction.
+réponse du protocole et s'il n'y a pas de soucis envoie la prochaine instruction.
 
 \subsection{Electronique du robot}
 \subsubsection{Carte d'alimentation}
 
-La conception d'une carte d'alimentation est un étape fondamentale lors de la
+La conception d'une carte d'alimentation est une étape fondamentale lors de la
 mise en oeuvre d'un projet d'électronique.Cette dernière assure l'alimentation
 du circuit à une tension souhaitée.La stabilité du signal doit être également
-maintenue malgré les pertubations liés au circuit.
+maintenue malgré les pertubations liées au circuit.
 
 Pour le robot, nous avons opté pour une carte comportant 3 rails
-d'alimentations.
+d'alimentation.
 
 \begin{figure}[H]
   \center
@@ -268,14 +274,15 @@ alimenté en 12V.
   \caption{Schéma de conception de la carte}
 \end{figure}
 
-Chaque rail d'alimentation est structurée autour d'un buck. Un buck est une convertisseur de tension continue.Alimentation à découpage de la
+Chaque rail d'alimentation est structuré autour d'un buck. Un buck est un
+convertisseur de tension continue.Alimentation à découpage de la
 micro-électronique, il possède un excellent rendement( 95 \% environ).
 
 \begin{multicols}{2}
 \begin{figure}[H]
   \center
-  \includegraphics[scale=0.1]{buck.jpg}
-  \caption{Image du composant électronique}
+  \includegraphics[scale=0.2]{buck.png}
+  \caption{Buck}
 \end{figure}
 \columnbreak
 \begin{figure}[H]
@@ -285,20 +292,18 @@ micro-électronique, il possède un excellent rendement( 95 \% environ).
 \end{figure}
 \end{multicols}
 Mis à part les composants, l'intégralité de la carte a été conçue par nos soins.
-Le routage est une étape cruciale, elle consiste à relier les composants en
-optimisant l'espace utilisé et en évitant les phénomènes perturbateurs. En
-effet, la proximité physique des signaux peut provoquer,par exemple, des
-phénomènes d'induction. L'intégralité de notre routage a été réalisé grâce au
-logiciel kickad. On aboutit finalement à un calque du circuit. \\
-Une fois que nous avons obtenu ce calque nous pouvons passer à la réalisation de
-cette dernière grâce au matériel de l'ENSEIRB-MATMECA. Le perçage des trous et
-la soudure des éléments se réalise avec le matériel de l'association.
+Le routage, une étape cruciale consistant à relier les composants en évitant les
+phénomènes pertubateurs,a été effectué grâce au logiciel kickad. Cela nous
+permet d'aboutir finalement à un calque du circuit. Une fois que le calque est
+obtenu la réalisation de cette carte peut être grâce au
+matériel de l'ENSEIRB-MATMECA. Le perçage des trous et la soudure des éléments
+se réalise avec le matériel de l'association.
 
 \subsubsection{Carte de puissance}
 En plus de l'alimentation du robot, nous
 \newpage
 \section{Projets antérieurs}
-Notre association possède une certainne ancienté et en plus de participer à la
+Notre association possède une certaine ancienté et en plus de participer à la
 coupe de France nous réalisons plusieurs projets voici quelques photos des
 projets et des robots des années précédentes
 \begin{multicols}{2}
@@ -309,7 +314,7 @@ projets et des robots des années précédentes
   \columnbreak
   \begin{figure}[H]
     \center
-    \includegraphics[scale=0.3]{1A2018(2).png}
+    \includegraphics[scale=0.3]{1A2018_2.png}
   \end{figure}
 \end{multicols}
 
@@ -349,8 +354,12 @@ projets et des robots des années précédentes
 %%
 %%Bonjour,
 %%Suite à notre discussion à l'afterwork Cdiscount organisé par AEI, je vous
-%%envoie la plaquette de notre association et un dossier descriptif de nos
-%%projets.
+%%envoie la plaquette présentant notre association. Puis le dossier descriptif de nos
+%%projets 2020.
 %%
+%%Nous sommes à votre disposition si vous souhaitez visiter nos locaux ou nous
+%%rencontrer.
 %%
-%
+%%Cordialement,
+%%
+%%DELPEUCH Sébastien, (penser à mettre la signature auto)

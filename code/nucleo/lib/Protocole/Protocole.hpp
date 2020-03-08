@@ -12,6 +12,8 @@ class Protocole
         short x, y, angle;
         char GP2_on;
         char GP2_etats[3];
+        char actionneur_id;
+        char actionneur_etat;
 
         void poll();
 

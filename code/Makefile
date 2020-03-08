@@ -1,10 +1,11 @@
-CFLAGS = -Wall -Wextra -std=c++11 -g -O3
-FILE=navigation.o detection.o protocole.o asserv.o world.o affichage.o
+CFLAGS = --coverage -std=c++11 -g -O3
+FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
 else
 	CC=g++
 endif
+
 ##
 # Project Title
 #
@@ -35,4 +36,7 @@ upload:
 	scp test_protocole pi@eirboat:~
 	ssh pi@eirboat ./test_protocole
 
+tocard:
+	scp test pi@192.168.43.32:~
+	ssh pi@192.168.43.32  ./test base debug
 # end

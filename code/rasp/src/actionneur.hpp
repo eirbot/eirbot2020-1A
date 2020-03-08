@@ -5,6 +5,7 @@
 #include "asserv.hpp"
 #include "navigation.hpp"
 #include "protocole.hpp"
+#include "affichage.hpp"
 
 class Actionneur{
 

@@ -61,10 +61,14 @@ void test_base()
   total_reach=4;
   printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
   one_step(Port,Phare,list_obstacles);
+  Actionneur::Phare_activation();
+  Actionneur::Phare_desactivation();
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
   one_step(Phare,Manche_1,list_obstacles);
+  Actionneur::Phare_activation();
   printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
   one_step(Manche_1,Manche_2,list_obstacles);
+  Actionneur::Phare_desactivation();
   printf("\033[33mJe pars de MANCHE_2 et je vais au PORT \033[0m \n");
   one_step(Manche_2,Port,list_obstacles);
 }

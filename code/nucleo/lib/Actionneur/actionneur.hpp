@@ -1,15 +1,10 @@
 #ifndef __ACTIONNEUR_H_
 #define __ACTIONNEUR_H_
 #include "mbed.h"
-#include "Servo.h"
-
-PwmOut Servo_pav(D4);
-PwmOut Servo_man(D5);
-
-const int position_min=1000;
-const int position_quart=1250;
-const int position_moy=1500;
-const int position_max=2000;
+#define SERVO_PWM_PERIOD 60000
+#define SERVO_INIT 4250
+#define SERVO_LEFT 1900
+#define SERVO_RIGHT 6550
 
 void activate_pavillon(PwmOut servo); //Met le pavillon dans l'autre configuration
 

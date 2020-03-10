@@ -21,7 +21,7 @@ project: $(FILE) rasp/src/main.cpp
 	$(CC) $(CFLAGS) $(FILE) rasp/src/main.cpp -o project
 
 test: $(FILE) rasp/tst/test.cpp
-	$(CC) $(CFLAGS) $(FILE) rasp/tst/test.cpp -o test
+	$(CC) $(CFLAGS) $(FILE) rasp/tst/test.cpp -pg -o test
 
 test_protocole: protocole.o
 	$(CC) $(CFLAGS) protocole.o rasp/tst/test_protocole.cpp -o test_protocole

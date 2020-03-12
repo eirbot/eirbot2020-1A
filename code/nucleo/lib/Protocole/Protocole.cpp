@@ -1,4 +1,5 @@
 #include "Protocole.hpp"
+#include "actionneur.hpp"
 #include "mbed.h"
 
 
@@ -38,6 +39,12 @@ void Protocole::parse() {
         _serial->printf("RGAOK\n");
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
+        if(actionneur_id == 0) {
+            activate_manche();
+        }
+        else if(actionneur_id == 0) {
+            activate_pavillon();
+        }
         _serial->printf("RACOK\n");
     }
     //GET

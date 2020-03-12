@@ -9,7 +9,6 @@
 void activate_pavillon(PwmOut servo); //Met le pavillon dans l'autre configuration
 
 void activate_manche(PwmOut serv); //Met le bras pour le manche dans l'autre configuration
-void desactivate_manche(PwmOut servo);
 
 
 #endif // __ACTIONNEUR_H_

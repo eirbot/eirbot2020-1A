@@ -1,4 +1,4 @@
-CFLAGS = --coverage -std=c++11 -g -O3
+CFLAGS =-Wall -Werror -std=c++11 -g -O3
 FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
@@ -27,10 +27,7 @@ test_protocole: protocole.o
 	$(CC) $(CFLAGS) protocole.o rasp/tst/test_protocole.cpp -o test_protocole
 
 clean:
-	rm -f *.o project test test_protocole
-
-launch:
-	./test
+	rm -f *.o *.gcda *.gcno  massif.out.* project test test_protocole
 
 upload:
 	scp test_protocole pi@eirboat:~

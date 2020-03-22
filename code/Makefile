@@ -27,7 +27,7 @@ test_protocole: protocole.o
 	$(CC) $(CFLAGS) protocole.o rasp/tst/test_protocole.cpp -o test_protocole
 
 clean:
-	rm -f *.o project test test_protocole
+	rm -f *.o project test test_protocole *.gcno
 
 launch:
 	./test

@@ -1,0 +1,14 @@
+.DS_Store
+
+#Jetbrains tmp files
+.idea
+
+#Compilation trash
+*.o
+*.gcno
+
+#Latex tmp files
+*.log
+*.aux
+*.out
+tmp/

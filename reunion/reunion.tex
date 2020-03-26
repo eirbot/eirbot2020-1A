@@ -24,6 +24,14 @@
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 \newcommand{\hsp}{\hspace{20pt}}
 \newcommand{\HRule}{\rule{\linewidth}{0.1mm}}
+\usepackage{transparent}
+\usepackage{eso-pic,graphicx}
+
+\AddToShipoutPicture{%
+  \unitlength=1cm
+    \put(1.6,8){\transparent{0.3}\includegraphics[width=18cm,
+        height=13cm]{filigrame.png}}
+  }
 
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 \begin{document}
@@ -48,7 +56,6 @@
 \end{titlepage}
 
 \setcounter{tocdepth}{1}
-\tableofcontents
 \newpage
 \part{Rapports de réunion}
 \pagestyle{fancy}
@@ -58,10 +65,6 @@
 \lfoot{}
 \cfoot{}
 \rfoot{}
- \fancyfoot[R]
- {
- \includegraphics[scale=0.075]{65508.png}
- }
 
 \section*{Jeudi 24 Octobre}
 \paragraph*{Ordre du jour.}
@@ -495,6 +498,60 @@ led 1W et un système de miroir comme un phare réel.
 \section*{Jeudi 20 Février}
 Pas de réunion : finir dossier Cdiscount
 
+\newpage
+\section*{Jeudi 27 Février}
+\paragraph{Point Mécanique.} Clément : \og la méca c'est de la merde\fg{} il y a
+un problème dans l'engrenage, dans les moteurs, faire en sorte de ne pas avoir
+une vibration trop grande, il faut refaire le premier étage.
+\paragraph{Point Asservissement.}  L'asservissement en vitesse de chaque moteur
+est plutôt bonne. Il faut maintenant penser à un asservissement central par
+rapport aux deux moteurs et non par rapport à chaque moteur.
+\paragraph{Point Alimentation.} Il faut rajouter un fusible et voir la longueur
+des cables.
+\paragraph{Point Phare.} Marius attend l'arrivée des leds (il est beau le phare)
+\paragraph{Point Communication.} On verra plus tard, \og ta gueule sèb\fg{}
+
+\newpage
+\section*{Jeudi 5 Mars}
+Vacances, je peux faire une réunion tout seul mais bon
+
+\newpage
+\section*{Jeudi 12 Mars}
+\paragraph{Point Mécanique.}
+\begin{itemize}
+  \item bloc moteur : avec nans pendant les vacances, ils ont fait un piece et
+  elle est mieux que Hugo.
+  \item Est ce qu'on refait la base ? Le modele d3D est fait , Si clément se
+  chauffe pour refaire les trucs ça peut être pas mal. Pas commencé support GP2,
+  mais d'abord les étages
+\end{itemize}
+\paragraph{Point Alimentation.}
+Les fusibles ont été rajoutés mais Nans est un tocard. C'est quand qu'on la
+monte ? Je comprend pas tout quand les élecs parlent.
+\paragraph{Point Puissance.}
+On a fait cramer un pont en H (c'est 7 euros),si y a pas la coupe on peut
+transformer le truc en table apéro.
+\paragraph{Point Phare.}
+On attend les LEDS
+\paragraph{Point Asservissement.}
+Il va bientot passer à l'asserv de position.
+\paragraph{Point Nucléo.}
+On s'amuse avec le bas niveau
+\paragraph{Point détection.}
+Commencer à étaloner le signal de sorti du GP2 parce qu'il fait de la merde.
+\paragraph{Point Protocole.}
+Il commence à faire le lien avec les différents trucs.
+\paragraph{Point Raspberry.}
+ca marche c bon
+\paragraph{Point Actionneurs.}
+On va mettre 2 actionneurs en fait parce que c'est bien et seb galère avec des
+servo de merde
+\paragraph{Point compteur.}
+J'ai rien branlé du compteur
+\paragraph{Question 3A.} ra snvg ba prafher çn \og wr fnvf cnf ?\fg{}
+\paragraph{En fait Nans parle.} Du coup faut attendre 20h, mais en gros tous le
+monde commence à penser que y a moyen que y ait pas de coupe, même on organise
+un mini eirbot chez Sèb, il a l'air chaud.
 \newpage
 \end{spacing}
 \end{document}

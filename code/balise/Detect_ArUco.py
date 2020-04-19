@@ -1,11 +1,15 @@
 import numpy as np
 import cv2
 import cv2.aruco as aruco
- 
+
+##@file Detect_ArUco.py
+##@brief Permet de configurer la balise pour qu'elle détecte si la boussole est du côté nord ou sud
+##@author Maxime
+
 cap = cv2.VideoCapture(0)
  
 while(True):
-    #Lecture d'une image 
+    #Lecture d'une image
     ret, frame = cap.read()
 
     aruco_dict = aruco.Dictionary_get(aruco.DICT_4X4_50)

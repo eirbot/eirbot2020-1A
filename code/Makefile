@@ -6,6 +6,7 @@ else
 	CC=g++
 endif
 
+.PHONY: doc clean
 ##
 # Project Title
 #
@@ -28,9 +29,13 @@ test_protocole: protocole.o
 
 clean:
 	rm -f *.o project test test_protocole *.gcno
+	rm -r -f doc/html
 
 launch:
 	./test
+
+doc:
+	doxygen Doxyfile
 
 upload:
 	scp test_protocole pi@eirboat:~

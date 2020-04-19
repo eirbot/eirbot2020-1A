@@ -15,7 +15,19 @@
 #include "detection.hpp"
 #include "actionneur.hpp"
 
+/**
+* @file main.hpp
+* @brief Fichier principal pour l'execution de notre projet
+* @author SD
+*/
+
+/**
+* @brief Initialisation des différents éléments
+ */
 void setup();
+/**
+* @brief Boucle principale du projet
+ */
 void loop();
 int main(int argc, char *argv[]);
 

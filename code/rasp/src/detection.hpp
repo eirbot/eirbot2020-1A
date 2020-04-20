@@ -1,21 +1,18 @@
 #ifndef __DETECTION_H__
 #define __DETECTION_H__
 
+#include "world.hpp"
+#include "asserv.hpp"
 
 /**
  * @file detection.hpp
  * @brief Fichier permettant d'interfacer avec les GP2*/
-#include <stdio.h>
-#include <math.h>
-#include "world.hpp"
-#include "asserv.hpp"
-#include "protocole.hpp"
+
 // Pris sur les anciens dépots a modifier !!!!
 // 1.0  -> 6 cm
 // 0.4  -> 10 cm
 // 0.72 -> 20 cm
 // O.19 -> 50 cm
-
 
 /**
  * @enum GP2_name

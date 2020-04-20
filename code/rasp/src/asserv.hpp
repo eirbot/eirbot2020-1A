@@ -1,19 +1,15 @@
 #ifndef __ASSERV_H_
 #define __ASSERV_H_
 
-#include <vector>
 #include <iostream>
-#include <stdio.h>
 #include <math.h>
 #include <array>
 #include <cfloat>
 #include <stack>
-#include <cstdlib>
 
 #include  "affichage.hpp"
 #include "world.hpp"
 #include "protocole.hpp"
-#include <vector>
 
 /**
  * @file asserv.hpp

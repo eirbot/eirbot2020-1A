@@ -1,17 +1,8 @@
 #ifndef __NAVIGATION_H_
 #define __NAVIGATION_H_
 
-#include <vector>
-#include <iostream>
-#include <stdio.h>
-#include <math.h>
-#include <array>
-#include <cfloat>
-#include <stack>
-
-#include "world.hpp"
 #include "asserv.hpp"
-#include "affichage.hpp"
+#include "detection.hpp"
 
 /**
  * @file navigation.hpp

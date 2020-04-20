@@ -1,9 +1,7 @@
 #ifndef __PROTOCOLE_H_
 #define __PROTOCOLE_H_
 
-#include <stdio.h>
 #include <termios.h>
-#include <vector>
 #include <string>
 #include "asserv.hpp"
 

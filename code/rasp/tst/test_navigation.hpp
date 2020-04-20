@@ -4,5 +4,5 @@
 #include "test.hpp"
 #include "../src/navigation.hpp"
 
-
+void test_navigation();
 #endif // __TEST_NAVIGATION_H_

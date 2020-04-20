@@ -24,7 +24,7 @@ int which_side=0;
 
 
 int main(int argc, char *argv[]) {
-  // test_navigation();
+  test_navigation();
   test_asserv();
   test_detection();
   test_actionneur();

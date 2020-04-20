@@ -1,11 +1,9 @@
 #ifndef __AFFICHAGE_H_
 #define __AFFICHAGE_H_
 
-#include <cstdio>
-#include "detection.hpp"
-#include "world.hpp"
-#include "navigation.hpp"
-#include "protocole.hpp"
+
+#include <stdio.h>
+#include <cstdlib>
 
 /**
  * @file affichage.hpp

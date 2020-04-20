@@ -1,19 +1,8 @@
 #ifndef __MAIN__
 #define __MAIN__
 
-#include <vector>
-#include <iostream>
-#include <stdio.h>
-#include <math.h>
-#include <array>
-#include <cfloat>
-
-#include "affichage.hpp"
-#include "navigation.hpp"
-#include "world.hpp"
-#include "asserv.hpp"
-#include "detection.hpp"
 #include "actionneur.hpp"
+#include "navigation.hpp"
 
 /**
 * @file main.hpp
@@ -29,6 +18,15 @@ void setup();
 * @brief Boucle principale du projet
  */
 void loop();
+
+/**
+ * @brief Permet de réaliser une étape c'est à dire un déplacement d'un point principal à un autre point principal
+ * @param src: le point de départ
+ * @param dest: le point d'arrivée
+ * @param list_obstacles: les obstacles sur le chemin*/
+void one_step(Node src, Node dest, vector<obstacle> list_obstacles);
+
+
 int main(int argc, char *argv[]);
 
 

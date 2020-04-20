@@ -1,38 +1,44 @@
-CFLAGS = --coverage -std=c++11 -g -O3
+CFLAGS = -std=c++11 -g --coverage -O3
 FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o
+TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
 else
 	CC=g++
 endif
 
-.PHONY: doc clean
+.PHONY: doc clean coverage
 ##
 # Project Title
 #
-# @file
-# @version 0.1
+# @file Makefile
+# @brief Permet de complier le projet
+# @author SD & Ptit Lu
 
-all: project
+all: project doc coverage
 
-%.o: rasp/src/%.cpp
+# Permet de compiler les sources
+%.o: rasp/*/%.cpp
 	$(CC) $(CFLAGS) -c $<
 
 project: $(FILE) rasp/src/main.cpp
-	$(CC) $(CFLAGS) $(FILE) rasp/src/main.cpp -o project
+	$(CC) $(CFLAGS) $(FILE)  rasp/src/main.cpp -o project
 
-test: $(FILE) rasp/tst/test.cpp
-	$(CC) $(CFLAGS) $(FILE) rasp/tst/test.cpp -pg -o test
+test: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
+	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -pg -o test
 
-test_protocole: protocole.o
-	$(CC) $(CFLAGS) protocole.o rasp/tst/test_protocole.cpp -o test_protocole
+coverage: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
+	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -O0 -pg -o test
+	./test
+	mv *.gc* coverage/
+	lcov  --directory coverage/ -c -o coverage/rapport.info
+	lcov --remove coverage/rapport.info '/usr/include/*'
+	genhtml -o coverage/ -t "couverture de code des tests" coverage/rapport.info
+	firefox coverage/src/index.html &
 
 clean:
-	rm -f *.o project test test_protocole *.gcno
-	rm -r -f doc/html
-
-launch:
-	./test
+	rm -f *.o project test test_protocole *.gcno *.gcov *.gcda *.out
+	rm -r -f doc/html coverage/*[^.gitkeep]
 
 doc:
 	doxygen Doxyfile
@@ -41,7 +47,7 @@ upload:
 	scp test_protocole pi@eirboat:~
 	ssh pi@eirboat ./test_protocole
 
-tocard:
-	scp test pi@192.168.43.32:~
-	ssh pi@192.168.43.32  ./test base debug
+final:
+	scp projet pi@192.168.43.32:~
+	ssh pi@192.168.43.32  ./project
 # end

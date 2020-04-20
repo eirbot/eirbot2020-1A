@@ -1,11 +1,7 @@
 #ifndef __ACTIONNEUR_H__
 #define __ACTIONNEUR_H__
 
-#include "world.hpp"
-#include "asserv.hpp"
-#include "navigation.hpp"
 #include "protocole.hpp"
-#include "affichage.hpp"
 
 /**
  * @file actionneur.hpp

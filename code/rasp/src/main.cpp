@@ -15,9 +15,8 @@ int success_deplacement;
 int total_reach;
 int success_reach;
 int timeout;
-
-
-//Gère le coté de la table
+int robot_adv;
+int timeout_after_timeout;
 int which_side=0;
 
 short side(short y)
@@ -39,6 +38,33 @@ struct Node Port_S={16,side(120),0,0,0,0,0};
 
 // Définition des GP2
 
+
+void one_step(Node src, Node dest, vector<obstacle> list_obstacles)
+{
+  std::vector<Node> result;
+  int back;
+  result = Navigation::Astar(src, dest, list_obstacles);
+  if (result.size()!= 0) {
+    back=Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+    Navigation::back_effect(back,dest,list_obstacles);
+    struct position my_position=Asservissement::robot_position();
+    good_port(my_position.x, my_position.y, dest.x, dest.y);
+    printf("\n");
+  }
+  else{
+    printf("%lu \n",list_obstacles.size());
+    list_obstacles=Navigation::stun(list_obstacles);
+    printf("%lu \n",list_obstacles.size());
+    back=Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+    Navigation::back_effect(back,dest,list_obstacles);
+    struct position my_position=Asservissement::robot_position();
+    good_port(my_position.x, my_position.y, dest.x, dest.y);
+    list_obstacles=World::fillVector();
+    printf("\n");
+  }
+
+}
+
 //Initialisation
 void setup()
 {
@@ -50,7 +76,7 @@ void setup()
   print_success();
 
   //Information sur le côté de la table
-  printf("Je récupère l'information du côté de la table");
+  printf("Je récupère l'information du côté de la table \n");
 
   //Initialisation de la position
   printf("Je commence ma calibration en position \n");
@@ -61,14 +87,11 @@ void setup()
 
   //Mise du robot au point de départ
   printf("Je me déplace jusqu'au point de départ \n");
-  Asservissement::go_to({.x=Port.x,.y=Port.y});
+  Asservissement::go_to({.x=Port.x,.y=Port.y},Asservissement::robot_position());
   Asservissement::rotate(0);
   printf("Déplacement au point de départ");
   print_success();
   printf("Je suis prêt ! \n");
-  while (clou est la) {
-    loop()
-  }
 }
 
 //Boucle de jeu
@@ -76,41 +99,22 @@ void loop()
 {
   int temps=0;
   vector<obstacle> list_obstacles = World::fillVector();
-  std::vector<Node> result;
-  struct position position;
-  struct Node my_position;
-
-  //Aller jusqu'au phare
-  result=Navigation::Astar(Port,Phare,list_obstacles);
-  Navigation::Navigate_to_asserv(result,Phare);
-  //Actionneur::Phare_activation(); //Sort l'actionneur et on avance un peu
-  //Actionneur::Phare_desactivation(); //On rentre l'actionneur
-
-  //Aller jusqu'au manche à air 1
-  position=Asservissement::robot_position();
-  my_position.x=Phare.x;//position.x;
-  my_position.y=Phare.y;//position.y;
-  result=Navigation::Astar(my_position,Manche_1,list_obstacles);
-  Navigation::Navigate_to_asserv(result,Manche_1);
-  //Actionneur::Manche_activation(); //Sort l'actionneur quand on est proche du premier manche
-
-  //Aller jusqu'au manche à air 2
-  position=Asservissement::robot_position();
-  my_position.x=Manche_1.x;//position.x;
-  my_position.y=Manche_1.y;//position.y;
-  result=Navigation::Astar(my_position,Manche_2,list_obstacles);
-  Navigation::Navigate_to_asserv(result,Manche_2);
-  //Actionneur::Manche_desactivation(); //On rentre l'actioneur après avoir levé les 2 manches à air
-
-  //Rentrer jusqu'au port
-  position=Asservissement::robot_position();
-  my_position.x=Manche_2.x;//position.x;
-  my_position.y=Manche_2.y;//position.y;
-  list_obstacles.erase(list_obstacles.begin());
-  result=Navigation::Astar(my_position,Port_N,list_obstacles);
-  //Penser à récupérer l'information du port d'arrivée
-  Navigation::Navigate_to_asserv(result, Port_N);
+  total_reach=4;
+  printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
+  one_step(Port,Phare,list_obstacles);
+  Actionneur::Phare_activation();
+  Actionneur::Phare_desactivation();
+  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
+  one_step(Phare,Manche_1,list_obstacles);
+  Actionneur::Phare_activation();
+  printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
+  one_step(Manche_1,Manche_2,list_obstacles);
+  Actionneur::Phare_desactivation();
+  printf("\033[33mJe pars de MANCHE_2 et je vais au PORT \033[0m \n");
+  one_step(Manche_2,Port,list_obstacles);
 }
+
+class Protocole Protocole("/dev/ttyS0");
 
 int main(int argc, char *argv[]) {
   setup();

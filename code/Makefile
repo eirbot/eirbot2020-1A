@@ -42,6 +42,7 @@ clean:
 
 doc:
 	doxygen Doxyfile
+	firefox doc/html/globals.html &
 
 upload:
 	scp test_protocole pi@eirboat:~

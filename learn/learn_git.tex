@@ -25,13 +25,20 @@
 \usepackage[top=2cm,bottom=2cm,left=2cm,right=2cm]{geometry}
 \usepackage{amsthm}
 \usepackage{listings}
+\usepackage{transparent}
+\usepackage{eso-pic,graphicx}
+
 \setlength{\parindent}{0cm}
 \setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
 \newcommand{\hsp}{\hspace{20pt}}
 \newcommand{\HRule}{\rule{\linewidth}{0.1mm}}
 
-\definecolor{darkWhite}{rgb}{0.94,0.94,0.94}
-
+\AddToShipoutPicture{%
+  \unitlength=1cm
+    \put(1.6,8){\transparent{0.3}\includegraphics[width=18cm,
+        height=13cm]{filigrame.png}}
+    }
+   
 \lstset{
   backgroundcolor=\color{darkWhite},
   basicstyle=\footnotesize,
@@ -44,11 +51,11 @@
   keywordstyle=\color{blue},
   language=bash,
   literate=
-  {²}{{\textsuperscript{2}}}1
-  {⁴}{{\textsuperscript{4}}}1
-  {⁶}{{\textsuperscript{6}}}1
-  {⁸}{{\textsuperscript{8}}}1
-  {€}{{\euro{}}}1
+  % {²}{{\textsuperscript{2}}}1
+  % {⁴}{{\textsuperscript{4}}}1
+  % {⁶}{{\textsuperscript{6}}}1
+  % {⁸}{{\textsuperscript{8}}}1
+  % {€}{{\euro{}}}1
   {é}{{\'e}}1
   {è}{{\`{e}}}1
   {ê}{{\^{e}}}1
@@ -83,6 +90,9 @@
   stepnumber=1,
   tabsize=4,
 }
+\definecolor{darkWhite}{rgb}{0.94,0.94,0.94}
+
+
 \begin{document}
 \begin{spacing}{1.5}
 \graphicspath{{image/}}
@@ -245,9 +255,9 @@ Pour chaque fichier en conflit, appliquer la procédure suivante :
 \item Rechercher dans l'éditeur les blocs de la forme suivante :
   \begin{lstlisting}
     <<<<<<< HEAD
-    Teddy , le programmeur extrémiste.
+    Teddy , le programmeur extremiste.
     =======
-    Teddy , le programmeur de l'extrême.
+    Teddy , le programmeur de l'extreme.
     >>>>>>> origin/master
   \end{lstlisting}
 Git a modifié de lui-même le fichier pour inclure, aux endroits qui lui
@@ -275,14 +285,46 @@ versions à garder, ou de faire une sorte de mélange des deux si besoin.
 \end{enumerate}
 
 \subsection*{Authentification via clé SSH}
+Si vous voulez utilisez cloner quelque chose des dépôts distants, vous devrez choisir entre un des deux moyens : HTTPS ou SSH. Si vous utilisez HTTPS, vous devrez taper l'accès de votre compte chaque fois pour communiquer avec le dépôt distant, il y a un moyen de contourner le problème, la méthode d'authentification SSH.
+
 Pour modifier son authentification vers ssh il faut tout d'abbord générer une
 clé privée et une clé publique sur le poste client.
 \begin{center}
   \begin{tabular}{c}
     \rowcolor{lightgray!50!white}
-      ssh-keygen -t rsa
+      ssh-keygen -t rsa -b 4096 -C ``[your github's email]''
   \end{tabular}
 \end{center}
+Ensuite lorsque le terminal affiche ce texte appuyez sur Entrer
+\begin{center}
+  \begin{tabular}{l}
+    \rowcolor{lightgray!50!white}
+    > Entrez un fichier dans lequel enregistrer la clé\\
+    \rowcolor{lightgray!50!white}
+    (/Users/you/.ssh/id\_rsa): [Appuyez sur Entrer]
+  \end{tabular}
+\end{center}
+Finalement il faut définir un mot de passe associé à cette clé
+\begin{center}
+  \begin{tabular}{l}
+    \rowcolor{lightgray!50!white}
+    > Entrez la phrase secrète (vide pour ne pas utiliser de phrase secrète): [Tapez une phrase secrète] \\
+    \rowcolor{lightgray!50!white}
+    > Entrez à nouveau la même phrase secrète: [Tapez à nouveau la phrase secrète]
+  \end{tabular}
+\end{center}
+
+Voyons maintenant comment ajouter la clé SSH à ssh-agent. Tout d'abbord assurez vous que ssh-agent est activé
+\begin{center}
+  \begin{tabular}{c}
+    \rowcolor{lightgray!50!white}
+    eval \og \$(ssh-agent -s)\fg{}\\
+    \rowcolor{lightgray!50!white}
+    eval \og \$(ssh-agent -s)\fg{}\\
+
+  \end{tabular}
+\end{center}
+
 Par défaut la clé publique et privée sont enregistrée dans le répertoire $.ssh$
 
 

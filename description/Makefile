@@ -6,11 +6,11 @@
 all: project
 
 project:
-	pdflatex descrption.tex
+	pdflatex description.tex
 
 # Build document.
 run:
-	evince rapport.pdf &
+	evince description.pdf &
 
 # Clean directory
 clean:

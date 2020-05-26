@@ -3,7 +3,7 @@
 # date : jeudi 19 décembre 2019, 13:19:09 (UTC+0100)
 # author : sedelpeuch
 # description :
-all: makefile
+all: git
 
 git:
 	pdflatex learn_git.tex

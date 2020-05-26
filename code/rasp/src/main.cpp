@@ -1,10 +1,15 @@
 #include "main.hpp"
 
+#include <time.h>
+
+#include <unistd.h>
+
 using namespace std;
 class Navigation;
 class World;
 class Actionneur;
 class GP2;
+
 
 bool debug=false;
 vector<Node> debugPath(2);
@@ -18,6 +23,12 @@ int timeout;
 int robot_adv;
 int timeout_after_timeout;
 int which_side=0;
+
+//time
+float begin_time=0;
+float delai=0;
+float end=0;
+
 
 short side(short y)
 {
@@ -65,6 +76,15 @@ void one_step(Node src, Node dest, vector<obstacle> list_obstacles)
 
 }
 
+void port_now(vector<obstacle> list_obstacles)
+{
+  std::vector<Node> result;
+  struct position my_position=Asservissement::robot_position();
+  //TODO : changer 63 et side 184
+  struct Node position={(short) 63,(short) side(184),0,0,0,0,0};
+  result = Navigation::Astar(position, Port, list_obstacles);
+}
+
 //Initialisation
 void setup()
 {
@@ -100,24 +120,31 @@ void loop()
   int temps=0;
   vector<obstacle> list_obstacles = World::fillVector();
   total_reach=4;
+  while ((clock()-begin_time)/CLOCKS_PER_SEC <= 90) {
   printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
   one_step(Port,Phare,list_obstacles);
   Actionneur::Phare_activation();
   Actionneur::Phare_desactivation();
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
   one_step(Phare,Manche_1,list_obstacles);
+
+
   Actionneur::Phare_activation();
   printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
   one_step(Manche_1,Manche_2,list_obstacles);
   Actionneur::Phare_desactivation();
-  printf("\033[33mJe pars de MANCHE_2 et je vais au PORT \033[0m \n");
-  one_step(Manche_2,Port,list_obstacles);
+  break;
+  }
+  port_now(list_obstacles);
 }
 
 class Protocole Protocole("/dev/ttyS0");
 
 int main(int argc, char *argv[]) {
   setup();
+  begin_time = clock();
   loop();
+  delai=(clock()-begin_time)/CLOCKS_PER_SEC;
+  printf("Temps d'execution %f secondes \n",delai);
   return 0;
 }

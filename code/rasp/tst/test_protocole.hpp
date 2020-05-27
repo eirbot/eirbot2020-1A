@@ -1,7 +1,7 @@
 #ifndef __TEST_PROTOCOLE_H_
 #define __TEST_PROTOCOLE_H_
 
-#include "../src/protocole.hpp"
+#include "../src/navigation/protocole.hpp"
 #include <cstring>
 #include "test.hpp"
 

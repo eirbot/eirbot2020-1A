@@ -2,7 +2,7 @@
 #define __TEST_ASSERV_H_
 
 #include "test.hpp"
-#include "../src/asserv.hpp"
+#include "../src/navigation/asserv.hpp"
 
 void test_asserv();
 

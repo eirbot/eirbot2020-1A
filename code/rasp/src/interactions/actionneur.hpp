@@ -1,7 +1,7 @@
 #ifndef __ACTIONNEUR_H__
 #define __ACTIONNEUR_H__
 
-#include "protocole.hpp"
+#include "../navigation/protocole.hpp"
 
 /**
  * @file actionneur.hpp

@@ -7,7 +7,7 @@
 #include <cfloat>
 #include <stack>
 
-#include  "affichage.hpp"
+#include  "../affichage.hpp"
 #include "world.hpp"
 #include "protocole.hpp"
 

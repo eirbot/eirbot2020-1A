@@ -2,7 +2,7 @@
 #define __TEST_ACTIONNEUR_H_
 
 #include "test.hpp"
-#include "../src/actionneur.hpp"
+#include "../src/interactions/actionneur.hpp"
 
 void test_actionneur();
 

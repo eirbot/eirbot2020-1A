@@ -1,8 +1,8 @@
 #ifndef __DETECTION_H__
 #define __DETECTION_H__
 
-#include "world.hpp"
-#include "asserv.hpp"
+#include "../navigation/world.hpp"
+#include "../navigation/asserv.hpp"
 
 /**
  * @file detection.hpp

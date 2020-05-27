@@ -1,5 +1,5 @@
 CFLAGS = -std=c++11 -g --coverage -O3
-FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o
+FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o ecocup_pdv.o
 TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o test_navigation.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
@@ -18,8 +18,11 @@ endif
 all: project doc coverage
 
 # Permet de compiler les sources
+%.o: rasp/*/*/%.cpp
+	$(CC) $(CFLAGS) -c $<
 %.o: rasp/*/%.cpp
 	$(CC) $(CFLAGS) -c $<
+
 
 project: $(FILE) rasp/src/main.cpp
 	$(CC) $(CFLAGS) $(FILE)  rasp/src/main.cpp -o project

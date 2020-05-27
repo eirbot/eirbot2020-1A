@@ -1,8 +1,9 @@
 #ifndef __MAIN__
 #define __MAIN__
 
-#include "actionneur.hpp"
-#include "navigation.hpp"
+#include "interactions/actionneur.hpp"
+#include "navigation/navigation.hpp"
+//#include "interactions/ecocup.hpp"
 
 /**
 * @file main.hpp

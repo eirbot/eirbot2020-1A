@@ -121,24 +121,30 @@ void loop()
   vector<obstacle> list_obstacles = World::fillVector();
   total_reach=4;
   while ((clock()-begin_time)/CLOCKS_PER_SEC <= 90) {
-  printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
-  one_step(Port,Phare,list_obstacles);
-  Actionneur::Phare_activation();
-  Actionneur::Phare_desactivation();
-  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-  one_step(Phare,Manche_1,list_obstacles);
 
+    //Module Phare
+    printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
+    one_step(Port,Phare,list_obstacles);
+    Actionneur::Phare_activation();
+    Actionneur::Phare_desactivation();
 
-  Actionneur::Phare_activation();
-  printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
-  one_step(Manche_1,Manche_2,list_obstacles);
-  Actionneur::Phare_desactivation();
-  break;
+    //Module Manche à aire
+    printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
+    one_step(Phare,Manche_1,list_obstacles);
+    Actionneur::Phare_activation();
+    printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
+    one_step(Manche_1,Manche_2,list_obstacles);
+    Actionneur::Phare_desactivation();
+
+    //Module eco cup
+    printf("\033[33mJe commence le ramassage des écocups \033[0m \n");
+    //ecocup_pdv();
+    break;
   }
   port_now(list_obstacles);
 }
 
-class Protocole Protocole("/dev/ttyS0");
+class Protocole Protocole("/dev/ttyACM0");
 
 int main(int argc, char *argv[]) {
   setup();

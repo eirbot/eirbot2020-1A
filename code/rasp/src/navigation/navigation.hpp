@@ -2,7 +2,7 @@
 #define __NAVIGATION_H_
 
 #include "asserv.hpp"
-#include "detection.hpp"
+#include "../interactions/detection.hpp"
 
 /**
  * @file navigation.hpp

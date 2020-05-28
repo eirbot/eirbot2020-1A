@@ -5,7 +5,7 @@ extern int *cycle_hamiltonien;
 short ecocup_coordonne[100][2];
 char ecocup_couleur[100][1];
 
-void ecocup_road(int taille, vector<obstacle> list_obstacles)
+void ecocup_road(int taille, Robot Robot)
 {
     ecocup_pdv(taille);
     ecocup_read(taille);
@@ -13,23 +13,19 @@ void ecocup_road(int taille, vector<obstacle> list_obstacles)
     std::vector<Node> result;
     int back;
     struct Node src={0,0,0,0,0,0,0};
-    struct position my_position=Asservissement::robot_position();
+    struct position my_position=Robot.position();
     src.x=my_position.x=16;
     src.y=my_position.y=80;
     struct Node dest={0,0,0,0,0,0,0};
-    vector <obstacle> list_obstacles_without_ecocup=World::fillVector_no_ecocup();
+    vector <obstacle> list_obstacles_without_ecocup=fillVector_no_ecocup();
     for (int i=1; i<taille ; i++) {
         //On trouve le x et le y auquel on doit aller
         dest.x=ecocup_coordonne[cycle_hamiltonien[i+1]][0];
         dest.y=ecocup_coordonne[cycle_hamiltonien[i+1]][1];
 
         //On va à l'éco cup
-        result = Navigation::Astar(src, dest, list_obstacles_without_ecocup);
-        back=Navigation::Navigate_to_asserv(result,dest,list_obstacles_without_ecocup);
-        Navigation::back_effect(back,dest,list_obstacles_without_ecocup);
-        my_position=Asservissement::robot_position();
-        good_port(my_position.x, my_position.y, dest.x, dest.y);
-        printf("\n");
+        Robot.move(src,dest,list_obstacles_without_ecocup);
+       
         src.x=dest.x;
         src.y=dest.y;
         ecocup_take();
@@ -41,12 +37,7 @@ void ecocup_road(int taille, vector<obstacle> list_obstacles)
         if (ecocup_couleur[cycle_hamiltonien[i]][0]=='R') {
             dest={16,120};
         }
-        result = Navigation::Astar(src, dest, list_obstacles_without_ecocup);
-        back=Navigation::Navigate_to_asserv(result,dest,list_obstacles_without_ecocup);
-        Navigation::back_effect(back,dest,list_obstacles_without_ecocup);
-        my_position=Asservissement::robot_position();
-        good_port(my_position.x, my_position.y, dest.x, dest.y);
-        printf("\n");
+        Robot.move(src,dest,list_obstacles_without_ecocup);
         src.x=dest.x;
         src.y=dest.y;
 

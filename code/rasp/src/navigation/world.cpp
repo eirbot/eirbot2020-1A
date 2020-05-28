@@ -5,7 +5,7 @@ struct shape eco_cup={7,7};
 struct shape stone_area={2,15};//15
 struct shape stone_area_big={2,30};
 
-std::vector<obstacle> World::fillVector()
+std::vector<obstacle> fillVector()
 {
 
     std::vector<obstacle> list_obstacles;
@@ -39,7 +39,7 @@ std::vector<obstacle> World::fillVector()
     return list_obstacles;
 }
 
-std::vector<obstacle> World::fillVector_no_ecocup()
+std::vector<obstacle> fillVector_no_ecocup()
 {
 
     std::vector<obstacle> list_obstacles;
@@ -50,7 +50,7 @@ std::vector<obstacle> World::fillVector_no_ecocup()
 }
 
 
-bool World::who_here(short x, short y, struct shape shape,std::vector<obstacle> list_obstacles)
+bool who_here(short x, short y, struct shape shape,std::vector<obstacle> list_obstacles)
 {
     for(size_t k=0;k<list_obstacles.size();k++)
     {
@@ -68,7 +68,7 @@ bool World::who_here(short x, short y, struct shape shape,std::vector<obstacle> 
     return false;
 }
 
-bool World::isValid(short x, short y, std::vector<obstacle> list_obstacles)
+bool isValid(short x, short y, std::vector<obstacle> list_obstacles)
 {
     if(x>X_MAX-ROBOT_LENGTH/2 || x<ROBOT_LENGTH/2 || y>Y_MAX-ROBOT_WIDTH/2 || y<ROBOT_WIDTH/2){
         return false;

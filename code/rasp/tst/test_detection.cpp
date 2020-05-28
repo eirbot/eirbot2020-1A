@@ -9,7 +9,7 @@ void test_detection()
     test.activate();
     test.disactivate();
 
-    vector<obstacle> test_vector=World::fillVector();
+    vector<obstacle> test_vector=fillVector();
     assert(test_vector.size()==27);
 
     test_vector=GP2::gp2Obstacle(test_vector, {30,50});

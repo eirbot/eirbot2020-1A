@@ -6,20 +6,20 @@ void test_asserv()
     struct position src = {0,0};
     struct position dest = {50,50};
     int back=-5;
-    back=Asservissement::go_to(dest,src);
+    back=go_to(dest,src);
     assert(back!=-5);
 
     struct position back_pos={-5,-5};
-    back_pos=Asservissement::robot_position();
+    back_pos=robot_position();
     assert(back_pos.x!=-5 || back_pos.y!=-5);
 
-    short angle=-12;
-    angle=Asservissement::angle();
-    assert(angle!=-12);
+    short the_angle=-12;
+    the_angle=angle();
+    assert(the_angle!=-12);
 
     printf("\n>> Test non complets dont les fonctions nécessitent des modifications <<\n");
-    Asservissement::rotate(50);
-    Asservissement::initialise_x();
-    Asservissement::initialise_y();
+    rotate(50);
+    initialise_x();
+    initialise_y();
     TEST_END;
 }

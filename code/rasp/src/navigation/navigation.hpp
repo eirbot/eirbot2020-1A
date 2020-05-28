@@ -78,7 +78,6 @@ class Navigation
                  * éviter le robot adverse en rappelant l'Astar
                  * @param list_obstacles: la liste des obstacles de la table
                  * @return la liste des obstacles sans les écos cups*/
-                static std::vector<obstacle> stun(std::vector<obstacle> list_obstacles); //Permet de réagir si on est totalement bloqué
                 ~Navigation();
                 Node node;
 

@@ -33,41 +33,33 @@ struct position{
 };
 
 /**
- * @class Asservissement
- * @brief Classe permettant de demander des informations à la nucléo et d'ordonner des déplacements*/
-
-class Asservissement
-{
-    public:
-        /**
-         * @brief Permet de transmettre au protocole l'ordre de se déplacer
-         * @param dest: la position à atteindre
-         * @param src: la position
-         * @return Le code d'erreur associé au traitement de l'ordre par le protocole*/
-        static int go_to(struct position dest, struct position src); //Permet au robot de se tourner vers la destination et d'aller à la destination
-        /**
-         * @brief Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence
-         * @param asserv_back: entier de retour de l'asservissement 0: normal 1: timeout 2:detection 3:panique*/
-        static int call_back(int asserv_back); //Permet d'analyser le retour de l'asservissement
-        /**
-         * @brief Permet d'ordonner la rotation du robot
-         * @param angle: l'angle en degrés*/
-        static void rotate(short angle); //Permet de faire tourner le robot d'un certain angle (le type de angle est à définir)
-        /*
-        ** @brief Permet de demander l'information sur la position du robot
-        ** @return Une structure position contenant la position actuelle du robot
-         */
-        static struct position robot_position(); //Renvoie la position du robot
-        /**
-         * @brief Permet de demander l'information sur l'angle du robot par rapport à la table
-         * @return un short entre 0 et 360° */
-        static short angle(); //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
-        /**
-         * @brief Demande d'effectuer la calibration par rapport au grand côté*/
-        static void initialise_x(); //Fait la calibration par rapport au grand coté de la table
-        /**
-         * @brief Demande d'effectuer la calibration par rapport au petit côté*/
-        static void initialise_y(); //Fait la calibration par rapport au petit coté de la table
-};
+ * @brief Permet de transmettre au protocole l'ordre de se déplacer
+ * @param dest: la position à atteindre
+ * @param src: la position
+ * @return Le code d'erreur associé au traitement de l'ordre par le protocole*/
+int go_to(struct position dest, struct position src); //Permet au robot de se tourner vers la destination et d'aller à la destination
+/**
+ * @brief Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence
+ * @param asserv_back: entier de retour de l'asservissement 0: normal 1: timeout 2:detection 3:panique*/
+int call_back(int asserv_back); //Permet d'analyser le retour de l'asservissement
+/**
+ * @brief Permet d'ordonner la rotation du robot
+ * @param angle: l'angle en degrés*/
+void rotate(short angle); //Permet de faire tourner le robot d'un certain angle (le type de angle est à définir)
+/*
+** @brief Permet de demander l'information sur la position du robot
+** @return Une structure position contenant la position actuelle du robot
+*/
+struct position robot_position(); //Renvoie la position du robot
+/**
+ * @brief Permet de demander l'information sur l'angle du robot par rapport à la table
+ * @return un short entre 0 et 360° */
+short angle(); //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
+/**
+ * @brief Demande d'effectuer la calibration par rapport au grand côté*/
+void initialise_x(); //Fait la calibration par rapport au grand coté de la table
+/**
+ * @brief Demande d'effectuer la calibration par rapport au petit côté*/
+void initialise_y(); //Fait la calibration par rapport au petit coté de la table
 
 #endif

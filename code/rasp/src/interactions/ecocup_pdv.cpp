@@ -183,20 +183,20 @@ list_ville getvilleNonVisite(int num_fourmi)
 //--------------------------------------------------------------------------------------------------------------------------
 // Fonction retourne la probabilité qui une fourmi passe par l'arc i->j
 //--------------------------------------------------------------------------------------------------------------------------
-float calcul_probabilite(int num_fourmi, int ville_actuel, int ville_non_visite)
+float calcul_probabilite(int num_fourmi, int ville_actuelle, int ville_non_visite)
 {
     float p,q=0;
 
     ville* temp;
 
-    p = pow(quantite_pheromones_existante[ville_actuel][ville_non_visite],(float)C_IMPORTANCE_VISIBILITE_VILLE)*pow(matrice_visibilite[ville_actuel][ville_non_visite],(float)C_IMPORTANCE_QUANTITE_PHEROMONE);
+    p = pow(quantite_pheromones_existante[ville_actuelle][ville_non_visite],(float)C_IMPORTANCE_VISIBILITE_VILLE)*pow(matrice_visibilite[ville_actuelle][ville_non_visite],(float)C_IMPORTANCE_QUANTITE_PHEROMONE);
 
     list_ville list_ville_non_visite = getvilleNonVisite(num_fourmi);
 
     temp = list_ville_non_visite;
     while(temp != NULL)
     {
-        q += pow(quantite_pheromones_existante[ville_actuel][temp->num_ville],(float)C_IMPORTANCE_VISIBILITE_VILLE)*pow(matrice_visibilite[ville_actuel][temp->num_ville],(float)C_IMPORTANCE_QUANTITE_PHEROMONE);
+        q += pow(quantite_pheromones_existante[ville_actuelle][temp->num_ville],(float)C_IMPORTANCE_VISIBILITE_VILLE)*pow(matrice_visibilite[ville_actuelle][temp->num_ville],(float)C_IMPORTANCE_QUANTITE_PHEROMONE);
         temp = temp->nxt;
     }
 

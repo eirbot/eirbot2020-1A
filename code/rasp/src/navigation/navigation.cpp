@@ -50,7 +50,7 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
 {
     double E=0;
     vector<Node> empty;
-    if (World::isValid(dest.node.x,dest.node.y,list_obstacles)==false){
+    if (isValid(dest.node.x,dest.node.y,list_obstacles)==false){
         printf("La destination est un obstacle ........................... ");
         print_fail();
         return empty;
@@ -114,7 +114,7 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
             node =*itNode;
             openList.erase(itNode);
 
-        }while(World::isValid(node.x,node.y,list_obstacles)==false);
+        }while(isValid(node.x,node.y,list_obstacles)==false);
         double fNew,gNew,hNew;
         x=node.x;
         y=node.y;
@@ -122,7 +122,7 @@ std::vector<Node> Navigation::Astar(Navigation src, Navigation dest,std::vector<
         //On ajoute les voisins dans la closed list
         for (short i= -1 ; i<=1; i++) {
             for (short j=-1; j<=1; j++) {
-                if (World::isValid(x+i,y+j,list_obstacles)==true) {
+                if (isValid(x+i,y+j,list_obstacles)==true) {
                     //Si on trouve la destination finale
                     if (isDestination(x+i,y+j,dest)==true) {
                         allMap[x+i][y+j].parentX=x;
@@ -216,7 +216,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x+dep_x,.y=position.y},{.x=position.x,.y=position.y});
             mv=0;
             position.x+=dep_x;
             dep_x=0;
@@ -232,7 +232,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x-dep_x,.y=position.y},{.x=position.x,.y=position.y});
             mv=0;
             position.x-=dep_x;
             dep_x=0;
@@ -248,7 +248,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
             mv=0;
             position.y+=dep_y;
             dep_y=0;
@@ -264,7 +264,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
             mv=0;
             position.y-=dep_y;
             dep_y=0;
@@ -281,7 +281,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x+dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
             back_effect(back, dest, list_obstacles);
             mv=0;
             position.y+=dep_y;
@@ -302,7 +302,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x+dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x+dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
        mv=0;
             position.y-=dep_y;
             position.x+=dep_x;
@@ -321,7 +321,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x-dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
            mv=0;
             position.y+=dep_y;
             position.x-=dep_x;
@@ -341,7 +341,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=Asservissement::go_to({.x=position.x-dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x-dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
            mv=0;
             position.y-=dep_y;
             position.x-=dep_x;
@@ -354,7 +354,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
         }
         j+=1;
     }
-    back=Asservissement::go_to({.x=dest.node.x,.y=dest.node.y},{.x=position.x,.y=position.y});
+    back=go_to({.x=dest.node.x,.y=dest.node.y},{.x=position.x,.y=position.y});
     if (back==1 || back==2) {
         return back;
     }
@@ -368,28 +368,53 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
         return;
     }
     if(back==1){
-        struct position my_position=Asservissement::robot_position();
+        struct position my_position=robot_position();
         my_position={.x=50,.y=50};
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
         struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
-        vector<Node> result=Navigation::Astar(node_position,node_dest,list_obstacles);
-        Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+        vector<Node> result=Astar(node_position,node_dest,list_obstacles);
+        Navigate_to_asserv(result,dest,list_obstacles);
     }
     if(back==2){
         print_detection();
-        struct position my_position=Asservissement::robot_position();
+        struct position my_position=robot_position();
         list_obstacles=GP2::gp2Obstacle(list_obstacles,my_position);
         my_position.x=50;
         my_position.y=50;
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
         struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
-        vector<Node> result=Navigation::Astar(node_position,node_dest,list_obstacles);
-        Navigation::Navigate_to_asserv(result,dest,list_obstacles);
+        vector<Node> result=Astar(node_position,node_dest,list_obstacles);
+        Navigate_to_asserv(result,dest,list_obstacles);
 
     }
 }
 
-extern struct shape eco_cup;
+void Navigation::one_step(Node src, Node dest, vector<obstacle> list_obstacles)
+{
+  std::vector<Node> result;
+  int back;
+  result = Astar(src, dest, list_obstacles);
+  if (result.size()!= 0) {
+    back=Navigate_to_asserv(result,dest,list_obstacles);
+    back_effect(back,dest,list_obstacles);
+    struct position my_position=robot_position();
+    good_port(my_position.x, my_position.y, dest.x, dest.y);
+    printf("\n");
+  }
+  else{
+    printf("%lu \n",list_obstacles.size());
+    list_obstacles=fillVector_no_ecocup();
+    printf("%lu \n",list_obstacles.size());
+    back=Navigate_to_asserv(result,dest,list_obstacles);
+    back_effect(back,dest,list_obstacles);
+    struct position my_position=robot_position();
+    good_port(my_position.x, my_position.y, dest.x, dest.y);
+    list_obstacles=fillVector();
+    printf("\n");
+  }
+
+}
+
 
 Navigation::~Navigation()
 {

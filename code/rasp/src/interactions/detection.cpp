@@ -62,7 +62,7 @@ vector<obstacle> GP2::gp2Obstacle(vector<obstacle> list_obstacles, struct positi
     //On trouve maintenant la configuration (gauche, centre gauche, centre, centre droit, droit) et on place le nouvel obstacle
     short position_x=position.x;
     short position_y=position.y;
-    short angle=Asservissement::angle();
+    short the_angle=angle();
     struct shape robot={34,34};
     short mask_to_distance;
     switch (max_mask_avant) {
@@ -80,9 +80,9 @@ vector<obstacle> GP2::gp2Obstacle(vector<obstacle> list_obstacles, struct positi
             break;
     }
     mask_to_distance=130;
-    angle=90;
-    float calcul_x=position_x+(mask_to_distance+32)*cos(angle);
-    float calcul_y=position_y+(mask_to_distance+32)*sin(angle);
+    the_angle=90;
+    float calcul_x=position_x+(mask_to_distance+32)*cos(the_angle);
+    float calcul_y=position_y+(mask_to_distance+32)*sin(the_angle);
     list_obstacles.push_back({(short)calcul_x, (short)calcul_y, &robot});
     return list_obstacles;
 }

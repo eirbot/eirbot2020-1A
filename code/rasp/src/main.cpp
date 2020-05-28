@@ -64,7 +64,7 @@ void one_step(Node src, Node dest, vector<obstacle> list_obstacles)
   }
   else{
     printf("%lu \n",list_obstacles.size());
-    list_obstacles=Navigation::stun(list_obstacles);
+    list_obstacles=World::fillVector_no_ecocup();
     printf("%lu \n",list_obstacles.size());
     back=Navigation::Navigate_to_asserv(result,dest,list_obstacles);
     Navigation::back_effect(back,dest,list_obstacles);
@@ -138,7 +138,7 @@ void loop()
 
     //Module eco cup
     printf("\033[33mJe commence le ramassage des écocups \033[0m \n");
-    //ecocup_pdv();
+    ecocup_road(8, list_obstacles);
     break;
   }
   port_now(list_obstacles);

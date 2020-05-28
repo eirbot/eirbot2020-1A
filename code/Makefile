@@ -1,5 +1,6 @@
-CFLAGS = -std=c++11 -g --coverage -O3
-FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o ecocup_pdv.o
+CFLAGS = -std=c++11 -g -O3
+CFLAGS_TEST= --coverage
+FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o ecocup_pdv.o ecocup.o
 TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o test_navigation.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
@@ -28,7 +29,7 @@ project: $(FILE) rasp/src/main.cpp
 	$(CC) $(CFLAGS) $(FILE)  rasp/src/main.cpp -o project
 
 test: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
-	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -pg -o test
+	$(CC) $(CFLAGS) $(CFLAGS_TEST) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -pg -o test
 
 coverage: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
 	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -O0 -pg -o test
@@ -41,7 +42,8 @@ coverage: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
 
 clean:
 	rm -f *.o project test test_protocole *.gcno *.gcov *.gcda *.out
-	rm -r -f doc/html coverage/*[^.gitkeep]
+	rm -r -f doc/html
+	rm -f -r coverage/* && touch coverage/.gitkeep
 
 doc:
 	doxygen Doxyfile

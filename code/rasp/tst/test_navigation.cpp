@@ -79,10 +79,6 @@ void test_navigation()
     Navigation::back_effect(2, Navigation(Manche_1), list_obstacles);
     print_success();
 
-    printf("Test sur la fonction stun ... ");
-    list_obstacles=Navigation::stun(list_obstacles);
-    assert(list_obstacles.size()<=27);
-    print_success();
     print_summarise();
     TEST_END;
 }

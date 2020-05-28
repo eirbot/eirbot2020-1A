@@ -39,6 +39,17 @@ std::vector<obstacle> World::fillVector()
     return list_obstacles;
 }
 
+std::vector<obstacle> World::fillVector_no_ecocup()
+{
+
+    std::vector<obstacle> list_obstacles;
+    list_obstacles.push_back({89,192,&stone_area});
+    list_obstacles.push_back({209,192,&stone_area});
+    list_obstacles.push_back({150,185,&stone_area_big});
+    return list_obstacles;
+}
+
+
 bool World::who_here(short x, short y, struct shape shape,std::vector<obstacle> list_obstacles)
 {
     for(size_t k=0;k<list_obstacles.size();k++)

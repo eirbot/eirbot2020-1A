@@ -1,5 +1,4 @@
-CFLAGS = -std=c++11 -g -O3
-CFLAGS_TEST= --coverage
+CFLAGS = -std=c++11 -g -O3 --coverage
 FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o ecocup_pdv.o ecocup.o
 TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o test_navigation.o
 ifdef cross
@@ -29,7 +28,7 @@ project: $(FILE) rasp/src/main.cpp
 	$(CC) $(CFLAGS) $(FILE)  rasp/src/main.cpp -o project
 
 test: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
-	$(CC) $(CFLAGS) $(CFLAGS_TEST) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -pg -o test
+	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -pg -o test
 
 coverage: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
 	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -O0 -pg -o test

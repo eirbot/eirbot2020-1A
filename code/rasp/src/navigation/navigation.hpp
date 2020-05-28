@@ -14,7 +14,6 @@
  * @brief Contient les méthodes permettant de faire fonctionner correctement l'astar*/
 class Navigation
 {
-//Méthode
         public:
                 Navigation();
                 /**
@@ -27,7 +26,7 @@ class Navigation
                  * @param dest: le point d'arrivée
                  * @param list_obstacle: la liste des obstacles actuellement présent sur la table
                  * @return Un vecteur de Node constituant le chemin entre les deux points en évitant les obstacles*/
-                static std::vector<Node> Astar(Navigation src, Navigation dest, std::vector<obstacle> list_obstacles); //Coeur de l'algorithme A*
+                 std::vector<Node> Astar(Navigation src, Navigation dest, std::vector<obstacle> list_obstacles); //Coeur de l'algorithme A*
                 /**
                  * @brief Permet de transformer une grille représentant la table
                  * en un chemin Cette fonction est utilisée dans l'Astar,
@@ -40,12 +39,12 @@ class Navigation
                  * l'Astar
                  * @param dest: Le point à atteindre
                  * @return Une suite de points constituant un chemin*/
-                static std::vector<Node> MakePath(std::array<std::array<Node,Y_MAX>,X_MAX> map, Navigation dest); //Permet de recréer le chemin
+                 std::vector<Node> MakePath(std::array<std::array<Node,Y_MAX>,X_MAX> map, Navigation dest); //Permet de recréer le chemin
                 /**
                  * @brief Permet d'afficher un chemin calculé par l'Astar
                  * @param usablePath: un chemin calculé par exemple par MakePath
                  * @bug Affiche beaucoup beaucoup de lignes*/
-                static void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
+                 void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
                 /**
                  * @brief Permet de convertir un chemin en informations
                  * transmettables à l'asservissement. L'idée générale est de
@@ -59,7 +58,7 @@ class Navigation
                  * @param dest: le point à atteindre @param
                  * list_obstacles: la liste des obstacles sur la table
                  * @return un entier correspondant au code d'erreur du protocole*/
-                static int Navigate_to_asserv(std::vector<Node>usablePath, Navigation dest, std::vector<obstacle> list_obstacles); //Permet de convertir un chemin en instruction asserv
+                 int Navigate_to_asserv(std::vector<Node>usablePath, Navigation dest, std::vector<obstacle> list_obstacles); //Permet de convertir un chemin en instruction asserv
                 /**
                  * @brief Permet de prendre un branchement dans la stratégie en
                  * fonction du retour du protocole, si le protocole nous indique
@@ -68,16 +67,15 @@ class Navigation
                  * @param back: entier représentant le retour du protocole
                  * @param dest: le point à atteindre
                  * @param list_obstacles: la liste des obstacles sur la table*/
-                static void back_effect(int back, Navigation dest, std::vector<obstacle> list_obstacles); //Permet de faire un branchement de stratégie pour renvoyer un effet
+                 void back_effect(int back, Navigation dest, std::vector<obstacle> list_obstacles); //Permet de faire un branchement de stratégie pour renvoyer un effet
+
                 /**
-                 * @brief Cette fonction permet de gérer un cas particulier où
-                 * l'on détecte un robot et que l'Astar n'arrive plus à trouver
-                 * un chemin pour sortir car il est bloqué par d'autres
-                 * obstacles. Dans ce cas là, on supprime de la liste des
-                 * obstacles les éco cups et on se permet de rouler dessus pour
-                 * éviter le robot adverse en rappelant l'Astar
-                 * @param list_obstacles: la liste des obstacles de la table
-                 * @return la liste des obstacles sans les écos cups*/
+                 * @brief Permet de réaliser une étape c'est à dire un déplacement d'un point principal à un autre point principal
+                 * @param src: le point de départ
+                 * @param dest: le point d'arrivée
+                 * @param list_obstacles: les obstacles sur le chemin*/
+                void one_step(Node src, Node dest, vector<obstacle> list_obstacles);
+
                 ~Navigation();
                 Node node;
 
@@ -104,6 +102,8 @@ class Navigation
                  * @param pos: le point à tester
                  * @return True ou False*/
                 static bool onTable(Navigation pos); //Permet de savoir si on est sur la table
+
+
 };
 
 #endif

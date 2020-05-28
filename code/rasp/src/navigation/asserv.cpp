@@ -4,7 +4,7 @@
 
 extern vector<obstacle> list_obstacles;
 
-int Asservissement::go_to(struct position dest, struct position src)
+int go_to(struct position dest, struct position src)
 {
     char etats[3];
     if(debug==1){
@@ -20,10 +20,10 @@ int Asservissement::go_to(struct position dest, struct position src)
         }
     }
     affichage(asserv_back);
-    return Asservissement::call_back(asserv_back);
+    return call_back(asserv_back);
 }
 
-int Asservissement::call_back(int asserv_back)
+int call_back(int asserv_back)
 {
     if(asserv_back==1){
         return 1;
@@ -34,7 +34,7 @@ int Asservissement::call_back(int asserv_back)
     return 0;
 }
 
-void Asservissement::rotate(short angle)
+void rotate(short angle)
 {
     printf("Envoie de la requete de rotation de theta:%3d ............ ",angle);
     int rotate_back=(int) Protocole.set_angle(angle);
@@ -47,7 +47,7 @@ void Asservissement::rotate(short angle)
     affichage(rotate_back);
 }
 
-struct position Asservissement::robot_position()
+struct position robot_position()
 {
     struct position my_position;
     int position_back=(int) Protocole.get_position(&my_position);
@@ -56,7 +56,7 @@ struct position Asservissement::robot_position()
     return my_position;
 }
 
-short Asservissement::angle()
+short angle()
 {
     short angle;
     int angle_back=(int) Protocole.get_angle(&angle);
@@ -65,13 +65,13 @@ short Asservissement::angle()
     return angle; //Pour l'instant
 }
 
-void Asservissement::initialise_x()
+void initialise_x()
 {
     printf("Envoie de la requete d'initialisation en x ............... ");
     affichage(0);
 }
 
-void Asservissement::initialise_y()
+void initialise_y()
 {
     printf("Envoie de la requete d'initialisation en y ............... ");
     affichage(0);

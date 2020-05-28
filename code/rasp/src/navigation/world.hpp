@@ -62,26 +62,28 @@ struct obstacle{
     struct shape *shape;
 };
 
+/**
+ * @brief Permet de remplir un vecteur avec la liste des obstacles, c'est ici que l'on ajoute ou enlève des obstacles
+ * @return un vecteur avec la liste des obstacles*/
+std::vector<obstacle> fillVector(); //Permet de remplir un vecteur avec la liste des obstacles
+/**
+ * @brief Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle
+ * @param x: coordonnée x du point à tester
+ * @param y: coordonnée y du point à tester
+ * @param list_obstacles: listes des obstacles sur la table*/
+bool isValid(short x, short y,std::vector<obstacle> list_obstacles); //Renvoie faux si la case n'est pas valide
 
-class World{
-    public:
-        /**
-         * @brief Permet de remplir un vecteur avec la liste des obstacles, c'est ici que l'on ajoute ou enlève des obstacles
-         * @return un vecteur avec la liste des obstacles*/
-        static std::vector<obstacle> fillVector(); //Permet de remplir un vecteur avec la liste des obstacles
-        /**
-         * @brief Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle
-         * @param x: coordonnée x du point à tester
-         * @param y: coordonnée y du point à tester
-         * @param list_obstacles: listes des obstacles sur la table*/
-        static bool isValid(short x, short y,std::vector<obstacle> list_obstacles); //Renvoie faux si la case n'est pas valide
-        static std::vector<obstacle> fillVector_no_ecocup(); //Permet de remplir un vecteur avec la liste des obstacles sans les eco cups
+/**
+ * @brief Cette fonction permet de gérer un cas particulier où
+ * l'on détecte un robot et que l'Astar n'arrive plus à trouver
+ * un chemin pour sortir car il est bloqué par d'autres
+ * obstacles. Dans ce cas là, on supprime de la liste des
+ * obstacles les éco cups et on se permet de rouler dessus pour
+ * éviter le robot adverse en rappelant l'Astar
+ * @param list_obstacles: la liste des obstacles de la table
+ * @return la liste des obstacles sans les écos cups*/
+std::vector<obstacle> fillVector_no_ecocup(); //Permet de remplir un vecteur avec la liste des obstacles sans les eco cups
 
-    private:
-        /**
-         * @deprecated Ne sert plus à rien il me semble*/
-        static bool who_here(short x, short y,struct shape shape, std::vector<obstacle> list_obstacles); //Permet de savoir si un obstacle rentre en conflit avec le robot
-};
 
 
 #endif

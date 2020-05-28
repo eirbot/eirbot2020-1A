@@ -1,5 +1,5 @@
 CFLAGS = -std=c++11 -g -O3 --coverage
-FILE=navigation.o detection.o actionneur.o protocole.o asserv.o world.o affichage.o ecocup_pdv.o ecocup.o
+FILE=world.o navigation.o detection.o actionneur.o protocole.o asserv.o robot.o affichage.o ecocup_pdv.o ecocup.o
 TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o test_navigation.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++

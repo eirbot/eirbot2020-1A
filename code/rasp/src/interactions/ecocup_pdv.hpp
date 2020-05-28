@@ -35,6 +35,7 @@ float get_quantite_pheromones_deposes(int i,int j);
 void ant_system(void);
 void initMatriceVille(int taille);
 void CalculeBest();
-void ecocup_pdv();
+void ecocup_pdv(int taille);
+void ecocup_print(int taille);
 
 #endif // __ECOCUP_PDV_H_

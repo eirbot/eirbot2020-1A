@@ -390,15 +390,6 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
 }
 
 extern struct shape eco_cup;
-vector<obstacle> Navigation::stun(vector<obstacle> list_obstacles)
-{
-    for (vector<obstacle>::iterator it=list_obstacles.begin(); it!=list_obstacles.end() ; it=next(it)) {
-        if(it->shape==&eco_cup){
-          list_obstacles.erase(it);
-        }
-    }
-    return list_obstacles;
-}
 
 Navigation::~Navigation()
 {

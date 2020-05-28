@@ -75,6 +75,8 @@ class World{
          * @param y: coordonnée y du point à tester
          * @param list_obstacles: listes des obstacles sur la table*/
         static bool isValid(short x, short y,std::vector<obstacle> list_obstacles); //Renvoie faux si la case n'est pas valide
+        static std::vector<obstacle> fillVector_no_ecocup(); //Permet de remplir un vecteur avec la liste des obstacles sans les eco cups
+
     private:
         /**
          * @deprecated Ne sert plus à rien il me semble*/

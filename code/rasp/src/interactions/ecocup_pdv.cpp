@@ -528,27 +528,25 @@ void CalculeBest(void)
     }
 }
 
-void ecocup_pdv()
+void ecocup_pdv(int taille)
 {
-    initMatriceVille(8);
+    initMatriceVille(taille);
     initMatriceVisibilite();
     initQuantitePheromones();
     initPremiereVilleParcourue();
     ant_system();
 }
 
-// int main()
-// {
-//     ecocup_pdv();
-//     printf("Plus court chemin pour parcourir les %d bouées :\n\033[34m",C_NB_VILLE);
-//     printf("%d",cycle_hamiltonien[0] +1);
-//     for(int i=1;i<C_NB_VILLE;i++)
-//     {
-//         printf("-%d",cycle_hamiltonien[i] +1);
-//     }
-//     printf("-%d",cycle_hamiltonien[0] +1);
-//     printf("\033[0m\nDistance totale :");
-//     printf("%f \n",Best);
-
-//     return 0;
-// }
+void ecocup_print(int taille)
+{
+    ecocup_pdv(taille);
+    printf("Plus court chemin pour parcourir les %d bouées :\n\033[34m",C_NB_VILLE);
+    printf("%d",cycle_hamiltonien[0] +1);
+    for(int i=1;i<C_NB_VILLE;i++)
+    {
+        printf("-%d",cycle_hamiltonien[i] +1);
+    }
+    printf("-%d",cycle_hamiltonien[0] +1);
+    printf("\033[0m\nDistance totale :");
+    printf("%f \n",Best);
+}

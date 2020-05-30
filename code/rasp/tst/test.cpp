@@ -6,6 +6,8 @@ using namespace std;
 #include "test_detection.hpp"
 #include "test_actionneur.hpp"
 #include "test_protocole.hpp"
+#include "test_ecocup.hpp"
+#include "test_robot.hpp"
 
 class Protocole Protocole("/dev/ttyS0");
 
@@ -29,4 +31,6 @@ int main(int argc, char *argv[]) {
   test_detection();
   test_actionneur();
   test_protocole(argc,argv);
+  test_ecocup();
+  test_robot();
 }

@@ -38,7 +38,7 @@ struct position Robot::position() //Renvoie la position du robot
 {
     return robot_position();
 }
-short Robot::angle() //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
+short Robot::angle_robot() //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
 {
     return angle();
 }

@@ -1,6 +1,6 @@
 CFLAGS = -std=c++11 -g -O3 --coverage
 FILE=world.o navigation.o detection.o actionneur.o protocole.o asserv.o robot.o affichage.o ecocup_pdv.o ecocup.o
-TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o test_navigation.o
+TEST_FILE=test_protocole.o test_asserv.o test_actionneur.o test_detection.o test_navigation.o test_ecocup.o test_robot.o
 ifdef cross
 	CC=../tools/arm-bcm2708/gcc-linaro-arm-linux-gnueabihf-raspbian-x64/bin/arm-linux-gnueabihf-g++
 else
@@ -37,7 +37,7 @@ coverage: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
 	lcov  --directory coverage/ -c -o coverage/rapport.info
 	lcov --remove coverage/rapport.info '/usr/include/*'
 	genhtml -o coverage/ -t "couverture de code des tests" coverage/rapport.info
-	firefox coverage/src/index.html &
+	firefox coverage/index.html &
 
 clean:
 	rm -f *.o project test test_protocole *.gcno *.gcov *.gcda *.out

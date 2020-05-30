@@ -38,7 +38,7 @@ class Robot{
         struct position position(); //Renvoie la position du robot
         /**
          * @brief Demande l'angle du robot par rapport à la table */
-        short angle(); //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
+        short angle_robot(); //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
         /**
          * @brief Active ou désactive la détection
          * @param cote: cote d'activation (avant / arrière)

@@ -44,7 +44,7 @@ class Navigation
                  * @brief Permet d'afficher un chemin calculé par l'Astar
                  * @param usablePath: un chemin calculé par exemple par MakePath
                  * @bug Affiche beaucoup beaucoup de lignes*/
-                 void Print_path(std::vector<Node> usablePath); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
+                 void Print_path(std::vector<Node> usablePath, vector<obstacle> list_obstacles); //Juste du débeugage permet d'afficher coordonnées par coordonnées un chemin
                 /**
                  * @brief Permet de convertir un chemin en informations
                  * transmettables à l'asservissement. L'idée générale est de
@@ -74,7 +74,7 @@ class Navigation
                  * @param src: le point de départ
                  * @param dest: le point d'arrivée
                  * @param list_obstacles: les obstacles sur le chemin*/
-                void one_step(Node src, Node dest, vector<obstacle> list_obstacles);
+                vector<Node> one_step(Node src, Node dest, vector<obstacle> list_obstacles);
 
                 ~Navigation();
                 Node node;

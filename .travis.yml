@@ -11,3 +11,12 @@ script:
   - make code
 
 compiler: gcc
+
+addons:
+  apt:
+    packages:
+      - doxygen
+      - doxygen-doc
+      - doxygen-latex
+      - doxygen-gui
+      - graphviz

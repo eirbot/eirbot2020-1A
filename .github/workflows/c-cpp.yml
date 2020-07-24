@@ -18,3 +18,14 @@ jobs:
     - name: make check
       run: make test
 
+    - name: Coverage check
+      uses: devmasx/coverage-check-action@v1.1.0
+      with:
+        # lcov | simplecov
+        type: lcov # default is lcov
+        # Github token for create checks
+        token: 954174af8c6111892cb07413a42574b3a12b954e # default is World
+        # Minimum coverage
+        min_coverage: 80 # optional, default is 80
+        # Json with coverage result
+        result_path: code/coverage/

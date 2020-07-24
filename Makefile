@@ -16,7 +16,7 @@ code:
 test:
 	cd code/ && make test && ./test
 
-code:
+doc:
 	cd code/ && make doc
 
 description:

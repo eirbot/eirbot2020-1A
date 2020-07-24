@@ -8,6 +8,6 @@ branches:
 
 script:
   - make test
-  - make project
+  - make code
 
 compiler: gcc

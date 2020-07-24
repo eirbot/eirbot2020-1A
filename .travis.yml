@@ -1,4 +1,4 @@
-language: cpp
+language: c++
 
 sudo: false
 
@@ -8,5 +8,7 @@ branches:
 
 script:
   - make test
+  - make project
+  - doxygen code/Doxyfile
 
 compiler: gcc

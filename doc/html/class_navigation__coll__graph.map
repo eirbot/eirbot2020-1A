@@ -1,0 +1,4 @@
+<map id="Navigation" name="Navigation">
+<area shape="rect" id="node1" title="Contient les méthodes permettant de faire fonctionner correctement l&#39;astar." alt="" coords="5,95,99,121"/>
+<area shape="rect" id="node2" href="$struct_node.html" title="Structure permettant de définir un Node, essentiel pour réaliser l&#39;Astar." alt="" coords="24,5,80,32"/>
+</map>

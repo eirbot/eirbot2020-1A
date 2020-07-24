@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.17"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eirbot1A-2020: Référence du fichier code/rasp/src/navigation/world.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Eirbot1A-2020
+   </div>
+   <div id="projectbrief">Documentationdurobotdespremièresannéesdel&#39;associationEirbot</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('world_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier world.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navigation.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;vector&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de world.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="world_8hpp__incl.png" border="0" usemap="#code_2rasp_2src_2navigation_2world_8hpp" alt=""/></div>
+<map name="code_2rasp_2src_2navigation_2world_8hpp" id="code_2rasp_2src_2navigation_2world_8hpp">
+<area shape="rect" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="5,5,187,47"/>
+<area shape="rect" title=" " alt="" coords="65,95,127,121"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><img src="world_8hpp__dep__incl.png" border="0" usemap="#code_2rasp_2src_2navigation_2world_8hppdep" alt=""/></div>
+<map name="code_2rasp_2src_2navigation_2world_8hppdep" id="code_2rasp_2src_2navigation_2world_8hppdep">
+<area shape="rect" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="569,5,751,47"/>
+<area shape="rect" href="asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="331,95,512,136"/>
+<area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="565,184,755,225"/>
+<area shape="rect" href="test__detection_8hpp_source.html" title=" " alt="" coords="678,273,813,315"/>
+<area shape="rect" href="rasp_2src_2navigation_2_protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="149,184,331,225"/>
+<area shape="rect" href="navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="379,273,560,315"/>
+<area shape="rect" href="test__asserv_8hpp_source.html" title=" " alt="" coords="406,184,541,225"/>
+<area shape="rect" href="actionneur_8hpp.html" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="5,273,195,315"/>
+<area shape="rect" href="test__protocole_8hpp_source.html" title=" " alt="" coords="219,273,354,315"/>
+<area shape="rect" href="robot_8hpp.html" title=" " alt="" coords="198,370,373,397"/>
+<area shape="rect" href="test__actionneur_8hpp_source.html" title=" " alt="" coords="33,363,167,404"/>
+<area shape="rect" href="ecocup_8hpp.html" title="Fichier codant les techniques utilisées pour ramasser les écocups." alt="" coords="191,452,380,493"/>
+<area shape="rect" href="main_8hpp.html" title="Fichier principal pour l&#39;execution de notre projet." alt="" coords="67,549,240,575"/>
+<area shape="rect" href="test__robot_8hpp_source.html" title=" " alt="" coords="405,452,539,493"/>
+<area shape="rect" href="test__ecocup_8hpp_source.html" title=" " alt="" coords="265,541,399,583"/>
+<area shape="rect" href="test__navigation_8hpp_source.html" title=" " alt="" coords="402,363,537,404"/>
+</map>
+</div>
+</div>
+<p><a href="world_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html">Node</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure permettant de définir un <a class="el" href="struct_node.html" title="Structure permettant de définir un Node, essentiel pour réaliser l&#39;Astar.">Node</a>, essentiel pour réaliser l'Astar.  <a href="struct_node.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structshape.html">shape</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de définir une forme pour ensuite être utilisé dans un obstacle.  <a href="structshape.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structobstacle.html">obstacle</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de définir un obstacle sur la table.  <a href="structobstacle.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a638fd29df459976a828c6c82ef5782b8"><td class="memItemLeft" align="right" valign="top"><a id="a638fd29df459976a828c6c82ef5782b8"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#a638fd29df459976a828c6c82ef5782b8">ROBOT_WIDTH</a>&#160;&#160;&#160;32</td></tr>
+<tr class="memdesc:a638fd29df459976a828c6c82ef5782b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">La largeur du robot. <br /></td></tr>
+<tr class="separator:a638fd29df459976a828c6c82ef5782b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07f3ffd65338d483cffbd4de6c9901a4"><td class="memItemLeft" align="right" valign="top"><a id="a07f3ffd65338d483cffbd4de6c9901a4"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#a07f3ffd65338d483cffbd4de6c9901a4">ROBOT_LENGTH</a>&#160;&#160;&#160;32</td></tr>
+<tr class="memdesc:a07f3ffd65338d483cffbd4de6c9901a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">La longueur du robot. <br /></td></tr>
+<tr class="separator:a07f3ffd65338d483cffbd4de6c9901a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fcc42e3f93581eb0459cb359adebc54"><td class="memItemLeft" align="right" valign="top"><a id="a4fcc42e3f93581eb0459cb359adebc54"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#a4fcc42e3f93581eb0459cb359adebc54">X_MAX</a>&#160;&#160;&#160;300</td></tr>
+<tr class="memdesc:a4fcc42e3f93581eb0459cb359adebc54"><td class="mdescLeft">&#160;</td><td class="mdescRight">La longueur de la table. <br /></td></tr>
+<tr class="separator:a4fcc42e3f93581eb0459cb359adebc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7296ba9091427ae54bab4bcbb1dc87e1"><td class="memItemLeft" align="right" valign="top"><a id="a7296ba9091427ae54bab4bcbb1dc87e1"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#a7296ba9091427ae54bab4bcbb1dc87e1">Y_MAX</a>&#160;&#160;&#160;200</td></tr>
+<tr class="memdesc:a7296ba9091427ae54bab4bcbb1dc87e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">La largeur de la table. <br /></td></tr>
+<tr class="separator:a7296ba9091427ae54bab4bcbb1dc87e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a7d85f9973eb806711bd51c9f7ea0bd23"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structobstacle.html">obstacle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#a7d85f9973eb806711bd51c9f7ea0bd23">fillVector</a> ()</td></tr>
+<tr class="memdesc:a7d85f9973eb806711bd51c9f7ea0bd23"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de remplir un vecteur avec la liste des obstacles, c'est ici que l'on ajoute ou enlève des obstacles.  <a href="world_8hpp.html#a7d85f9973eb806711bd51c9f7ea0bd23">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7d85f9973eb806711bd51c9f7ea0bd23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8132d25297b896fef1d6b07651311e92"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#a8132d25297b896fef1d6b07651311e92">isValid</a> (short x, short y, std::vector&lt; <a class="el" href="structobstacle.html">obstacle</a> &gt; list_obstacles)</td></tr>
+<tr class="memdesc:a8132d25297b896fef1d6b07651311e92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle.  <a href="world_8hpp.html#a8132d25297b896fef1d6b07651311e92">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8132d25297b896fef1d6b07651311e92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7be71c5bbc7e3981d298b5c73d5a114"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structobstacle.html">obstacle</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="world_8hpp.html#ac7be71c5bbc7e3981d298b5c73d5a114">fillVector_no_ecocup</a> ()</td></tr>
+<tr class="memdesc:ac7be71c5bbc7e3981d298b5c73d5a114"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette fonction permet de gérer un cas particulier où l'on détecte un robot et que l'Astar n'arrive plus à trouver un chemin pour sortir car il est bloqué par d'autres obstacles. Dans ce cas là, on supprime de la liste des obstacles les éco cups et on se permet de rouler dessus pour éviter le robot adverse en rappelant l'Astar.  <a href="world_8hpp.html#ac7be71c5bbc7e3981d298b5c73d5a114">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac7be71c5bbc7e3981d298b5c73d5a114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navigation. </p>
+<dl class="section author"><dt>Auteur</dt><dd>SD </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a7d85f9973eb806711bd51c9f7ea0bd23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d85f9973eb806711bd51c9f7ea0bd23">&#9670;&nbsp;</a></span>fillVector()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structobstacle.html">obstacle</a>&gt; fillVector </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de remplir un vecteur avec la liste des obstacles, c'est ici que l'on ajoute ou enlève des obstacles. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>un vecteur avec la liste des obstacles </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="world_8hpp_a7d85f9973eb806711bd51c9f7ea0bd23_icgraph.png" border="0" usemap="#world_8hpp_a7d85f9973eb806711bd51c9f7ea0bd23_icgraph" alt=""/></div>
+<map name="world_8hpp_a7d85f9973eb806711bd51c9f7ea0bd23_icgraph" id="world_8hpp_a7d85f9973eb806711bd51c9f7ea0bd23_icgraph">
+<area shape="rect" title="Permet de remplir un vecteur avec la liste des obstacles, c&#39;est ici que l&#39;on ajoute ou enlève des obs..." alt="" coords="104,5,183,32"/>
+<area shape="rect" href="main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac7be71c5bbc7e3981d298b5c73d5a114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7be71c5bbc7e3981d298b5c73d5a114">&#9670;&nbsp;</a></span>fillVector_no_ecocup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="structobstacle.html">obstacle</a>&gt; fillVector_no_ecocup </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cette fonction permet de gérer un cas particulier où l'on détecte un robot et que l'Astar n'arrive plus à trouver un chemin pour sortir car il est bloqué par d'autres obstacles. Dans ce cas là, on supprime de la liste des obstacles les éco cups et on se permet de rouler dessus pour éviter le robot adverse en rappelant l'Astar. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">list_obstacles</td><td>la liste des obstacles de la table </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>la liste des obstacles sans les écos cups </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="world_8hpp_ac7be71c5bbc7e3981d298b5c73d5a114_icgraph.png" border="0" usemap="#world_8hpp_ac7be71c5bbc7e3981d298b5c73d5a114_icgraph" alt=""/></div>
+<map name="world_8hpp_ac7be71c5bbc7e3981d298b5c73d5a114_icgraph" id="world_8hpp_ac7be71c5bbc7e3981d298b5c73d5a114_icgraph">
+<area shape="rect" title="Cette fonction permet de gérer un cas particulier où l&#39;on détecte un robot et que l&#39;Astar n&#39;arrive pl..." alt="" coords="256,5,411,32"/>
+<area shape="rect" href="ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="104,5,208,32"/>
+<area shape="rect" href="main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,5,56,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8132d25297b896fef1d6b07651311e92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8132d25297b896fef1d6b07651311e92">&#9670;&nbsp;</a></span>isValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isValid </td>
+          <td>(</td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::vector&lt; <a class="el" href="structobstacle.html">obstacle</a> &gt;&#160;</td>
+          <td class="paramname"><em>list_obstacles</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">x</td><td>coordonnée x du point à tester </td></tr>
+    <tr><td class="paramname">y</td><td>coordonnée y du point à tester </td></tr>
+    <tr><td class="paramname">list_obstacles</td><td>listes des obstacles sur la table </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="world_8hpp_a8132d25297b896fef1d6b07651311e92_icgraph.png" border="0" usemap="#world_8hpp_a8132d25297b896fef1d6b07651311e92_icgraph" alt=""/></div>
+<map name="world_8hpp_a8132d25297b896fef1d6b07651311e92_icgraph" id="world_8hpp_a8132d25297b896fef1d6b07651311e92_icgraph">
+<area shape="rect" title="Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle." alt="" coords="800,31,865,57"/>
+<area shape="rect" href="class_navigation.html#aa99ae7455bef2dcc724ab166d8a921ca" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="617,31,752,57"/>
+<area shape="rect" href="class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="409,31,569,57"/>
+<area shape="rect" href="class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="256,31,361,57"/>
+<area shape="rect" href="ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="104,5,208,32"/>
+<area shape="rect" href="main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,31,56,57"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_9a4b001405259e117c44638f5f241852.html">rasp</a></li><li class="navelem"><a class="el" href="dir_1af11c3d65235ae85dffc8a9ff86f4de.html">src</a></li><li class="navelem"><a class="el" href="dir_abed7d825d58c5ebaec544ac88ecfb4a.html">navigation</a></li><li class="navelem"><a class="el" href="world_8hpp.html">world.hpp</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

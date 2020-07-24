@@ -18,6 +18,7 @@ test:
 
 doc:
 	cd code/ && make doc
+	firefox code/doc/html/index.html &
 
 description:
 	cd description/ && make project && make run &

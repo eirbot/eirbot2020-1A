@@ -1,0 +1,6 @@
+<map id="Navigation::Astar" name="Navigation::Astar">
+<area shape="rect" id="node1" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="5,56,140,83"/>
+<area shape="rect" id="node2" href="$world_8hpp.html#a8132d25297b896fef1d6b07651311e92" title="Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle." alt="" coords="237,5,303,32"/>
+<area shape="rect" id="node3" href="$class_navigation.html#ac43b6d801ab9fc58e8dfaffa60c62f74" title="Permet de transformer une grille représentant la table en un chemin Cette fonction est utilisée dans ..." alt="" coords="188,56,352,83"/>
+<area shape="rect" id="node4" href="$affichage_8hpp.html#a793e2184d3289950f1e148a23d1c658a" title="Permet d&#39;afficher FAILED en rouge." alt="" coords="230,107,310,133"/>
+</map>

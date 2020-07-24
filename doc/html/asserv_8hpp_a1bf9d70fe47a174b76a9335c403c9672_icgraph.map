@@ -1,4 +1,0 @@
-<map id="rotate" name="rotate">
-<area shape="rect" id="node1" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="172,5,233,32"/>
-<area shape="rect" id="node2" href="$class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,5,124,32"/>
-</map>

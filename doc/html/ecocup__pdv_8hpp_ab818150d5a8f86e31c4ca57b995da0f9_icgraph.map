@@ -1,6 +1,0 @@
-<map id="ecocup_pdv" name="ecocup_pdv">
-<area shape="rect" id="node1" title="Fonction récapitulative permettant de faire tout le système (initialisation, ant_system,..." alt="" coords="409,31,508,57"/>
-<area shape="rect" id="node2" href="$ecocup__pdv_8hpp.html#a13c8f7637db9c7d616ace6f8ef4c0ce6" title="Permet d&#39;afficher le chemin trouvé" alt="" coords="256,5,361,32"/>
-<area shape="rect" id="node3" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="104,31,208,57"/>
-<area shape="rect" id="node4" href="$main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,31,56,57"/>
-</map>

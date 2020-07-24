@@ -21,6 +21,6 @@ jobs:
       uses: mattnotmitt/doxygen-action@v1.1.0
       with:
         # Path to Doxyfile
-        doxyfile-path: /code/Doxyfile # default is ./Doxyfile
+        doxyfile-path: code/Doxyfile # default is ./Doxyfile
         # Working directory
-        working-directory: /code/doc # default is .
+        working-directory: code/doc/ # default is .

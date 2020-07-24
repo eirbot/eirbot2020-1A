@@ -6,18 +6,7 @@ branches:
   only:
     - master
 
-addons:
-  apt:
-    packages:
-      - doxygen
-
 script:
-  - doxygen code/Doxyfile
+  - make test
 
-deploy:
-  provider: pages
-  skip_cleanup: true
-  local_dir: docs/html
-  github_token: $GH_REPO_TOKEN
-  on:
-    branch: master
+compiler: gcc

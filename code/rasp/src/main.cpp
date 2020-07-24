@@ -80,6 +80,7 @@ void setup()
 //Boucle de jeu
 void loop()
 {
+  Navigation Navigation;
   int temps=0;
   vector<obstacle> list_obstacles = fillVector();
   total_reach=4;
@@ -90,7 +91,6 @@ void loop()
     Robot.move(Port,Phare,list_obstacles);
     Robot.actionneur(which_side, 1);
     Robot.actionneur(which_side, 0);
-   
     //Module Manche à aire
     printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
     Robot.move(Phare,Manche_1,list_obstacles);

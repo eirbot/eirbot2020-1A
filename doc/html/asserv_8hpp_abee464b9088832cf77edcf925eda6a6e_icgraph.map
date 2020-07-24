@@ -1,0 +1,7 @@
+<map id="angle" name="angle">
+<area shape="rect" id="node1" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="365,81,424,108"/>
+<area shape="rect" id="node2" href="$class_robot.html#a597c41844d4f4e12014b515843f3abb8" title="Demande l&#39;angle du robot par rapport à la table." alt="" coords="172,5,317,32"/>
+<area shape="rect" id="node3" href="$class_g_p2.html#a0316cb1e2bd8e748c0ef76e06c954c40" title="Une intéruption qui s&#39;active lorsque l&#39;un des GP2 activé détecte quelque chose." alt="" coords="176,56,313,83"/>
+<area shape="rect" id="node4" href="$asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="214,107,275,133"/>
+<area shape="rect" id="node5" href="$class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,132,124,159"/>
+</map>

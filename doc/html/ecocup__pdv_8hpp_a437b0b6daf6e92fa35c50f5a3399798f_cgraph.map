@@ -1,0 +1,5 @@
+<map id="calcul_probabilite" name="calcul_probabilite">
+<area shape="rect" id="node1" title="Calcul la probabilité qu&#39;une fourmi passe sur un arc." alt="" coords="5,31,143,57"/>
+<area shape="rect" id="node2" href="$ecocup__pdv_8hpp.html#a0397294b9895066616944747a5020899" title="Efface la liste des villes." alt="" coords="211,5,305,32"/>
+<area shape="rect" id="node3" href="$ecocup__pdv_8hpp.html#a5625d9bd95adf796b2e3f9a83c2d941e" title="Permet de savoir les villes non explorées par une fourmi." alt="" coords="191,56,325,83"/>
+</map>

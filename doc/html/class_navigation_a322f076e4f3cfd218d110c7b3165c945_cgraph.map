@@ -1,5 +1,0 @@
-<map id="Navigation::Navigate_to_asserv" name="Navigation::Navigate_to_asserv">
-<area shape="rect" id="node1" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="5,23,165,65"/>
-<area shape="rect" id="node2" href="$class_navigation.html#a4da44ead5f6b4fb643f140986cb343fb" title="Permet de prendre un branchement dans la stratégie en fonction du retour du protocole,..." alt="" coords="213,5,389,32"/>
-<area shape="rect" id="node3" href="$asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742" title="Permet de transmettre au protocole l&#39;ordre de se déplacer." alt="" coords="272,56,331,83"/>
-</map>

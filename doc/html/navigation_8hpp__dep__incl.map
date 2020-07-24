@@ -1,9 +1,0 @@
-<map id="code/rasp/src/navigation/navigation.hpp" name="code/rasp/src/navigation/navigation.hpp">
-<area shape="rect" id="node1" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="223,5,404,47"/>
-<area shape="rect" id="node2" href="$robot_8hpp.html" title=" " alt="" coords="137,102,311,129"/>
-<area shape="rect" id="node7" href="$test__navigation_8hpp_source.html" title=" " alt="" coords="335,95,470,136"/>
-<area shape="rect" id="node3" href="$ecocup_8hpp.html" title="Fichier codant les techniques utilisées pour ramasser les écocups." alt="" coords="129,184,319,225"/>
-<area shape="rect" id="node4" href="$main_8hpp.html" title="Fichier principal pour l&#39;execution de notre projet." alt="" coords="5,281,179,307"/>
-<area shape="rect" id="node6" href="$test__robot_8hpp_source.html" title=" " alt="" coords="343,184,478,225"/>
-<area shape="rect" id="node5" href="$test__ecocup_8hpp_source.html" title=" " alt="" coords="203,273,338,315"/>
-</map>

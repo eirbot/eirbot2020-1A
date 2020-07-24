@@ -1,4 +1,8 @@
 #include "navigation.hpp"
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
@@ -188,13 +192,47 @@ std::vector<Node> Navigation::MakePath(array<array<Node,Y_MAX>,X_MAX> map, Navig
   return  empty;
 }
 
-void Navigation::Print_path(vector<Node> usablePath)
+bool is_in_path(vector<Node> usablePath, short x, short y)
 {
-    Node tmp;
     for (size_t i=0; i<usablePath.size(); i++) {
-        tmp=usablePath.operator[](i);
-        printf(" x : %d ; y : %d \n",tmp.x,tmp.y);
+        if (usablePath[i].x==x && usablePath[i].y==y) {
+            return true;
+        }
     }
+    return false;
+}
+
+void Navigation::Print_path(vector<Node> usablePath, vector<obstacle> list_obstacles)
+{
+    ofstream heatmap;
+    heatmap.open("./test_astar.ppm", std::ofstream::out | std::ofstream::trunc);
+    heatmap << "P3 \n" <<endl; //Portable pixel map mode
+    heatmap << (200) << " " << (300) <<endl; //Size of file
+    heatmap << "255" <<endl;//Max number of color
+
+    for (size_t i=0; i < 300; i++) {
+        for (size_t j=0; j < 200; j++) {
+            int R,G,B;
+            if (is_in_path(usablePath, i, j)) {
+                R=255.;
+                G=0.;
+                B=0.;
+            }
+            else if (isValid(i,j,list_obstacles)==false) {
+                R=0.;
+                G=0.;
+                B=255.;
+            }
+            else {
+            R = 255.;
+            G = 255.;
+            B = 255.;
+            }
+        heatmap << setw(3) << R << " " << setw(3) << G << " " << setw(3) << B << "  ";
+        }
+    }
+      heatmap << "\n" << endl;
+      heatmap.close();
 }
 
 
@@ -389,7 +427,7 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
     }
 }
 
-void Navigation::one_step(Node src, Node dest, vector<obstacle> list_obstacles)
+vector<Node> Navigation::one_step(Node src, Node dest, vector<obstacle> list_obstacles)
 {
   std::vector<Node> result;
   int back;
@@ -412,7 +450,7 @@ void Navigation::one_step(Node src, Node dest, vector<obstacle> list_obstacles)
     list_obstacles=fillVector();
     printf("\n");
   }
-
+  return result;
 }
 
 

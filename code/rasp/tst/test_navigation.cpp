@@ -58,7 +58,7 @@ void test_navigation()
     print_success();
 
     printf("Test sur l'affichage d'un chemin ... \n");
-    test_navigation.Print_path(test_path);
+    test_navigation.Print_path(test_path,list_obstacles);
     print_success();
 
 

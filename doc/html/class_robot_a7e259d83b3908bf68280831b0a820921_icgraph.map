@@ -1,0 +1,4 @@
+<map id="Robot::detection" name="Robot::detection">
+<area shape="rect" id="node1" title="Active ou désactive la détection." alt="" coords="112,5,241,32"/>
+<area shape="rect" id="node2" href="$main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="5,5,64,32"/>
+</map>

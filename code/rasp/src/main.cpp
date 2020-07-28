@@ -100,8 +100,8 @@ void loop()
     Robot.actionneur(which_side, 0);
 
     //Module eco cup
-    printf("\033[33mJe commence le ramassage des écocups \033[0m \n");
-    ecocup_road(8, Robot);
+    // printf("\033[33mJe commence le ramassage des écocups \033[0m \n");
+    // ecocup_road(8, Robot);
     break;
   }
   port_now(list_obstacles);

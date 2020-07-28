@@ -14,7 +14,13 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: make
-      run: make code
+      run: | 
+        cd code 
+        mkdir build
+        cd build
+        cmake .. 
+        cd ../../
+        make code
       
   Test:
     runs-on: ubuntu-latest

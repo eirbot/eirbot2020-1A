@@ -12,3 +12,8 @@
 *.aux
 *.out
 tmp/
+
+html/
+build/
+.json
+coverage/

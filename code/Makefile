@@ -33,7 +33,7 @@ test: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
 coverage: $(FILE) $(TEST_FILE) rasp/tst/test.cpp
 	$(CC) $(CFLAGS) $(FILE) $(TEST_FILE) rasp/tst/test.cpp -O0 -pg -o test
 	./test
-	mv *.gc* coverage/
+	mv *.gc* ../code/coverage/
 	lcov  --directory coverage/ -c -o coverage/rapport.info
 	lcov --remove coverage/rapport.info '/usr/include/*'
 	genhtml -o coverage/ -t "couverture de code des tests" coverage/rapport.info

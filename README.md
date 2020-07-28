@@ -1,4 +1,4 @@
-# EIRBOT 2020-1A : Equipe EIRBOAT 
+# EIRBOT 2020-1A : Equipe EIRBOAT ![Code check](https://github.com/eirbot/eirbot2020-1A/workflows/Code%20check/badge.svg) ![Documentation](https://github.com/eirbot/eirbot2020-1A/workflows/Documentation/badge.svg)
 ![alt text](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/eirbot_logo.png)
 Ceci est le dépôt de l'équipe de 1A de l'association de robotique Eirbot. La
 description de l'avancement des différents projets est disponible via la 

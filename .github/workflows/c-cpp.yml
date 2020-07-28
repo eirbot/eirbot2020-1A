@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Eirbot2020-1A
 
 on:
   push:
@@ -27,6 +27,7 @@ jobs:
   Advanced_level : 
     runs-on: ubuntu-latest
     steps : 
+      - uses: codecov/codecov-action@v1
       - uses : actions/checkout@v2
       - name : valgrind build
         run: valgrind ./code/project

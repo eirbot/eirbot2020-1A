@@ -20,7 +20,6 @@ jobs:
         cd build
         cmake .. 
         cd ../../
-        cp code/rasp/src/fichier_ecocup.txt code/build/
         make code
       
   Test:
@@ -35,6 +34,4 @@ jobs:
           cd build
           cmake .. 
           cd ../../
-          cp code/rasp/src/fichier_ecocup.txt code/build/
           make test
-        

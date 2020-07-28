@@ -30,6 +30,10 @@ jobs:
       - uses: codecov/codecov-action@v1
       - uses : actions/checkout@v2
       - name : valgrind build
-        run: valgrind ./code/project
+        run: 
+          sudo apt-get install -y valgrind
+          valgrind ./code/project
       - name : valgrind test
-        run: valgrind ./code/test
+        run: 
+          sudo apt-get install -y valgrind
+          valgrind ./code/test

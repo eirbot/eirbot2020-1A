@@ -23,11 +23,3 @@ jobs:
       - uses: actions/checkout@v2
       - name: make test
         run: make test
-    
-      - uses: devmasx/coverage-check-action@v1.1.0
-      - name: coverage
-        with:
-          type: lcov
-          result_path: coverage/example.lcov
-          min_coverage: 80
-          token: world

@@ -31,6 +31,6 @@ int main(int argc, char *argv[]) {
   test_detection();
   test_actionneur();
   test_protocole(argc,argv);
-  test_ecocup();
+  //test_ecocup();
   test_robot();
 }

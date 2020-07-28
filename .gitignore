@@ -15,6 +15,7 @@ tmp/
 
 html/
 build/
+!build/fichier_ecocup.txt
 compile_commands.json
 coverage/
 .ccls-cache/

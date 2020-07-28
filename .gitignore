@@ -12,3 +12,10 @@
 *.aux
 *.out
 tmp/
+
+html/
+build/
+compile_commands.json
+coverage/
+.ccls-cache/
+

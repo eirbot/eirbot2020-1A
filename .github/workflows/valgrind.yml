@@ -16,10 +16,12 @@ jobs:
       - name : valgrind build
         run: |
           sudo apt-get install -y valgrind
+          cd ../../
           make code
           valgrind ./code/build/bin/project
       - name : valgrind test
         run: |
           sudo apt-get install -y valgrind
+          cd ../../
           make test
           valgrind ./code/build/bin/test

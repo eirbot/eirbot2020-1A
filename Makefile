@@ -8,16 +8,16 @@ all: code test
 pdf: description presentation learn reunion
 
 project:
-	cd code/ && make
+	cd code/build/ && make
 
 code:
-	cd code/ && make project && ./project
+	cd code/build/ && make project && ./project
 
 test:
-	cd code/ && make test && ./test
+	cd code/build/ && make test && ./test
 
 doc:
-	cd code/ && make doc
+	cd code/build/ && make doc
 	firefox code/doc/html/index.html &
 
 description:

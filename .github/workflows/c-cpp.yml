@@ -20,6 +20,7 @@ jobs:
         cd build
         cmake .. 
         cd ../../
+        cp code/rasp/src/fichier_ecocup.txt code/build/
         make code
       
   Test:
@@ -28,5 +29,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: make test
-        run: make test
+        run: | 
+          cd code 
+          mkdir build
+          cd build
+          cmake .. 
+          cd ../../
+          cp code/rasp/src/fichier_ecocup.txt code/build/
+          make test
         

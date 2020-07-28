@@ -1,0 +1,5 @@
+<map id="Protocole::set_angle" name="Protocole::set_angle">
+<area shape="rect" id="node1" title="Permet de demander une rotation du robot." alt="" coords="261,5,400,32"/>
+<area shape="rect" id="node2" href="$asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="159,5,213,32"/>
+<area shape="rect" id="node3" href="$class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,5,111,32"/>
+</map>

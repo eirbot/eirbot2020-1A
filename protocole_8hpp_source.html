@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.18"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eirbot1A-2020:  Fichier source de code/rasp/src/navigation/protocole.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Eirbot1A-2020
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.18 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('protocole_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">protocole.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="protocole_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __PROTOCOLE_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __PROTOCOLE_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;termios.h&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="asserv_8hpp.html">asserv.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define READ_BUF_SIZE 32</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">class </span><a class="code" href="class_protocole.html">Protocole</a></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_protocole.html">Protocole</a>(std::string device);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        ~<a class="code" href="class_protocole.html">Protocole</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="comment">//ERROR c&#39;est grave, si ça arrive c&#39;est la merde</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="comment">//-&gt; réception de données erronées</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">   43</a></span>&#160;<span class="comment"></span>        <span class="keyword">enum class</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> {OK, TIME_OUT, OBSTACLE, ERROR};</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="comment">// #################      SET      ###################</span></div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="comment">         * set_position</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment">         * entrees:</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment">         *   x et y en cm position absolue</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">         *   etats tableaux de char TODO: definir signification ou enum</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">         *   timeout en s</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="comment">         * sortie:</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="comment">         *   Etat OK, TIME_OUT, OBSTACLE ou ERROR</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#a398e1a55d36ed44d39f6af73e753317a">set_position</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y, <span class="keywordtype">char</span> etats[3], <span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">         * set_detection_GP2</span></div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">         * entrees:</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">         *   actif &#39;1&#39; = actif et &#39;0&#39; = desactive, /!\ caractère &#39;1&#39;, pas 1</span></div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">         * sortie:</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">         *   Etat OK, TIME_OUT, ou ERROR</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#a77ed59dcb9d7b29706c041bc237856cf">set_detection_GP2</a>(<span class="keywordtype">char</span> actif);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment">         * set_angle</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">         * entrees:</span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="comment">         *   angle entre 0 et 360 deg</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="comment">         * sortie:</span></div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="comment">         *   Etat OK, TIME_OUT, ou ERROR</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#ac37f03c8ae6be93abb47aff9afc3a381">set_angle</a>(<span class="keywordtype">short</span> angle);</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="comment">         * set_actionneur</span></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="comment">         * entrees:</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">         *   id : identifiant : 0 bras, 1 pavillon</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">         *   on: 0 off, 1 on</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="comment">         * sortie:</span></div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="comment">         *   Etat OK, TIME_OUT, ou ERROR */</span></div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17">set_actionneur</a>(<span class="keywordtype">char</span> <span class="keywordtype">id</span>, <span class="keywordtype">char</span> on);</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="comment">// #################      GET      ###################</span></div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <span class="comment">/*</span></div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="comment">         * get_*</span></div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<span class="comment">         * entrees:</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="comment">         *   pointeur vers la valeur à maj</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="comment">         * sortie:</span></div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="comment">         *   Etat OK, TIME_OUT, ou ERROR</span></div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="comment">         */</span></div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc">get_angle</a>(<span class="keywordtype">short</span> *angle);</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#a289657896de71b537c11ab33ada2986c">get_position</a>(<span class="keyword">struct</span> <a class="code" href="structposition.html">position</a> *pos);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        <span class="keyword">enum</span> <a class="code" href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Etat</a> <a class="code" href="class_protocole.html#af46eb8fef480f0207c549d102268915e">get_etats_GP2</a>(<span class="keywordtype">char</span> etats[3]);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_protocole.html#a8c50e00c2d7e8cc80b3464f73850e021">print_buffer</a>(); <span class="comment">//debug</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordtype">int</span> serial_port;</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;        <span class="keywordtype">void</span> update_buffer();</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keyword">struct </span>termios tty;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;        <span class="keywordtype">char</span> writeBuffer[64];</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        <span class="keywordtype">char</span> readBuffer[READ_BUF_SIZE];</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordtype">short</span> GP2_etats[6];</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordtype">void</span> send(<span class="keyword">const</span> <span class="keywordtype">char</span> *command, ...);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <span class="keywordtype">int</span> update_buffer(<span class="keywordtype">int</span> timeout);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        <span class="keywordtype">void</span> flush_buffer();</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;        <span class="keywordtype">void</span> parse();</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;};</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="preprocessor">#endif // __PROTOCOLE_H_</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="aclass_protocole_html_a77ed59dcb9d7b29706c041bc237856cf"><div class="ttname"><a href="class_protocole.html#a77ed59dcb9d7b29706c041bc237856cf">Protocole::set_detection_GP2</a></div><div class="ttdeci">enum Etat set_detection_GP2(char actif)</div><div class="ttdoc">Permet de demander l'activation où la désactivation des GP2.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:189</div></div>
+<div class="ttc" id="aprotocole_8hpp_html"><div class="ttname"><a href="protocole_8hpp.html">protocole.hpp</a></div><div class="ttdoc">Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,...</div></div>
+<div class="ttc" id="aclass_protocole_html_a31cdee947366a4ad10fa99598483ada3"><div class="ttname"><a href="class_protocole.html#a31cdee947366a4ad10fa99598483ada3">Protocole::Etat</a></div><div class="ttdeci">Etat</div><div class="ttdoc">Permet de transmettre à la rasp les possibles erreurs du protocole.</div><div class="ttdef"><b>Definition:</b> protocole.hpp:43</div></div>
+<div class="ttc" id="aclass_protocole_html_a8ba2b9b867f641841a4714385cf38c17"><div class="ttname"><a href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17">Protocole::set_actionneur</a></div><div class="ttdeci">enum Etat set_actionneur(char id, char on)</div><div class="ttdoc">Permet de demander le déploiement d'un actionneur.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:232</div></div>
+<div class="ttc" id="aasserv_8hpp_html_abee464b9088832cf77edcf925eda6a6e"><div class="ttname"><a href="asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">angle</a></div><div class="ttdeci">short angle()</div><div class="ttdoc">Permet de demander l'information sur l'angle du robot par rapport à la table.</div><div class="ttdef"><b>Definition:</b> asserv.cpp:59</div></div>
+<div class="ttc" id="aclass_protocole_html_a8c50e00c2d7e8cc80b3464f73850e021"><div class="ttname"><a href="class_protocole.html#a8c50e00c2d7e8cc80b3464f73850e021">Protocole::print_buffer</a></div><div class="ttdeci">void print_buffer()</div><div class="ttdoc">Fonction permettant d'afficher le buffer à fin de debug.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:98</div></div>
+<div class="ttc" id="aclass_protocole_html"><div class="ttname"><a href="class_protocole.html">Protocole</a></div><div class="ttdoc">Contient toutes les méthodes permettant d'utiliser le protocole côté nucléo.</div><div class="ttdef"><b>Definition:</b> Protocole_nucleo.hpp:15</div></div>
+<div class="ttc" id="aclass_protocole_html_af46eb8fef480f0207c549d102268915e"><div class="ttname"><a href="class_protocole.html#af46eb8fef480f0207c549d102268915e">Protocole::get_etats_GP2</a></div><div class="ttdeci">enum Etat get_etats_GP2(char etats[3])</div><div class="ttdoc">Permet de demander l'état des GP2.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:145</div></div>
+<div class="ttc" id="aasserv_8hpp_html"><div class="ttname"><a href="asserv_8hpp.html">asserv.hpp</a></div><div class="ttdoc">Fichier d'interface avec l'asservissement, permet d'utiliser le protocole de communication pour deman...</div></div>
+<div class="ttc" id="aclass_protocole_html_ac37f03c8ae6be93abb47aff9afc3a381"><div class="ttname"><a href="class_protocole.html#ac37f03c8ae6be93abb47aff9afc3a381">Protocole::set_angle</a></div><div class="ttdeci">enum Etat set_angle(short angle)</div><div class="ttdoc">Permet de demander une rotation du robot.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:169</div></div>
+<div class="ttc" id="aclass_protocole_html_a398e1a55d36ed44d39f6af73e753317a"><div class="ttname"><a href="class_protocole.html#a398e1a55d36ed44d39f6af73e753317a">Protocole::set_position</a></div><div class="ttdeci">enum Etat set_position(short x, short y, char etats[3], int timeout)</div><div class="ttdoc">Permet de demander un changement de position à l'asservissement.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:208</div></div>
+<div class="ttc" id="aclass_protocole_html_a289657896de71b537c11ab33ada2986c"><div class="ttname"><a href="class_protocole.html#a289657896de71b537c11ab33ada2986c">Protocole::get_position</a></div><div class="ttdeci">enum Etat get_position(struct position *pos)</div><div class="ttdoc">Permet de demander la valeur de la position.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:110</div></div>
+<div class="ttc" id="aclass_protocole_html_a5ddbab0d5dedf7d445a3e670b4c0c1bc"><div class="ttname"><a href="class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc">Protocole::get_angle</a></div><div class="ttdeci">enum Etat get_angle(short *angle)</div><div class="ttdoc">Permet de demander la valeur de l'angle.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:127</div></div>
+<div class="ttc" id="astructposition_html"><div class="ttname"><a href="structposition.html">position</a></div><div class="ttdoc">Simple structure permettant de définir une position.</div><div class="ttdef"><b>Definition:</b> asserv.hpp:30</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_9a4b001405259e117c44638f5f241852.html">rasp</a></li><li class="navelem"><a class="el" href="dir_1af11c3d65235ae85dffc8a9ff86f4de.html">src</a></li><li class="navelem"><a class="el" href="dir_abed7d825d58c5ebaec544ac88ecfb4a.html">navigation</a></li><li class="navelem"><a class="el" href="protocole_8hpp.html">protocole.hpp</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.18 </li>
+  </ul>
+</div>
+</body>
+</html>

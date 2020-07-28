@@ -1,0 +1,20 @@
+<map id="code/rasp/src/robot.hpp" name="code/rasp/src/robot.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="418,5,577,32"/>
+<area shape="rect" id="node2" href="$navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="353,80,521,107"/>
+<area shape="rect" id="node18" href="$actionneur_8hpp.html" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="566,155,743,181"/>
+<area shape="rect" id="node3" href="$asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="349,229,435,256"/>
+<area shape="rect" id="node17" href="$detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="219,155,399,181"/>
+<area shape="rect" id="node4" title=" " alt="" coords="469,304,541,331"/>
+<area shape="rect" id="node5" title=" " alt="" coords="565,304,627,331"/>
+<area shape="rect" id="node6" title=" " alt="" coords="107,304,157,331"/>
+<area shape="rect" id="node7" title=" " alt="" coords="181,304,235,331"/>
+<area shape="rect" id="node8" title=" " alt="" coords="259,304,314,331"/>
+<area shape="rect" id="node9" href="$affichage_8hpp.html" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="339,304,445,331"/>
+<area shape="rect" id="node12" href="$world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="5,304,83,331"/>
+<area shape="rect" id="node14" href="$protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="651,304,749,331"/>
+<area shape="rect" id="node10" title=" " alt="" coords="403,379,463,405"/>
+<area shape="rect" id="node11" title=" " alt="" coords="319,379,379,405"/>
+<area shape="rect" id="node13" title=" " alt="" coords="15,379,73,405"/>
+<area shape="rect" id="node15" title=" " alt="" coords="707,379,781,405"/>
+<area shape="rect" id="node16" title=" " alt="" coords="627,379,682,405"/>
+</map>

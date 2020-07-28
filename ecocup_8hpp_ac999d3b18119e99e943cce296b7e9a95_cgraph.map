@@ -1,0 +1,32 @@
+<map id="ecocup_road" name="ecocup_road">
+<area shape="rect" id="node1" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,351,101,378"/>
+<area shape="rect" id="node2" href="$ecocup__pdv_8hpp.html#ab818150d5a8f86e31c4ca57b995da0f9" title="Fonction récapitulative permettant de faire tout le système (initialisation, ant_system,..." alt="" coords="365,244,457,271"/>
+<area shape="rect" id="node16" href="$ecocup__pdv_8hpp.html#a13c8f7637db9c7d616ace6f8ef4c0ce6" title="Permet d&#39;afficher le chemin trouvé" alt="" coords="173,250,269,276"/>
+<area shape="rect" id="node17" href="$ecocup_8hpp.html#a9a43ad38f522b9b71323e0919ca7a725" title="Lit le fichier des eco cups et met dans une matrices les informations utiles." alt="" coords="173,300,269,327"/>
+<area shape="rect" id="node18" href="$ecocup_8hpp.html#adcd63392582f591a3aaaf1319df9aff0" title="En construction : permet de ramasser une eco cup." alt="" coords="173,351,269,378"/>
+<area shape="rect" id="node20" href="$world_8hpp.html#ac7be71c5bbc7e3981d298b5c73d5a114" title="Cette fonction permet de gérer un cas particulier où l&#39;on détecte un robot et que l&#39;Astar n&#39;arrive pl..." alt="" coords="149,402,292,428"/>
+<area shape="rect" id="node21" href="$class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="173,452,268,479"/>
+<area shape="rect" id="node30" href="$class_robot.html#ae1b056d272cf3f1aa544c67ac7737fe4" title="Demande la position du robot." alt="" coords="167,503,274,530"/>
+<area shape="rect" id="node3" href="$ecocup__pdv_8hpp.html#a7dff1a5fa1964ccb64c84d63b0613670" title="Coeur de l&#39;algorithme : algorithme de colonie de fourmi https://fr.wikipedia.org/wiki/Algorithme_de_c..." alt="" coords="573,143,663,170"/>
+<area shape="rect" id="node12" href="$ecocup__pdv_8hpp.html#aea1756fe9d28544b7bd69eee05378bc8" title="Lit le fichier de ville pour remplir la matrice des villes." alt="" coords="565,194,671,220"/>
+<area shape="rect" id="node13" href="$ecocup__pdv_8hpp.html#a23c0719578c104bf88d3c9eaa6f48191" title="Initialisation la matrice de visibilité" alt="" coords="553,244,683,271"/>
+<area shape="rect" id="node14" href="$ecocup__pdv_8hpp.html#ae359bd428a8f2c0d9295006a9937d072" title="Définit la première ville parcourue." alt="" coords="531,295,705,322"/>
+<area shape="rect" id="node15" href="$ecocup__pdv_8hpp.html#a034cacb70bd2b336459d3e0ef178bcf0" title="Initialise la quantité de Phéromones." alt="" coords="537,346,699,372"/>
+<area shape="rect" id="node4" href="$ecocup__pdv_8hpp.html#a437b0b6daf6e92fa35c50f5a3399798f" title="Calcul la probabilité qu&#39;une fourmi passe sur un arc." alt="" coords="777,102,900,128"/>
+<area shape="rect" id="node5" href="$ecocup__pdv_8hpp.html#a0397294b9895066616944747a5020899" title="Efface la liste des villes." alt="" coords="1017,43,1102,70"/>
+<area shape="rect" id="node6" href="$ecocup__pdv_8hpp.html#a5625d9bd95adf796b2e3f9a83c2d941e" title="Permet de savoir les villes non explorées par une fourmi." alt="" coords="999,127,1119,154"/>
+<area shape="rect" id="node7" href="$ecocup__pdv_8hpp.html#a1c408ab2d47587e7549d6fcc6f357db9" title="Trouve le meilleur voyage parmis ceux calculés par ant_system." alt="" coords="1013,203,1105,230"/>
+<area shape="rect" id="node9" href="$ecocup__pdv_8hpp.html#a8dad021f6cfb6606d07e34a214806aea" title="Calcule la quantité de phéromone déposée sur un arc i j." alt="" coords="753,254,924,296"/>
+<area shape="rect" id="node11" href="$ecocup__pdv_8hpp.html#a8359c62723b07b33c5082593cb4b8ceb" title="Vide la liste des villes pour toutes les fourmis." alt="" coords="781,36,896,77"/>
+<area shape="rect" id="node8" href="$ecocup__pdv_8hpp.html#a80752888785b72dca9279f8ef5fd7c09" title="Renvoie la longueur du cycle hamiltonien d&#39;une fourmi." alt="" coords="1195,232,1399,259"/>
+<area shape="rect" id="node10" href="$ecocup__pdv_8hpp.html#ad5b44649209620be6802f6b5a24d874b" title="Calcule la quantité de phéromone déposée par une formi sur l&#39;arc i j." alt="" coords="972,254,1147,296"/>
+<area shape="rect" id="node19" href="$affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="360,351,463,378"/>
+<area shape="rect" id="node22" href="$class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="340,452,483,479"/>
+<area shape="rect" id="node23" href="$class_navigation.html#aa99ae7455bef2dcc724ab166d8a921ca" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="557,398,679,424"/>
+<area shape="rect" id="node27" href="$class_navigation.html#a4da44ead5f6b4fb643f140986cb343fb" title="Permet de prendre un branchement dans la stratégie en fonction du retour du protocole,..." alt="" coords="760,490,917,516"/>
+<area shape="rect" id="node28" href="$class_navigation.html#a322f076e4f3cfd218d110c7b3165c945" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="547,504,689,545"/>
+<area shape="rect" id="node24" href="$world_8hpp.html#a8132d25297b896fef1d6b07651311e92" title="Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle." alt="" coords="808,338,869,364"/>
+<area shape="rect" id="node25" href="$class_navigation.html#ac43b6d801ab9fc58e8dfaffa60c62f74" title="Permet de transformer une grille représentant la table en un chemin Cette fonction est utilisée dans ..." alt="" coords="764,388,913,415"/>
+<area shape="rect" id="node26" href="$affichage_8hpp.html#a793e2184d3289950f1e148a23d1c658a" title="Permet d&#39;afficher FAILED en rouge." alt="" coords="803,439,874,466"/>
+<area shape="rect" id="node29" href="$asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742" title="Permet de transmettre au protocole l&#39;ordre de se déplacer." alt="" coords="811,540,866,567"/>
+</map>

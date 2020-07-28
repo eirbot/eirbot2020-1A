@@ -1,0 +1,4 @@
+<map id="obstacle" name="obstacle">
+<area shape="rect" id="node1" title="Permet de définir un obstacle sur la table." alt="" coords="5,95,76,121"/>
+<area shape="rect" id="node2" href="$structshape.html" title="Permet de définir une forme pour ensuite être utilisé dans un obstacle." alt="" coords="12,5,69,32"/>
+</map>

@@ -1,0 +1,18 @@
+<map id="code/rasp/src/affichage.hpp" name="code/rasp/src/affichage.hpp">
+<area shape="rect" id="node1" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="453,5,633,32"/>
+<area shape="rect" id="node2" href="$asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="325,80,489,121"/>
+<area shape="rect" id="node14" href="$test__navigation_8hpp_source.html" title=" " alt="" coords="453,348,577,389"/>
+<area shape="rect" id="node3" href="$protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="143,169,307,211"/>
+<area shape="rect" id="node12" href="$detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="383,169,555,211"/>
+<area shape="rect" id="node13" href="$navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="349,259,513,300"/>
+<area shape="rect" id="node16" href="$test__asserv_8hpp_source.html" title=" " alt="" coords="579,169,703,211"/>
+<area shape="rect" id="node4" href="$actionneur_8hpp.html" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="5,259,177,300"/>
+<area shape="rect" id="node11" href="$test__protocole_8hpp_source.html" title=" " alt="" coords="201,259,325,300"/>
+<area shape="rect" id="node5" href="$robot_8hpp.html" title=" " alt="" coords="267,355,425,382"/>
+<area shape="rect" id="node10" href="$test__actionneur_8hpp_source.html" title=" " alt="" coords="29,348,153,389"/>
+<area shape="rect" id="node6" href="$ecocup_8hpp.html" title="Fichier codant les techniques utilisées pour ramasser les écocups." alt="" coords="260,437,432,479"/>
+<area shape="rect" id="node7" href="$main_8hpp.html" title="Fichier principal pour l&#39;execution de notre projet." alt="" coords="143,534,301,561"/>
+<area shape="rect" id="node9" href="$test__robot_8hpp_source.html" title=" " alt="" coords="456,437,580,479"/>
+<area shape="rect" id="node8" href="$test__ecocup_8hpp_source.html" title=" " alt="" coords="325,527,449,568"/>
+<area shape="rect" id="node15" href="$test__detection_8hpp_source.html" title=" " alt="" coords="537,259,661,300"/>
+</map>

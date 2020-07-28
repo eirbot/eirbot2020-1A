@@ -1,0 +1,8 @@
+<map id="Protocole::set_actionneur" name="Protocole::set_actionneur">
+<area shape="rect" id="node1" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="459,56,627,83"/>
+<area shape="rect" id="node2" href="$actionneur_8hpp.html#afe1845d64ec4917974b908eedc519411" title="Permet de demander au protocole l&#39;activation du pavillon." alt="" coords="307,5,375,32"/>
+<area shape="rect" id="node3" href="$actionneur_8hpp.html#ab23d015719e1a7bf79342aecb134e6d7" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="281,56,400,83"/>
+<area shape="rect" id="node6" href="$actionneur_8hpp.html#aa0ba6f7540ba92cbae67baf2391195d1" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="271,107,411,133"/>
+<area shape="rect" id="node4" href="$class_robot.html#a59ef019371b0abc50dd1e57c523d78da" title="Sort ou rentre un actionneur." alt="" coords="100,81,223,108"/>
+<area shape="rect" id="node5" href="$main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,81,52,108"/>
+</map>

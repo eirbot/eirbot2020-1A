@@ -1,0 +1,7 @@
+<map id="Navigation::Navigate_to_asserv" name="Navigation::Navigate_to_asserv">
+<area shape="rect" id="node1" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="577,23,720,65"/>
+<area shape="rect" id="node2" href="$class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="387,31,529,57"/>
+<area shape="rect" id="node3" href="$class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="244,31,339,57"/>
+<area shape="rect" id="node4" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="100,5,196,32"/>
+<area shape="rect" id="node5" href="$main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,31,52,57"/>
+</map>

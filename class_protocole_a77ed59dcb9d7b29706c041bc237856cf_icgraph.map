@@ -1,0 +1,7 @@
+<map id="Protocole::set_detection_GP2" name="Protocole::set_detection_GP2">
+<area shape="rect" id="node1" title="Permet de demander l&#39;activation où la désactivation des GP2." alt="" coords="436,31,631,57"/>
+<area shape="rect" id="node2" href="$class_g_p2.html#ab94061c392ddbeb748e0d7c009f26b87" title="Active la détection." alt="" coords="279,5,379,32"/>
+<area shape="rect" id="node5" href="$class_g_p2.html#a212815a662a969b059b448c970e990ab" title="Désactive la détection." alt="" coords="271,56,388,83"/>
+<area shape="rect" id="node3" href="$class_robot.html#a7e259d83b3908bf68280831b0a820921" title="Active ou désactive la détection." alt="" coords="108,31,223,57"/>
+<area shape="rect" id="node4" href="$main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="5,31,60,57"/>
+</map>

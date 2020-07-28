@@ -52,7 +52,7 @@ void ecocup_read(int taille)
     char color=0;
     FILE * fichier_ecocup;
     int C_NB_ECOCUP=taille;
-    fichier_ecocup=fopen("fichier_ecocup.txt","r");
+    fichier_ecocup=fopen("../fichier_ecocup.txt","r");
     if (fichier_ecocup != NULL)
     {
         while (fscanf(fichier_ecocup,"%d",&i) != EOF)

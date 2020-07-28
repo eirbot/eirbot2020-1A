@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Doxygen Action
+name: Documentation
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -36,4 +36,4 @@ jobs:
         github_token: ${{ secrets.TOKEN1 }}
         # Default Doxyfile build documentation to html directory. 
         # Change the directory if changes in Doxyfile
-        publish_dir: ../doc/html
+        publish_dir: doc/html

@@ -15,5 +15,7 @@ tmp/
 
 html/
 build/
-.json
+compile_commands.json
 coverage/
+.ccls-cache/
+

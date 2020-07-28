@@ -1,5 +1,4 @@
 <map id="ecocup_read" name="ecocup_read">
-<area shape="rect" id="node1" title="Lit le fichier des eco cups et met dans une matrices les informations utiles." alt="" coords="244,5,340,32"/>
-<area shape="rect" id="node2" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="100,5,196,32"/>
-<area shape="rect" id="node3" href="$main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="5,5,52,32"/>
+<area shape="rect" id="node1" title="Lit le fichier des eco cups et met dans une matrices les informations utiles." alt="" coords="149,5,245,32"/>
+<area shape="rect" id="node2" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,5,101,32"/>
 </map>

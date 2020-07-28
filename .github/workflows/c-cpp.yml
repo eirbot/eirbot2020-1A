@@ -1,4 +1,4 @@
-name: Eirbot2020-1A
+name: Code check
 
 on:
   push:

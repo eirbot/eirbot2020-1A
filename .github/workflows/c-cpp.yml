@@ -25,4 +25,4 @@ jobs:
         run: make test
         
       - name: coverage
-        run: make coverage
+        run: cd/code && make coverage

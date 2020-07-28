@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  Minimal level:
 
     runs-on: ubuntu-latest
 
@@ -16,7 +16,7 @@ jobs:
     - name: make
       run: make code
       
-  test:
+  Test:
     runs-on: ubuntu-latest
     
     steps:
@@ -24,5 +24,11 @@ jobs:
       - name: make test
         run: make test
         
-      - name: coverage
-        run: cd code/ && make coverage
+  Advanced level : 
+    runs-on: ubuntu-latest
+    steps : 
+      - uses : actions/checkout@v2
+      - name : valgrind build
+        run: valgrind ./code/project
+      - name : valgrind test
+        run: valgrind ./code/test

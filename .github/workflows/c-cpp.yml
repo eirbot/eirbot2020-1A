@@ -3,10 +3,8 @@ name: Code check
 on:
   push:
     branches: [ master ]
-    branches: [ Cmake_deployment ]
   pull_request:
     branches: [ master ]
-    branches: [ Cmake_deployment ]
 
 jobs:
   Minimal_level:

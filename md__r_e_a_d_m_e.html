@@ -101,26 +101,40 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 <li>Vaquori Yohann</li>
 <li>Vidal Martin</li>
 </ul>
-<h1>Mécanique</h1>
+<h1>Installation</h1>
+<p>Le projet est construit avec Cmake, il suffit donc de cloner le projet puis </p><div class="fragment"><div class="line">cd eirbot2020-1A/</div>
+<div class="line">mkdir build</div>
+<div class="line">cd build/</div>
+<div class="line">cmake .. </div>
+</div><!-- fragment --><h1>Éxecution</h1>
+<p>Depuis le dossier <code>build/</code></p>
+<p>Pour compiler le projet il suffit de faire <code>make project</code> en ayant un compilateur de C++.</p>
+<p>Plusieurs méthodes permettent d'exécuter le projet.</p>
+<p>En local un <code>./project</code> suffit, si la nucléo est branchée via le port USB une simulation de communication est enclenchée (la nucléo renvoie toujours vrai à chaque demande). Cela peut demander de faire la commande en super utilisateur ou changer le chemin d'accès au port USB (ligne 110 de ce <a href="https://github.com/eirbot2020-1A/tree/master/code/rasp/src/main.cc">code</a>).</p>
+<p>Pour mettre le projet sur la rasp et donc le robot il faut être connecté au même wifi que la raspeberry puis faire un <code>make final</code>.</p>
+<p>En plus de l'exécution des tests sont effectués sur les codes, ils peuvent être compilés en faisant <code>make test</code> puis <code>./test</code>. A partir de ce moment des tests sur tous les modules implémentés sont exécutés, le coverage actuel est de 87%</p>
+<p>Finalement un <code>make doc</code> permet d'afficher la documentation de nos codes. Elle est de plus disponible sur notre <a href="https://eirbot.github.io/eirbot2020-1A/md__r_e_a_d_m_e.html">page web</a></p>
+<h1>Description du projet</h1>
+<h2>Mécanique</h2>
 <p>Dans un premier temps nous avons la mécanique, le <a href="https://github.com/eirbot/eirbot2020-1A/blob/master/meca/maquette_robot/AssemblageV2.stl">schéma</a> général se base sur une architecture octogonale, structuré par des profilés et via la notion d'étage.</p>
 <p>Un porte batterie a été fait pour éviter que la batterie bouge pendant le déplacement</p>
 <p>Le design des étages est en cours.</p>
 <p>Le design des portes <a class="el" href="class_g_p2.html" title="Contient les différentes méthodes pour initialiser, activer et désactiver les GP2 et détecter les obs...">GP2</a> est en cours.</p>
-<h1>Alimentation</h1>
-<p>Un autre étape cruciale de notre robot est la distribution de l'énergie dans ce dernier. Pour ce faire nous passons via une carte d'alimentation, so rôle est de distribuer aux différentes instances l'énergie nécessaire pour fonctionner. </p><h2>Schéma de principe</h2>
-<p><img src="https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/schema_bloc_connexions.png" alt="principe alimentation" class="inline"/> </p><h2>Résultat</h2>
+<h2>Alimentation</h2>
+<p>Un autre étape cruciale de notre robot est la distribution de l'énergie dans ce dernier. Pour ce faire nous passons via une carte d'alimentation, so rôle est de distribuer aux différentes instances l'énergie nécessaire pour fonctionner. </p><h3>Schéma de principe</h3>
+<p><img src="https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/schema_bloc_connexions.png" alt="principe alimentation" class="inline"/> </p><h3>Résultat</h3>
 <p><img src="https://github.com/eirbot/eirbot2020-1A/blob/master/reunion/alimentation.jpg" alt="résultat alimentation" class="inline"/></p>
-<h1>Actionneur</h1>
+<h2>Actionneur</h2>
 <p>Pour réaliser les différentes actions nous avons besoins de différents actionneurs.</p>
 <p>Tout d'abord des actionneurs simples utiles pour activer le phare et les manches à air, ils sont au nombre de deux pour gérer facilement chaque côté de la table.</p>
 <p>Ensuite un actionneur représentant le pavillon et permettant de lever le drapeau.</p>
 <p>Finalement un pince est en cours de réflexion pour ramasser les ecocups</p>
-<h1>Puissance</h1>
-<p>Une fois que nous pouvons alimenter tous les composants de notre robot nous devons encore permettre un contrôle de la puissance fournie au moteur, pour cela nous créons deux cartes possédant un pont en H, cela nous permet de délivrer la puissance nécessaire à nos moteurs pour nos robots. </p><h2>Schéma de conception</h2>
-<h2>Résultat</h2>
-<h1>Asservissement</h1>
+<h2>Puissance</h2>
+<p>Une fois que nous pouvons alimenter tous les composants de notre robot nous devons encore permettre un contrôle de la puissance fournie au moteur, pour cela nous créons deux cartes possédant un pont en H, cela nous permet de délivrer la puissance nécessaire à nos moteurs pour nos robots. </p><h3>Schéma de conception</h3>
+<h3>Résultat</h3>
+<h2>Asservissement</h2>
 <p>L'idée maintenant que nous avons une mécanique propre, nos différents modules aliméntés et que nous pouvons contrôler précsiement nos moteurs est de créer un asservissement. Le but de l'<a href="https://github.com/eirbot/eirbot2020-1A/tree/master/code/nucleo">asservissement</a> est de récupérer les informations des encodeurs et de permettre au robot d'atteindre une certainne position tout en gérant l'angle, la puissance des moteurs etc.</p>
-<h1>Stratégie</h1>
+<h2>Stratégie</h2>
 <p>Maintenant que nous avons un asservissement nous devons réaliser les choix pour notre stratégie.</p>
 <p>La stratégie se décompose en deux parties. Une partie sur la nucléo contenant les actions "matérielles" à faire (par exemple tourner le servomoteur de l'actionneur pour la phare). Et une partie de stratégie plus abstraite sur raspeberry.</p>
 <p>La partie abstraite a plusieurs rôles</p><ul>
@@ -131,17 +145,10 @@ $(document).ready(function(){initNavTree('md__r_e_a_d_m_e.html',''); initResizab
 <li>Elle est capable de définir dans quel sens il faut ramasser les ecocups (probleme du voyageur de commerce, algorithme des colonies de fourmis)</li>
 </ul>
 <p>Les codes sont disponibles <a href="https://github.com/eirbot/eirbot2020-1A/tree/master/code/rasp/src">ici</a>.</p>
-<h2>Execution</h2>
-<p>Pour compiler le projet il suffit de faire <code>make projet</code> en ayant un compilateur de C++.</p>
-<p>Plusieurs méthodes permettent d'exécuter le projet.</p>
-<p>En local un <code>./project</code> suffit, si la nucléo est branchée via le port USB une simulation de communication est enclenchée (la nucléo renvoie toujours vrai à chaque demande). Cela peut demander de faire la commande en super utilisateur ou changer le chemin d'accès au port USB (ligne 110 de ce <a href="https://github.com/eirbot2020-1A/tree/master/code/rasp/src/main.cc">code</a>).</p>
-<p>Pour mettre le projet sur la rasp et donc le robot il faut être connecté au même wifi que la raspeberry puis faire un <code>make final</code>.</p>
-<p>En plus de l'exécution des tests sont effectués sur les codes, ils peuvent être compilés en faisant <code>make test</code> puis <code>./test</code>. A partir de ce moment des tests sur tous les modules implémentés sont exécutés, le coverage actuel est de 90% (il est visible en réalisant un <code>make coverage</code>).</p>
-<p>Finalement un <code>make doc</code> permet d'afficher la documentation de nos codes.</p>
-<h1><a class="el" href="class_protocole.html" title="Contient toutes les méthodes permettant d&#39;utiliser le protocole côté nucléo.">Protocole</a> de communication</h1>
+<h2><a class="el" href="class_protocole.html" title="Contient toutes les méthodes permettant d&#39;utiliser le protocole côté nucléo.">Protocole</a> de communication</h2>
 <p>Comme dit précédemment nous avons séparé la partie d'implémentation du contrôle physique (sur la nucléo) et la partie d'implémentation de la stratégie (sur la rasp). Cela implique donc une communication entre les deux cartes. L'idée est d'utiliser un protocole de communication du type maitre esclave. Par exemple lorsque la rasp a trouvé la trajectoire demandé, elle fournit au fur et à mesure les coordonnées qu'elle souhaite atteindre à la nucléo. Cette dernière via l'asservissement déplace le robot à la position souhaitée, elle a un certains temps pour le faire. Si elle arrive à la position demandée elle renvoie "OK", si elle n'y arrive pas automatiquement le protocole renvoie "TIMEOUT". Si les <a class="el" href="class_g_p2.html" title="Contient les différentes méthodes pour initialiser, activer et désactiver les GP2 et détecter les obs...">GP2</a>, reliés à la nucléo détectent un robot ennemi pendant le déplacement, la nucléo stoppe le robot et renvoie "DETECTION" à la rasp. Cette dernière prendra alors les mesures nécessaires pour éviter le robot. C'est ainsi que se déroule la communication entre la rasp et la nucleo.</p>
 <h1>Phare</h1>
-<p>En marge du robot nous devons réaliser l'expérience. L'objectif du phare est de se déployer pendant le match pour permettre d'atteindre une certainne hauteur. Cela est réalisé par un bras robotique imprimé en PLA. Ce dernier possède un design comme suit. <img src="https://github.com/eirbot2020-1A/tree/master/dossier_presentation/phare_d.png" alt="phare" class="inline"/> </p>
+<p>En marge du robot nous devons réaliser l'expérience. L'objectif du phare est de se déployer pendant le match pour permettre d'atteindre une certainne hauteur. Cela est réalisé par un bras robotique imprimé en PLA. Ce dernier possède un design comme suit. <img src="https://eirbot.github.io/assets/images/phare_d.png" alt="phare" class="inline"/> </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

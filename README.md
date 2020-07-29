@@ -35,7 +35,7 @@ Le design des portes GP2 est en cours.
 ## Alimentation 
 Un autre étape cruciale de notre robot est la distribution de l'énergie dans ce dernier. Pour ce faire nous passons via une carte d'alimentation, so rôle est de distribuer aux différentes instances l'énergie nécessaire pour fonctionner. 
 ### Schéma de principe
-![principe alimentation](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/schema_bloc_connexions.png)
+![principe alimentation](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/alim/schema_bloc_connexions.png)
 ### Résultat
 ![résultat alimentation](https://github.com/eirbot/eirbot2020-1A/blob/master/reunion/alimentation.jpg)
 

@@ -3,8 +3,18 @@ name: Valgrind
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+    - '.github/**'
+    - 'alim/**'
+    - 'meca/**'
+    - 'reunion/**'
   pull_request:
     branches: [ master ]
+    paths-ignore:
+    - '.github/**'
+    - 'alim/**'
+    - 'meca/**'
+    - 'reunion/**'
 
 jobs:
 

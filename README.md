@@ -25,7 +25,7 @@ Ce projet est réalisé par les différents membres de Eirbot en première anné
 Le projet est construit avec Cmake, il suffit donc de cloner le projet puis 
 
 ```
-cd eirbot2020-1A/
+cd eirbot2020-1A/code/
 cd build/
 cmake .. 
 ```

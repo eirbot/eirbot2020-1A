@@ -26,7 +26,7 @@ var NAVTREE =
 [
   [ "Eirbot1A-2020", "index.html", [
     [ "Contributing", "md__c_o_n_t_r_i_b_u_t_i_n_g.html", null ],
-    [ "EIRBOT 2020-1A : Equipe EIRBOAT <img src=\"https://github.com/eirbot/eirbot2020-1A/workflows/Code%20check/badge.svg\" alt=\"Code check\"/> <img src=\"https://github.com/eirbot/eirbot2020-1A/workflows/Documentation/badge.svg\" alt=\"Documentation\"/>", "md__r_e_a_d_m_e.html", null ],
+    [ "EIRBOT 2020-1A : Equipe EIRBOAT <img src=\"https://github.com/eirbot/eirbot2020-1A/workflows/Code%20check/badge.svg\" alt=\"Code check\"/> <img src=\"https://github.com/eirbot/eirbot2020-1A/workflows/Documentation/badge.svg\" alt=\"Documentation\"/> <img src=\"https://github.com/eirbot/eirbot2020-1A/workflows/Valgrind/badge.svg\" alt=\"Valgrind\"/>", "md__r_e_a_d_m_e.html", null ],
     [ "Liste des bogues", "bug.html", null ],
     [ "Classes", "annotated.html", [
       [ "Liste des classes", "annotated.html", "annotated_dup" ],

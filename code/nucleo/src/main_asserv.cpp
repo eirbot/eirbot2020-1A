@@ -39,7 +39,7 @@ float commande_PWMD=0;
 
 void conCharReceived(void)
 {
-    c=pc.getc();
+  c=pc.getc();
 }
 
 void function_Asserv(void)
@@ -59,7 +59,7 @@ void function_Asserv(void)
   
 }
 
-  int main() {
+int main() {
 
   pwmMD.period(FREQ_MOTEUR);
   pwmMG.period(FREQ_MOTEUR);
@@ -70,19 +70,14 @@ void function_Asserv(void)
   ConsVD=(((W)*RA)+(Vitesse));
   //time_up.attach(&function_Asserv, Te);
   while(1) {
-  pc.attach(&conCharReceived);
-  pc.printf("VG=%f VD=%f errG=%f errD=%f\n\r",VG,VD,((ConsVG-VG)*100)/ConsVG,((ConsVD-VD)*100)/ConsVD);
-  commande_PWMG=10;
-  commande_PWMD=10;
-  dirMG=fonc_direction(commande_PWMG/100);
-  pwmMG.write(abs(commande_PWMG/100));
-  dirMD=fonc_direction(commande_PWMD/100);
-  pwmMD.write(abs(commande_PWMD/100));
-  
-  
-}
+    pc.attach(&conCharReceived);
+    pc.printf("VG=%f VD=%f errG=%f errD=%f\n\r",VG,VD,((ConsVG-VG)*100)/ConsVG,((ConsVD-VD)*100)/ConsVD);
+    commande_PWMG=10;
+    commande_PWMD=10;
+    dirMG=fonc_direction(commande_PWMG/100);
+    pwmMG.write(abs(commande_PWMG/100));
+    dirMD=fonc_direction(commande_PWMD/100);
+    pwmMD.write(abs(commande_PWMD/100));
   }
 
-
-
-
+}

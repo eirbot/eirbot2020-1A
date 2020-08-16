@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['robot_113',['Robot',['../class_robot.html',1,'']]]
+  ['position_113',['position',['../structposition.html',1,'']]],
+  ['protocole_114',['Protocole',['../class_protocole.html',1,'']]]
 ];

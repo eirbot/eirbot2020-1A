@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.19"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eirbot1A-2020:  Fichier source de code/nucleo/src/asserv.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Eirbot1A-2020
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.19 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('nucleo_2src_2asserv_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">asserv.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __ASSERV_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __ASSERV_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &quot;mbed.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#ifndef PI</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define PI                 3.14159265358979f</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define COMMANDE_MAX 100</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define COMMANDE_MIN -100</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">float</span> fonc_aserv_KP(<span class="keyword">const</span> <span class="keywordtype">int</span> lecture_vitesse, <span class="keyword">const</span> <span class="keywordtype">int</span> consigne, <span class="keyword">const</span> <span class="keywordtype">float</span> KP);</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> asserv_vitesse_PI(<span class="keyword">const</span> <span class="keywordtype">float</span> KP, <span class="keyword">const</span> <span class="keywordtype">float</span> KI, <span class="keyword">const</span> <span class="keywordtype">float</span> Te, <span class="keyword">const</span> <span class="keywordtype">float</span> erreur, <span class="keywordtype">float</span> *commande, <span class="keywordtype">float</span> *Z1_in, <span class="keywordtype">float</span> *Z1_out);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">float</span> gene_consPWM_sin(<span class="keywordtype">int</span> freq, <span class="keywordtype">int</span> offset, <span class="keywordtype">float</span> gain, <span class="keywordtype">double</span> t);</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> limite(<span class="keywordtype">float</span>*commande, <span class="keywordtype">int</span> max, <span class="keywordtype">int</span> min);</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#endif //__ASSERV_</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; <span class="comment">// float *signal = (float *) malloc(sizeof(float)*10000);</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; <span class="comment">/*</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">  for(int i=0;i&lt;=5000;i++){</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">      signal[i]=(sin(1000*2*PI*timer.read()));</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">    for(int i=5000;i&gt;=0;i--){</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">       pc.printf(&quot;%f;%f\n\r&quot;,timer.read(),signal[i]); </span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">    while (1)</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">    {</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     </span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">    }</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">*/</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="aclass_protocole_html"><div class="ttname"><a href="class_protocole.html">Protocole</a></div><div class="ttdoc">Contient toutes les méthodes permettant d'utiliser le protocole côté nucléo.</div><div class="ttdef"><b>Definition:</b> Protocole_nucleo.hpp:15</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_a8e52451626296ff3d31c441d10ffb742"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742">go_to</a></div><div class="ttdeci">int go_to(struct position dest, struct position src)</div><div class="ttdoc">Permet de transmettre au protocole l'ordre de se déplacer.</div><div class="ttdef"><b>Definition:</b> asserv.cpp:7</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_abe0739d6ab90305d7e6862c575cf53e4"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#abe0739d6ab90305d7e6862c575cf53e4">initialise_x</a></div><div class="ttdeci">void initialise_x()</div><div class="ttdoc">Demande d'effectuer la calibration par rapport au grand côté</div><div class="ttdef"><b>Definition:</b> asserv.cpp:68</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_a4361ec3252e99f3787a2c88d7fa15fdd"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#a4361ec3252e99f3787a2c88d7fa15fdd">initialise_y</a></div><div class="ttdeci">void initialise_y()</div><div class="ttdoc">Demande d'effectuer la calibration par rapport au petit côté</div><div class="ttdef"><b>Definition:</b> asserv.cpp:74</div></div>
+<div class="ttc" id="aclass_protocole_html_ac37f03c8ae6be93abb47aff9afc3a381"><div class="ttname"><a href="class_protocole.html#ac37f03c8ae6be93abb47aff9afc3a381">Protocole::set_angle</a></div><div class="ttdeci">enum Etat set_angle(short angle)</div><div class="ttdoc">Permet de demander une rotation du robot.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:169</div></div>
+<div class="ttc" id="aclass_protocole_html_a398e1a55d36ed44d39f6af73e753317a"><div class="ttname"><a href="class_protocole.html#a398e1a55d36ed44d39f6af73e753317a">Protocole::set_position</a></div><div class="ttdeci">enum Etat set_position(short x, short y, char etats[3], int timeout)</div><div class="ttdoc">Permet de demander un changement de position à l'asservissement.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:208</div></div>
+<div class="ttc" id="aclass_protocole_html_a289657896de71b537c11ab33ada2986c"><div class="ttname"><a href="class_protocole.html#a289657896de71b537c11ab33ada2986c">Protocole::get_position</a></div><div class="ttdeci">enum Etat get_position(struct position *pos)</div><div class="ttdoc">Permet de demander la valeur de la position.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:110</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_a1bf9d70fe47a174b76a9335c403c9672"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672">rotate</a></div><div class="ttdeci">void rotate(short angle)</div><div class="ttdoc">Permet d'ordonner la rotation du robot.</div><div class="ttdef"><b>Definition:</b> asserv.cpp:37</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_abee464b9088832cf77edcf925eda6a6e"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">angle</a></div><div class="ttdeci">short angle()</div><div class="ttdoc">Permet de demander l'information sur l'angle du robot par rapport à la table.</div><div class="ttdef"><b>Definition:</b> asserv.cpp:59</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html">asserv.hpp</a></div><div class="ttdoc">Fichier d'interface avec l'asservissement, permet d'utiliser le protocole de communication pour deman...</div></div>
+<div class="ttc" id="aaffichage_8hpp_html_ae43d1cf111dfc04a0eaff8c1b4899a93"><div class="ttname"><a href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93">print_timeout</a></div><div class="ttdeci">void print_timeout()</div><div class="ttdoc">Permet d'afficher TIMEOUT en rouge.</div><div class="ttdef"><b>Definition:</b> affichage.cpp:15</div></div>
+<div class="ttc" id="aaffichage_8hpp_html_a4ceee6ebefab3ca6fc8d72282bcdcb72"><div class="ttname"><a href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72">print_detection</a></div><div class="ttdeci">void print_detection()</div><div class="ttdoc">Permet d'afficher DETECTION en orange.</div><div class="ttdef"><b>Definition:</b> affichage.cpp:43</div></div>
+<div class="ttc" id="aaffichage_8hpp_html_a3a5792a2c8d329867bb92201ed11d9d1"><div class="ttname"><a href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1">affichage</a></div><div class="ttdeci">void affichage(int asserv_back)</div><div class="ttdoc">Permet d'afficher timeout/success/fail en fonction du retour du protocole de communication.</div><div class="ttdef"><b>Definition:</b> affichage.cpp:54</div></div>
+<div class="ttc" id="aclass_protocole_html_a5ddbab0d5dedf7d445a3e670b4c0c1bc"><div class="ttname"><a href="class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc">Protocole::get_angle</a></div><div class="ttdeci">enum Etat get_angle(short *angle)</div><div class="ttdoc">Permet de demander la valeur de l'angle.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:127</div></div>
+<div class="ttc" id="astructposition_html"><div class="ttname"><a href="structposition.html">position</a></div><div class="ttdoc">Simple structure permettant de définir une position.</div><div class="ttdef"><b>Definition:</b> asserv.hpp:30</div></div>
+<div class="ttc" id="aaffichage_8hpp_html_a3178e1f67dea664279514d3598dcc220"><div class="ttname"><a href="affichage_8hpp.html#a3178e1f67dea664279514d3598dcc220">print_optimisated</a></div><div class="ttdeci">void print_optimisated()</div><div class="ttdoc">Permet d'afficher UNOPTIMIZED en orange.</div><div class="ttdef"><b>Definition:</b> affichage.cpp:37</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_ad90cc2e0321d980f54e651a1619837a7"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#ad90cc2e0321d980f54e651a1619837a7">call_back</a></div><div class="ttdeci">int call_back(int asserv_back)</div><div class="ttdoc">Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence.</div><div class="ttdef"><b>Definition:</b> asserv.cpp:26</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_987af7fa629037f1e63ed236aa168067.html">nucleo</a></li><li class="navelem"><a class="el" href="dir_6adb3219b8f68e96d65952aca8a88c2d.html">src</a></li><li class="navelem"><b>asserv.hpp</b></li>
+    <li class="footer">Généré par <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.19 </li>
+  </ul>
+</div>
+</body>
+</html>

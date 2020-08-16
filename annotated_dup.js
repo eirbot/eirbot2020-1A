@@ -1,5 +1,6 @@
 var annotated_dup =
 [
+    [ "Encoder", "class_encoder.html", "class_encoder" ],
     [ "GP2", "class_g_p2.html", "class_g_p2" ],
     [ "GP2_information", "struct_g_p2__information.html", "struct_g_p2__information" ],
     [ "Navigation", "class_navigation.html", "class_navigation" ],

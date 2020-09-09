@@ -1,4 +1,4 @@
- | nom                     | longueur (cm) | diametre | connecteur 1 | connecteur 2 | quantité | fait |
+ | nom                     | longueur (cm) | section  | connecteur 1 | connecteur 2 | quantité | fait |
  |-------------------------+---------------+----------+--------------+--------------+----------+------|
  | commande moteur         |            30 |          |              |              |        2 |      |
  | commande servo bras     |               |          |              |              |        2 |      |

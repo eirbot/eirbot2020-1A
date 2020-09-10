@@ -1,12 +1,12 @@
- | nom                     | longueur (cm) | section  | connecteur 1 | connecteur 2 | quantité | fait |
- |-------------------------+---------------+----------+--------------+--------------+----------+------|
- | commande moteur         |            30 |          |              |              |        2 |      |
- | commande servo bras     |               |          |              |              |        2 |      |
- | commande servo pavillon |               |          |              |              |        1 |      |
- | contacteur              |            40 |          |              |              |        2 |      |
- | GP2                     |               |          |              |              |        6 |      |
- | alim moteur             |            20 | gros     |              |              |        2 |      |
- | urgence                 |               |          |              |              |        1 |      |
- | 5V logique rasp         |            45 | gros     |              |              |        1 |      |
- | 5V puissance servo      |               |          |              |              |        2 |      |
- |                         |               |          |              |              |          |      |
+ | nom                     | longueur (cm) | section | connecteur 1  | connecteur 2  | quantité | fait |
+ |-------------------------+---------------+---------+---------------+---------------+----------+------|
+ | commande moteur         |            20 | petite  | mirco latch 4 | micro latch 4 |        2 |      |
+ | commande servo bras     |               |         |               |               |        2 |      |
+ | commande servo pavillon |               |         |               |               |        1 |      |
+ | contacteur              |            40 |         |               |               |        2 |      |
+ | GP2                     |               |         |               |               |        6 |      |
+ | alim moteur             |            20 | grosse  |               |               |        2 |      |
+ | urgence                 |               |         |               |               |        1 |      |
+ | 5V logique rasp         |            45 | grosse  |               |               |        1 |      |
+ | 5V puissance servo      |               |         |               |               |        2 |      |
+ |                         |               |         |               |               |          |      |

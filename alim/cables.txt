@@ -1,12 +1,12 @@
- | nom                     | longueur (cm) | section | connecteur 1  | connecteur 2  | quantité | fait |
- |-------------------------+---------------+---------+---------------+---------------+----------+------|
- | commande moteur         |            20 | petite  | mirco latch 4 | micro latch 4 |        2 |      |
- | commande servo bras     |               |         |               |               |        2 |      |
- | commande servo pavillon |               |         |               |               |        1 |      |
- | contacteur              |            40 |         |               |               |        2 |      |
- | GP2                     |               |         |               |               |        6 |      |
- | alim moteur             |            20 | grosse  |               |               |        2 |      |
- | urgence                 |               |         |               |               |        1 |      |
- | 5V logique rasp         |            45 | grosse  |               |               |        1 |      |
- | 5V puissance servo      |               |         |               |               |        2 |      |
- |                         |               |         |               |               |          |      |
+ | nom                     | longueur (cm) | section | connecteur 1 | connecteur 2 | nb contacts | quantité | nb fils | fait     |
+ |-------------------------+---------------+---------+--------------+--------------+-------------+----------+---------+----------|
+ | commande moteur         |            20 | petite  | micro latch  | micro latch  |           4 |        2 |       8 | en cours |
+ | commande servo bras     |               |         |              |              |           2 |        2 |       4 |          |
+ | commande servo pavillon |               |         |              |              |           2 |        1 |       2 |          |
+ | contacteur              |            40 |         |              |              |           2 |        2 |       4 |          |
+ | GP2                     |            20 |         | micro latch  | micro latch  |           3 |        6 |      18 |          |
+ | alim moteur             |            20 | grosse  | molex fem    | molex fem    |           2 |        2 |       4 |          |
+ | urgence                 |               |         |              |              |           2 |        1 |       2 |          |
+ | 5V logique rasp         |            45 | grosse  |              |              |           2 |        1 |       2 |          |
+ | 5V puissance servo      |               |         |              |              |           2 |        3 |       6 |          |
+ |                         |               |         |              |              |             |          |         |          |

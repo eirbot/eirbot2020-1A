@@ -68,12 +68,12 @@ int main() {
   W=0;
   ConsVG=((Vitesse)-((W)*RA));
   ConsVD=(((W)*RA)+(Vitesse));
-  //time_up.attach(&function_Asserv, Te);
+  //time_up.attach(&function_Asserv, Te); //a decommenter pour asservir
   while(1) {
     pc.attach(&conCharReceived);
     pc.printf("VG=%f VD=%f errG=%f errD=%f\n\r",VG,VD,((ConsVG-VG)*100)/ConsVG,((ConsVD-VD)*100)/ConsVD);
-    commande_PWMG=10;
-    commande_PWMD=10;
+    commande_PWMG=10;   //a commenter pour asservir
+    commande_PWMD=10;   //a commenter pour asservir
     dirMG=fonc_direction(commande_PWMG/100);
     pwmMG.write(abs(commande_PWMG/100));
     dirMD=fonc_direction(commande_PWMD/100);

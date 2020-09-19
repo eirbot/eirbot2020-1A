@@ -5,8 +5,8 @@
  | commande servo pavillon |               |         |              |              |           2 |        1 |       2 |          |
  | contacteur              |            40 |         |              |              |           2 |        2 |       4 |          |
  | GP2                     |            20 |         | micro latch  | micro latch  |           3 |        6 |      18 |          |
- | alim moteur             |            20 | grosse  | molex fem    | molex fem    |           2 |        2 |       4 |          |
- | urgence                 |               |         |              |              |           2 |        1 |       2 |          |
+ | alim moteur             |            20 | grosse  | molex fem    | molex fem    |           2 |        2 |       4 | fait     |
+ | urgence                 |               |         |              |              |           2 |        1 |       2 | fait     |
  | 5V logique rasp         |            45 | grosse  |              |              |           2 |        1 |       2 |          |
  | 5V puissance servo      |               |         |              |              |           2 |        3 |       6 |          |
  |                         |               |         |              |              |             |          |         |          |

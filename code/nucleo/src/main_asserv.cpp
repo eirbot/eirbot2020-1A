@@ -50,7 +50,7 @@ float ConsVD_liss=0;
 int  reset =0;
 void conCharReceived(void)
 {
-    c=pc.getc();
+  c=pc.getc();
 }
 
 
@@ -71,7 +71,7 @@ void function_Asserv(void)
   commande_PWMD_V=Asserv_V_MD(VD,ConsVD,reset);
 }
 
-  int main() 
+int main()
 {
   pwmMD.period(FREQ_MOTEUR);
   pwmMG.period(FREQ_MOTEUR);
@@ -82,42 +82,42 @@ void function_Asserv(void)
   //ConsVD=(((W)*RA)+(Vitesse));
   time_up.attach(&function_Asserv, Te);
   while(1) {
-  pc.attach(&conCharReceived);
-  if ( c=='\t') {
-    Cons_Dis=1;
-    Cons_Angle=(PI/180)*0;
-   /* ConsV=0;
-    ConsW=(PI/180)*90;
-    ConsVG=ConsV-ConsW*RA;
-    ConsVD=ConsW*RA+ConsV;*/
-    //ConsVG=((ConsV*3.8)-((ConsW)*RA*1.95));
-    //ConsVD=(((ConsW)*RA*1.95)+(ConsV*3.8));
+    pc.attach(&conCharReceived);
+    if ( c=='\t') {
+      Cons_Dis=1;
+      Cons_Angle=(PI/180)*0;
+      /* ConsV=0;
+         ConsW=(PI/180)*90;
+         ConsVG=ConsV-ConsW*RA;
+         ConsVD=ConsW*RA+ConsV;*/
+      //ConsVG=((ConsV*3.8)-((ConsW)*RA*1.95));
+      //ConsVD=(((ConsW)*RA*1.95)+(ConsV*3.8));
     
   
-    reset =0;
-  }else if ( c=='s'){
+      reset =0;
+    }else if ( c=='s'){
 
-    //commande_PWMG_V=0;
-    //commande_PWMD_V=0;
-    reset=1;
-  }else{
-    //commande_PWMG_V=0;
-    //commande_PWMD_V=0;
-    reset=1;
-  }
+      //commande_PWMG_V=0;
+      //commande_PWMD_V=0;
+      reset=1;
+    }else{
+      //commande_PWMG_V=0;
+      //commande_PWMD_V=0;
+      reset=1;
+    }
   
   
-  //pc.printf("%f\n\r",(Angle*(180/2*PI)));
-  pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
-  //pc.printf("Wc1=%f Wc2=%f \n\r",Wc1,Wc2);
-  //pc.printf("ec1=%d ec2=%d \n\r",Encoder_Gauche.get(),Encoder_Droit.get());
-  //commande_PWMG=10;
-  //commande_PWMD=10;
+    //pc.printf("%f\n\r",(Angle*(180/2*PI)));
+    pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
+    //pc.printf("Wc1=%f Wc2=%f \n\r",Wc1,Wc2);
+    //pc.printf("ec1=%d ec2=%d \n\r",Encoder_Gauche.get(),Encoder_Droit.get());
+    //commande_PWMG=10;
+    //commande_PWMD=10;
  
-  dirMG=fonc_direction(commande_PWMG_V/100);
-  pwmMG.write(abs(commande_PWMG_V/100));
-  dirMD=fonc_direction(commande_PWMD_V/100);
-  pwmMD.write(abs(commande_PWMD_V/100));
+    dirMG=fonc_direction(commande_PWMG_V/100);
+    pwmMG.write(abs(commande_PWMG_V/100));
+    dirMD=fonc_direction(commande_PWMD_V/100);
+    pwmMD.write(abs(commande_PWMD_V/100));
   }
 }
 

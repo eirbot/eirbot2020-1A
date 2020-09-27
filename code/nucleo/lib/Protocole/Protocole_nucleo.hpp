@@ -29,7 +29,7 @@ class Protocole
     private:
         char readBuffer[32];
         int buf_index = 0;
-        RawSerial *_serial;
+        BufferedSerial *_serial;
         void parse();
 };
 

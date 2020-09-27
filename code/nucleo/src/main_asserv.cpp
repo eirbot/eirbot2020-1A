@@ -4,8 +4,8 @@
 #include "mbed.h"
 #include "encoder.hpp"
 #include "moteur.hpp"
-// #include "asserv.hpp"
 #include "asserv_vitesse_angle.hpp"
+#include "Protocole_nucleo.hpp"
 #include "math.h"
  
 Timer timer;
@@ -18,8 +18,9 @@ DigitalOut dirMD(D2);
 DigitalOut breakMD(D7);
 Encoder Encoder_Droit=Encoder(TIM3);
 Encoder Encoder_Gauche=Encoder(TIM4);
+Protocole protocole=Protocole();
 
-Serial pc(D1,D0);
+//Serial pc(D1,D0);
 
 volatile char   c = '\0'; // Initialized to the NULL character
 
@@ -49,10 +50,10 @@ float ConsVG_liss=0;
 float ConsVD_liss=0;
 int  reset =0;
 
-void conCharReceived(void)
-{
-  c=pc.getc();
-}
+// void conCharReceived(void)
+// {
+//   c=pc.getc();
+// }
 
 
 
@@ -79,19 +80,19 @@ int main()
   timer.start();
   time_up.attach(&function_Asserv, Te);
   while(1) {
-    pc.attach(&conCharReceived);
-    if ( c=='\t') {
-      Cons_Dis=1;
-      Cons_Angle=(PI/180)*0;
-      reset =0;
-    }else if ( c=='s'){
-      reset=1;
-    }else{
-      reset=1;
-    }
-  
-  
-    pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
+    // pc.attach(&conCharReceived);
+    // if ( c=='\t') {
+    //   Cons_Dis=1;
+    //   Cons_Angle=(PI/180)*0;
+    //   reset =0;
+    // }else if ( c=='s'){
+    //   reset=1;
+    // }else{
+    //   reset=1;
+    // }
+
+
+    // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
 
     dirMG=fonc_direction(commande_PWMG_V/100);
     pwmMG.write(abs(commande_PWMG_V/100));

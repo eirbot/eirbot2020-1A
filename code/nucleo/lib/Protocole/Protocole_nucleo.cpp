@@ -4,8 +4,8 @@
 
 
 Protocole::Protocole() {
-    _serial = new BufferedSerial(USBTX, USBRX);
-    _serial->set_baud(115200);
+    _serial = new RawSerial(USBTX, USBRX);
+    _serial->baud(115200);
     _serial->attach(this, &Protocole::poll, Serial::RxIrq);
     wait_us(100000);
 }

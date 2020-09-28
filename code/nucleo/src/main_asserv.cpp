@@ -79,10 +79,18 @@ void function_Asserv(void)
  * x0, y0 : precedente coordonnee du robot
  * alpha0 : precedent angle
  * distance, angle : resultat de la transformation (angle en radian)
+ * char inversion 1=devant du robot devient le derriere
  */
-void go_XY(int xd, int yd, int x0, int y0, int alpha0, float *distance, float *angle) {
+void go_XY(int xd, int yd, int x0, int y0, int alpha0,
+           float *distance, float *angle, char *direction) {
   *distance = sqrt(pow(xd - x0, 2) + pow(yd - y0, 2));
-  *angle = atan2(yd-y0, xd -x0) - alpha0;
+  *angle = -atan2(yd-y0, xd-x0) - alpha0;
+  *direction = 0;
+  //si on fait un angle de plus de 90 degre, on inverse le sens de marche du robot
+  if(*angle > M_PI/2 || *angle < -M_PI/2) {
+      *angle = *angle + M_PI;
+      *direction = 1;
+  }
 }
 
 int main()

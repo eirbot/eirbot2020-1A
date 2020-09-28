@@ -73,6 +73,18 @@ void function_Asserv(void)
   commande_PWMD_V=Asserv_V_MD(VD,ConsVD,reset);
 }
 
+/*
+ * go_XY
+ * xd, yd : destination (coordonnee depuis rasp)
+ * x0, y0 : precedente coordonnee du robot
+ * alpha0 : precedent angle
+ * distance, angle : resultat de la transformation (angle en radian)
+ */
+void go_XY(int xd, int yd, int x0, int y0, int alpha0, float *distance, float *angle) {
+  *distance = sqrt(pow(xd - x0, 2) + pow(yd - y0, 2));
+  *angle = atan2(yd-y0, xd -x0) - alpha0;
+}
+
 int main()
 {
   pwmMD.period(FREQ_MOTEUR);

@@ -69,15 +69,19 @@ void function_Asserv(void)
 }
 
 void set_consigne(char c) {
-    if ( c=='\t') {
+    if ( c=='g') {
         Cons_Dis=1;
         Cons_Angle=(PI/180)*0;
-        reset =0;
+        reset=0;
     }
-    else if ( c=='s'){
-        reset=1;
+    else if ( c=='r'){
+        Cons_Dis=0;
+        Cons_Angle=(PI/180)*90;
+        reset=0;
     }
     else{
+        Cons_Dis=0;
+        Cons_Angle=(PI/180)*0;
         reset=1;
         // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
     }

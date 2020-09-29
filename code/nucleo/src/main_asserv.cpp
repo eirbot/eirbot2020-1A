@@ -8,6 +8,7 @@
 // Protocole protocole=Protocole();
 
 Serial pc(D1,D0);
+// Serial pc(USBTX, USBRX);
 
 volatile char c = '\0'; // Initialized to the NULL character
 
@@ -15,10 +16,13 @@ volatile char c = '\0'; // Initialized to the NULL character
 void conCharReceived(void)
 {
   c=pc.getc();
+  set_consigne(c);
+  pc.printf("OK!\n");
 }
 
 int main()
 {
+  pc.printf("Hello ! \n");
   init_asserv();
   pc.attach(&conCharReceived);
 

@@ -24,8 +24,8 @@
 
 #define KP_Pos  0.0007 //0.0007 coefficient proportionnel Asserv Position (Distance)
 #define KI_Pos 0//coefficient intégral Asserv Position (Distance)
-#define KP_Angle 0.00083// 0.00082 coefficient proportionnel Asserv Position (Angle)
-#define KI_Angle 0// 0.000008 coefficient intégral Asserv Position (Angle)
+#define KP_Angle 0.00082// 0.00082 coefficient proportionnel Asserv Position (Angle)
+#define KI_Angle 0//0.000008 coefficient intégral Asserv Position (Angle)
 
 #define PI 3.1415926535
 

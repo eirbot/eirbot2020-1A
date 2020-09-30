@@ -79,11 +79,16 @@ void set_consigne(char c) {
         Cons_Angle=(PI/180)*90;
         reset=0;
     }
-    else{
+    else if (c=='s'){
         Cons_Dis=0;
         Cons_Angle=(PI/180)*0;
+        Angle = 0;
+        Distance = 0;
         reset=1;
         // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
+    }
+    else {
+        reset=1;
     }
 }
 
@@ -99,10 +104,10 @@ void go_XY(int xd, int yd, int x0, int y0, int alpha0,
            float *distance, float *angle, char *direction) {
     *distance = sqrt(pow(xd - x0, 2) + pow(yd - y0, 2));
     *angle = -atan2(yd-y0, xd-x0) - alpha0;
-    *direction = 0;
+    // *direction = 0;
     //si on fait un angle de plus de 90 degre, on inverse le sens de marche du robot
-    if(*angle > M_PI/2 || *angle < -M_PI/2) {
-        *angle = *angle + M_PI;
-        *direction = 1;
-    }
+    // if(*angle > M_PI/2 || *angle < -M_PI/2) {
+    //     *angle = *angle + M_PI;
+    //     *direction = 1;
+    // }
 }

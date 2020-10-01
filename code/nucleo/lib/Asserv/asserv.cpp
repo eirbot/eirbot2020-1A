@@ -21,6 +21,8 @@ float VD=0;
 float VG=0;
 float Distance=0;
 float Angle=0;
+float Distance_ABS=0;
+float Angle_ABS=0;
 float ConsV=0;
 float ConsW=0;
 float ConsVG=0;
@@ -36,6 +38,8 @@ float tab_lissage_MD[LEN_TAB_LISSAGE] ={0};
 float ConsVG_liss=0;
 float ConsVD_liss=0;
 int  reset =0;
+int feedback_Angle=0;
+int feedback_Dis =0;
 
 void init_asserv() {
     pwmMD.period(FREQ_MOTEUR);
@@ -57,9 +61,9 @@ void function_Asserv(void)
     lecture_Wc1_Wc2(Encoder_Gauche,Encoder_Droit,&Wc1,&Wc2,Te);
     lecture_VG_VD(&VG,&VD,Wc1,Wc2);
     lecture_V_W(&Vitesse,&W,Wc1,Wc2);
-    lecture_Distance_Angle(Vitesse,W,Te,&Distance,&Angle);
-    commande_Dis = Asserv_Position(Distance,Cons_Dis,reset);
-    commande_Angle = Asserv_Angle(Angle,Cons_Angle,reset);
+    lecture_Distance_Angle(Vitesse,W,Te,&Distance,&Angle,reset);
+    commande_Dis = Asserv_Position(Distance,Cons_Dis,reset,feedback_Dis);
+    commande_Angle = Asserv_Angle(Angle,Cons_Angle,reset,feedback_Angle);
     ConsVG=((commande_Dis/Te)-(commande_Angle/Te)*RA);
     ConsVD=((commande_Angle/Te)*RA)+((commande_Dis/Te));
     //ConsVG_liss=lissage(ConsVG,tab_lissage_MG,LEN_TAB_LISSAGE );
@@ -85,11 +89,15 @@ void set_consigne(char c) {
         Angle = 0;
         Distance = 0;
         reset=1;
-        // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f , Cons_Angle=%f, Angle=%f \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T,Cons_Angle,Angle);
     }
     else {
         reset=1;
     }
+    
+}
+void print_debug_asserv(Serial &pc,char c)
+{
+    pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f  \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T);
 }
 
 /*

@@ -17,16 +17,17 @@ void conCharReceived(void)
 {
   c=pc.getc();
   set_consigne(c);
-  pc.printf("OK!\n");
+  pc.printf("OK!\n\r");
 }
 
 int main()
 {
-  pc.printf("Hello ! \n");
+  pc.printf("Hello ! \n\r");
   init_asserv();
   pc.attach(&conCharReceived);
 
   while(1) {
     set_pwm();
+    print_debug_asserv(pc,c);
   }
 }

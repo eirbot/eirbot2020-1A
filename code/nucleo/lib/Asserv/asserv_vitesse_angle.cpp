@@ -13,7 +13,10 @@ void range(float*commande, int max, int min)
       *commande=min;
     }
 }
-
+int interval_err(const float lim,const float err)
+{
+  return ((-lim<err) && (err>lim));
+}
 
 void lecture_Wc1_Wc2(Encoder &Encoder_Gauche,Encoder &Encoder_Droit,float*Wc1,float*Wc2,const float Te)
 {
@@ -33,11 +36,18 @@ void lecture_VG_VD(float*VG,float*VD,const float Wc1,const float Wc2)
     *VG=((((RW/2)*(Wc1+Wc2))/3.8)-(((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)); //vitesse roue gauche m/s
     *VD=((((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)+((RW/2)*(Wc1+Wc2))/3.8); //vitesse roue droite m/s
 }
-void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle)
-{
+void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle, int reset)
+{ 
+    if (reset==1){
+      *Distance =0;
+      *Angle=0;
+    }else{
     *Distance=((*Distance)+Vitesse*Te); //Distance parcourt par le robot
     *Angle=((*Angle)+W*Te); //Angle du robot
+    }
 }
+
+
 /*
 void get_posG(Encoder &Encoder_Gauche,int *posG)
 {
@@ -112,7 +122,7 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset)
   }
   return  Commande;
 }
-float Asserv_Position(const float Position, const float ConsPosition,int reset)
+float Asserv_Position(const float Position, const float ConsPosition,int reset,int feedback)
 {
   float Err=0;
   float static S_Err=0;
@@ -122,6 +132,7 @@ float Asserv_Position(const float Position, const float ConsPosition,int reset)
       Commande=0;
   }else{
     Err=ConsPosition-Position;
+    feedback=interval_err(LIM_ERR_DIS,Err);
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_Pos*Err+KI_Pos*S_Err;
@@ -130,15 +141,26 @@ float Asserv_Position(const float Position, const float ConsPosition,int reset)
   return Commande;
 }
 
-float Asserv_Angle(const float Angle, const float ConsAngle,int reset)
+float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int feedback)
 {
   float Err=0;
+  float static Err_old=0;
   float static S_Err=0;
+  float static diff_Err=0;
   float Commande=0;
+  
+  if(reset==1){
+      S_Err=0;
+      Commande=0;
+  }else{
   Err=ConsAngle-Angle;
+  diff_Err = Err-Err_old;
+  Err_old=Err;
+  feedback=interval_err(LIM_ERR_ANGLE,Err);
   S_Err=S_Err+Err;
   range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
-  Commande=KP_Angle*Err+KI_Angle*S_Err;
+  Commande=KP_Angle*Err+KI_Angle*S_Err+KD_Angle*diff_Err;
   range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
+  }
   return Commande;
 }

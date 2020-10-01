@@ -18,6 +18,7 @@ void init_asserv(void);
 void set_pwm(void);
 void set_consigne(char c);
 void function_Asserv(void);
+void print_debug_asserv(Serial &pc,char c);
 
 void go_XY(int xd, int yd, int x0, int y0, int alpha0,
            float *distance, float *angle, char *direction);

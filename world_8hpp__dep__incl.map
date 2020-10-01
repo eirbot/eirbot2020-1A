@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="105,5,269,47"/>
 <area shape="rect" id="node2" href="$detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="101,184,273,225"/>
 <area shape="rect" id="node10" href="$test__detection_8hpp_source.html" title=" " alt="" coords="5,273,129,315"/>
-<area shape="rect" id="node11" href="$rasp_2src_2navigation_2asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="289,95,453,136"/>
+<area shape="rect" id="node11" href="$asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="289,95,453,136"/>
 <area shape="rect" id="node3" href="$navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="155,273,319,315"/>
 <area shape="rect" id="node4" href="$robot_8hpp.html" title=" " alt="" coords="255,370,413,397"/>
 <area shape="rect" id="node9" href="$test__navigation_8hpp_source.html" title=" " alt="" coords="107,363,231,404"/>

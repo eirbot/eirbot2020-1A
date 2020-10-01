@@ -1,7 +1,7 @@
 <map id="Robot::rotation" name="Robot::rotation">
 <area shape="rect" id="node1" title="Fait une rotation du robot." alt="" coords="5,56,111,83"/>
-<area shape="rect" id="node2" href="$rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="304,5,357,32"/>
-<area shape="rect" id="node9" href="$rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="159,81,213,108"/>
+<area shape="rect" id="node2" href="$asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="304,5,357,32"/>
+<area shape="rect" id="node9" href="$asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="159,81,213,108"/>
 <area shape="rect" id="node3" href="$affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="481,107,554,133"/>
 <area shape="rect" id="node8" href="$class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc" title="Permet de demander la valeur de l&#39;angle." alt="" coords="448,5,587,32"/>
 <area shape="rect" id="node4" href="$affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="635,56,741,83"/>

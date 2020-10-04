@@ -54,14 +54,21 @@ void Robot::detection(char cote, char activation)
     }
 }
 
-void Robot::actionneur(int side,int activation)
+void Robot::actionneur(int cote,int activation)
 {
-    if (activation==1) {
-        Phare_activation();
+    if (cote==0 && activation==1) {
+        Gauche_activation();
     }
-    if (activation==0){
-        Phare_desactivation();
+    if (cote==0 && activation==0) {
+        Gauche_desactivation();
     }
+    if (cote==1 && activation==1){
+        Droit_activation();
+    }
+    if (cote==1 && activation==1) {
+        Droit_activation();
+    }
+
 }
 
 void pavillon(int activation)

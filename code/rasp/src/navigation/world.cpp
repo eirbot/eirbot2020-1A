@@ -1,7 +1,7 @@
 #include "world.hpp"
 
-struct shape robot={32,32};
-struct shape eco_cup={7,7};
+struct shape robot={34,34};
+struct shape eco_cup={8,8};
 struct shape stone_area={2,15};//15
 struct shape stone_area_big={2,30};
 
@@ -13,7 +13,7 @@ std::vector<obstacle> fillVector()
     list_obstacles.push_back({45,51,&eco_cup});
     list_obstacles.push_back({67,10,&eco_cup});
     list_obstacles.push_back({95,40,&eco_cup});
-    list_obstacles.push_back({200,40,&eco_cup});
+    list_obstacles.push_back({205,40,&eco_cup});
     list_obstacles.push_back({233,10,&eco_cup});
     list_obstacles.push_back({255,51,&eco_cup});
     list_obstacles.push_back({270,40,&eco_cup});

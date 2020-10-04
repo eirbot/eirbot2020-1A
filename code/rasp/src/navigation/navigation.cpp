@@ -246,6 +246,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
     short dep_y=0;
     bool mv=0;
     int back;
+    Print_path(usablePath, list_obstacles);
     while (j<size-1 && position.x!=dest.node.x && position.y!=dest.node.y) {
         //x croissant
         while(1+usablePath.operator[](j).x==usablePath.operator[](j+1).x && usablePath.operator[](j).y==usablePath.operator[](j+1).y){
@@ -407,7 +408,6 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
     }
     if(back==1){
         struct position my_position=robot_position();
-        my_position={.x=50,.y=50};
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
         struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
         vector<Node> result=Astar(node_position,node_dest,list_obstacles);
@@ -417,8 +417,6 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
         print_detection();
         struct position my_position=robot_position();
         list_obstacles=GP2::gp2Obstacle(list_obstacles,my_position);
-        my_position.x=50;
-        my_position.y=50;
         struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
         struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
         vector<Node> result=Astar(node_position,node_dest,list_obstacles);

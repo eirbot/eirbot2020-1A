@@ -14,13 +14,26 @@
 //
 //
 
+//POsition, ROtation, STOP
+//PO_ANGLE = premiere etape deplacement XY
+//PO_DISTANCE = deuxieme etape XY
+//RO = rotation seule
+enum asserv_state {PO_ANGLE, PO_DISTANCE, RO, STOP};
+
 void init_asserv(void);
+void reset_asserv(void);
 void set_pwm(void);
 void set_consigne(char c);
 void function_Asserv(void);
 void print_debug_asserv(Serial &pc,char c);
+int  get_feedback();
 
-void go_XY(int xd, int yd, int x0, int y0, int alpha0,
-           float *distance, float *angle, char *direction);
+
+//set
+void go_XY(float x_d, float y_d);
+void rotate(float angle);
+
+//get
+void get_XY(float *x, float *y);
 
 #endif // __ASSERV_H_

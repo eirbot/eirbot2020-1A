@@ -4,8 +4,8 @@ void test_actionneur()
 {
     TEST_BEGIN;
     printf("\n>> Test non complets dont les fonctions nécessitent des modifications <<\n");
-    Phare_activation();
-    Phare_desactivation();
+    Droit_activation();
+    Droit_desactivation();
     Pavillon();
     TEST_END;
 }

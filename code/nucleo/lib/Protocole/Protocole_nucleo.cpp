@@ -13,6 +13,9 @@ Protocole::Protocole() {
 Protocole::~Protocole() {
 }
 
+// ATTENTION fonction bloquante
+// TODO gerer l'overflow du buffer
+// le while risque de bloquer et faire foirer l'asserv...
 void Protocole::poll() {
     while(_serial->readable()) {
         readBuffer[buf_index] = _serial->getc();

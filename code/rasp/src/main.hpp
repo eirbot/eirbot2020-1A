@@ -16,8 +16,9 @@ void setup();
 /**
 * @brief Boucle principale du projet
  */
-void loop();
+void loop_blue();
 
+void loop_yellow();
 
 
 int main(int argc, char *argv[]);

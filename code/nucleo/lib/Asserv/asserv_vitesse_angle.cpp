@@ -5,13 +5,13 @@
 void range(float*commande, int max, int min)
 {
   if(*commande>max)
-    {
-      *commande=max;
-    }
+  {
+    *commande=max;
+  }
   if(*commande<min)
-    {
-      *commande=min;
-    }
+  {
+    *commande=min;
+  }
 }
 int interval_err(const float lim,const float err)
 {
@@ -20,59 +20,60 @@ int interval_err(const float lim,const float err)
 
 void lecture_Wc1_Wc2(Encoder &Encoder_Gauche,Encoder &Encoder_Droit,float*Wc1,float*Wc2,const float Te)
 {
-    *Wc1=Encoder_Gauche.diff()*((2*PI)/(INC_ENCODER*Te));//vitesse angulaire endodeur 1 en rad/s
-    *Wc2=Encoder_Droit.diff()*((2*PI)/(INC_ENCODER*Te)); //vitesse angulaire endodeur 2 en rad/s
+  *Wc1=Encoder_Gauche.diff()*((2*PI)/(INC_ENCODER*Te));//vitesse angulaire endodeur 1 en rad/s
+  *Wc2=Encoder_Droit.diff()*((2*PI)/(INC_ENCODER*Te)); //vitesse angulaire endodeur 2 en rad/s
 }
 void lecture_V_W(float*Vitesse,float*W,const float Wc1,const float Wc2)
 {
-    *Vitesse=((RW/2)*(Wc1+Wc2))/3.8;//vitesse robot en m/s
-    *W=((RW/(2*RC))*(Wc2-Wc1))/3.8; //vitesse angulaire robot m/s
+  *Vitesse=((RW/2)*(Wc1+Wc2))/3.8;//vitesse robot en m/s
+  *W=((RW/(2*RC))*(Wc2-Wc1))/3.8; //vitesse angulaire robot m/s
 }
 void lecture_VG_VD(float*VG,float*VD,const float Wc1,const float Wc2)
 {
-    //*VG=((Vitesse)-((W)*RA)); //vitesse roue gauche m/s
-    //*VD=(((W)*RA)+(Vitesse)); //vitesse roue droite m/s
+  //*VG=((Vitesse)-((W)*RA)); //vitesse roue gauche m/s
+  //*VD=(((W)*RA)+(Vitesse)); //vitesse roue droite m/s
 
-    *VG=((((RW/2)*(Wc1+Wc2))/3.8)-(((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)); //vitesse roue gauche m/s
-    *VD=((((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)+((RW/2)*(Wc1+Wc2))/3.8); //vitesse roue droite m/s
+  *VG=((((RW/2)*(Wc1+Wc2))/3.8)-(((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)); //vitesse roue gauche m/s
+  *VD=((((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)+((RW/2)*(Wc1+Wc2))/3.8); //vitesse roue droite m/s
 }
+
 void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle, int reset)
 { 
-    if (reset==1){
-      *Distance =0;
-      *Angle=0;
-    }else{
+  if (reset==1){
+    *Distance =0;
+    *Angle=0;
+  }else{
     *Distance=((*Distance)+Vitesse*Te); //Distance parcourt par le robot
     *Angle=((*Angle)+W*Te); //Angle du robot
-    }
+  }
 }
 
 
 /*
-void get_posG(Encoder &Encoder_Gauche,int *posG)
-{
-   int getG=0;
-   static int SgetG=0;
-   getG=Encoder_Gauche.get();
+  void get_posG(Encoder &Encoder_Gauche,int *posG)
+  {
+  int getG=0;
+  static int SgetG=0;
+  getG=Encoder_Gauche.get();
   if((getG>=OVERFLOW_ENCODEUR) || (getG<=-OVERFLOW_ENCODEUR)){
-    SgetG=SgetG+getG;
-    Encoder_Gauche.reset();
+  SgetG=SgetG+getG;
+  Encoder_Gauche.reset();
   }else{
-    *posG=SgetG+getG;
+  *posG=SgetG+getG;
   }
-}
-void get_posD(Encoder &Encoder_Droit,int *posD)
-{
-   int getD=0;
-   static int SgetD=0;
-   getD=Encoder_Droit.get();
+  }
+  void get_posD(Encoder &Encoder_Droit,int *posD)
+  {
+  int getD=0;
+  static int SgetD=0;
+  getD=Encoder_Droit.get();
   if((getD>=OVERFLOW_ENCODEUR) || (getD<=-OVERFLOW_ENCODEUR)){
-    SgetD=SgetD+getD;
-    Encoder_Droit.reset();
+  SgetD=SgetD+getD;
+  Encoder_Droit.reset();
   }else{
-    *posD=SgetD+getD;
+  *posD=SgetD+getD;
   }
-}
+  }
 */
 float lissage(const float in,float tab[],int len)
 { 
@@ -128,8 +129,8 @@ float Asserv_Position(const float Position, const float ConsPosition,int reset,i
   float static S_Err=0;
   float Commande=0;
   if(reset==1){
-      S_Err=0;
-      Commande=0;
+    S_Err=0;
+    Commande=0;
   }else{
     Err=ConsPosition-Position;
     feedback=interval_err(LIM_ERR_DIS,Err);
@@ -150,17 +151,17 @@ float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int feedba
   float Commande=0;
   
   if(reset==1){
-      S_Err=0;
-      Commande=0;
+    S_Err=0;
+    Commande=0;
   }else{
-  Err=ConsAngle-Angle;
-  diff_Err = Err-Err_old;
-  Err_old=Err;
-  feedback=interval_err(LIM_ERR_ANGLE,Err);
-  S_Err=S_Err+Err;
-  range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
-  Commande=KP_Angle*Err+KI_Angle*S_Err+KD_Angle*diff_Err;
-  range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
+    Err=ConsAngle-Angle;
+    diff_Err = Err-Err_old;
+    Err_old=Err;
+    feedback=interval_err(LIM_ERR_ANGLE,Err);
+    S_Err=S_Err+Err;
+    range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
+    Commande=KP_Angle*Err+KI_Angle*S_Err+KD_Angle*diff_Err;
+    range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
   return Commande;
 }

@@ -99,7 +99,7 @@ class Protocole
          *   Etat OK, TIME_OUT, ou ERROR */
          /**
           * @brief Permet de demander le déploiement d'un actionneur
-          * @param id: l'actionneur en question 0 pour le bras 1 pour le pavillon
+          * @param id: l'actionneur en question 0 pour le bras gauche, 1 pour le bras droit et 2 pour le pavillon
           * @param on: permet de demander l'activation (1) ou la désactivation (0)
           * @return Un état nous indiquant le résultat de la requête*/
         enum Etat set_actionneur(char id, char on);

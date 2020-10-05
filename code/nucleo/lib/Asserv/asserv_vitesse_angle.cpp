@@ -1,6 +1,7 @@
 #include "mbed.h"
 #include "encoder.hpp"
 #include "asserv_vitesse_angle.hpp"
+const float correc = 5/19.92;
 
 void range(float*commande, int max, int min)
 {
@@ -25,16 +26,16 @@ void lecture_Wc1_Wc2(Encoder &Encoder_Gauche,Encoder &Encoder_Droit,float*Wc1,fl
 }
 void lecture_V_W(float*Vitesse,float*W,const float Wc1,const float Wc2)
 {
-  *Vitesse=((RW/2)*(Wc1+Wc2))/3.8;//vitesse robot en m/s
-  *W=((RW/(2*RC))*(Wc2-Wc1))/3.8; //vitesse angulaire robot m/s
+  *Vitesse=((RW/2)*(Wc1+Wc2))*correc ;//vitesse robot en m/s
+  *W=((RW/(2*RC))*(Wc2-Wc1))*correc; //vitesse angulaire robot m/s
 }
 void lecture_VG_VD(float*VG,float*VD,const float Wc1,const float Wc2)
 {
   //*VG=((Vitesse)-((W)*RA)); //vitesse roue gauche m/s
   //*VD=(((W)*RA)+(Vitesse)); //vitesse roue droite m/s
 
-  *VG=((((RW/2)*(Wc1+Wc2))/3.8)-(((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)); //vitesse roue gauche m/s
-  *VD=((((RW/(2*RC))*(Wc2-Wc1)/3.8)*RA)+((RW/2)*(Wc1+Wc2))/3.8); //vitesse roue droite m/s
+  *VG=((((RW/2)*(Wc1+Wc2)))*correc-(((RW/(2*RC))*(Wc2-Wc1)*correc)*RA)); //vitesse roue gauche m/s
+  *VD=((((RW/(2*RC))*(Wc2-Wc1)*correc)*RA)+((RW/2)*(Wc1+Wc2))*correc); //vitesse roue droite m/s
 }
 
 void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle, int reset)

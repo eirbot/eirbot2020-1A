@@ -9,8 +9,8 @@
 #define MIN_LIM_COMMANDE -100
 #define OVERFLOW_ENCODEUR 32500
 #define LEN_TAB_LISSAGE 6 //6
-#define LIM_ERR_DIS 0.2 //0.2
-#define LIM_ERR_ANGLE (PI/180)*0.2 //0.2
+#define LIM_ERR_DIS 0.01 //0.2
+#define LIM_ERR_ANGLE (PI/180)*2 //0.2
 
 #define RA 0.074 //distance entre point milieu et la roue en mètre
 #define RC 0.135 //distance entre point milieu et l'encodeur en mètre
@@ -41,7 +41,7 @@ void get_posG(Encoder &Encoder_Gauche,int *posG); //supprime l'overflow à -32,7
 void get_posD(Encoder &Encoder_Droit,int *posD);  //supprime l'overflow à -32,768; 32,767 inc
 float Asserv_V_MG(const float VG, const float ConsVG,int reset); //Asserv de Vitesse Moteur Gauche
 float Asserv_V_MD(const float VD, const float ConsVD,int reset); //Asserv de Vitesse Moteur Droit
-float Asserv_Position(const float Position, const float ConsPosition,int reset,int feedback); //Asserv de Position Distance 
-float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int feedback); //Asserv de Position Angle
+float Asserv_Position(const float Position, const float ConsPosition,int reset,int *feedback); //Asserv de Position Distance
+float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int *feedback); //Asserv de Position Angle
 float lissage(const float in,float tab[],int len);//Permet de crée une rampe sur le front des commandes de vitesse
 #endif // __ASSERV_VITESSE_ANGLE

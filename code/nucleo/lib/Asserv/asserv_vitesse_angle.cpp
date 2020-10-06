@@ -1,6 +1,8 @@
 #include "mbed.h"
 #include "encoder.hpp"
 #include "asserv_vitesse_angle.hpp"
+
+//coeff de correction odometrie
 const float correc = 5/19.92;
 
 void range(float*commande, int max, int min)
@@ -16,7 +18,7 @@ void range(float*commande, int max, int min)
 }
 int interval_err(const float lim,const float err)
 {
-  return ((-lim<err) && (err>lim));
+  return ((-lim<err) && (err<lim)); //return 1 si -lim<err<lim
 }
 
 void lecture_Wc1_Wc2(Encoder &Encoder_Gauche,Encoder &Encoder_Droit,float*Wc1,float*Wc2,const float Te)
@@ -124,17 +126,18 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset)
   }
   return  Commande;
 }
-float Asserv_Position(const float Position, const float ConsPosition,int reset,int feedback)
+float Asserv_Position(const float Position, const float ConsPosition,int reset,int *feedback)
 {
   float Err=0;
   float static S_Err=0;
   float Commande=0;
   if(reset==1){
+    *feedback=0;
     S_Err=0;
     Commande=0;
   }else{
     Err=ConsPosition-Position;
-    feedback=interval_err(LIM_ERR_DIS,Err);
+    *feedback=interval_err(LIM_ERR_DIS,Err);
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_Pos*Err+KI_Pos*S_Err;
@@ -143,7 +146,7 @@ float Asserv_Position(const float Position, const float ConsPosition,int reset,i
   return Commande;
 }
 
-float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int feedback)
+float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int *feedback)
 {
   float Err=0;
   float static Err_old=0;
@@ -152,13 +155,14 @@ float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int feedba
   float Commande=0;
   
   if(reset==1){
+    *feedback=0;
     S_Err=0;
     Commande=0;
   }else{
     Err=ConsAngle-Angle;
     diff_Err = Err-Err_old;
     Err_old=Err;
-    feedback=interval_err(LIM_ERR_ANGLE,Err);
+    *feedback=interval_err(LIM_ERR_ANGLE,Err);
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_Angle*Err+KI_Angle*S_Err+KD_Angle*diff_Err;

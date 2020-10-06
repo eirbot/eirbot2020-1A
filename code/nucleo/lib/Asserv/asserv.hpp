@@ -8,26 +8,25 @@
 #include "math.h"
 
 // TODO
-// - avoir un feedback sur le deroulement de lasserv : destination atteinte ou non, position actuelle ?
 // - goto_XY
 // - rotate(angle)
-//
-//
 
 //POsition, ROtation, STOP
 //PO_ANGLE = premiere etape deplacement XY
 //PO_DISTANCE = deuxieme etape XY
-//RO = rotation seule
-enum asserv_state {PO_ANGLE, PO_DISTANCE, RO, STOP};
+//ROT = rotation seule
+enum asserv_state {PO_ANGLE, PO_DISTANCE, ROT, STOP};
 
 void init_asserv(void);
-void reset_asserv(void);
+void reset_asserv(void); //update derniere position connue
 void set_pwm(void);
+void function_Asserv(void); //THE function
+void update_state(void);
+void set_state(enum asserv_state s);
 void set_consigne(char c);
-void function_Asserv(void);
 void print_debug_asserv(Serial &pc,char c);
-int  get_feedback();
-
+float XY_to_Distance(float x, float y);
+float XY_to_Angle(float x, float y);
 
 //set
 void go_XY(float x_d, float y_d);

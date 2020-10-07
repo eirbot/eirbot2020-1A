@@ -15,7 +15,9 @@
 //PO_ANGLE = premiere etape deplacement XY
 //PO_DISTANCE = deuxieme etape XY
 //ROT = rotation seule
-enum asserv_state {PO_ANGLE, PO_DISTANCE, ROT, STOP};
+//STOP = le robot garde sa position (s'il a de l'inertie il la compense)
+//RES = asserv coupée
+enum asserv_state {PO_ANGLE, PO_DISTANCE, ROT, STOP, RES};
 
 void init_asserv(void);
 void reset_asserv(void); //update derniere position connue

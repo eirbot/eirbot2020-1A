@@ -10,7 +10,7 @@
 #define OVERFLOW_ENCODEUR 32500
 #define LEN_TAB_LISSAGE 6 //6
 #define LIM_ERR_DIS 0.01 //0.2
-#define LIM_ERR_ANGLE (PI/180)*2 //0.2
+#define LIM_ERR_ANGLE (PI/180)*1 //0.2
 
 #define RA 0.074 //distance entre point milieu et la roue en mètre
 #define RC 0.135 //distance entre point milieu et l'encodeur en mètre

@@ -42,13 +42,8 @@ void lecture_VG_VD(float*VG,float*VD,const float Wc1,const float Wc2)
 
 void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle, int reset)
 { 
-  if (reset==1){
-    *Distance =0;
-    *Angle=0;
-  }else{
-    *Distance=((*Distance)+Vitesse*Te); //Distance parcourt par le robot
-    *Angle=((*Angle)+W*Te); //Angle du robot
-  }
+  *Distance=((*Distance)+Vitesse*Te); //Distance parcourt par le robot
+  *Angle=((*Angle)+W*Te); //Angle du robot
 }
 
 
@@ -158,6 +153,7 @@ float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int *feedb
     *feedback=0;
     S_Err=0;
     Commande=0;
+    diff_Err= 0;
   }else{
     Err=ConsAngle-Angle;
     diff_Err = Err-Err_old;

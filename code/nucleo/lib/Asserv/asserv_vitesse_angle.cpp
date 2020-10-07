@@ -42,8 +42,13 @@ void lecture_VG_VD(float*VG,float*VD,const float Wc1,const float Wc2)
 
 void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle, int reset)
 { 
-  *Distance=((*Distance)+Vitesse*Te); //Distance parcourt par le robot
-  *Angle=((*Angle)+W*Te); //Angle du robot
+  if (reset==1){
+    *Distance =0;
+    *Angle=0;
+  }else{
+    *Distance=((*Distance)+Vitesse*Te); //Distance parcourt par le robot
+    *Angle=((*Angle)+W*Te); //Angle du robot
+  }
 }
 
 
@@ -124,18 +129,24 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset)
 float Asserv_Position(const float Position, const float ConsPosition,int reset,int *feedback)
 {
   float Err=0;
+  float static Err_old=0;
+  float static diff_Err=0;
   float static S_Err=0;
   float Commande=0;
   if(reset==1){
     *feedback=0;
     S_Err=0;
+    diff_Err=0;
+    Err_old=0;
     Commande=0;
   }else{
     Err=ConsPosition-Position;
+    diff_Err=Err-Err_old;
+    Err_old=Err;
     *feedback=interval_err(LIM_ERR_DIS,Err);
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
-    Commande=KP_Pos*Err+KI_Pos*S_Err;
+    Commande=KP_Pos*Err+KI_Pos*S_Err+KD_Pos*diff_Err;
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
   return Commande;
@@ -145,15 +156,16 @@ float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int *feedb
 {
   float Err=0;
   float static Err_old=0;
-  float static S_Err=0;
   float static diff_Err=0;
+  float static S_Err=0;
   float Commande=0;
   
   if(reset==1){
     *feedback=0;
     S_Err=0;
     Commande=0;
-    diff_Err= 0;
+    diff_Err=0;
+    Err_old=0;
   }else{
     Err=ConsAngle-Angle;
     diff_Err = Err-Err_old;

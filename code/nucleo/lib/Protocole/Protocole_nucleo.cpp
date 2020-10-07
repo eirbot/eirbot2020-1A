@@ -73,7 +73,7 @@ void Protocole::parse() {
         if(actionneur_id == 0) {
             //activate_manche();
         }
-        else if(actionneur_id == 0) {
+        else if(actionneur_id == 1) {
             //activate_pavillon();
         }
         _serial->printf("RACOK\n");

@@ -8,8 +8,8 @@
 // #include "Protocole_nucleo.hpp"
 // Protocole protocole=Protocole();
 
-Serial pc(USBTX, USBRX);
-// Serial pc(D1, D0);
+// Serial pc(USBTX, USBRX);
+Serial pc(D1, D0);
 volatile char c = '\0'; // Initialized to the NULL character
 
 void conCharReceived(void)

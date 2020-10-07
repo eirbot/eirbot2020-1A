@@ -70,9 +70,6 @@ void init_asserv() {
 }
 
 void reset_asserv() {
-    get_XY(&x_0, &y_0);
-    alpha0 = alpha0 + Angle;
-    reset = 1;
 }
 
 void set_pwm() {
@@ -112,21 +109,38 @@ void update_state() {
     else if (etat_asserv == ROT && feedback_Angle == 1) {
         set_state(STOP);
     }
+    else if (etat_asserv == STOP && feedback_Angle == 1 && feedback_Dis == 1) {
+        set_state(RES);
+    }
     //pas de else, on garde l'état précédent
 }
 
 void set_state(enum asserv_state s) {
-    reset_asserv();
+    // reset_asserv();
     etat_asserv = s;
     switch(s) {
         case STOP:
+            reset = 0;
+            Cons_Dis = Distance; //prend les parametres courants comme objectif
+            Cons_Angle = Angle;
             break;
         case ROT:
         case PO_ANGLE:
+            reset = 0;
             Cons_Angle = Obj_Angle;
             break;
         case PO_DISTANCE:
+            reset = 0;
             Cons_Dis = Obj_Dist;
+            break;
+        case RES:
+            reset = 1;
+            get_XY(&x_0, &y_0);
+            alpha0 = alpha0 + Angle;
+            Cons_Dis = 0;
+            Cons_Angle = 0;
+            Distance = 0;
+            Angle = 0;
             break;
     }
 }
@@ -134,21 +148,23 @@ void set_state(enum asserv_state s) {
 
 
 //---------- CONVERSION relatif/absolu -------------
+//XY en m, return en m
 float XY_to_Distance(float x, float y) {
     return sqrt(pow(x - x_0, 2) + pow(y - y_0, 2));
 }
 
+//XY en m, return en degré
 float XY_to_Angle(float x, float y) {
-    return -atan2(y-y_0, x-x_0) - alpha0;
+    return (-atan2(y-y_0, x-x_0) - alpha0)*M_PI/180;
 }
 
+//XY en cm
 void get_XY(float *x, float *y) {
     *x = x_0 + Distance * cos(alpha0+Angle) * 100;
     *y = y_0 - Distance * sin(alpha0+Angle) * 100;
 }
 
 //---------- deplacement -------------
-
 /*
  * go_XY
  * x_dest, y_dest : destination (coordonnee depuis rasp) (en m)
@@ -157,18 +173,15 @@ void go_XY(float x_dest, float y_dest) {
     Obj_Dist = XY_to_Distance(x_dest, y_dest);
     Obj_Angle = XY_to_Angle(x_dest, y_dest);
     set_state(PO_ANGLE);
-    //si on fait un angle de plus de 90 degre, on inverse le sens de marche du robot
-    if(Obj_Angle > M_PI/2 || Obj_Angle < -M_PI/2) {
-        Obj_Angle = Obj_Angle + M_PI;
-        Obj_Dist = -Obj_Dist;
-    }
+    // //si on fait un angle de plus de 90 degre, on inverse le sens de marche du robot
+    // if(Obj_Angle > M_PI/2 || Obj_Angle < -M_PI/2) {
+    //     Obj_Angle = Obj_Angle + M_PI;
+    //     Obj_Dist = -Obj_Dist;
+    // }
+    // pose problème pour savoir où sont les actionneurs lol
 }
 
-
-/*
- * rotate
- * angle en deg
- */
+//angle en radians
 void rotate(float angle) {
     Obj_Angle = alpha0 + angle;
     Obj_Dist = 0;
@@ -198,11 +211,27 @@ void set_consigne(char c) {
         reset=0;
     }
     else if (c==' '){
+        get_XY(&x_0, &y_0);
+        alpha0 = alpha0 + Angle;
+        commande_PWMD_V=0;
+        commande_PWMG_V=0;
+        Distance = 0;
+        Angle = 0;
         Cons_Dis=Distance;
         Cons_Angle=Angle;
-        // reset_asserv(); quand on reset on prend pas en compte l'inertie...
+        reset = 1;
     }
-    else {
+    else if (c=='r'){
+        reset = 1;
+        get_XY(&x_0, &y_0);
+        alpha0 = alpha0 + Angle;
+        Cons_Dis = 0;
+        Cons_Angle = 0;
+        Distance = 0;
+        Angle = 0;
+    }
+    else if (c=='1') {
+        go_XY(0.30, 0.90);
     }
 }
 
@@ -213,7 +242,7 @@ void print_debug_asserv(Serial &pc,char c)
     pc.printf("c==%c Distance=%f Angle=%f  \n\r",
               c, Distance, (Angle*(180/PI)));
     get_XY(&x, &y);
-    pc.printf("X0=%f Y0=%f\r\n", x_0, y_0);
+    pc.printf("X0=%f Y0=%f alpha0=%f\r\n", x_0, y_0, alpha0*180/PI);
 
     switch(etat_asserv) {
         case STOP:
@@ -227,6 +256,9 @@ void print_debug_asserv(Serial &pc,char c)
             break;
         case PO_DISTANCE:
             pc.printf("etat=PO_DISTANCE\r\n");
+            break;
+        case RES:
+            pc.printf("etat=RES\r\n");
             break;
     }
     pc.printf("Err=%f fb_Dis=%d fb_Angle=%d\r\n\n",

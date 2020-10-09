@@ -30,6 +30,7 @@ Protocole::~Protocole() {
 //     }
 // }
 
+//FIXME verif buf_index
 void Protocole::readByte() {
     readBuffer[buf_index] = _serial->getc();
     buf_index++;
@@ -44,11 +45,26 @@ void Protocole::update_state() {
         buf_index = 0;
         parse();
     }
+    else if(feedback_flag == true) {
+
+    }
+    else if(timeout_flag == true) {
+
+    }
+    else if(obstacle_flag == true) {
+    }
 }
 
 void Protocole::act() {
-    if(state == WAIT_ASSERV) {
-        if(get_feedback() == 1) {
+    if(Protocole::state == WAIT_ASSERV) {
+        if(get_state() == STOP) {
+            // _serial->printf("")
+           // if(get_obstacle() == 0) {
+           //     Protocole::state = FAIL;
+           // }
+           // else {
+           //     Protocole::state = SUCCESS;
+           // }
         }
     }
 }
@@ -67,6 +83,7 @@ void Protocole::parse() {
         _serial->printf("RROOK\n");
     }
     else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
+        //GP2_on()
         _serial->printf("RGAOK\n");
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
@@ -80,12 +97,21 @@ void Protocole::parse() {
     }
     //GET
     else if(strcmp(readBuffer, "GPO\n") == 0) {
+        get_XY((float*)&x, (float*)&y);
         _serial->printf("VPO%hd,%hd\n", x, y);
     }
     else if(strcmp(readBuffer, "GRO\n") == 0) {
+        angle = get_angle();
         _serial->printf("VRO%hd\n", angle);
     }
     else if(strcmp(readBuffer, "GGE\n") == 0) {
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
+}
+
+
+//------- DEBUG --------
+
+void Protocole::print_dbg() {
+
 }

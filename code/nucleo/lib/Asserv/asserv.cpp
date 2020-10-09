@@ -61,20 +61,14 @@ float Obj_Angle;
 float Obj_Dist;
 
 
-
+// ------ asservissement --------
 void init_asserv() {
     pwmMD.period(FREQ_MOTEUR);
     pwmMG.period(FREQ_MOTEUR);
     time_up.attach(&function_Asserv, Te);
-    set_state(STOP);
+    set_state(RES);
 }
 
-void reset_consigne() {
-    Cons_Dis = 0;
-    Cons_Angle = 0;
-    Distance = 0;
-    Angle = 0;
-}
 
 void set_pwm() {
     dirMG=fonc_direction(commande_PWMG_V/100);
@@ -101,20 +95,27 @@ void function_Asserv(void)
     if(feedback_Angle == 1 || feedback_Dis == 1) update_state();
 }
 
+void reset_consigne() {
+    Cons_Dis = 0;
+    Cons_Angle = 0;
+    Distance = 0;
+    Angle = 0;
+}
 
+// ---------- FSM -----------
 void update_state() {
     if(etat_asserv == PO_ANGLE && feedback_Angle == 1) {
         set_state(PO_DISTANCE);
     }
     else if(etat_asserv == PO_DISTANCE && feedback_Dis == 1) {
-        set_state(STOP);
-    }
-    else if (etat_asserv == ROT && feedback_Angle == 1) {
-        set_state(STOP);
-    }
-    else if (etat_asserv == STOP && feedback_Angle == 1 && feedback_Dis == 1) {
         set_state(RES);
     }
+    else if (etat_asserv == ROT && feedback_Angle == 1) {
+        set_state(RES);
+    }
+    // else if (etat_asserv == STOP && feedback_Angle == 1 && feedback_Dis == 1) {
+    //     set_state(RES);
+    // }
     //pas de else, on garde l'état précédent
 }
 
@@ -138,12 +139,17 @@ void set_state(enum asserv_state s) {
             break;
         case RES:
             reset = 1;
+            commande_PWMD_V=0;
+            commande_PWMG_V=0;
             get_XY(&x_0, &y_0);
             alpha0 = alpha0 + Angle;
             break;
     }
 }
 
+enum asserv_state get_state(void) {
+    return etat_asserv;
+}
 
 
 //---------- CONVERSION relatif/absolu -------------
@@ -157,10 +163,15 @@ float XY_to_Angle(float x, float y) {
     return (-atan2(y-y_0, x-x_0) - alpha0);
 }
 
-//XY en cm
+//XY en m
 void get_XY(float *x, float *y) {
-    *x = x_0 + Distance * cos(alpha0+Angle) * 100;
-    *y = y_0 - Distance * sin(alpha0+Angle) * 100;
+    *x = x_0 + Distance * cos(alpha0+Angle);
+    *y = y_0 - Distance * sin(alpha0+Angle);
+}
+
+//angle en radian
+float get_angle() {
+    return alpha0 + Angle; //Angle=0 normalement
 }
 
 //---------- deplacement -------------
@@ -232,37 +243,38 @@ void set_consigne(char c) {
     else if (c=='1') {
         go_XY(0.30, 0.90);
     }
+    else if (c=='2') {
+        go_XY(0.80, 0.90);
+    }
 }
 
 void print_debug_asserv(Serial &pc,char c)
 {
     // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f  \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T);
-    pc.printf("=========\r\n");
-    pc.printf("c==%c Distance=%f Angle=%f  \n\r",
+    pc.printf("c==%c Distance=%f Angle=%f  ",
               c, Distance, (Angle*(180/PI)));
     get_XY(&x, &y);
-    pc.printf("Obj_Dist=%f Obj_Angle=%f \r\n", XY_to_Distance(0.30, 0.90), XY_to_Angle(0.30, 0.90));
-    pc.printf("X0=%f Y0=%f alpha0=%f\r\n", x_0, y_0, alpha0*180/PI);
+    pc.printf("Obj_Dist=%f Obj_Angle=%f ", Obj_Dist, Obj_Angle);
+    pc.printf("X0=%f Y0=%f alpha0=%f ", x_0, y_0, alpha0*180/PI);
 
     switch(etat_asserv) {
         case STOP:
-            pc.printf("etat=STOP\r\n");
+            pc.printf("etat=STOP ");
             break;
         case ROT:
-            pc.printf("etat=ROT\r\n");
+            pc.printf("etat=ROT ");
             break;
         case PO_ANGLE:
-            pc.printf("etat=PO_ANGLE\r\n");
+            pc.printf("etat=PO_ANGLE ");
             break;
         case PO_DISTANCE:
-            pc.printf("etat=PO_DISTANCE\r\n");
+            pc.printf("etat=PO_DISTANCE ");
             break;
         case RES:
-            pc.printf("etat=RES\r\n");
+            pc.printf("etat=RES ");
             break;
     }
-    pc.printf("Err=%f fb_Dis=%d fb_Angle=%d\r\n\n",
+    pc.printf("Err=%f fb_Dis=%d fb_Angle=%d ",
               Cons_Dis-Distance, feedback_Dis, feedback_Angle);
-    pc.printf("X=%f Y=%f\r\n", x, y);
-    pc.printf("=========\r\n\n");
+    pc.printf("X=%f Y=%f \r\n", x*100, y*100);
 }

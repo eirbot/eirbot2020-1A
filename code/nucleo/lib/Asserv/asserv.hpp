@@ -25,6 +25,7 @@ void set_pwm(void);
 void function_Asserv(void); //THE function
 void update_state(void);
 void set_state(enum asserv_state s);
+enum asserv_state get_state(void);
 void set_consigne(char c);
 void print_debug_asserv(Serial &pc,char c);
 float XY_to_Distance(float x, float y);
@@ -36,5 +37,6 @@ void rotate(float angle);
 
 //get
 void get_XY(float *x, float *y);
+float get_angle();
 
 #endif // __ASSERV_H_

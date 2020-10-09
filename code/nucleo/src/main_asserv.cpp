@@ -5,8 +5,8 @@
 
 #include "asserv.hpp"
 
-// #include "Protocole_nucleo.hpp"
-// Protocole protocole=Protocole();
+ // #include "Protocole_nucleo.hpp"
+ // Protocole protocole=Protocole();
 
 Serial pc(USBTX, USBRX);
 // Serial pc(D1, D0);
@@ -24,7 +24,7 @@ int main()
   init_asserv();
   pc.attach(&conCharReceived, Serial::RxIrq);
   while(1) {
-    // set_pwm(); //essayer de déplacer ça dans fonction_asserv
+    //protocole.update_state()
     print_debug_asserv(pc,c);
     wait_us(500000);
   }

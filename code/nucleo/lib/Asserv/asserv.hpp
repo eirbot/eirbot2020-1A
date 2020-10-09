@@ -20,7 +20,7 @@
 enum asserv_state {PO_ANGLE, PO_DISTANCE, ROT, STOP, RES};
 
 void init_asserv(void);
-void reset_asserv(void); //update derniere position connue
+void reset_consigne(void); //update derniere position connue
 void set_pwm(void);
 void function_Asserv(void); //THE function
 void update_state(void);

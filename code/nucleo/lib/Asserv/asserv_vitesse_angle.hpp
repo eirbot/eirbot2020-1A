@@ -5,8 +5,8 @@
 #define INC_ENCODER 1000//nombre increment pour un tour d'encodeur
 #define MAX_LIM_ERR_INTE 10000000
 #define MIN_LIM_ERR_INTE -10000000
-#define MAX_LIM_COMMANDE  100
-#define MIN_LIM_COMMANDE -100
+#define MAX_LIM_COMMANDE  50 //100
+#define MIN_LIM_COMMANDE -50 //-100
 #define OVERFLOW_ENCODEUR 32500
 #define LEN_TAB_LISSAGE 15 //6
 #define LIM_ERR_DIS 0.01 //0.2

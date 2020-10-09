@@ -50,8 +50,8 @@ int feedback_Dis = 0;
 // ### FSM et coordonnées absolues ###
 enum asserv_state etat_asserv;
 //dernière position absolue connue
-float x_0=16;
-float y_0=80;
+float x_0=0.16;
+float y_0=0.80;
 float alpha0=0;
 //debug x,y courant
 float x;
@@ -69,7 +69,11 @@ void init_asserv() {
     set_state(STOP);
 }
 
-void reset_asserv() {
+void reset_consigne() {
+    Cons_Dis = 0;
+    Cons_Angle = 0;
+    Distance = 0;
+    Angle = 0;
 }
 
 void set_pwm() {
@@ -98,7 +102,6 @@ void function_Asserv(void)
 }
 
 
-// TODO update consigne
 void update_state() {
     if(etat_asserv == PO_ANGLE && feedback_Angle == 1) {
         set_state(PO_DISTANCE);
@@ -116,7 +119,7 @@ void update_state() {
 }
 
 void set_state(enum asserv_state s) {
-    // reset_asserv();
+    reset_consigne();
     etat_asserv = s;
     switch(s) {
         case STOP:
@@ -137,10 +140,6 @@ void set_state(enum asserv_state s) {
             reset = 1;
             get_XY(&x_0, &y_0);
             alpha0 = alpha0 + Angle;
-            Cons_Dis = 0;
-            Cons_Angle = 0;
-            Distance = 0;
-            Angle = 0;
             break;
     }
 }
@@ -153,9 +152,9 @@ float XY_to_Distance(float x, float y) {
     return sqrt(pow(x - x_0, 2) + pow(y - y_0, 2));
 }
 
-//XY en m, return en degré
+//XY en m, return en radiannnnns
 float XY_to_Angle(float x, float y) {
-    return (-atan2(y-y_0, x-x_0) - alpha0)*M_PI/180;
+    return (-atan2(y-y_0, x-x_0) - alpha0);
 }
 
 //XY en cm
@@ -242,6 +241,7 @@ void print_debug_asserv(Serial &pc,char c)
     pc.printf("c==%c Distance=%f Angle=%f  \n\r",
               c, Distance, (Angle*(180/PI)));
     get_XY(&x, &y);
+    pc.printf("Obj_Dist=%f Obj_Angle=%f \r\n", XY_to_Distance(0.30, 0.90), XY_to_Angle(0.30, 0.90));
     pc.printf("X0=%f Y0=%f alpha0=%f\r\n", x_0, y_0, alpha0*180/PI);
 
     switch(etat_asserv) {

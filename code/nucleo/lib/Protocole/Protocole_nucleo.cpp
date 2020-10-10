@@ -4,14 +4,25 @@
 
 
 Protocole::Protocole() {
+    memset(readBuffer, 0, sizeof(readBuffer));
     _serial = new RawSerial(USBTX, USBRX);
     _serial->baud(115200);
-    _serial->attach(callback(this, &Protocole::readByte), Serial::RxIrq);
+    enable_callback(true);
     Protocole::state = INIT;
+    _serial->printf("INIT\n");
     wait_us(100000);
 }
 
 Protocole::~Protocole() {
+}
+
+void Protocole::enable_callback(bool enable) {
+    if(enable) {
+        _serial->attach(callback(this, &Protocole::readByte), Serial::RxIrq);
+    }
+    else {
+        _serial->attach(0, Serial::RxIrq);
+    }
 }
 
 // ATTENTION fonction bloquante
@@ -33,16 +44,21 @@ Protocole::~Protocole() {
 //FIXME verif buf_index
 void Protocole::readByte() {
     readBuffer[buf_index] = _serial->getc();
-    buf_index++;
     if(readBuffer[buf_index] == '\n') {
         readBuffer[buf_index+1] = 0;
+        enable_callback(false);
         order_ready_flag = true;
+        buf_index = 0;
+        return;
     }
+    buf_index++;
 }
 
 void Protocole::update_state() {
+    _serial->printf(update_debug_string());
     if(order_ready_flag == true) {
-        buf_index = 0;
+        order_ready_flag = false;
+        print_dbg();
         parse();
     }
     else if(feedback_flag == true) {
@@ -71,13 +87,21 @@ void Protocole::act() {
 
 
 void Protocole::parse() {
+    float tmp_x = 0;
+    float tmp_y = 0;
+    float tmp_angle = 0;
+
+    _serial->printf("PARSE\n");
     //SET
     if(sscanf(readBuffer, "SPO%hd,%hd\n", &x, &y)) {
-        go_XY(x/100, y/100); //conversion cm -> m
+        tmp_x = ((float)x)/100;
+        tmp_y = ((float)y)/100;
+        go_XY(tmp_x, tmp_y);
         state = WAIT_ASSERV;
         _serial->printf("RPOOK\n");
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
+        tmp_angle = (float)angle;
         rotate(angle);
         state = WAIT_ASSERV;
         _serial->printf("RROOK\n");
@@ -97,7 +121,9 @@ void Protocole::parse() {
     }
     //GET
     else if(strcmp(readBuffer, "GPO\n") == 0) {
-        get_XY((float*)&x, (float*)&y);
+        get_XY(&tmp_x, &tmp_y);
+        x = (short)(tmp_x*100);
+        y = (short)(tmp_y*100);
         _serial->printf("VPO%hd,%hd\n", x, y);
     }
     else if(strcmp(readBuffer, "GRO\n") == 0) {
@@ -107,11 +133,18 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "GGE\n") == 0) {
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
+    else if(strcmp(readBuffer, "\n") == 0) {
+        set_state(RES);
+    }
+    memset(readBuffer, 0, sizeof(readBuffer));
+    enable_callback(true);
 }
 
 
 //------- DEBUG --------
 
 void Protocole::print_dbg() {
-
+    // for(unsigned int i = 0; i < sizeof(readBuffer); i++) {
+    //     _serial->putc(readBuffer[i]);
+    // }
 }

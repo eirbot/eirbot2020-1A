@@ -2,6 +2,7 @@
 
 // Timer timer;
 Ticker time_up;
+Timeout timeout_po_stop;
 PwmOut pwmMG(D5);
 DigitalOut dirMG(D4);
 DigitalOut breakMG(D3);
@@ -49,6 +50,7 @@ int feedback_Dis = 0;
 
 // ### FSM et coordonnées absolues ###
 enum asserv_state etat_asserv;
+enum asserv_state precedent_etat_asserv;
 //dernière position absolue connue
 float x_0=0.16;
 float y_0=0.80;
@@ -59,6 +61,8 @@ float y;
 //objectif
 float Obj_Angle;
 float Obj_Dist;
+
+char debug_string[256];
 
 
 // ------ asservissement --------
@@ -103,15 +107,20 @@ void reset_consigne() {
 }
 
 // ---------- FSM -----------
+// gere les transitions
 void update_state() {
     if(etat_asserv == PO_ANGLE && feedback_Angle == 1) {
-        set_state(PO_DISTANCE);
+        set_state(PO_STOP); //on laisse stabiliser, on quittera l'état grace au timeout
+        timeout_po_stop.attach(&set_state_distance, 0.1);
     }
+    // else if(etat_asserv == PO_STOP && feedback_Angle == 1 && feedback_Dis == 1) {
+    //     set_state(PO_DISTANCE);
+    // }
     else if(etat_asserv == PO_DISTANCE && feedback_Dis == 1) {
-        set_state(RES);
+        set_state(STOP);
     }
     else if (etat_asserv == ROT && feedback_Angle == 1) {
-        set_state(RES);
+        set_state(STOP);
     }
     // else if (etat_asserv == STOP && feedback_Angle == 1 && feedback_Dis == 1) {
     //     set_state(RES);
@@ -119,30 +128,35 @@ void update_state() {
     //pas de else, on garde l'état précédent
 }
 
+void set_state_distance(void) { //void void pour un callback
+    set_state(PO_DISTANCE);
+}
+
 void set_state(enum asserv_state s) {
-    reset_consigne();
+    precedent_etat_asserv = etat_asserv;
     etat_asserv = s;
+    reset = 0;
     switch(s) {
+        case PO_STOP:
         case STOP:
-            reset = 0;
-            Cons_Dis = Distance; //prend les parametres courants comme objectif
-            Cons_Angle = Angle;
+            get_XY(&x_0, &y_0);
+            alpha0 = alpha0 + Angle;
+            reset_consigne();
+            reset=1;
+            // Cons_Dis = Distance; //prend les parametres courants comme consigne
+            // Cons_Angle = Angle;
             break;
         case ROT:
         case PO_ANGLE:
-            reset = 0;
             Cons_Angle = Obj_Angle;
             break;
         case PO_DISTANCE:
-            reset = 0;
             Cons_Dis = Obj_Dist;
             break;
         case RES:
             reset = 1;
             commande_PWMD_V=0;
             commande_PWMG_V=0;
-            get_XY(&x_0, &y_0);
-            alpha0 = alpha0 + Angle;
             break;
     }
 }
@@ -169,9 +183,9 @@ void get_XY(float *x, float *y) {
     *y = y_0 - Distance * sin(alpha0+Angle);
 }
 
-//angle en radian
+//angle en degré
 float get_angle() {
-    return alpha0 + Angle; //Angle=0 normalement
+    return (alpha0 + Angle)*M_PI/180; //Angle=0 normalement
 }
 
 //---------- deplacement -------------
@@ -191,13 +205,16 @@ void go_XY(float x_dest, float y_dest) {
     // pose problème pour savoir où sont les actionneurs lol
 }
 
-//angle en radians
+//angle en degrés
 void rotate(float angle) {
-    Obj_Angle = alpha0 + angle;
+    Obj_Angle = (alpha0 + angle)*M_PI/180;
     Obj_Dist = 0;
     set_state(ROT);
 }
 
+bool task_done() {
+    return etat_asserv == STOP;
+}
 //--------- DEBUG ------------
 void set_consigne(char c) {
     if ( c=='z') {
@@ -246,6 +263,35 @@ void set_consigne(char c) {
     else if (c=='2') {
         go_XY(0.80, 0.90);
     }
+}
+
+char * update_debug_string() {
+    char etat_str[16];
+    switch(etat_asserv) {
+        case STOP:
+            strncpy(etat_str, "STOP", 16);
+            break;
+        case ROT:
+            strncpy(etat_str, "ROT", 16);
+            break;
+        case PO_ANGLE:
+            strncpy(etat_str, "PO_ANG", 16);
+            break;
+        case PO_STOP:
+            strncpy(etat_str, "PO_STOP", 16);
+            break;
+        case PO_DISTANCE:
+            strncpy(etat_str, "PO_DIS", 16);
+            break;
+        case RES:
+            strncpy(etat_str, "RES", 16);
+            break;
+    }
+    snprintf(debug_string, 256,
+             "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s \n",
+             x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
+    return debug_string;
+
 }
 
 void print_debug_asserv(Serial &pc,char c)

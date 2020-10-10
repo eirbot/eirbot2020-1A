@@ -46,6 +46,7 @@ class Protocole
         bool obstacle_flag = false;
 
         RawSerial *_serial;
+        void enable_callback(bool enable);
         void parse();
         void readByte();
 };

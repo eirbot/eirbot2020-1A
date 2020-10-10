@@ -5,27 +5,27 @@
 
 #include "asserv.hpp"
 
- // #include "Protocole_nucleo.hpp"
- // Protocole protocole=Protocole();
+#include "Protocole_nucleo.hpp"
+Protocole protocole=Protocole();
 
-Serial pc(USBTX, USBRX);
+//Serial pc(USBTX, USBRX);
 // Serial pc(D1, D0);
-volatile char c = '\0'; // Initialized to the NULL character
+// volatile char c = '\0'; // Initialized to the NULL character
 
-void conCharReceived(void)
-{
-  c=pc.getc();
-  set_consigne(c);
-}
+// void conCharReceived(void)
+// {
+//   c=pc.getc();
+//   set_consigne(c);
+// }
 
 int main()
 {
-  pc.printf("Hello ! \n\r");
+  //pc.printf("Hello ! \n\r");
   init_asserv();
-  pc.attach(&conCharReceived, Serial::RxIrq);
+  //pc.attach(&conCharReceived, Serial::RxIrq);
   while(1) {
-    //protocole.update_state()
-    print_debug_asserv(pc,c);
-    wait_us(500000);
+    protocole.update_state();
+    //print_debug_asserv(pc,c);
+    wait_us(100000);
   }
 }

@@ -9,7 +9,8 @@
  * @brief Fichier principal du projet permet de communiquer entre la raspberry et la nucléo. Ce fichier est l'implémentation côté nucléo
  * @author Ptit Lu*/
 
-enum protocol_state {INIT, WAIT_ORDER, WAIT_ASSERV, COMPLETED, FAILED};
+enum protocol_state {INIT, WAIT_ORDER, WAIT_ASSERV};
+enum order {PO, RO, OTHER};
 
 
 /**
@@ -37,6 +38,7 @@ class Protocole
 
     private:
         enum protocol_state state;
+        enum order last_order;
         char readBuffer[32];
         int buf_index = 0;
         //flags

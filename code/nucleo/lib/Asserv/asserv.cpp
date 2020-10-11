@@ -212,9 +212,6 @@ void rotate(float angle) {
     set_state(ROT);
 }
 
-bool task_done() {
-    return etat_asserv == STOP;
-}
 //--------- DEBUG ------------
 void set_consigne(char c) {
     if ( c=='z') {
@@ -288,7 +285,7 @@ char * update_debug_string() {
             break;
     }
     snprintf(debug_string, 256,
-             "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s \n",
+             "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s ",
              x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
     return debug_string;
 

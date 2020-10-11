@@ -8,7 +8,8 @@ Protocole::Protocole() {
     _serial = new RawSerial(USBTX, USBRX);
     _serial->baud(115200);
     enable_callback(true);
-    Protocole::state = INIT;
+    Protocole::state = WAIT_ORDER;
+    Protocole::last_order = OTHER;
     _serial->printf("INIT\n");
     wait_us(100000);
 }
@@ -55,33 +56,24 @@ void Protocole::readByte() {
 }
 
 void Protocole::update_state() {
-    _serial->printf(update_debug_string());
-    if(order_ready_flag == true) {
+    // _serial->printf(update_debug_string());
+    // print_dbg();
+    if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
         order_ready_flag = false;
-        print_dbg();
         parse();
     }
-    else if(feedback_flag == true) {
-
-    }
-    else if(timeout_flag == true) {
+    else if(Protocole::state == WAIT_ASSERV && get_state() == STOP) {
+        if(last_order == PO) {
+            _serial->printf("RPOOK\n");
+            state = WAIT_ORDER;
+        }
+        else if(last_order == RO) {
+            _serial->printf("RROOK\n");
+            state = WAIT_ORDER;
+        }
 
     }
     else if(obstacle_flag == true) {
-    }
-}
-
-void Protocole::act() {
-    if(Protocole::state == WAIT_ASSERV) {
-        if(get_state() == STOP) {
-            // _serial->printf("")
-           // if(get_obstacle() == 0) {
-           //     Protocole::state = FAIL;
-           // }
-           // else {
-           //     Protocole::state = SUCCESS;
-           // }
-        }
     }
 }
 
@@ -98,13 +90,13 @@ void Protocole::parse() {
         tmp_y = ((float)y)/100;
         go_XY(tmp_x, tmp_y);
         state = WAIT_ASSERV;
-        _serial->printf("RPOOK\n");
+        last_order = PO;
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
         tmp_angle = (float)angle;
         rotate(angle);
         state = WAIT_ASSERV;
-        _serial->printf("RROOK\n");
+        last_order = RO;
     }
     else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
         //GP2_on()
@@ -146,5 +138,30 @@ void Protocole::parse() {
 void Protocole::print_dbg() {
     // for(unsigned int i = 0; i < sizeof(readBuffer); i++) {
     //     _serial->putc(readBuffer[i]);
-    // }
+    // }p
+    char etat_str[16];
+    switch(state) {
+        case INIT:
+            strncpy(etat_str, "INIT", 16);
+            break;
+        case WAIT_ORDER:
+            strncpy(etat_str, "W_ORD", 16);
+            break;
+        case WAIT_ASSERV:
+            strncpy(etat_str, "W_ASS", 16);
+            break;
+    }
+    _serial->printf("P:etat=%5s ", etat_str);
+    switch(last_order) {
+        case PO:
+            strncpy(etat_str, "PO", 16);
+            break;
+        case RO:
+            strncpy(etat_str, "RO", 16);
+            break;
+        case OTHER:
+            strncpy(etat_str, "OTH", 16);
+            break;
+    }
+    _serial->printf("P:last=%3s\n", etat_str);
 }

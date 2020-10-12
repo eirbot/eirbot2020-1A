@@ -22,7 +22,7 @@ void message_retour(Protocole::Etat etat) {
 
 void test_protocole(int argc, char *argv[]) {
         TEST_BEGIN;
-        char etats[3];
+        char etats_GP2[] = {'X','X','X'};
         Protocole::Etat ret;
         usleep(100000); //0.1s
 
@@ -31,7 +31,7 @@ void test_protocole(int argc, char *argv[]) {
         message_retour(ret);
 
         printf("Set Position ................... ");
-        ret = proto.set_position(40, 60, etats, 1);
+        ret = proto.set_position(40, 60, etats_GP2, 10);
         message_retour(ret);
 
         printf("Set angle ...................... ");
@@ -43,23 +43,24 @@ void test_protocole(int argc, char *argv[]) {
         message_retour(ret);
 
         struct position pos;
+        pos.x = 0;
+        pos.y = 0;
         printf("Get Position ................... ");
         ret = proto.get_position(&pos);
         message_retour(ret);
         printf("POS = %d, %d\n", pos.x, pos.y);
 
         printf("Set Position ................... ");
-        ret = proto.set_position(40, 60, etats, 1);
+        ret = proto.set_position(60, 60, etats_GP2, 10);
         message_retour(ret);
 
-        short int angle;
+        short int angle = 666;
         printf("Get angle ...................... ");
         ret = proto.get_angle(&angle);
         message_retour(ret);
         printf("ANGLE = %hd\n", angle);
 
         printf("Get etats ...................... ");
-        char etats_GP2[3];
         ret = proto.get_etats_GP2(etats_GP2);
         message_retour(ret);
         printf("Etats GP2 = %c, %c, %c\n", etats_GP2[0], etats_GP2[1], etats_GP2[2]);

@@ -158,4 +158,21 @@ void Protocole::print_dbg() {
         case WAIT_ORDER:
             strncpy(etat_str, "W_ORD", 16);
             break;
-        cas
+        case WAIT_ASSERV:
+            strncpy(etat_str, "W_ASS", 16);
+            break;
+    }
+    _serial->printf("P:etat=%5s ", etat_str);
+    switch(last_order) {
+        case PO:
+            strncpy(etat_str, "PO", 16);
+            break;
+        case RO:
+            strncpy(etat_str, "RO", 16);
+            break;
+        case OTHER:
+            strncpy(etat_str, "OTH", 16);
+            break;
+    }
+    _serial->printf("P:last=%3s\n", etat_str);
+}

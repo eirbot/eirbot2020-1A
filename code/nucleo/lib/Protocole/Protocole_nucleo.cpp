@@ -44,15 +44,26 @@ void Protocole::enable_callback(bool enable) {
 
 //FIXME verif buf_index
 void Protocole::readByte() {
-    readBuffer[buf_index] = _serial->getc();
-    if(readBuffer[buf_index] == '\n') {
+    auto recived_char = _serial->getc();
+    if (recived_char == 127) // Delete char
+    {
+        readBuffer[buf_index] = 0;
+        buf_index = max(0, buf_index - 1);
+    }
+    else if(recived_char == '\n') 
+    {
         readBuffer[buf_index+1] = 0;
         enable_callback(false);
         order_ready_flag = true;
         buf_index = 0;
         return;
     }
-    buf_index++;
+    else
+    {
+        readBuffer[buf_index] = recived_char;
+        buf_index++;
+    }
+
 }
 
 void Protocole::update_state() {
@@ -147,21 +158,4 @@ void Protocole::print_dbg() {
         case WAIT_ORDER:
             strncpy(etat_str, "W_ORD", 16);
             break;
-        case WAIT_ASSERV:
-            strncpy(etat_str, "W_ASS", 16);
-            break;
-    }
-    _serial->printf("P:etat=%5s ", etat_str);
-    switch(last_order) {
-        case PO:
-            strncpy(etat_str, "PO", 16);
-            break;
-        case RO:
-            strncpy(etat_str, "RO", 16);
-            break;
-        case OTHER:
-            strncpy(etat_str, "OTH", 16);
-            break;
-    }
-    _serial->printf("P:last=%3s\n", etat_str);
-}
+        cas

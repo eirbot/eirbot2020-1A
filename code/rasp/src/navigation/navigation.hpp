@@ -9,6 +9,8 @@
  * @brief Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table de jeu
  * @author SD*/
 
+struct position;
+
 /**
  * @class Navigation
  * @brief Contient les méthodes permettant de faire fonctionner correctement l'astar*/

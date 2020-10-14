@@ -2,6 +2,7 @@
 #include "actionneur_nucleo.hpp"
 #include "mbed.h"
 
+//#define DEBUG_AP
 
 Protocole::Protocole() {
     memset(readBuffer, 0, sizeof(readBuffer));
@@ -10,8 +11,6 @@ Protocole::Protocole() {
     enable_callback(true);
     Protocole::state = WAIT_ORDER;
     Protocole::last_order = OTHER;
-    _serial->printf("INIT\n");
-    wait_us(100000);
 }
 
 Protocole::~Protocole() {
@@ -36,6 +35,7 @@ void Protocole::readByte() {
     }
     else if(recived_char == '\n') 
     {
+        readBuffer[buf_index] = recived_char;
         readBuffer[buf_index+1] = 0;
         enable_callback(false);
         order_ready_flag = true;
@@ -51,8 +51,10 @@ void Protocole::readByte() {
 }
 
 void Protocole::update_state() {
-    // _serial->printf(update_debug_string());
-    print_dbg();
+    #ifdef DEBUG_AP
+      _serial->printf(update_debug_string());
+      print_dbg();
+    #endif
     if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
         order_ready_flag = false;
         parse();
@@ -78,7 +80,9 @@ void Protocole::parse() {
     float tmp_y = 0;
     float tmp_angle = 0;
 
-    _serial->printf("PARSE\n");
+    #ifdef DEBUG_AP
+      _serial->printf("PARSE\n");
+    #endif
     //SET
     if(sscanf(readBuffer, "SPO%hd,%hd\n", &x, &y)) {
         tmp_x = ((float)x)/100;
@@ -114,8 +118,7 @@ void Protocole::parse() {
         _serial->printf("VPO%hd,%hd\n", x, y);
     }
     else if(strcmp(readBuffer, "GRO\n") == 0) {
-        angle = get_angle();
-        _serial->printf("VRO%hd\n", angle);
+        _serial->printf("VRO%hd\n", (short)get_angle());
     }
     else if(strcmp(readBuffer, "GGE\n") == 0) {
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);

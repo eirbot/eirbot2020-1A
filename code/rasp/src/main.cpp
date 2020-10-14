@@ -28,25 +28,34 @@ float delai=0;
 float end=0;
 
 //Définition des points d'interets
-struct Node Phare_blue={30,16,0,0,0,0,0};
-struct Node Phare_yellow={30,184,0,0,0,0,0};
-struct Node Manche_1_blue={23,(184),0,0,0,0,0};
-struct Node Manche_2_blue={63,(184),0,0,0,0,0};
-struct Node Manche_1_yellow={23,(16),0,0,0,0,0};
-struct Node Manche_2_yellow={63,(16),0,0,0,0,0};
+struct Node Phare_blue={20,20,0,0,0,0,0};
+struct Node Phare_yellow={20,180,0,0,0,0,0};
+struct Node Phare_blue_waypoint={50,45,0,0,0};
+struct Node Manche_1_blue={23,(180),0,0,0,0,0};
+struct Node Manche_2_blue={63,(180),0,0,0,0,0};
+struct Node Manche_1_yellow={23,(20),0,0,0,0,0};
+struct Node Manche_2_yellow={63,(20),0,0,0,0,0};
 
-struct Node Port={16,(80),0,0,0,0,0};
+struct Node Port={20,(80),0,0,0,0,0};
+struct Node Port_N={20,50,0,0,0,0,0};
+struct Node Port_S={20,150,0,0,0,0,0};
 
 // Définition des GP2
 
 
 void port_now(vector<obstacle> list_obstacles)
 {
+  printf("\033[33mJe pars du MANCHE_2 et je vais au PORT \033[0m \n");
   std::vector<Node> result;
+  int boussole=rand() % 1;
   struct position my_position=Robot.position();
-  //TODO : changer 63 et side 184
   struct Node position={(short) 63,(short) 184,0,0,0,0,0};
-  Robot.move(position,Port,list_obstacles);
+  if (boussole==0) {
+    Robot.move(position,Port_N,list_obstacles);
+  }
+  else if(boussole==1){
+    Robot.move(position,Port_S,list_obstacles);
+  }
 }
 
 //Initialisation
@@ -59,13 +68,12 @@ void setup()
 
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
-
+  side="blue";
   Robot.calibration();
 
   //Mise du robot au point de départ
   printf("Je me déplace jusqu'au point de départ \n");
   go_to({.x=Port.x,.y=Port.y},robot_position());
-  Robot.rotation(0);
   printf("Déplacement au point de départ");
   print_success();
 }
@@ -83,11 +91,13 @@ void loop_blue()
     pos.x=16;
     pos.y=80;
     Node pos_node={.x= (short) pos.x,.y= (short) pos.y,0,0,0,0,0};
+    go_to({.x=pos.x+4,.y=pos.y},pos);
     //Module Phare
-    printf("\033[33mJe pars du PORT et je vais au PHARE \033[0m \n");
-    Robot.move(pos_node,Phare_blue,list_obstacles);
-    go_to({.x=pos.x-1, .y=pos.y-1}, pos);
-    Robot.rotation(-90);
+    printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
+    Robot.move(pos_node,Phare_blue_waypoint,list_obstacles);
+
+    printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
+    Robot.move(Phare_blue_waypoint,Phare_blue,list_obstacles);
     Robot.actionneur(0,1);
     pos=Robot.position();
     go_to({.x=pos.x+20,.y=pos.y},pos);
@@ -97,11 +107,10 @@ void loop_blue()
 
     printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
     Robot.move(pos_node,Manche_1_blue,list_obstacles);
-    Robot.rotation(90);
     Robot.actionneur(1, 1);
     printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
     pos=Robot.position();
-    go_to({.x=pos.x+50,.y=pos.y},pos);
+    go_to({.x=pos.x+30,.y=pos.y},pos);
     Robot.actionneur(1, 0);
 
     //Lecture de la boussole
@@ -109,7 +118,8 @@ void loop_blue()
 
     break;
   }
-  port_now(list_obstacles);
+  vector<obstacle> list_obstacles_no_ecocup = fillVector_no_ecocup();
+  port_now(list_obstacles_no_ecocup);
 }
 
 //Boucle de jeu

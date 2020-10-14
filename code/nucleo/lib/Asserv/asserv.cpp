@@ -174,7 +174,13 @@ float XY_to_Distance(float x, float y) {
 
 //XY en m, return en radiannnnns
 float XY_to_Angle(float x, float y) {
-    return (-atan2(y-y_0, x-x_0) - alpha0);
+    float alpha = (-atan2(y-y_0, x-x_0) - alpha0);
+    if(abs(alpha) > M_PI) {
+        return -signbit(alpha)*(2*M_PI-alpha);
+    }
+    else {
+        return alpha;
+    }
 }
 
 //XY en m
@@ -185,7 +191,7 @@ void get_XY(float *x, float *y) {
 
 //angle en degré
 float get_angle() {
-    return (alpha0 + Angle)*M_PI/180; //Angle=0 normalement
+    return (alpha0 + Angle)*180/M_PI; //Angle=0 normalement
 }
 
 //---------- deplacement -------------

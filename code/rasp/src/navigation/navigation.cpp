@@ -207,11 +207,11 @@ void Navigation::Print_path(vector<Node> usablePath, vector<obstacle> list_obsta
     ofstream heatmap;
     heatmap.open("./test_astar.ppm", std::ofstream::out | std::ofstream::trunc);
     heatmap << "P3 \n" <<endl; //Portable pixel map mode
-    heatmap << (200) << " " << (300) <<endl; //Size of file
+    heatmap << (Y_MAX) << " " << (X_MAX) <<endl; //Size of file
     heatmap << "255" <<endl;//Max number of color
 
-    for (size_t i=0; i < 300; i++) {
-        for (size_t j=0; j < 200; j++) {
+    for (size_t i=0; i < X_MAX; i++) {
+        for (size_t j=0; j < Y_MAX; j++) {
             int R,G,B;
             if (is_in_path(usablePath, i, j)) {
                 R=255.;
@@ -255,12 +255,14 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
+            if(dep_x >= 5){
             back=go_to({.x=position.x+dep_x,.y=position.y},{.x=position.x,.y=position.y});
             mv=0;
             position.x+=dep_x;
             dep_x=0;
             if (back==1 || back==2) {
                 return back;
+            }
             }
         }
 
@@ -396,8 +398,8 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
     back=go_to({.x=dest.node.x,.y=dest.node.y},{.x=position.x,.y=position.y});
     if (back==1 || back==2) {
         return back;
-    }
     return 0;
+    }
 }
 
 

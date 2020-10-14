@@ -106,10 +106,10 @@ if(BUILD_DOCUMENTATION)
 
 add_custom_target(upload
   COMMAND scp ${CMAKE_CURRENT_BINARY_DIR}/bin/test pi@eirboat:~
-  COMMAND ssh pi@eirboat ./test
+  #COMMAND ssh pi@eirboat ./test
   )
 
 add_custom_target(final
   COMMAND scp ${CMAKE_CURRENT_BINARY_DIR}/bin/project pi@eirboat:~
-  COMMAND ssh pi@eirboat ./project
+  #COMMAND ssh pi@eirboat ./project
 )

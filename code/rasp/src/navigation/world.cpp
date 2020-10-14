@@ -10,7 +10,7 @@ std::vector<obstacle> fillVector()
 
     std::vector<obstacle> list_obstacles;
     list_obstacles.push_back({30,40,&eco_cup}); //Port nord 1
-    list_obstacles.push_back({45,51,&eco_cup});
+    // list_obstacles.push_back({45,51,&eco_cup});
     list_obstacles.push_back({67,10,&eco_cup});
     list_obstacles.push_back({95,40,&eco_cup});
     list_obstacles.push_back({205,40,&eco_cup});
@@ -19,9 +19,9 @@ std::vector<obstacle> fillVector()
     list_obstacles.push_back({270,40,&eco_cup});
     list_obstacles.push_back({110,80,&eco_cup});
     list_obstacles.push_back({190,80,&eco_cup});
-    list_obstacles.push_back({45,108,&eco_cup});
+    // list_obstacles.push_back({45,108,&eco_cup});
     list_obstacles.push_back({30,120,&eco_cup}); //Port sud 12
-    list_obstacles.push_back({127,120,&eco_cup});
+    // list_obstacles.push_back({127,120,&eco_cup});
     list_obstacles.push_back({173,120,&eco_cup});
     list_obstacles.push_back({255,108,&eco_cup});
     list_obstacles.push_back({270,120,&eco_cup});

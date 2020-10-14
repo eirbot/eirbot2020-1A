@@ -26,25 +26,9 @@ void Protocole::enable_callback(bool enable) {
     }
 }
 
-// ATTENTION fonction bloquante
-// TODO gerer l'overflow du buffer
-// le while risque de bloquer et faire foirer l'asserv...
-// void Protocole::poll() {
-//     while(_serial->readable()) {
-//         readBuffer[buf_index] = _serial->getc();
-//         if(readBuffer[buf_index] == '\n') {
-//             readBuffer[buf_index+1] = 0;
-//             buf_index = 0;
-//             parse();
-//             break;
-//         }
-//         buf_index++;
-//     }
-// }
-
 //FIXME verif buf_index
 void Protocole::readByte() {
-    auto recived_char = _serial->getc();
+    char recived_char = _serial->getc();
     if (recived_char == 127) // Delete char
     {
         readBuffer[buf_index] = 0;
@@ -68,7 +52,7 @@ void Protocole::readByte() {
 
 void Protocole::update_state() {
     // _serial->printf(update_debug_string());
-    // print_dbg();
+    print_dbg();
     if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
         order_ready_flag = false;
         parse();
@@ -105,7 +89,7 @@ void Protocole::parse() {
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
         tmp_angle = (float)angle;
-        rotate(angle);
+        rotate(tmp_angle);
         state = WAIT_ASSERV;
         last_order = RO;
     }
@@ -136,7 +120,7 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "GGE\n") == 0) {
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
-    else if(strcmp(readBuffer, "\n") == 0) {
+    else if(strcmp(readBuffer, "STOP\n") == 0) {
         set_state(RES);
     }
     memset(readBuffer, 0, sizeof(readBuffer));
@@ -147,9 +131,9 @@ void Protocole::parse() {
 //------- DEBUG --------
 
 void Protocole::print_dbg() {
-    // for(unsigned int i = 0; i < sizeof(readBuffer); i++) {
-    //     _serial->putc(readBuffer[i]);
-    // }p
+    for(unsigned int i = 0; i < sizeof(readBuffer); i++) {
+        _serial->putc(readBuffer[i]);
+    }
     char etat_str[16];
     switch(state) {
         case INIT:

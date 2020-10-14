@@ -96,12 +96,12 @@ int Protocole::update_buffer(int timeout) {
 }
 
 void Protocole::print_buffer() {
-    // for (int i = 0; i < READ_BUF_SIZE; i++) {
-    //     printf(" %x ", readBuffer[i] & 0xff);
-    // }
-    // printf("\n");
-    // printf(readBuffer);
-    // printf("\n");
+    for (int i = 0; i < READ_BUF_SIZE; i++) {
+         printf(" %x ", readBuffer[i] & 0xff);
+    }
+    printf("\n");
+    printf(readBuffer);
+    printf("\n");
 }
 
 

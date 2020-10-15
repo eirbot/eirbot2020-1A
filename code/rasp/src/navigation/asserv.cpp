@@ -12,7 +12,8 @@ int go_to(struct position dest, struct position src)
     }
     int size=debugPath.size();
     printf("Envoi de la requête de déplacement vers x:%3d ; y:%3d .... ",dest.x,dest.y);
-    int timeout=sqrt(pow((dest.x/100-src.x/100),2)+pow((dest.y/100-src.y/100),2));
+    // int timeout=sqrt(pow((dest.x/100-src.x/100),2)+pow((dest.y/100-src.y/100),2));
+    int timeout=10;
     int asserv_back=(int) Protocole.set_position((short) dest.x, (short) dest.y, etats,timeout+2);
     if(debug==1){
         if(abs(debugPath[size-1].x-debugPath[size-2].x)<3 && abs(debugPath[size-1].y-debugPath[size-2].y)<3){

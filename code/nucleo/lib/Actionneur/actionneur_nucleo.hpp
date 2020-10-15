@@ -11,10 +11,17 @@
  * @brief Contient les fonctions permettant d'activer ou désactiver les actionneurs
  * @author*/
 
+//DigitalOut pavillon_pin(LED1); //PG_0
+
+/**
+ * @brief Initialisation pavillon
+ * @param pav_pin : pin de sortie qui commande le moteur*/
+void desactivate_pavillon();
+
 /**
  * @brief Sort le pavillon
  * @param servo: Le servomoteur associé au pavillon*/
-void activate_pavillon(PwmOut servo); //Met le pavillon dans l'autre configuration
+void activate_pavillon();
 
 /**
  * @brief Sort ou rentre le pavillon

@@ -24,15 +24,35 @@ void test_protocole(int argc, char *argv[]) {
         TEST_BEGIN;
         char etats_GP2[] = {'X','X','X'};
         Protocole::Etat ret;
-        usleep(100000); //0.1s
 
         // printf("Set GP2 on ..................... ");
         // ret = proto.set_detection_GP2(1);
         // message_retour(ret);
 
-        printf("Set Position ................... ");
-        ret = Protocole.set_position(50, 80, etats_GP2, 10);
-        message_retour(ret);
+        // for(int i = 0; i < 5; i++) {
+        //         printf("Set Position ................... ");
+        //         ret = Protocole.set_position(16, 80, etats_GP2, 5);
+        //         message_retour(ret);
+        //         // usleep(3000000);
+        // }
+
+        for(int i = 0; i < 5; i++) {
+                printf("Set Position ................... ");
+                ret = Protocole.set_position(50, 50, etats_GP2, 5);
+                message_retour(ret);
+
+                printf("Set Position ................... ");
+                ret = Protocole.set_position(80, 50, etats_GP2, 10);
+                message_retour(ret);
+
+                printf("Set Position ................... ");
+                ret = Protocole.set_position(80, 80, etats_GP2, 10);
+                message_retour(ret);
+
+                printf("Set Position ................... ");
+                ret = Protocole.set_position(50, 80, etats_GP2, 10);
+                message_retour(ret);
+        }
 
         // printf("Set angle ...................... ");
         // ret = proto.set_angle(90);

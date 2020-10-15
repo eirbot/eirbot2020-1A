@@ -1,6 +1,0 @@
-#ifndef __STRATEGIE_SECOURS_H_
-#define __STRATEGIE_SECOURS_H_
-
-
-
-#endif // __STRATEGIE_SECOURS_H_

@@ -9,7 +9,7 @@ using namespace std;
 #include "test_ecocup.hpp"
 #include "test_robot.hpp"
 
-class Protocole Protocole("/dev/ttyS0");
+class Protocole Protocole("/dev/ttyACM0");
 
 bool debug=false;
 vector<Node> debugPath(2);
@@ -26,11 +26,11 @@ int which_side=0;
 
 
 int main(int argc, char *argv[]) {
-  test_navigation();
-  test_asserv();
-  test_detection();
-  test_actionneur();
+  // test_navigation();
+  // test_test();
+  // asserv_detection();
+  // test_actionneur();
   test_protocole(argc,argv);
   //test_ecocup();
-  test_robot();
+  // test_robot();
 }

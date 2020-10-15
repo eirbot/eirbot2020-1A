@@ -1,7 +1,7 @@
 #include "mbed.h"
 #include "moteur.hpp"
 
-
+/*
 float abs_PWM (float consigne_PWM )
 {
     if(consigne_PWM<0) {
@@ -10,6 +10,7 @@ float abs_PWM (float consigne_PWM )
        return consigne_PWM;
     }
 }
+*/
 
 int fonc_direction(const float consigne)
 {

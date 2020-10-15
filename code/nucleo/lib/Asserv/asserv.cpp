@@ -155,8 +155,12 @@ void set_state(enum asserv_state s) {
             break;
         case RES:
             reset = 1;
+            reset_consigne();
             commande_PWMD_V=0;
             commande_PWMG_V=0;
+            x_0=0.16;
+            y_0=0.80;
+            alpha0=0;
             break;
     }
 }
@@ -175,12 +179,13 @@ float XY_to_Distance(float x, float y) {
 //XY en m, return en radiannnnns
 float XY_to_Angle(float x, float y) {
     float alpha = (-atan2(y-y_0, x-x_0) - alpha0);
-    if(abs(alpha) > M_PI) {
-        return -signbit(alpha)*(2*M_PI-alpha);
-    }
-    else {
-        return alpha;
-    }
+    // if(abs(alpha) > M_PI) {
+    //     return -signbit(alpha)*(2*M_PI-alpha);
+    // }
+    // else {
+    //     return alpha;
+    // }
+    return alpha;
 }
 
 //XY en m

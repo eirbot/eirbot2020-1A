@@ -48,6 +48,7 @@ class Protocole
         bool obstacle_flag = false;
 
         RawSerial *_serial;
+        RawSerial *debug_serial;
         void enable_callback(bool enable);
         void parse();
         void readByte();

@@ -41,12 +41,12 @@ Protocole::Protocole(std::string device) {
     tty.c_oflag &= ~OPOST; // Prevent special interpretation of output bytes (e.g. newline chars)
     tty.c_oflag &= ~ONLCR; // Prevent conversion of newline to carriage return/line feed
 
-    tty.c_cc[VTIME] = 1;    // 10=Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
+    tty.c_cc[VTIME] = 1;  //50=5secondes  // 10=Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
     tty.c_cc[VMIN] = 0;
 
     // Set in/out baud rate to be 115200
-    cfsetispeed(&tty, B115200);
-    cfsetospeed(&tty, B115200);
+    cfsetispeed(&tty, B921600);
+    cfsetospeed(&tty, B921600);
 
     // Save tty settings, also checking for error
     if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
@@ -54,6 +54,7 @@ Protocole::Protocole(std::string device) {
     }
 
     usleep(10000);
+    tcflush(serial_port, TCIOFLUSH);
 }
 
 Protocole::~Protocole() {
@@ -70,7 +71,9 @@ void Protocole::send(const char *command, ...) {
     va_start(args, command);
     vsprintf(writeBuffer, command, args);
     va_end(args);
+    printf(writeBuffer);
     write(serial_port, writeBuffer, strlen(writeBuffer));
+    print_buffer(writeBuffer);
 }
 
 void Protocole::flush_buffer() {
@@ -80,27 +83,31 @@ void Protocole::flush_buffer() {
 int Protocole::update_buffer(int timeout) {
     flush_buffer();
 
+    // usleep(1000);
+    // int r = read(serial_port, readBuffer, READ_BUF_SIZE);
+
     clock_t begin = std::clock();
     while(read(serial_port, readBuffer, READ_BUF_SIZE) == 0) {
-        usleep(1);
         //printf("%f\n", float(std::clock() - begin)/CLOCKS_PER_SEC*1000);
         if(float(std::clock() - begin)/CLOCKS_PER_SEC*1000 > (float)timeout) {
             //printf("read OUT\n");
-            print_buffer();
+            print_buffer(readBuffer);
             return -1;
         }
     }
     //printf("read OK\n");
-    print_buffer();
+    print_buffer(readBuffer);
+    // if(r < 0) return -1;
+    // else return r;
     return 0;
 }
 
-void Protocole::print_buffer() {
+void Protocole::print_buffer(char * buf) {
     for (int i = 0; i < READ_BUF_SIZE; i++) {
-         printf(" %x ", readBuffer[i] & 0xff);
+         printf(" %x ", buf[i] & 0xff);
     }
     printf("\n");
-    printf(readBuffer);
+    printf(buf);
     printf("\n");
 }
 
@@ -110,7 +117,6 @@ void Protocole::print_buffer() {
 enum Protocole::Etat Protocole::get_position(struct position *pos) {
     short int x, y;
     send("GPO\n");
-    usleep(10000);
     if(update_buffer(1) == -1) return Etat::TIME_OUT;
     if(sscanf(readBuffer, "VPO%hd,%hd\n", &x, &y) == 2) {
         pos->x = x;
@@ -126,7 +132,6 @@ enum Protocole::Etat Protocole::get_position(struct position *pos) {
 
 enum Protocole::Etat Protocole::get_angle(short *angle) {
     send("GRO\n"); // angle absolu en deg
-    usleep(10000);
     if(update_buffer(1) == -1) return Etat::TIME_OUT;
     if(sscanf(readBuffer, "VRO%hd\n", angle) == 1) {
         //printf("RO: angle: %hd\n", *angle);
@@ -145,7 +150,6 @@ enum Protocole::Etat Protocole::get_angle(short *angle) {
 enum Protocole::Etat Protocole::get_etats_GP2(char etats[3]) {
     char e0, e1, e2;
     send("GGE\n"); //Get Gp2 Etats (short etats[])
-    usleep(10000);
     if(update_buffer(1) == -1) return Etat::TIME_OUT;
     if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
         //printf("Etats GP2: %c, %c, %c\n", e0, e1, e2);
@@ -168,7 +172,6 @@ enum Protocole::Etat Protocole::get_etats_GP2(char etats[3]) {
 //rotation
 enum Protocole::Etat Protocole::set_angle(short angle) {
     send("SRO%hd\n", angle); // angle absolu en deg
-    usleep(10000);
     if(update_buffer(5) == -1) return Etat::TIME_OUT;
     if(strcmp(readBuffer, "RROOK\n") == 0) {
         //printf("Confirmation set rotation\n");
@@ -188,7 +191,6 @@ enum Protocole::Etat Protocole::set_angle(short angle) {
 // GP2
 enum Protocole::Etat Protocole::set_detection_GP2(char actif) {
     send("SGA%c\n", actif); //Set Gp2 seuils
-    usleep(10000);
     if(update_buffer(1) == -1) return Etat::TIME_OUT;
     if(strcmp(readBuffer, "RGAOK\n") == 0) {
         //printf("Confirmation set detection GP2\n");
@@ -208,10 +210,9 @@ enum Protocole::Etat Protocole::set_detection_GP2(char actif) {
 enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3], int timeout) {
     char e0, e1, e2;
     send("SPO%hd,%hd\n", x, y);
-    usleep(10000);
     if(update_buffer(timeout) == -1) return Etat::TIME_OUT;
     if(strcmp(readBuffer, "RPOOK\n") == 0) {
-        //printf("Confirmation set position\n");
+        // printf("Confirmation set position\n");
         return Etat::OK;
     }
     else if(sscanf(readBuffer, "VGE%c,%c,%c\n", &e0, &e1, &e2) == 3) {
@@ -231,7 +232,6 @@ enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3], in
 //actionneur
 enum Protocole::Etat Protocole::set_actionneur(char id, char on) {
     send("SAC%c,%c\n", id, on); //Set Gp2 seuils
-    usleep(10000);
     if(update_buffer(1) == -1) return Etat::TIME_OUT;
     if(strcmp(readBuffer, "RACOK\n") == 0) {
         //printf("Confirmation set detection GP2\n");

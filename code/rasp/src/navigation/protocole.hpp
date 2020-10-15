@@ -133,7 +133,7 @@ class Protocole
         /**
          * @brief Fonction permettant d'afficher le buffer à fin de debug
          */
-        void print_buffer(); //debug
+        void print_buffer(char* buf); //debug
 
         private:
         int serial_port;

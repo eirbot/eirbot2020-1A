@@ -42,6 +42,7 @@ struct Node{
 
 };
 
+
 /**
  * @brief Permet de définir une forme pour ensuite être utilisé dans un obstacle
  * @param width: la largeur de l'obstacle en centimètre
@@ -72,6 +73,7 @@ std::vector<obstacle> fillVector(); //Permet de remplir un vecteur avec la liste
  * @param y: coordonnée y du point à tester
  * @param list_obstacles: listes des obstacles sur la table*/
 bool isValid(short x, short y,std::vector<obstacle> list_obstacles); //Renvoie faux si la case n'est pas valide
+bool who_here(short x, short y, struct shape shape,std::vector<obstacle> list_obstacles);
 
 /**
  * @brief Cette fonction permet de gérer un cas particulier où

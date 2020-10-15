@@ -1,7 +1,9 @@
 #include "actionneur_nucleo.hpp"
 
+DigitalOut pavillon_pin(LED1); //PG_0
+Timeout timeout_pavillon;
 
-void activate_pavillon(PwmOut servo)
+void activate_manche(PwmOut servo)
 {
     //exemple fonctionnel
     servo.period_ms(60);         // Initialisation période
@@ -12,19 +14,11 @@ void activate_pavillon(PwmOut servo)
     servo.pulsewidth_us(2000);
 }
 
-void activate_manche(PwmOut servo)
-{
-    servo.period_ms(20);
-        //if (servo.position==position_min) {
-            for(int i=0; i<1000; i += 10) {
-                servo.pulsewidth_us(i);
-            }
-            return;
-       // }
-        // if (servo.position==position_moy) {
-        //     for (int i=position_moy; i > position_min; i-=10) {
-        //         servo.pulsewidth_us(i);
-        //     }
-        //     return;
-        // }
+void desactivate_pavillon() {
+    pavillon_pin = 1;
+}
+
+void activate_pavillon() {
+    pavillon_pin = 0; //logique inverse
+    timeout_pavillon.attach(&desactivate_pavillon, 1);
 }

@@ -103,12 +103,12 @@ int Protocole::update_buffer(int timeout) {
 }
 
 void Protocole::print_buffer(char * buf) {
-    for (int i = 0; i < READ_BUF_SIZE; i++) {
-         printf(" %x ", buf[i] & 0xff);
-    }
-    printf("\n");
-    printf(buf);
-    printf("\n");
+    // for (int i = 0; i < READ_BUF_SIZE; i++) {
+    //      printf(" %x ", buf[i] & 0xff);
+    // }
+    // printf("\n");
+    // printf(buf);
+    // printf("\n");
 }
 
 

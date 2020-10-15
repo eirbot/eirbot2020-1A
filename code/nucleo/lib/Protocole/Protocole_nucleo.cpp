@@ -2,12 +2,16 @@
 #include "actionneur_nucleo.hpp"
 #include "mbed.h"
 
-//#define DEBUG_AP
+//#define DEBUG_ASS
+//#define DEBUG_PRO
 
 Protocole::Protocole() {
     memset(readBuffer, 0, sizeof(readBuffer));
     _serial = new RawSerial(USBTX, USBRX);
-    _serial->baud(115200);
+    _serial->baud(921600);
+    debug_serial = new RawSerial(D1, D0);
+    debug_serial->baud(9600);
+    debug_serial->printf("DEBUG\n");
     enable_callback(true);
     Protocole::state = WAIT_ORDER;
     Protocole::last_order = OTHER;
@@ -27,32 +31,32 @@ void Protocole::enable_callback(bool enable) {
 
 //FIXME verif buf_index
 void Protocole::readByte() {
-    char recived_char = _serial->getc();
-    if (recived_char == 127) // Delete char
+    char received_char = _serial->getc();
+    if (received_char == 127) // Delete char
     {
         readBuffer[buf_index] = 0;
         buf_index = max(0, buf_index - 1);
     }
-    else if(recived_char == '\n') 
+    else if(received_char == '\n')
     {
-        readBuffer[buf_index] = recived_char;
+        readBuffer[buf_index] = received_char;
         readBuffer[buf_index+1] = 0;
-        enable_callback(false);
+        //enable_callback(false);
         order_ready_flag = true;
         buf_index = 0;
         return;
     }
     else
     {
-        readBuffer[buf_index] = recived_char;
+        readBuffer[buf_index] = received_char;
         buf_index++;
     }
 
 }
 
 void Protocole::update_state() {
-    #ifdef DEBUG_AP
-      _serial->printf(update_debug_string());
+    #ifdef DEBUG_ASS
+      debug_serial->printf(update_debug_string());
       print_dbg();
     #endif
     if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
@@ -62,10 +66,16 @@ void Protocole::update_state() {
     else if(Protocole::state == WAIT_ASSERV && get_state() == STOP) {
         if(last_order == PO) {
             _serial->printf("RPOOK\n");
+            #ifdef DEBUG_PRO
+                debug_serial->printf("RPOOK\n");
+            #endif
             state = WAIT_ORDER;
         }
         else if(last_order == RO) {
             _serial->printf("RROOK\n");
+            #ifdef DEBUG_PRO
+                debug_serial->printf("RROOK\n");
+            #endif
             state = WAIT_ORDER;
         }
 
@@ -80,8 +90,11 @@ void Protocole::parse() {
     float tmp_y = 0;
     float tmp_angle = 0;
 
-    #ifdef DEBUG_AP
-      _serial->printf("PARSE\n");
+    #ifdef DEBUG_ASS
+      debug_serial->printf("PARSE\n");
+    #endif
+    #ifdef DEBUG_PRO
+        debug_serial->printf(readBuffer);
     #endif
     //SET
     if(sscanf(readBuffer, "SPO%hd,%hd\n", &x, &y)) {
@@ -102,11 +115,14 @@ void Protocole::parse() {
         _serial->printf("RGAOK\n");
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
-        if(actionneur_id == 0) {
+        if(actionneur_id == 0) { //FIXME 0 ou "0"?
             //activate_manche();
         }
-        else if(actionneur_id == 1) {
-            //activate_pavillon();
+        // else if(actionneur_id == 1) {
+        //     activate_pavillon();
+        // }
+        else if(actionneur_id == '1') {
+            activate_pavillon();
         }
         _serial->printf("RACOK\n");
     }
@@ -123,11 +139,11 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "GGE\n") == 0) {
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
-    else if(strcmp(readBuffer, "STOP\n") == 0) {
+    else if(strcmp(readBuffer, "RESET\n") == 0) {
         set_state(RES);
     }
     memset(readBuffer, 0, sizeof(readBuffer));
-    enable_callback(true);
+//    enable_callback(true);
 }
 
 
@@ -135,7 +151,7 @@ void Protocole::parse() {
 
 void Protocole::print_dbg() {
     for(unsigned int i = 0; i < sizeof(readBuffer); i++) {
-        _serial->putc(readBuffer[i]);
+        debug_serial->putc(readBuffer[i]);
     }
     char etat_str[16];
     switch(state) {
@@ -149,7 +165,7 @@ void Protocole::print_dbg() {
             strncpy(etat_str, "W_ASS", 16);
             break;
     }
-    _serial->printf("P:etat=%5s ", etat_str);
+    debug_serial->printf("P:etat=%5s ", etat_str);
     switch(last_order) {
         case PO:
             strncpy(etat_str, "PO", 16);
@@ -161,5 +177,5 @@ void Protocole::print_dbg() {
             strncpy(etat_str, "OTH", 16);
             break;
     }
-    _serial->printf("P:last=%3s\n", etat_str);
+    debug_serial->printf("P:last=%3s\n", etat_str);
 }

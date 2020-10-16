@@ -58,9 +58,9 @@
 // #define KP_Angle 0.00070 // 0.00175 coefficient proportionnel Asserv Position (Angle)
 // #define KI_Angle 0.000001 // 0.000001 coefficient intégral Asserv Position (Angle)
 // #define KD_Angle 10 //40//coefficient dérivé Asserv Position (Angle)
-#define KP_Angle 0.00175// 0.00175 coefficient proportionnel Asserv Position (Angle)
-#define KI_Angle 0.000001// 0.000001 coefficient intégral Asserv Position (Angle)
-#define KD_Angle 40//40//coefficient dérivé Asserv Position (Angle)
+#define KP_Angle 0.00083// 0.00082 coefficient proportionnel Asserv Position (Angle)
+#define KI_Angle 0 // coefficient intégral Asserv Position (Angle)
+#define KD_Angle 0//40//coefficient dérivé Asserv Position (Angle)
 
 void range(float*commande, int max, int min); //limite la plage d'une valeur entre min et max
 int interval_err(const float lim,const float err);//Renvoie 1 si l'erreur est dans l'intervalle

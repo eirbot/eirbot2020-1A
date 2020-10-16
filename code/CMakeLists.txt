@@ -110,7 +110,7 @@ add_custom_target(upload
   )
 
 add_custom_target(final
-  COMMAND scp ${CMAKE_CURRENT_BINARY_DIR}/bin/project pi@eirboat:~
+  COMMAND scp ${CMAKE_CURRENT_BINARY_DIR}/bin/project pi@192.168.43.32:~
   #COMMAND ssh pi@eirboat ./project
 )
 

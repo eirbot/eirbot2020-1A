@@ -38,7 +38,7 @@ void test_protocole(int argc, char *argv[]) {
 
         for(int i = 0; i < 5; i++) {
                 printf("Set Position ................... ");
-                ret = Protocole.set_position(50, 50, etats_GP2, 5);
+                ret = Protocole.set_position(50, 50, etats_GP2, 10);
                 message_retour(ret);
 
                 printf("Set Position ................... ");

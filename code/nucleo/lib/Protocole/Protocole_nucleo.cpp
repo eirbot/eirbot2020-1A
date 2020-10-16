@@ -2,7 +2,7 @@
 #include "actionneur_nucleo.hpp"
 #include "mbed.h"
 
-#define DEBUG_ASS
+//#define DEBUG_ASS
 //#define DEBUG_PRO
 
 Protocole::Protocole() {
@@ -119,6 +119,8 @@ void Protocole::parse() {
             //activate_manche();
         }
         else if(actionneur_id == '1') {
+        }
+        else if(actionneur_id == '2') {
             activate_pavillon();
         }
         _serial->printf("RACOK\n");
@@ -136,12 +138,9 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "GGE\n") == 0) {
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
-    else if(strcmp(readBuffer, "INIT\n") == 0) {
-        set_state(ASS_INIT);
+    else if(strcmp(readBuffer, "RESET\n") == 0) {
+        set_state(RES);
     }
-    // float a_kp, a_ki, a_kd;
-    // else if(sscanf(readBuffer, "SKA%f,%f,%f\n", &a_kp, &a_ki, &a_kp)) {
-    // }
     memset(readBuffer, 0, sizeof(readBuffer));
 //    enable_callback(true);
 }

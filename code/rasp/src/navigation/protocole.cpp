@@ -71,9 +71,9 @@ void Protocole::send(const char *command, ...) {
     va_start(args, command);
     vsprintf(writeBuffer, command, args);
     va_end(args);
-    printf(writeBuffer);
+    // printf(writeBuffer);
     write(serial_port, writeBuffer, strlen(writeBuffer));
-    print_buffer(writeBuffer);
+    // print_buffer(writeBuffer);
 }
 
 void Protocole::flush_buffer() {

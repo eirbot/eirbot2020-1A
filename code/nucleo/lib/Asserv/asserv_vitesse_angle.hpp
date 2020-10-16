@@ -20,7 +20,7 @@
 #define K1  (RW/RR) //simplification 1
 #define K2  ((RW*RA)/(RR*RC)) //simplification 2
 
-//nouvelle asserv
+// #### nouvelle asserv ####
 // #define KP_MG 14//14 //coefficient proportionnel Asserv Vitesse Moteur Gauche
 // #define KI_MG 0.15//0.15  //coefficient intégral Asserv Vitesse Moteur Gauche
 // #define KP_MD 14//14 //coefficient proportionnel Asserv Vitesse Moteur Droit
@@ -33,7 +33,7 @@
 // #define KI_Angle 0.000001// 0.000001 coefficient intégral Asserv Position (Angle)
 // #define KD_Angle 40//40//coefficient dérivé Asserv Position (Angle)
 
-//ancienne asserv
+// #### ancienne asserv ####
 // #define KP_MG 18//18 //coefficient proportionnel Asserv Vitesse Moteur Gauche
 // #define KI_MG 0.15//0.15  //coefficient intégral Asserv Vitesse Moteur Gauche
 // #define KP_MD 18//18 //coefficient proportionnel Asserv Vitesse Moteur Droit
@@ -53,11 +53,14 @@
 #define KI_MD 0.15//0.15 //coefficient intégral  Asserv Vitesse Moteur Droit
 
 #define KP_Pos  0.0007 //0.0007 coefficient proportionnel Asserv Position (Distance)
-#define KI_Pos 0//coefficient intégral Asserv Position (Distance)
-#define KD_Pos 0//coefficient intégral Asserv Position (Distance)
-#define KP_Angle 0.00083// 0.00082 coefficient proportionnel Asserv Position (Angle)
-#define KI_Angle 0// 0.000008 coefficient intégral Asserv Position (Angle)
-#define KD_Angle 0//40//coefficient dérivé Asserv Position (Angle)
+#define KI_Pos 0 //coefficient intégral Asserv Position (Distance)
+#define KD_Pos 0 //coefficient intégral Asserv Position (Distance)
+// #define KP_Angle 0.00070 // 0.00175 coefficient proportionnel Asserv Position (Angle)
+// #define KI_Angle 0.000001 // 0.000001 coefficient intégral Asserv Position (Angle)
+// #define KD_Angle 10 //40//coefficient dérivé Asserv Position (Angle)
+#define KP_Angle 0.00175// 0.00175 coefficient proportionnel Asserv Position (Angle)
+#define KI_Angle 0.000001// 0.000001 coefficient intégral Asserv Position (Angle)
+#define KD_Angle 40//40//coefficient dérivé Asserv Position (Angle)
 
 void range(float*commande, int max, int min); //limite la plage d'une valeur entre min et max
 int interval_err(const float lim,const float err);//Renvoie 1 si l'erreur est dans l'intervalle

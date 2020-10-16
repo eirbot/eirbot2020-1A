@@ -27,6 +27,5 @@ int main()
   while(1) {
     protocole.update_state();
     //print_debug_asserv(pc,c);
-    //wait_us(100000);
   }
 }

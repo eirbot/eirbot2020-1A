@@ -3,6 +3,7 @@
 // Timer timer;
 Ticker time_up;
 Timeout timeout_po_stop;
+Timeout timeout_reset_to_move; //passage par un etat reset asserv avant de se déplacer
 PwmOut pwmMG(D5);
 DigitalOut dirMG(D4);
 DigitalOut breakMG(D3);
@@ -70,7 +71,7 @@ void init_asserv() {
     pwmMD.period(FREQ_MOTEUR);
     pwmMG.period(FREQ_MOTEUR);
     time_up.attach(&function_Asserv, Te);
-    set_state(RES);
+    set_state(ASS_INIT);
 }
 
 
@@ -113,23 +114,21 @@ void update_state() {
         set_state(PO_STOP); //on laisse stabiliser, on quittera l'état grace au timeout
         timeout_po_stop.attach(&set_state_distance, 0.1);
     }
-    // else if(etat_asserv == PO_STOP && feedback_Angle == 1 && feedback_Dis == 1) {
-    //     set_state(PO_DISTANCE);
-    // }
     else if(etat_asserv == PO_DISTANCE && feedback_Dis == 1) {
         set_state(STOP);
     }
     else if (etat_asserv == ROT && feedback_Angle == 1) {
         set_state(STOP);
     }
-    // else if (etat_asserv == STOP && feedback_Angle == 1 && feedback_Dis == 1) {
-    //     set_state(RES);
-    // }
     //pas de else, on garde l'état précédent
 }
 
 void set_state_distance(void) { //void void pour un callback
     set_state(PO_DISTANCE);
+}
+
+void set_state_rotation(void) { //void void pour un callback
+    set_state(ROT);
 }
 
 void set_state(enum asserv_state s) {
@@ -141,10 +140,10 @@ void set_state(enum asserv_state s) {
         case STOP:
             get_XY(&x_0, &y_0);
             alpha0 = alpha0 + Angle;
-            reset_consigne();
-            reset=1;
-            // Cons_Dis = Distance; //prend les parametres courants comme consigne
-            // Cons_Angle = Angle;
+            // reset_consigne();
+            // reset=1;
+            Cons_Dis = Distance; //prend les parametres courants comme consigne
+            Cons_Angle = Angle;
             break;
         case ROT:
         case PO_ANGLE:
@@ -153,14 +152,34 @@ void set_state(enum asserv_state s) {
         case PO_DISTANCE:
             Cons_Dis = Obj_Dist;
             break;
+        case ASS_INIT:
+            x_0=0.16;
+            y_0=0.80;
+            alpha0=0;
+            reset = 1;
+            reset_consigne();
+            commande_PWMD_V=0;
+            commande_PWMG_V=0;
+            break;
+        case PO_RESET:
+            timeout_reset_to_move.attach(&set_state_distance, 0.05);
+            reset = 1;
+            reset_consigne();
+            commande_PWMD_V=0;
+            commande_PWMG_V=0;
+            break;
+        case ROT_RESET:
+            timeout_reset_to_move.attach(&set_state_rotation, 0.05);
+            reset = 1;
+            reset_consigne();
+            commande_PWMD_V=0;
+            commande_PWMG_V=0;
+            break;
         case RES:
             reset = 1;
             reset_consigne();
             commande_PWMD_V=0;
             commande_PWMG_V=0;
-            x_0=0.16;
-            y_0=0.80;
-            alpha0=0;
             break;
     }
 }
@@ -207,7 +226,7 @@ float get_angle() {
 void go_XY(float x_dest, float y_dest) {
     Obj_Dist = XY_to_Distance(x_dest, y_dest);
     Obj_Angle = XY_to_Angle(x_dest, y_dest);
-    set_state(PO_ANGLE);
+    set_state(PO_RESET);
     // //si on fait un angle de plus de 90 degre, on inverse le sens de marche du robot
     // if(Obj_Angle > M_PI/2 || Obj_Angle < -M_PI/2) {
     //     Obj_Angle = Obj_Angle + M_PI;
@@ -220,7 +239,7 @@ void go_XY(float x_dest, float y_dest) {
 void rotate(float angle) {
     Obj_Angle = (alpha0 + angle)*M_PI/180;
     Obj_Dist = 0;
-    set_state(ROT);
+    set_state(ROT_RESET);
 }
 
 //--------- DEBUG ------------
@@ -294,6 +313,15 @@ char * update_debug_string() {
         case RES:
             strncpy(etat_str, "RES", 16);
             break;
+        case ASS_INIT:
+            strncpy(etat_str, "INI", 16);
+            break;
+        case PO_RESET:
+            strncpy(etat_str, "PO_RES", 16);
+            break;
+        case ROT_RESET:
+            strncpy(etat_str, "ROT_RES", 16);
+            break;
     }
     snprintf(debug_string, 256,
              "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s ",
@@ -315,6 +343,9 @@ void print_debug_asserv(Serial &pc,char c)
         case STOP:
             pc.printf("etat=STOP ");
             break;
+        case PO_STOP:
+            pc.printf("etat=PO_STOP ");
+            break;
         case ROT:
             pc.printf("etat=ROT ");
             break;
@@ -323,6 +354,15 @@ void print_debug_asserv(Serial &pc,char c)
             break;
         case PO_DISTANCE:
             pc.printf("etat=PO_DISTANCE ");
+            break;
+        case ROT_RESET:
+            pc.printf("etat=ROT_RESET ");
+            break;
+        case PO_RESET:
+            pc.printf("etat=PO_RESET");
+            break;
+        case ASS_INIT:
+            pc.printf("etat=ASS_INIT ");
             break;
         case RES:
             pc.printf("etat=RES ");

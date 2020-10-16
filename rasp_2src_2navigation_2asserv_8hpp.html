@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eirbot1A-2020: Référence du fichier code/rasp/src/navigation/asserv.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Eirbot1A-2020
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('rasp_2src_2navigation_2asserv_8hpp.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier asserv.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Fichier d'interface avec l'asservissement, permet d'utiliser le protocole de communication pour demander des informations ou envoyer des ordres à la nucléo.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;iostream&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;cfloat&gt;</code><br />
+<code>#include &lt;stack&gt;</code><br />
+<code>#include &quot;<a class="el" href="affichage_8hpp_source.html">../affichage.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="world_8hpp_source.html">world.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="protocole_8hpp_source.html">protocole.hpp</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de asserv.hpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp__incl.png" border="0" usemap="#acode_2rasp_2src_2navigation_2asserv_8hpp" alt=""/></div>
+<map name="code_2rasp_2src_2navigation_2asserv_8hpp" id="acode_2rasp_2src_2navigation_2asserv_8hpp">
+<area shape="rect" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="285,5,449,47"/>
+<area shape="rect" title=" " alt="" coords="5,95,77,121"/>
+<area shape="rect" title=" " alt="" coords="101,95,163,121"/>
+<area shape="rect" title=" " alt="" coords="187,95,237,121"/>
+<area shape="rect" title=" " alt="" coords="261,95,315,121"/>
+<area shape="rect" title=" " alt="" coords="339,95,394,121"/>
+<area shape="rect" href="affichage_8hpp.html" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="419,95,525,121"/>
+<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="549,95,627,121"/>
+<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="651,95,749,121"/>
+<area shape="rect" title=" " alt="" coords="374,169,434,196"/>
+<area shape="rect" title=" " alt="" coords="458,169,518,196"/>
+<area shape="rect" title=" " alt="" coords="559,169,617,196"/>
+<area shape="rect" title=" " alt="" coords="652,169,727,196"/>
+<area shape="rect" title=" " alt="" coords="751,169,806,196"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier :</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp__dep__incl.png" border="0" usemap="#acode_2rasp_2src_2navigation_2asserv_8hppdep" alt=""/></div>
+<map name="code_2rasp_2src_2navigation_2asserv_8hppdep" id="acode_2rasp_2src_2navigation_2asserv_8hppdep">
+<area shape="rect" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="345,5,509,47"/>
+<area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="149,95,321,136"/>
+<area shape="rect" href="navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="5,184,169,225"/>
+<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="345,95,509,136"/>
+<area shape="rect" href="test__asserv_8hpp_source.html" title=" " alt="" coords="533,95,657,136"/>
+<area shape="rect" href="test__detection_8hpp_source.html" title=" " alt="" coords="193,184,317,225"/>
+<area shape="rect" href="robot_8hpp.html" title=" " alt="" coords="179,281,337,307"/>
+<area shape="rect" href="test__navigation_8hpp_source.html" title=" " alt="" coords="25,273,149,315"/>
+<area shape="rect" href="ecocup_8hpp.html" title="Fichier codant les techniques utilisées pour ramasser les écocups." alt="" coords="172,363,344,404"/>
+<area shape="rect" href="main_8hpp.html" title="Fichier principal pour l&#39;execution de notre projet." alt="" coords="55,459,213,486"/>
+<area shape="rect" href="test__robot_8hpp_source.html" title=" " alt="" coords="368,363,492,404"/>
+<area shape="rect" href="test__ecocup_8hpp_source.html" title=" " alt="" coords="237,452,361,493"/>
+<area shape="rect" href="actionneur_8hpp.html" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="341,184,513,225"/>
+<area shape="rect" href="test__protocole_8hpp_source.html" title=" " alt="" coords="537,184,661,225"/>
+<area shape="rect" href="test__actionneur_8hpp_source.html" title=" " alt="" coords="365,273,489,315"/>
+</map>
+</div>
+</div>
+<p><a href="rasp_2src_2navigation_2asserv_8hpp_source.html">Aller au code source de ce fichier.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structposition.html">position</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Simple structure permettant de définir une position.  <a href="structposition.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a8e52451626296ff3d31c441d10ffb742"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742">go_to</a> (struct <a class="el" href="structposition.html">position</a> dest, struct <a class="el" href="structposition.html">position</a> src)</td></tr>
+<tr class="memdesc:a8e52451626296ff3d31c441d10ffb742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de transmettre au protocole l'ordre de se déplacer.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8e52451626296ff3d31c441d10ffb742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad90cc2e0321d980f54e651a1619837a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#ad90cc2e0321d980f54e651a1619837a7">call_back</a> (int asserv_back)</td></tr>
+<tr class="memdesc:ad90cc2e0321d980f54e651a1619837a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#ad90cc2e0321d980f54e651a1619837a7">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad90cc2e0321d980f54e651a1619837a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bf9d70fe47a174b76a9335c403c9672"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672">rotate</a> (short <a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">angle</a>)</td></tr>
+<tr class="memdesc:a1bf9d70fe47a174b76a9335c403c9672"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'ordonner la rotation du robot.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1bf9d70fe47a174b76a9335c403c9672"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a473ec4002b017a02d0ca6e5ef57fa1c0"><td class="memItemLeft" align="right" valign="top"><a id="a473ec4002b017a02d0ca6e5ef57fa1c0"></a>
+struct <a class="el" href="structposition.html">position</a>&#160;</td><td class="memItemRight" valign="bottom"><b>robot_position</b> ()</td></tr>
+<tr class="separator:a473ec4002b017a02d0ca6e5ef57fa1c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abee464b9088832cf77edcf925eda6a6e"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">angle</a> ()</td></tr>
+<tr class="memdesc:abee464b9088832cf77edcf925eda6a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de demander l'information sur l'angle du robot par rapport à la table.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:abee464b9088832cf77edcf925eda6a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe0739d6ab90305d7e6862c575cf53e4"><td class="memItemLeft" align="right" valign="top"><a id="abe0739d6ab90305d7e6862c575cf53e4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#abe0739d6ab90305d7e6862c575cf53e4">initialise_x</a> ()</td></tr>
+<tr class="memdesc:abe0739d6ab90305d7e6862c575cf53e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande d'effectuer la calibration par rapport au grand côté <br /></td></tr>
+<tr class="separator:abe0739d6ab90305d7e6862c575cf53e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4361ec3252e99f3787a2c88d7fa15fdd"><td class="memItemLeft" align="right" valign="top"><a id="a4361ec3252e99f3787a2c88d7fa15fdd"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#a4361ec3252e99f3787a2c88d7fa15fdd">initialise_y</a> ()</td></tr>
+<tr class="memdesc:a4361ec3252e99f3787a2c88d7fa15fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande d'effectuer la calibration par rapport au petit côté <br /></td></tr>
+<tr class="separator:a4361ec3252e99f3787a2c88d7fa15fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a398527b3e9e358c345c5047b16871957"><td class="memItemLeft" align="right" valign="top"><a id="a398527b3e9e358c345c5047b16871957"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>debug</b></td></tr>
+<tr class="separator:a398527b3e9e358c345c5047b16871957"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d9cde52b38ae1efa894f892d73455f0"><td class="memItemLeft" align="right" valign="top"><a id="a3d9cde52b38ae1efa894f892d73455f0"></a>
+vector&lt; <a class="el" href="struct_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>debugPath</b></td></tr>
+<tr class="separator:a3d9cde52b38ae1efa894f892d73455f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d8d330b2b04408cc721a3471242953f"><td class="memItemLeft" align="right" valign="top"><a id="a6d8d330b2b04408cc721a3471242953f"></a>
+class <a class="el" href="class_protocole.html">Protocole</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Protocole</b></td></tr>
+<tr class="separator:a6d8d330b2b04408cc721a3471242953f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Fichier d'interface avec l'asservissement, permet d'utiliser le protocole de communication pour demander des informations ou envoyer des ordres à la nucléo. </p>
+<dl class="section author"><dt>Auteur</dt><dd>SD </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a id="abee464b9088832cf77edcf925eda6a6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abee464b9088832cf77edcf925eda6a6e">&#9670;&nbsp;</a></span>angle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">short angle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de demander l'information sur l'angle du robot par rapport à la table. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>un short entre 0 et 360° </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_cgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_cgraph" alt=""/></div>
+<map name="rasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_cgraph" id="arasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_cgraph">
+<area shape="rect" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="5,81,59,108"/>
+<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="139,56,213,83"/>
+<area shape="rect" href="class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc" title="Permet de demander la valeur de l&#39;angle." alt="" coords="107,107,245,133"/>
+<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="293,5,400,32"/>
+<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="295,56,398,83"/>
+<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="298,107,395,133"/>
+<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="448,107,567,133"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph" alt=""/></div>
+<map name="rasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph">
+<area shape="rect" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="336,81,389,108"/>
+<area shape="rect" href="class_robot.html#a597c41844d4f4e12014b515843f3abb8" title="Demande l&#39;angle du robot par rapport à la table." alt="" coords="159,5,288,32"/>
+<area shape="rect" href="class_g_p2.html#a0316cb1e2bd8e748c0ef76e06c954c40" title="Une intéruption qui s&#39;active lorsque l&#39;un des GP2 activé détecte quelque chose." alt="" coords="160,56,287,83"/>
+<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="196,107,251,133"/>
+<area shape="rect" href="class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,132,111,159"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad90cc2e0321d980f54e651a1619837a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad90cc2e0321d980f54e651a1619837a7">&#9670;&nbsp;</a></span>call_back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int call_back </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>asserv_back</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">asserv_back</td><td>entier de retour de l'asservissement 0: normal 1: timeout 2:detection 3:panique </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8e52451626296ff3d31c441d10ffb742"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e52451626296ff3d31c441d10ffb742">&#9670;&nbsp;</a></span>go_to()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int go_to </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="structposition.html">position</a>&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">struct <a class="el" href="structposition.html">position</a>&#160;</td>
+          <td class="paramname"><em>src</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de transmettre au protocole l'ordre de se déplacer. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">dest</td><td>la position à atteindre </td></tr>
+    <tr><td class="paramname">src</td><td>la position </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Le code d'erreur associé au traitement de l'ordre par le protocole </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph" alt=""/></div>
+<map name="rasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph">
+<area shape="rect" title="Permet de transmettre au protocole l&#39;ordre de se déplacer." alt="" coords="673,64,728,91"/>
+<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="15,5,92,32"/>
+<area shape="rect" href="class_navigation.html#a322f076e4f3cfd218d110c7b3165c945" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="483,57,625,98"/>
+<area shape="rect" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="527,123,581,149"/>
+<area shape="rect" href="class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="292,60,435,87"/>
+<area shape="rect" href="class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,56,244,83"/>
+<area shape="rect" href="ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,56,101,83"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1bf9d70fe47a174b76a9335c403c9672"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bf9d70fe47a174b76a9335c403c9672">&#9670;&nbsp;</a></span>rotate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void rotate </td>
+          <td>(</td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>angle</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'ordonner la rotation du robot. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">angle</td><td>l'angle en degrés </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_cgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_cgraph" alt=""/></div>
+<map name="rasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_cgraph" id="arasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_cgraph">
+<area shape="rect" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="5,107,60,133"/>
+<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="327,56,401,83"/>
+<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="481,5,588,32"/>
+<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="486,132,583,159"/>
+<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="151,107,204,133"/>
+<area shape="rect" href="class_protocole.html#ac37f03c8ae6be93abb47aff9afc3a381" title="Permet de demander une rotation du robot." alt="" coords="108,208,247,235"/>
+<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="483,56,586,83"/>
+<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="636,132,755,159"/>
+<area shape="rect" href="class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc" title="Permet de demander la valeur de l&#39;angle." alt="" coords="295,107,433,133"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph" alt=""/></div>
+<map name="rasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph">
+<area shape="rect" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="159,5,213,32"/>
+<area shape="rect" href="class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,5,111,32"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_9a4b001405259e117c44638f5f241852.html">rasp</a></li><li class="navelem"><a class="el" href="dir_1af11c3d65235ae85dffc8a9ff86f4de.html">src</a></li><li class="navelem"><a class="el" href="dir_abed7d825d58c5ebaec544ac88ecfb4a.html">navigation</a></li><li class="navelem"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html">asserv.hpp</a></li>
+    <li class="footer">Généré par <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+  </ul>
+</div>
+</body>
+</html>

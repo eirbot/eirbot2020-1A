@@ -9,5 +9,6 @@ var world_8hpp =
     [ "Y_MAX", "world_8hpp.html#a7296ba9091427ae54bab4bcbb1dc87e1", null ],
     [ "fillVector", "world_8hpp.html#a7d85f9973eb806711bd51c9f7ea0bd23", null ],
     [ "fillVector_no_ecocup", "world_8hpp.html#ac7be71c5bbc7e3981d298b5c73d5a114", null ],
-    [ "isValid", "world_8hpp.html#a8132d25297b896fef1d6b07651311e92", null ]
+    [ "isValid", "world_8hpp.html#a8132d25297b896fef1d6b07651311e92", null ],
+    [ "who_here", "world_8hpp.html#a6b0cd0fc6022d9add8937d7a82038844", null ]
 ];

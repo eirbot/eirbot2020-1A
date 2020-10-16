@@ -1,5 +1,5 @@
 <map id="Robot::move" name="Robot::move">
 <area shape="rect" id="node1" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,31,244,57"/>
 <area shape="rect" id="node2" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,5,101,32"/>
-<area shape="rect" id="node3" href="$main_8hpp.html#afe461d27b9c48d5921c00d521181f12f" title="Boucle principale du projet." alt="" coords="30,56,77,83"/>
+<area shape="rect" id="node3" href="$main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="15,56,92,83"/>
 </map>

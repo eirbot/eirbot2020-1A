@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loop_175',['loop',['../main_8hpp.html#afe461d27b9c48d5921c00d521181f12f',1,'main.cpp']]]
+  ['loop_5fblue_184',['loop_blue',['../main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3',1,'main.cpp']]]
 ];

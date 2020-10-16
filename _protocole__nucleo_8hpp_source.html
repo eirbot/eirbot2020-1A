@@ -89,36 +89,60 @@ $(document).ready(function(){initNavTree('_protocole__nucleo_8hpp_source.html','
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __PROTOCOLE_H_</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;mbed.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_protocole.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_protocole.html">Protocole</a></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_protocole.html">Protocole</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        ~<a class="code" href="class_protocole.html">Protocole</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">short</span> x;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <span class="keywordtype">short</span> y;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keywordtype">short</span> angle;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">char</span> GP2_on;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">char</span> GP2_etats[3];</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">char</span> actionneur_id;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">char</span> actionneur_etat;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">void</span> poll();</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">char</span> readBuffer[32];</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">int</span> buf_index = 0;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        RawSerial *_serial;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">void</span> parse();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;};</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif // __PROTOCOLE_H_</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;asserv.hpp&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">enum</span> protocol_state {INIT, WAIT_ORDER, WAIT_ASSERV};</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">enum</span> order {PO, RO, OTHER};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="class_protocole.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_protocole.html">Protocole</a></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <a class="code" href="class_protocole.html">Protocole</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        ~<a class="code" href="class_protocole.html">Protocole</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="comment">//robot variables</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">short</span> x;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">short</span> y;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">short</span> angle;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">char</span> GP2_on;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">char</span> GP2_etats[3];</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">char</span> actionneur_id;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">char</span> actionneur_etat;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="comment">//void poll();</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span> update_state();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> act();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> print_dbg();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keyword">enum</span> protocol_state state;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">enum</span> order last_order;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">char</span> readBuffer[32];</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">int</span> buf_index = 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="comment">//flags</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">bool</span> order_ready_flag = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">bool</span> timeout_flag = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span> feedback_flag = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordtype">bool</span> obstacle_flag = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        RawSerial *_serial;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        RawSerial *debug_serial;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span> enable_callback(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">void</span> parse();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <span class="keywordtype">void</span> readByte();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;};</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif // __PROTOCOLE_H_</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="aclass_protocole_html"><div class="ttname"><a href="class_protocole.html">Protocole</a></div><div class="ttdoc">Contient toutes les méthodes permettant d'utiliser le protocole côté nucléo.</div><div class="ttdef"><b>Definition:</b> Protocole_nucleo.hpp:15</div></div>
+<div class="ttc" id="aclass_protocole_html"><div class="ttname"><a href="class_protocole.html">Protocole</a></div><div class="ttdoc">Contient toutes les méthodes permettant d'utiliser le protocole côté nucléo.</div><div class="ttdef"><b>Definition:</b> Protocole_nucleo.hpp:20</div></div>
+<div class="ttc" id="aactionneur__nucleo_8hpp_html_a920512aa494f20595db8d4cf2dad4168"><div class="ttname"><a href="actionneur__nucleo_8hpp.html#a920512aa494f20595db8d4cf2dad4168">activate_pavillon</a></div><div class="ttdeci">void activate_pavillon()</div><div class="ttdoc">Sort le pavillon.</div><div class="ttdef"><b>Definition:</b> actionneur_nucleo.cpp:21</div></div>
+<div class="ttc" id="arasp_2src_2navigation_2asserv_8hpp_html_a1bf9d70fe47a174b76a9335c403c9672"><div class="ttname"><a href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672">rotate</a></div><div class="ttdeci">void rotate(short angle)</div><div class="ttdoc">Permet d'ordonner la rotation du robot.</div><div class="ttdef"><b>Definition:</b> asserv.cpp:38</div></div>
 <div class="ttc" id="aactionneur__nucleo_8hpp_html"><div class="ttname"><a href="actionneur__nucleo_8hpp.html">actionneur_nucleo.hpp</a></div><div class="ttdoc">Contient les fonctions permettant d'activer ou désactiver les actionneurs.</div></div>
 <div class="ttc" id="a_protocole__nucleo_8hpp_html"><div class="ttname"><a href="_protocole__nucleo_8hpp.html">Protocole_nucleo.hpp</a></div><div class="ttdoc">Fichier principal du projet permet de communiquer entre la raspberry et la nucléo....</div></div>
+<div class="ttc" id="aclass_protocole_html_a5ddbab0d5dedf7d445a3e670b4c0c1bc"><div class="ttname"><a href="class_protocole.html#a5ddbab0d5dedf7d445a3e670b4c0c1bc">Protocole::get_angle</a></div><div class="ttdeci">enum Etat get_angle(short *angle)</div><div class="ttdoc">Permet de demander la valeur de l'angle.</div><div class="ttdef"><b>Definition:</b> protocole.cpp:133</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

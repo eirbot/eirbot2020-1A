@@ -1,4 +1,5 @@
 <map id="fillVector_no_ecocup" name="fillVector_no_ecocup">
-<area shape="rect" id="node1" title="Cette fonction permet de gérer un cas particulier où l&#39;on détecte un robot et que l&#39;Astar n&#39;arrive pl..." alt="" coords="149,5,292,32"/>
+<area shape="rect" id="node1" title="Cette fonction permet de gérer un cas particulier où l&#39;on détecte un robot et que l&#39;Astar n&#39;arrive pl..." alt="" coords="149,31,292,57"/>
 <area shape="rect" id="node2" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,5,101,32"/>
+<area shape="rect" id="node3" href="$main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="15,56,92,83"/>
 </map>

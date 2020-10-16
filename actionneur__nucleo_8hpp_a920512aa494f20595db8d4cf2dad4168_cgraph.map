@@ -1,0 +1,4 @@
+<map id="activate_pavillon" name="activate_pavillon">
+<area shape="rect" id="node1" title="Sort le pavillon." alt="" coords="5,5,124,32"/>
+<area shape="rect" id="node2" href="$actionneur__nucleo_8hpp.html#a2371b55ab8cba4ab6da9dc45a39ea22a" title="Initialisation pavillon." alt="" coords="172,5,312,32"/>
+</map>

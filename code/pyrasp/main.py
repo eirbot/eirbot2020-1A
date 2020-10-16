@@ -6,18 +6,20 @@ import queue
 
 
 class Communication(threading.Thread):
-    def __init__(self, serial_port='/dev/ttyACM0', com_speed=115200):
+    def __init__(self, serial_port='/dev/ttyACM0', com_speed=921600):
         self.serial = serial.Serial(serial_port, baudrate=com_speed)
         self.to_send = queue.Queue()
         self.recived = queue.Queue()
         self.running = True
         self.debug = True
+        super().__init__()
     
     def send(self, data):
-        self.to_send.put(data)
+        print("Sending", data)
+        self.to_send.put(data + "\n")
     
     def _write(self, command):
-        if not isinstance(str, command):
+        if not isinstance(command, str):
             command = str(command)
         self.serial.write(command.encode())
     
@@ -28,7 +30,7 @@ class Communication(threading.Thread):
     
     def _check_answer(self):
         ans = self._read()
-        if "OK" in ans:
+        if OK in ans:
             return True
         return False
     
@@ -58,7 +60,7 @@ class RobotProtocol():
         self.robot.start()
     
     def go_to(self, x : float, y: float):
-        command = "SPO" + str(int(x*100)) + "," + str(int(y*100))
+        command = "SPO" + str(int(x*100)) + "," + str(int(y*100)) 
         self.robot.send(command)
         self.robot._read() # to be removed
     
@@ -76,8 +78,8 @@ class Robot():
         self.protocol = RobotProtocol()
     
     def run(self):
-        destination = self.goals.pop()
-        self.protocol.go_to(destination.x, destination.y)
+        for destination in self.goals:
+            self.protocol.go_to(destination.x, destination.y)
 
 if __name__ == "__main__":
     robot = Robot()

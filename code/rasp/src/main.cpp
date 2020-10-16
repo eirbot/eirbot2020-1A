@@ -88,10 +88,12 @@ void loop_blue()
   while ((clock()-begin_time)/CLOCKS_PER_SEC <= 90) {
 
     auto pos=Robot.position();
-    pos.x=16;
-    pos.y=80;
+
     Node pos_node={.x= (short) pos.x,.y= (short) pos.y,0,0,0,0,0};
-    go_to({.x=pos.x+4,.y=pos.y},pos);
+    printf("%d %d \n", pos.x, pos.y);
+    go_to({.x=20,.y=80},pos);
+    Robot.move(pos_node, {.x=(short) 20,.y= (short) 80,0,0,0,0,0},list_obstacles);
+
     //Module Phare
     printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
     Robot.move(pos_node,Phare_blue_waypoint,list_obstacles);
@@ -100,7 +102,7 @@ void loop_blue()
     Robot.move(Phare_blue_waypoint,Phare_blue,list_obstacles);
     Robot.actionneur(0,1);
     pos=Robot.position();
-    go_to({.x=pos.x+20,.y=pos.y},pos);
+    go_to({.x=40,.y=20},pos);
     Robot.actionneur(0, 0);
 
     //Module Manche à air
@@ -110,7 +112,7 @@ void loop_blue()
     Robot.actionneur(1, 1);
     printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
     pos=Robot.position();
-    go_to({.x=pos.x+30,.y=pos.y},pos);
+    go_to({.x=53,.y=180},pos);
     Robot.actionneur(1, 0);
 
     //Lecture de la boussole
@@ -168,7 +170,7 @@ void loop_yellow()
 class Protocole Protocole("/dev/ttyACM0");
 
 int main(int argc, char *argv[]) {
-  setup();
+  // setup();
   begin_time = clock();
   if (side=="blue") {
     loop_blue();

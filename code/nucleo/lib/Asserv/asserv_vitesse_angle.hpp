@@ -20,7 +20,7 @@
 #define K1  (RW/RR) //simplification 1
 #define K2  ((RW*RA)/(RR*RC)) //simplification 2
 
-// #### nouvelle asserv ####
+//nouvelle asserv
 // #define KP_MG 14//14 //coefficient proportionnel Asserv Vitesse Moteur Gauche
 // #define KI_MG 0.15//0.15  //coefficient intégral Asserv Vitesse Moteur Gauche
 // #define KP_MD 14//14 //coefficient proportionnel Asserv Vitesse Moteur Droit
@@ -33,7 +33,7 @@
 // #define KI_Angle 0.000001// 0.000001 coefficient intégral Asserv Position (Angle)
 // #define KD_Angle 40//40//coefficient dérivé Asserv Position (Angle)
 
-// #### ancienne asserv ####
+//ancienne asserv
 // #define KP_MG 18//18 //coefficient proportionnel Asserv Vitesse Moteur Gauche
 // #define KI_MG 0.15//0.15  //coefficient intégral Asserv Vitesse Moteur Gauche
 // #define KP_MD 18//18 //coefficient proportionnel Asserv Vitesse Moteur Droit

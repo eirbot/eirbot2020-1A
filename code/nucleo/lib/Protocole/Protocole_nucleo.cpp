@@ -115,13 +115,12 @@ void Protocole::parse() {
         _serial->printf("RGAOK\n");
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
-        if(actionneur_id == 0) { //FIXME 0 ou "0"?
+        if(actionneur_id == '0') {
             //activate_manche();
         }
-        // else if(actionneur_id == 1) {
-        //     activate_pavillon();
-        // }
         else if(actionneur_id == '1') {
+        }
+        else if(actionneur_id == '2') {
             activate_pavillon();
         }
         _serial->printf("RACOK\n");

@@ -73,7 +73,6 @@ void loop_blue()
   while ((clock()-begin_time)/CLOCKS_PER_SEC <= 90) {
 
     go_to({.x=20,.y=80});
-
     //Module Phare
     printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
     Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};

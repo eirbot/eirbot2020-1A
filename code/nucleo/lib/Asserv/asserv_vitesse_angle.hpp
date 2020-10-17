@@ -58,9 +58,9 @@
 // #define KP_Angle 0.00070 // 0.00175 coefficient proportionnel Asserv Position (Angle)
 // #define KI_Angle 0.000001 // 0.000001 coefficient intégral Asserv Position (Angle)
 // #define KD_Angle 10 //40//coefficient dérivé Asserv Position (Angle)
-#define KP_Angle 0.00083// 0.00082 coefficient proportionnel Asserv Position (Angle)
-#define KI_Angle 0 // coefficient intégral Asserv Position (Angle)
-#define KD_Angle 0//40//coefficient dérivé Asserv Position (Angle)
+// #define KP_Angle 0.00083// 0.00082 coefficient proportionnel Asserv Position (Angle)
+// #define KI_Angle 0 // coefficient intégral Asserv Position (Angle)
+// #define KD_Angle 0//40//coefficient dérivé Asserv Position (Angle)
 
 void range(float*commande, int max, int min); //limite la plage d'une valeur entre min et max
 int interval_err(const float lim,const float err);//Renvoie 1 si l'erreur est dans l'intervalle
@@ -75,4 +75,7 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset); //Asserv de Vit
 float Asserv_Position(const float Position, const float ConsPosition,int reset,int *feedback); //Asserv de Position Distance
 float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int *feedback); //Asserv de Position Angle
 float lissage(const float in,float tab[],int len);//Permet de crée une rampe sur le front des commandes de vitesse
+
+void set_KA(float kp, float ki, float kd);
+
 #endif // __ASSERV_VITESSE_ANGLE

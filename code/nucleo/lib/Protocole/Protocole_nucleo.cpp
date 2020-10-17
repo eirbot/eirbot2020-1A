@@ -3,12 +3,12 @@
 #include "mbed.h"
 
 //#define DEBUG_ASS
-//#define DEBUG_PRO
+#define DEBUG_PRO
 
 Protocole::Protocole() {
     memset(readBuffer, 0, sizeof(readBuffer));
     _serial = new RawSerial(USBTX, USBRX);
-    _serial->baud(921600);
+    _serial->baud(115200);
     debug_serial = new RawSerial(D1, D0);
     debug_serial->baud(9600);
     debug_serial->printf("DEBUG\n");
@@ -63,32 +63,47 @@ void Protocole::update_state() {
         order_ready_flag = false;
         parse();
     }
-    else if(Protocole::state == WAIT_ASSERV && get_state() == STOP) {
-        if(last_order == PO) {
-            _serial->printf("RPOOK\n");
-            #ifdef DEBUG_PRO
-                debug_serial->printf("RPOOK\n");
-            #endif
-            state = WAIT_ORDER;
+    else if(Protocole::state == WAIT_ASSERV) {
+        if(get_state() == STOP) {
+            if(last_order == PO) {
+                _serial->printf("RPOOK\n");
+                #ifdef DEBUG_PRO
+                    debug_serial->printf("RPOOK\n");
+                #endif
+                state = WAIT_ORDER;
+                timeout_order.detach();
+            }
+            else if(last_order == RO) {
+                _serial->printf("RROOK\n");
+                #ifdef DEBUG_PRO
+                    debug_serial->printf("RROOK\n");
+                #endif
+                state = WAIT_ORDER;
+                timeout_order.detach();
+            }
         }
-        else if(last_order == RO) {
-            _serial->printf("RROOK\n");
+        else if(timeout_flag == true) {
+            _serial->printf("ROUT\n");
             #ifdef DEBUG_PRO
-                debug_serial->printf("RROOK\n");
+                debug_serial->printf("ROUT\n");
             #endif
+            timeout_flag = false;
             state = WAIT_ORDER;
+            timeout_order.detach();
         }
-
     }
     else if(obstacle_flag == true) {
+        obstacle_flag = false;
     }
 }
-
 
 void Protocole::parse() {
     float tmp_x = 0;
     float tmp_y = 0;
     float tmp_angle = 0;
+    float KP_a;
+    float KI_a;
+    float KD_a;
 
     #ifdef DEBUG_ASS
       debug_serial->printf("PARSE\n");
@@ -103,12 +118,14 @@ void Protocole::parse() {
         go_XY(tmp_x, tmp_y);
         state = WAIT_ASSERV;
         last_order = PO;
+        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), 15);
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
         tmp_angle = (float)angle;
         rotate(tmp_angle);
         state = WAIT_ASSERV;
         last_order = RO;
+        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), 15);
     }
     else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
         //GP2_on()
@@ -141,8 +158,16 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "RESET\n") == 0) {
         set_state(RES);
     }
+    else if(sscanf(readBuffer, "SKA%f,%f,%f\n", &KP_a, &KI_a, &KD_a)) {
+        set_KA(KP_a, KI_a, KD_a);
+        _serial->printf("RKAOK%f,%f,%f\n", KP_a, KI_a, KD_a);
+    }
     memset(readBuffer, 0, sizeof(readBuffer));
 //    enable_callback(true);
+}
+
+void Protocole::set_timeout_flag() {
+    timeout_flag = true;
 }
 
 

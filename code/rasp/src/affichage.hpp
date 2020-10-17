@@ -50,14 +50,6 @@ void print_detection();
 void affichage(int asserv_back);
 
 /**
- * @brief Permet de savoir si le point actuel du robot est le point prévu
- * @param result_x La coordonnée x du robot
- * @param result_y La coordonnée y du robot
- * @param dest_x La coordonnée x à comparer avec result_x
- * @param dest_y La coordonnée y à comparer avec result_y */
-void good_port(short result_x, short result_y, short dest_x, short dest_y);
-
-/**
  * @brief Permet d'afficher UNOPTIMIZED en orange*/
 void print_optimisated();
 

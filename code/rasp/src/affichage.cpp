@@ -69,18 +69,6 @@ void affichage(int asserv_back)
   }
 }
 
-void good_port(short result_x, short result_y, short dest_x, short dest_y)
-{
-  printf("Test sur la concordance de l'arrivée et de la position ... ");
-  if(result_x==dest_x && result_y==dest_y){
-    success_reach+=1;
-      print_success();
-    }
-  else{
-      print_fail();
-    }
-}
-
 void print_summarise()
 {
   printf("___________________________________________________________________\n");

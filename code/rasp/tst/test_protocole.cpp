@@ -35,22 +35,25 @@ void test_protocole(int argc, char *argv[]) {
         //         message_retour(ret);
         //         // usleep(3000000);
         // }
+        printf("Set Position ................... ");
+        ret = Protocole.set_position(25, 80, etats_GP2, 10);
+        message_retour(ret);
 
         for(int i = 0; i < 5; i++) {
                 printf("Set Position ................... ");
-                ret = Protocole.set_position(50, 50, etats_GP2, 10);
+                ret = Protocole.set_position(50, 50, etats_GP2, 20);
                 message_retour(ret);
 
                 printf("Set Position ................... ");
-                ret = Protocole.set_position(80, 50, etats_GP2, 10);
+                ret = Protocole.set_position(80, 50, etats_GP2, 20);
                 message_retour(ret);
 
                 printf("Set Position ................... ");
-                ret = Protocole.set_position(80, 80, etats_GP2, 10);
+                ret = Protocole.set_position(80, 80, etats_GP2, 20);
                 message_retour(ret);
 
                 printf("Set Position ................... ");
-                ret = Protocole.set_position(50, 80, etats_GP2, 10);
+                ret = Protocole.set_position(50, 80, etats_GP2, 20);
                 message_retour(ret);
         }
 
@@ -62,16 +65,16 @@ void test_protocole(int argc, char *argv[]) {
         // ret = proto.set_actionneur('1', '1');
         // message_retour(ret);
 
-        // struct position pos;
-        // pos.x = 0;
-        // pos.y = 0;
-        // printf("Get Position ................... ");
-        // ret = proto.get_position(&pos);
-        // message_retour(ret);
-        // printf("POS = %d, %d\n", pos.x, pos.y);
+        struct position pos;
+        pos.x = 0;
+        pos.y = 0;
+        printf("Get Position ................... ");
+        ret = Protocole.get_position(&pos);
+        message_retour(ret);
+        printf("POS = %d, %d\n", pos.x, pos.y);
 
         // printf("Set Position ................... ");
-        // ret = proto.set_position(60, 60, etats_GP2, 10);
+        // ret = Protocole.set_position(60, 60, etats_GP2, 10);
         // message_retour(ret);
 
         // short int angle = 666;

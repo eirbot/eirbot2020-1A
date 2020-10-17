@@ -44,9 +44,9 @@ Protocole::Protocole(std::string device) {
     tty.c_cc[VTIME] = 1;  //50=5secondes  // 10=Wait for up to 1s (10 deciseconds), returning as soon as any data is received.
     tty.c_cc[VMIN] = 0;
 
-    // Set in/out baud rate to be 115200
-    cfsetispeed(&tty, B921600);
-    cfsetospeed(&tty, B921600);
+    // Set in/out baud rate to be 115200 or 921600
+    cfsetispeed(&tty, B115200);
+    cfsetospeed(&tty, B115200);
 
     // Save tty settings, also checking for error
     if (tcsetattr(serial_port, TCSANOW, &tty) != 0) {
@@ -71,7 +71,7 @@ void Protocole::send(const char *command, ...) {
     va_start(args, command);
     vsprintf(writeBuffer, command, args);
     va_end(args);
-    // printf(writeBuffer);
+    printf(writeBuffer);
     write(serial_port, writeBuffer, strlen(writeBuffer));
     // print_buffer(writeBuffer);
 }
@@ -81,34 +81,41 @@ void Protocole::flush_buffer() {
 }
 
 int Protocole::update_buffer(int timeout) {
-    flush_buffer();
+    flush_buffer(); //fill with zeros
+    printf("update buffer\n");
 
-    // usleep(1000);
-    // int r = read(serial_port, readBuffer, READ_BUF_SIZE);
+    unsigned int n = 0;
+    unsigned int n_total = 0;
+    unsigned int n_timeout = 0;
+    bool done = false;
 
-    clock_t begin = std::clock();
-    while(read(serial_port, readBuffer, READ_BUF_SIZE) == 0) {
-        //printf("%f\n", float(std::clock() - begin)/CLOCKS_PER_SEC*1000);
-        if(float(std::clock() - begin)/CLOCKS_PER_SEC*1000 > (float)timeout) {
-            //printf("read OUT\n");
-            print_buffer(readBuffer);
-            return -1;
+    do {
+        n = read(serial_port, readBuffer + n_total, READ_BUF_SIZE - 1);
+        if(n == 0) {
+           n_timeout++;
         }
-    }
-    //printf("read OK\n");
-    print_buffer(readBuffer);
-    // if(r < 0) return -1;
-    // else return r;
-    return 0;
+        else if(n > 0) {
+            n_total += n;
+            if(readBuffer[n_total - 1] == '\n') done = true;
+        }
+        //printf("n: %d\n", n);
+        //printf("n_tot: %d\n", n_total);
+        //printf("n_timeout: %d\r", n_timeout);
+        //print_buffer(readBuffer);
+    } while(done == false && n_timeout < timeout*10);
+
+
+    if(done == true) return 1;
+    else return -1;
 }
 
 void Protocole::print_buffer(char * buf) {
-    // for (int i = 0; i < READ_BUF_SIZE; i++) {
-    //      printf(" %x ", buf[i] & 0xff);
-    // }
-    // printf("\n");
-    // printf(buf);
-    // printf("\n");
+    for (int i = 0; i < READ_BUF_SIZE; i++) {
+         printf(" %x ", buf[i] & 0xff);
+    }
+    printf("\n");
+    printf(buf);
+    printf("\n");
 }
 
 
@@ -177,7 +184,7 @@ enum Protocole::Etat Protocole::set_angle(short angle) {
         //printf("Confirmation set rotation\n");
         return Etat::OK;
     }
-    else if(strcmp(readBuffer, "RPOOUT\n") == 0) {
+    else if(strcmp(readBuffer, "ROUT\n") == 0) {
         //printf("Time out rotation\n");
         return Etat::TIME_OUT;
     }
@@ -221,6 +228,9 @@ enum Protocole::Etat Protocole::set_position(short x, short y, char etats[3], in
         etats[1] = e1;
         etats[2] = e2;
         return Etat::OBSTACLE;
+    }
+    else if(strcmp(readBuffer, "ROUT\n") == 0) {
+        return Etat::TIME_OUT;
     }
     else {
         //printf("Erreur de parsing\n");

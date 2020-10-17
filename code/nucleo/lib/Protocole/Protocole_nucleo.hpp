@@ -3,6 +3,7 @@
 
 #include "mbed.h"
 #include "asserv.hpp"
+#include "asserv_vitesse_angle.hpp"
 
 /**
  * @file Protocole_nucleo.hpp
@@ -44,12 +45,13 @@ class Protocole
         //flags
         bool order_ready_flag = false;
         bool timeout_flag = false;
-        bool feedback_flag = false;
         bool obstacle_flag = false;
 
         RawSerial *_serial;
         RawSerial *debug_serial;
+        Timeout timeout_order;
         void enable_callback(bool enable);
+        void set_timeout_flag();
         void parse();
         void readByte();
 };

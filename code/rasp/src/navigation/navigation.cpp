@@ -256,7 +256,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
         }
         if (mv==1) {
             if(dep_x >= 5){
-            back=go_to({.x=position.x+dep_x,.y=position.y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x+dep_x,.y=position.y});
             mv=0;
             position.x+=dep_x;
             dep_x=0;
@@ -273,7 +273,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x-dep_x,.y=position.y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x-dep_x,.y=position.y});
             mv=0;
             position.x-=dep_x;
             dep_x=0;
@@ -289,7 +289,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x,.y=position.y+dep_y});
             mv=0;
             position.y+=dep_y;
             dep_y=0;
@@ -305,7 +305,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x,.y=position.y-dep_y});
             mv=0;
             position.y-=dep_y;
             dep_y=0;
@@ -322,7 +322,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x+dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x+dep_x,.y=position.y+dep_y});
             back_effect(back, dest, list_obstacles);
             mv=0;
             position.y+=dep_y;
@@ -343,7 +343,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x+dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x+dep_x,.y=position.y-dep_y});
        mv=0;
             position.y-=dep_y;
             position.x+=dep_x;
@@ -362,7 +362,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x-dep_x,.y=position.y+dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x-dep_x,.y=position.y+dep_y});
            mv=0;
             position.y+=dep_y;
             position.x-=dep_x;
@@ -382,7 +382,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
             mv=1;
         }
         if (mv==1) {
-            back=go_to({.x=position.x-dep_x,.y=position.y-dep_y},{.x=position.x,.y=position.y});
+            back=go_to({.x=position.x-dep_x,.y=position.y-dep_y});
            mv=0;
             position.y-=dep_y;
             position.x-=dep_x;
@@ -395,7 +395,7 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
         }
         j+=1;
     }
-    back=go_to({.x=dest.node.x,.y=dest.node.y},{.x=position.x,.y=position.y});
+    back=go_to({.x=dest.node.x,.y=dest.node.y});
     if (back==1 || back==2) {
         return back;
     return 0;
@@ -436,17 +436,13 @@ vector<Node> Navigation::one_step(Node src, Node dest, vector<obstacle> list_obs
     back=Navigate_to_asserv(result,dest,list_obstacles);
     back_effect(back,dest,list_obstacles);
     struct position my_position=robot_position();
-    good_port(my_position.x, my_position.y, dest.x, dest.y);
     printf("\n");
   }
   else{
-    printf("%lu \n",list_obstacles.size());
     list_obstacles=fillVector_no_ecocup();
-    printf("%lu \n",list_obstacles.size());
     back=Navigate_to_asserv(result,dest,list_obstacles);
     back_effect(back,dest,list_obstacles);
     struct position my_position=robot_position();
-    good_port(my_position.x, my_position.y, dest.x, dest.y);
     list_obstacles=fillVector();
     printf("\n");
   }

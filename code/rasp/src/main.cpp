@@ -92,7 +92,6 @@ void loop_blue()
     Node pos_node={.x= (short) pos.x,.y= (short) pos.y,0,0,0,0,0};
     printf("%d %d \n", pos.x, pos.y);
     go_to({.x=20,.y=80},pos);
-    Robot.move(pos_node, {.x=(short) 20,.y= (short) 80,0,0,0,0,0},list_obstacles);
 
     //Module Phare
     printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");

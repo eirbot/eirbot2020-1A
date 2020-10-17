@@ -1,5 +1,5 @@
 #include "robot.hpp"
-
+#include <stdlib.h>
 
 struct shape dimension_robot={32,32};
 
@@ -71,7 +71,7 @@ void Robot::actionneur(int cote,int activation)
 
 }
 
-void pavillon(int activation)
+void Robot::pavillon(int activation)
 {
     if (activation==1) {
         Pavillon();
@@ -79,6 +79,11 @@ void pavillon(int activation)
     if (activation==0){
         Pavillon();
     }
+}
+
+int Robot::communication()
+{
+    return 1;
 }
 
  void pince(int activation)

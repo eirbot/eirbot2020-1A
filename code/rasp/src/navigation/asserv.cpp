@@ -4,7 +4,7 @@
 
 extern vector<obstacle> list_obstacles;
 
-int go_to(struct position dest, struct position src)
+int go_to(struct position dest)
 {
     char etats[3];
     if(debug==1){
@@ -12,15 +12,8 @@ int go_to(struct position dest, struct position src)
     }
     int size=debugPath.size();
     printf("Envoi de la requête de déplacement vers x:%3d ; y:%3d .... ",dest.x,dest.y);
-    int calc=sqrt(pow((dest.x-src.x)/10,2)+pow((dest.y-src.y)/10,2));
-    int timeout=max(calc,15);
-    printf("%d \n",timeout);
+    int timeout=15;
     int asserv_back=(int) Protocole.set_position((short) dest.x, (short) dest.y, etats,timeout);
-    if(debug==1){
-        if(abs(debugPath[size-1].x-debugPath[size-2].x)<3 && abs(debugPath[size-1].y-debugPath[size-2].y)<3){
-            print_optimisated();
-        }
-    }
     affichage(asserv_back);
     return call_back(asserv_back);
 }

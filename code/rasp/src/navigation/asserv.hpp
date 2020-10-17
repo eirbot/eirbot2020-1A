@@ -37,7 +37,7 @@ struct position{
  * @param dest: la position à atteindre
  * @param src: la position
  * @return Le code d'erreur associé au traitement de l'ordre par le protocole*/
-int go_to(struct position dest, struct position src); //Permet au robot de se tourner vers la destination et d'aller à la destination
+int go_to(struct position dest); //Permet au robot de se tourner vers la destination et d'aller à la destination
 /**
  * @brief Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence
  * @param asserv_back: entier de retour de l'asservissement 0: normal 1: timeout 2:detection 3:panique*/

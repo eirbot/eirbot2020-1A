@@ -14,7 +14,7 @@ void test_robot()
     struct position position=Robot.position();
     position.x=30;
     position.y=16;
-    Node dest ={(short) position.x,(short) position.y,0,0,0,0,0};
+    dest ={(short) position.x,(short) position.y,0,0,0,0,0};
 
     vector<obstacle> list_obstacles;
     list_obstacles=fillVector();

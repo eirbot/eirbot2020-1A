@@ -101,6 +101,9 @@ void Protocole::parse() {
     float tmp_x = 0;
     float tmp_y = 0;
     float tmp_angle = 0;
+    float KP_a;
+    float KI_a;
+    float KD_a;
 
     #ifdef DEBUG_ASS
       debug_serial->printf("PARSE\n");
@@ -154,6 +157,10 @@ void Protocole::parse() {
     }
     else if(strcmp(readBuffer, "RESET\n") == 0) {
         set_state(RES);
+    }
+    else if(sscanf(readBuffer, "SKA%f,%f,%f\n", &KP_a, &KI_a, &KD_a)) {
+        set_KA(KP_a, KI_a, KD_a);
+        _serial->printf("RKAOK%f,%f,%f\n", KP_a, KI_a, KD_a);
     }
     memset(readBuffer, 0, sizeof(readBuffer));
 //    enable_callback(true);

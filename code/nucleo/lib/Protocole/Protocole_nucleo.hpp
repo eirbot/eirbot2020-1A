@@ -3,6 +3,7 @@
 
 #include "mbed.h"
 #include "asserv.hpp"
+#include "asserv_vitesse_angle.hpp"
 
 /**
  * @file Protocole_nucleo.hpp

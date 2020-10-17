@@ -4,6 +4,16 @@
 
 //coeff de correction odometrie
 const float correc = 5/19.92;
+float KP_Angle = 0.00083;// 0.00082 coefficient proportionnel Asserv Position (Angle)
+float KI_Angle =  0; // coefficient intégral Asserv Position (Angle)
+float KD_Angle = 0;//40//coefficient dérivé Asserv Position (Angle)
+
+void set_KA(float kp, float ki, float kd) {
+  KP_Angle = kp;
+  KI_Angle = ki;
+  KD_Angle = kd;
+}
+
 
 void range(float*commande, int max, int min)
 {

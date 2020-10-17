@@ -71,7 +71,7 @@ void Protocole::send(const char *command, ...) {
     va_start(args, command);
     vsprintf(writeBuffer, command, args);
     va_end(args);
-    printf(writeBuffer);
+    //printf(writeBuffer);
     write(serial_port, writeBuffer, strlen(writeBuffer));
     // print_buffer(writeBuffer);
 }
@@ -82,7 +82,7 @@ void Protocole::flush_buffer() {
 
 int Protocole::update_buffer(int timeout) {
     flush_buffer(); //fill with zeros
-    printf("update buffer\n");
+    // printf("update buffer\n");
 
     unsigned int n = 0;
     unsigned int n_total = 0;

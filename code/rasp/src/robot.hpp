@@ -21,8 +21,8 @@ class Robot{
                  * @brief Taille du robot*/
                 const struct shape dimension; //Largeur et longueur du robot
                 /**
-                 * @brief Calibre en x et en y le robot */
-                void calibration();
+                 * @brief Récupère l'information sur le côté de la table */
+                string calibration();
                 /**
                  * @brief Déplace le robot en utilisant l'Astar
                  * @param src : début
@@ -53,6 +53,7 @@ class Robot{
                  * @brief Active le pavillon*/
                 void pavillon(int activation);
 
+                int depart();
                 /**
                  * @brief Gère la communication avec la boussole et la caméra*/
                 int communication();

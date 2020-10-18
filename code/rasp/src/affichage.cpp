@@ -15,7 +15,7 @@ extern int timeout_after_timeout;
 void print_timeout()
 {
   timeout_after_timeout+=1;
-  if (timeout_after_timeout>=5) {
+  if (timeout_after_timeout>=100) {
     print_summarise();
     exit(EXIT_FAILURE);
   }

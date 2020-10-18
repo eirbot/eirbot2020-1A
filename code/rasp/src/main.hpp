@@ -1,6 +1,10 @@
 #ifndef __MAIN__
 #define __MAIN__
 
+#include <ctime>
+#include <chrono>
+
+#include <unistd.h>
 #include "interactions/ecocup.hpp"
 #include "robot.hpp"
 /**
@@ -16,9 +20,9 @@ void setup();
 /**
 * @brief Boucle principale du projet
  */
-void loop_blue();
+void loop_blue(std::chrono::steady_clock::time_point);
 
-void loop_yellow();
+void loop_yellow(std::chrono::steady_clock::time_point);
 
 
 int main(int argc, char *argv[]);

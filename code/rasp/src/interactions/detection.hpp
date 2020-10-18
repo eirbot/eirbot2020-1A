@@ -34,17 +34,6 @@ enum GP2_name {
 };
 
 /**
-* @struct GP2_information
-* @brief J'ai oublié
-* @param input: le nom d'un GP2
-* @param mask: le mask appliqué à ce GP2
- */
-struct GP2_information{
-    enum GP2_name input;
-    short mask; //Valeur entre 1 et 4
-};
-
-/**
 * @class GP2
 * @brief Contient les différentes méthodes pour initialiser, activer et désactiver les GP2 et détecter les obstacles
  */
@@ -75,6 +64,7 @@ class GP2{
      */
     static vector<obstacle> gp2Obstacle(std::vector<obstacle> list_obstacles, struct position position); //Creer une interuption si les GP2 activés détectent quelque chose
     ~GP2();
+   
   private:
     /**
     * @brief Identifiant du GP2

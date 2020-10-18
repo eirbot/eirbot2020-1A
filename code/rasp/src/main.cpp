@@ -1,14 +1,12 @@
 #include "main.hpp"
 
-#include <time.h>
-
-#include <unistd.h>
 
 using namespace std;
+using namespace std::chrono;
+
 class Navigation;
 class GP2;
 class Robot Robot;
-
 bool debug=false;
 vector<Node> debugPath(2);
 int total_optimized;
@@ -22,10 +20,6 @@ int robot_adv;
 int timeout_after_timeout;
 string side = "blue";
 
-//time
-float begin_time=0;
-float delai=0;
-float end=0;
 
 //Définition des points d'interets
 struct Node Phare_blue={20,20,0,0,0,0,0};
@@ -48,28 +42,32 @@ void setup()
 {
   printf("Je commence la calibration des GP2 \n");
   printf("Systèmes de detection .................................... ");
-  print_success();
   Robot.detection('a', '1');
 
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
-  side="blue";
-  Robot.calibration();
+  side=Robot.calibration();
 
-  //Mise du robot au point de départ
-  printf("Je me déplace jusqu'au point de départ \n");
-  go_to({.x=Port.x,.y=Port.y});
-  printf("Déplacement au point de départ");
-  print_success();
+  printf("Je vérifie que mes bras fonctionnent \n");
+  Robot.actionneur(0, 1);
+  Robot.actionneur(0, 0);
+  Robot.actionneur(1, 1);
+  Robot.actionneur(1, 0);
+
+  while (Robot.depart()==1) {
+      printf("Je suis pret en attente du départ ! \n");
+  }
 }
 
 //Boucle de jeu
-void loop_blue()
+void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 {
+  bool in_port=false;
   Navigation Navigation;
   int temps=0;
   vector<obstacle> list_obstacles = fillVector();
-  while ((clock()-begin_time)/CLOCKS_PER_SEC <= 90) {
+  while (steady_clock::now() - BeginMeasurement <= milliseconds{95000}) {
+  while (steady_clock::now() - BeginMeasurement <= milliseconds{85000}) {
 
     go_to({.x=20,.y=80});
     //Module Phare
@@ -78,6 +76,7 @@ void loop_blue()
     Robot.move(pos_node,Phare_blue_waypoint,list_obstacles);
 
     printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
+    Robot.detection('a', '0');
     Robot.move(Phare_blue_waypoint,Phare_blue,list_obstacles);
     Robot.actionneur(0,1);
     go_to({.x=40,.y=20});
@@ -93,13 +92,16 @@ void loop_blue()
 
     //Module Manche à air
     printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-    Robot.move(Phare_blue,Manche_1_blue,list_obstacles);
+    Robot.detection('a', '1');
+    Robot.move({(short) 40, (short) 20, 0,0,0,0,0},Manche_1_blue,list_obstacles);
     Robot.actionneur(1, 1);
     printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
     go_to({.x=53,.y=180});
     Robot.actionneur(1, 0);
+    Robot.detection('a', '0');
     break;
   }
+ 
   //Lecture de la boussole
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
   int boussole=Robot.communication();
@@ -107,12 +109,28 @@ void loop_blue()
 
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
   Node position={(short) 63,(short) 184,0,0,0,0,0};
-  if (!Robot.communication()) {
+  if (Robot.communication()==0) {
     Robot.move(position,Port_N,list_obstacles_no_ecocup);
   }
-  else if(Robot.communication()){
+  else if(Robot.communication()==1){
     Robot.move(position,Port_S,list_obstacles_no_ecocup);
   }
+  in_port=true;
+  auto delai = steady_clock::now() - BeginMeasurement;
+  std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
+  break;
+  }
+  while (steady_clock::now() - BeginMeasurement <= milliseconds{95000}){
+  }
+  if (in_port==false) {
+    if (Robot.communication()==0) {
+      go_to({.x=20,.y=50});
+    }
+    else if(Robot.communication()==1){
+      go_to({.x=20,.y=150});
+    }
+  }
+  Robot.pavillon(1);
 }
 
 // //Boucle de jeu
@@ -161,15 +179,13 @@ void loop_blue()
 class Protocole Protocole("/dev/ttyACM0");
 
 int main(int argc, char *argv[]) {
-  // setup();
-  begin_time = clock();
+  setup();
+  auto BeginMeasurement = std::chrono::steady_clock::now();
   if (side=="blue") {
-    loop_blue();
+    loop_blue(BeginMeasurement);
   }
   // else if(side=="yellow") {
   //   loop_yellow();
   // }
-  delai=(clock()-begin_time)/CLOCKS_PER_SEC;
-  printf("Temps d'execution \033[32m%f\033[0m secondes \n",delai);
   return 0;
 }

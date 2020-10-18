@@ -61,8 +61,8 @@ void Robot::actionneur(int cote,int activation)
     if (cote==1 && activation==1){
         Actionneur.Droit_activation();
     }
-    if (cote==1 && activation==1) {
-        Actionneur.Droit_activation();
+    if (cote==1 && activation==0) {
+        Actionneur.Droit_desactivation();
     }
 
 }

@@ -131,6 +131,8 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
     }
   }
   Robot.pavillon(1);
+  auto delai = steady_clock::now() - BeginMeasurement;
+  std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
 }
 
 // //Boucle de jeu

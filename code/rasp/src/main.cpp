@@ -69,7 +69,6 @@ void loop_blue()
   Navigation Navigation;
   int temps=0;
   vector<obstacle> list_obstacles = fillVector();
-  total_reach=4;
   while ((clock()-begin_time)/CLOCKS_PER_SEC <= 90) {
 
     go_to({.x=20,.y=80});
@@ -83,6 +82,7 @@ void loop_blue()
     Robot.actionneur(0,1);
     go_to({.x=40,.y=20});
     Robot.actionneur(0, 0);
+
     if (!Robot.communication()) {
       printf("\033[34mLe phare n'a pas été activé, je réessaye \033[0m \n");
       Robot.actionneur(1, 1);
@@ -92,9 +92,8 @@ void loop_blue()
     }
 
     //Module Manche à air
-    pos_node={.x= (short) 40,.y= (short) 20, 0,0,0,0,0};
     printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-    Robot.move(pos_node,Manche_1_blue,list_obstacles);
+    Robot.move(Phare_blue,Manche_1_blue,list_obstacles);
     Robot.actionneur(1, 1);
     printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
     go_to({.x=53,.y=180});

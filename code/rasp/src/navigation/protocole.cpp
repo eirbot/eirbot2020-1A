@@ -84,9 +84,9 @@ int Protocole::update_buffer(int timeout) {
     flush_buffer(); //fill with zeros
     // printf("update buffer\n");
 
-    unsigned int n = 0;
-    unsigned int n_total = 0;
-    unsigned int n_timeout = 0;
+    int n = 0;
+    int n_total = 0;
+    int n_timeout = 0;
     bool done = false;
 
     do {
@@ -97,6 +97,9 @@ int Protocole::update_buffer(int timeout) {
         else if(n > 0) {
             n_total += n;
             if(readBuffer[n_total - 1] == '\n') done = true;
+        }
+        else {
+            return 3;
         }
         //printf("n: %d\n", n);
         //printf("n_tot: %d\n", n_total);

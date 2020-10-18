@@ -13,14 +13,9 @@ Robot::~Robot()
    
 }
 
-void Robot::calibration()
+string Robot::calibration()
 {
-    //Initialisation de la position
-    printf("Je commence ma calibration en position \n");
-    printf("Calibration en position .................................. ");
-    initialise_x();
-    initialise_y();
-    print_success();
+    return "blue";
 }
 
  void Robot::move(Node src, Node dest, vector<obstacle> list_obstacles)
@@ -56,28 +51,30 @@ void Robot::detection(char cote, char activation)
 
 void Robot::actionneur(int cote,int activation)
 {
+    Actionneur Actionneur;
     if (cote==0 && activation==1) {
-        Gauche_activation();
+        Actionneur.Gauche_activation();
     }
     if (cote==0 && activation==0) {
-        Gauche_desactivation();
+        Actionneur.Gauche_desactivation();
     }
     if (cote==1 && activation==1){
-        Droit_activation();
+        Actionneur.Droit_activation();
     }
     if (cote==1 && activation==1) {
-        Droit_activation();
+        Actionneur.Droit_activation();
     }
 
 }
 
 void Robot::pavillon(int activation)
 {
+    Actionneur Actionneur;
     if (activation==1) {
-        Pavillon();
+        Actionneur.Pavillon();
     }
     if (activation==0){
-        Pavillon();
+        Actionneur.Pavillon();
     }
 }
 
@@ -90,3 +87,8 @@ int Robot::communication()
  {
      printf("Pince en cours de développement \n");
  }
+
+int Robot::depart()
+{
+    return 0;
+}

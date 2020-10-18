@@ -435,14 +435,12 @@ vector<Node> Navigation::one_step(Node src, Node dest, vector<obstacle> list_obs
   if (result.size()!= 0) {
     back=Navigate_to_asserv(result,dest,list_obstacles);
     back_effect(back,dest,list_obstacles);
-    struct position my_position=robot_position();
     printf("\n");
   }
   else{
     list_obstacles=fillVector_no_ecocup();
     back=Navigate_to_asserv(result,dest,list_obstacles);
     back_effect(back,dest,list_obstacles);
-    struct position my_position=robot_position();
     list_obstacles=fillVector();
     printf("\n");
   }

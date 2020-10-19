@@ -27,6 +27,10 @@ float ConsV=0;
 float ConsW=0;
 float ConsVG=0;
 float ConsVD=0;
+float old_ConsVG=0;
+float old_ConsVD=0;
+float aG, aD;
+float aG_max_tmp = 0; //TODO a retirer
 float commande_Dis=0;
 float commande_Angle=0;
 float commande_PWMG_V;
@@ -91,6 +95,19 @@ void function_Asserv(void)
     commande_Angle = Asserv_Angle(Angle,Cons_Angle,reset,&feedback_Angle);
     ConsVG=((commande_Dis/Te)-(commande_Angle/Te)*RA);
     ConsVD=((commande_Angle/Te)*RA)+((commande_Dis/Te));
+    //limiteur acceleration
+    aG = ConsVG - old_ConsVG;
+    aD = ConsVD - old_ConsVD;
+    aG_max_tmp = max(aG_max_tmp, aG);
+    if(aG > A_MAX) {
+        ConsVG = old_ConsVG + A_MAX;
+    }
+    else if(aD > A_MAX) {
+        ConsVD = old_ConsVD + A_MAX;
+    }
+
+    // old_ConsVG = ConsVG;
+    // old_ConsVD = ConsVD;
     //ConsVG_liss=lissage(ConsVG,tab_lissage_MG,LEN_TAB_LISSAGE );
     //ConsVD_liss=lissage(ConsVD,tab_lissage_MD,LEN_TAB_LISSAGE );
     commande_PWMG_V=Asserv_V_MG(VG,ConsVG,reset);
@@ -274,61 +291,64 @@ void set_consigne(char c) {
 }
 
 char * update_debug_string() {
-    char etat_str[16];
-    switch(etat_asserv) {
-        case STOP:
-            strncpy(etat_str, "STOP", 16);
-            break;
-        case ROT:
-            strncpy(etat_str, "ROT", 16);
-            break;
-        case PO_ANGLE:
-            strncpy(etat_str, "PO_ANG", 16);
-            break;
-        case PO_STOP:
-            strncpy(etat_str, "PO_STOP", 16);
-            break;
-        case PO_DISTANCE:
-            strncpy(etat_str, "PO_DIS", 16);
-            break;
-        case RES:
-            strncpy(etat_str, "RES", 16);
-            break;
-    }
-    snprintf(debug_string, 256,
-             "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s ",
-             x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
+    // char etat_str[16];
+    // switch(etat_asserv) {
+    //     case STOP:
+    //         strncpy(etat_str, "STOP", 16);
+    //         break;
+    //     case ROT:
+    //         strncpy(etat_str, "ROT", 16);
+    //         break;
+    //     case PO_ANGLE:
+    //         strncpy(etat_str, "PO_ANG", 16);
+    //         break;
+    //     case PO_STOP:
+    //         strncpy(etat_str, "PO_STOP", 16);
+    //         break;
+    //     case PO_DISTANCE:
+    //         strncpy(etat_str, "PO_DIS", 16);
+    //         break;
+    //     case RES:
+    //         strncpy(etat_str, "RES", 16);
+    //         break;
+    // }
+    // snprintf(debug_string, 256,
+    //          "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s ",
+    //          x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
+
+    snprintf(debug_string, 256, "aG_max=%5.2f aG=%5.2f aD=%5.2f ConsVG=%5.2f ConsVD=%5.2f oldConsVG=%f\r\n", aG_max_tmp, aG, aD, ConsVG, ConsVD, old_ConsVG);
     return debug_string;
 
 }
 
 void print_debug_asserv(Serial &pc,char c)
 {
+    pc.printf("aG_max=%5.2f aG=%5.2f aD=%5.2f VG=%5.2f VD=%5.2f\r\n", aG_max_tmp, aG, aD, VG, VD);
     // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f  \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T);
-    pc.printf("c==%c Distance=%f Angle=%f  ",
-              c, Distance, (Angle*(180/PI)));
-    get_XY(&x, &y);
-    pc.printf("Obj_Dist=%f Obj_Angle=%f ", Obj_Dist, Obj_Angle);
-    pc.printf("X0=%f Y0=%f alpha0=%f ", x_0, y_0, alpha0*180/PI);
+    // pc.printf("c==%c Distance=%f Angle=%f  ",
+    //           c, Distance, (Angle*(180/PI)));
+    // get_XY(&x, &y);
+    // pc.printf("Obj_Dist=%f Obj_Angle=%f ", Obj_Dist, Obj_Angle);
+    // pc.printf("X0=%f Y0=%f alpha0=%f ", x_0, y_0, alpha0*180/PI);
 
-    switch(etat_asserv) {
-        case STOP:
-            pc.printf("etat=STOP ");
-            break;
-        case ROT:
-            pc.printf("etat=ROT ");
-            break;
-        case PO_ANGLE:
-            pc.printf("etat=PO_ANGLE ");
-            break;
-        case PO_DISTANCE:
-            pc.printf("etat=PO_DISTANCE ");
-            break;
-        case RES:
-            pc.printf("etat=RES ");
-            break;
-    }
-    pc.printf("Err=%f fb_Dis=%d fb_Angle=%d ",
-              Cons_Dis-Distance, feedback_Dis, feedback_Angle);
-    pc.printf("X=%f Y=%f \r\n", x*100, y*100);
+    // switch(etat_asserv) {
+    //     case STOP:
+    //         pc.printf("etat=STOP ");
+    //         break;
+    //     case ROT:
+    //         pc.printf("etat=ROT ");
+    //         break;
+    //     case PO_ANGLE:
+    //         pc.printf("etat=PO_ANGLE ");
+    //         break;
+    //     case PO_DISTANCE:
+    //         pc.printf("etat=PO_DISTANCE ");
+    //         break;
+    //     case RES:
+    //         pc.printf("etat=RES ");
+    //         break;
+    // }
+    // pc.printf("Err=%f fb_Dis=%d fb_Angle=%d ",
+    //           Cons_Dis-Distance, feedback_Dis, feedback_Angle);
+    // pc.printf("X=%f Y=%f \r\n", x*100, y*100);
 }

@@ -93,7 +93,8 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
     //Module Manche à air
     printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
     Robot.detection('a', '1');
-    Robot.move({(short) 40, (short) 20, 0,0,0,0,0},Manche_1_blue,list_obstacles);
+    go_to({.x=70,.y=110 });
+    go_to({.x=23,.y=178});
     Robot.actionneur(1, 1);
     printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
     go_to({.x=53,.y=180});

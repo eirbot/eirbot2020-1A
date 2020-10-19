@@ -7,6 +7,8 @@
 #include "asserv_vitesse_angle.hpp"
 #include "math.h"
 
+#define A_MAX 0.0002
+
 // TODO
 // - goto_XY
 // - rotate(angle)

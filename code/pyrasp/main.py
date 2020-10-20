@@ -73,17 +73,18 @@ class CtfBoard():
     def __init__(self):
         self.width = 300
         self.height = 200
-        self.board = Field(self.width , self.height, 34)
+        self.board = Field(self.width , self.height, 2)
         cup_size = Size(3, 3)
-        list_obstacle = [Rectangle(Coordinates(self.width/2, self.height/2), cup_size)]
+        list_obstacle = [Rectangle(Coordinates(10, 10), cup_size)]
         for obstacle in list_obstacle:
             self.board.add_obstacle(obstacle)
-        
         self.astar = Castar()
         
         
         
     def get_path(self, pos_from, pos_to):
+        print(pos_from)
+        print("Get path ", pos_from.x,  pos_from.y, "to " , pos_to.x, pos_to.y) 
         status, path = self.astar.find_path_simplified(pos_from, pos_to, self.board)
         print("Astar status ", status)
         return path
@@ -92,7 +93,7 @@ class CtfBoard():
 class Robot():
     def __init__(self, board : CtfBoard):
         self.pos = Coordinates(16, 80)
-        self.goals = [Coordinates(250, 80), Coordinates(40, 160)]
+        self.goals = [Coordinates(150, 80), Coordinates(40, 160)]
         self.protocol = RobotProtocol()
         self.board = board
     

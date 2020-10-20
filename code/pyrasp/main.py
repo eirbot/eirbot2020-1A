@@ -3,6 +3,8 @@ import serial
 import time
 import threading
 import queue
+from DummyCommunication import DummyCommunication
+
 
 class Communication(threading.Thread):
     def __init__(self, serial_port='/dev/ttyACM0', com_speed=921600):
@@ -49,8 +51,11 @@ class Communication(threading.Thread):
         self.running = False
 
 class RobotProtocol():
-    def __init__(self):
-        self.robot = Communication()
+    def __init__(self, protocol=None):
+        if protocol is None:
+            self.robot = Communication()
+        else:
+            self.robot = protocol
         self.robot.start()
     
     def go_to(self, x , y):
@@ -91,15 +96,19 @@ class CtfBoard():
         
       
 class Robot():
-    def __init__(self, board : CtfBoard):
+    def __init__(self, board : CtfBoard, protocol=None):
         self.pos = Coordinates(16, 80)
         self.goals = [Coordinates(150, 80), Coordinates(40, 160)]
-        self.protocol = RobotProtocol()
+        if protocol is None:
+            self.protocol = RobotProtocol()
+        else:
+            self.protocol = RobotProtocol(protocol)
         self.board = board
     
     def run(self):
         for destination in self.goals:
             path = self.board.get_path(self.pos, destination)
+            print("Path", path)
             for waypoint in path:
                 self.protocol.go_to(waypoint.x, waypoint.y)
 
@@ -107,6 +116,12 @@ class Robot():
 
 
 if __name__ == "__main__":
-    board = CtfBoard()
-    robot = Robot(board)
-    robot.run()
+    test = 1
+    if not test:
+        board = CtfBoard()
+        robot = Robot(board)
+        robot.run()
+    else:
+        board = CtfBoard()
+        robot = Robot(board, protocol=DummyCommunication())
+        robot.run()

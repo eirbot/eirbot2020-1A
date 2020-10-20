@@ -79,10 +79,17 @@ void init_asserv() {
 
 
 void set_pwm() {
-    dirMG=fonc_direction(commande_PWMG_V/100);
+    dirMG=fonc_direction(commande_PWMG_V/100); //TODO offset 3 quand != 0
     pwmMG.write(abs(commande_PWMG_V/100));
     dirMD=fonc_direction(commande_PWMD_V/100);
     pwmMD.write(abs(commande_PWMD_V/100));
+}
+
+
+int sign(float x) {
+    if (x > 0) return 1;
+    if (x < 0) return -1;
+    return 0;
 }
 
 void function_Asserv(void)
@@ -95,19 +102,20 @@ void function_Asserv(void)
     commande_Angle = Asserv_Angle(Angle,Cons_Angle,reset,&feedback_Angle);
     ConsVG=((commande_Dis/Te)-(commande_Angle/Te)*RA);
     ConsVD=((commande_Angle/Te)*RA)+((commande_Dis/Te));
+
     //limiteur acceleration
     aG = ConsVG - old_ConsVG;
     aD = ConsVD - old_ConsVD;
     aG_max_tmp = max(aG_max_tmp, aG);
-    if(aG > A_MAX) {
-        ConsVG = old_ConsVG + A_MAX;
+    if(abs(aG) > A_MAX) {
+        ConsVG = old_ConsVG + sign(aG)*A_MAX;
     }
-    else if(aD > A_MAX) {
-        ConsVD = old_ConsVD + A_MAX;
+    if(abs(aD) > A_MAX) {
+        ConsVD = old_ConsVD + sign(aD)*A_MAX;
     }
 
-    // old_ConsVG = ConsVG;
-    // old_ConsVD = ConsVD;
+    old_ConsVG = ConsVG;
+    old_ConsVD = ConsVD;
     //ConsVG_liss=lissage(ConsVG,tab_lissage_MG,LEN_TAB_LISSAGE );
     //ConsVD_liss=lissage(ConsVD,tab_lissage_MD,LEN_TAB_LISSAGE );
     commande_PWMG_V=Asserv_V_MG(VG,ConsVG,reset);

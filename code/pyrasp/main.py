@@ -1,9 +1,8 @@
-import pypath
+from pypath import Coordinates, Size, Rectangle, Field, Castar
 import serial
 import time
 import threading
 import queue
-
 
 class Communication(threading.Thread):
     def __init__(self, serial_port='/dev/ttyACM0', com_speed=921600):
@@ -30,7 +29,7 @@ class Communication(threading.Thread):
     
     def _check_answer(self):
         ans = self._read()
-        if OK in ans:
+        if "OK" in ans:
             return True
         return False
     
@@ -49,18 +48,18 @@ class Communication(threading.Thread):
     def stop(self):
         self.running = False
 
-class Coordinates():
-    def __init__(self, x=0 ,y=0):
-        self.x = x
-        self.y = y
-
 class RobotProtocol():
     def __init__(self):
         self.robot = Communication()
         self.robot.start()
     
-    def go_to(self, x : float, y: float):
-        command = "SPO" + str(int(x*100)) + "," + str(int(y*100)) 
+    def go_to(self, x , y):
+        if isinstance(x, float):
+            x = int(x*100)
+        if isinstance(y, float):
+            y = int(y*100)
+        
+        command = "SPO" + str(x) + "," + str(y) 
         self.robot.send(command)
         self.robot._read() # to be removed
     
@@ -68,19 +67,45 @@ class RobotProtocol():
         command = "SRO" + str(angle)
         self.robot.send(command)
         self.robot._read() # to be removed
-        
-class Robot():
+  
+  
+class CtfBoard():
     def __init__(self):
-        self.goals = [Coordinates(0.5, 0.5),
-                      Coordinates(2.5, 1.5),
-                      Coordinates(2.5, 0.5),
-                      Coordinates(0.5, 0.5)]
+        self.width = 300
+        self.height = 200
+        self.board = Field(self.width , self.height, 34)
+        cup_size = Size(3, 3)
+        list_obstacle = [Rectangle(Coordinates(self.width/2, self.height/2), cup_size)]
+        for obstacle in list_obstacle:
+            self.board.add_obstacle(obstacle)
+        
+        self.astar = Castar()
+        
+        
+        
+    def get_path(self, pos_from, pos_to):
+        status, path = self.astar.find_path_simplified(pos_from, pos_to, self.board)
+        print("Astar status ", status)
+        return path
+        
+      
+class Robot():
+    def __init__(self, board : CtfBoard):
+        self.pos = Coordinates(16, 80)
+        self.goals = [Coordinates(250, 80), Coordinates(40, 160)]
         self.protocol = RobotProtocol()
+        self.board = board
     
     def run(self):
         for destination in self.goals:
-            self.protocol.go_to(destination.x, destination.y)
+            path = self.board.get_path(self.pos, destination)
+            for waypoint in path:
+                self.protocol.go_to(waypoint.x, waypoint.y)
+
+
+
 
 if __name__ == "__main__":
-    robot = Robot()
+    board = CtfBoard()
+    robot = Robot(board)
     robot.run()

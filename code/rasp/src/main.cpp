@@ -23,7 +23,7 @@ int robot_adv;
 int timeout_after_timeout;
 string side = "blue";
 bool in_port=false;
-int pc=1;
+int pc=0;
 std::chrono::steady_clock::time_point BeginMeasurement;
 
 //Définition des points d'interets
@@ -40,8 +40,19 @@ struct Node Port={20,(80),0,0,0,0,0};
 struct Node Port_N={20,50,0,0,0,0,0};
 struct Node Port_S={20,150,0,0,0,0,0};
 
-// Définition des GP2
-
+// Parse opt
+void parse_opts(int argc, char *argv[], int *pc, string *side){
+  // Default values
+  *pc = 0;
+  int opt;
+  while ((opt = getopt(argc, argv, "p:")) != -1) {
+    switch (opt) {
+      case 'p':
+        *pc = atoi(optarg);
+        break;
+    }
+  }
+}
 
 //Initialisation
 void setup()
@@ -217,7 +228,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 class Protocole Protocole("/dev/ttyACM0");
 
 int main(int argc, char *argv[]) {
-
+  parse_opts(argc, argv, &pc, &side);
   setup();
   struct sigaction sa;
   memset(&sa,0, sizeof(sa));

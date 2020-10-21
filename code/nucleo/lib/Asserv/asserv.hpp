@@ -7,7 +7,7 @@
 #include "asserv_vitesse_angle.hpp"
 #include "math.h"
 
-#define A_MAX 500
+#define A_MAX 0.5
 
 // TODO
 // - goto_XY

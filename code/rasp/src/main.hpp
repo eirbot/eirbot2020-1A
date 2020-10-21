@@ -20,9 +20,9 @@ void setup();
 /**
 * @brief Boucle principale du projet
  */
-void loop_blue(std::chrono::steady_clock::time_point);
+void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement);
 
-void loop_yellow(std::chrono::steady_clock::time_point);
+void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement);
 
 
 int main(int argc, char *argv[]);

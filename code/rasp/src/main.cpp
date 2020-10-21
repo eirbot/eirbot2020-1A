@@ -103,13 +103,15 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   go_to({.x=40,.y=20});
   Robot.actionneur(0, 0);
 
-  if (!Robot.communication()) {
-    printf("\033[34mLe phare n'a pas été activé, je réessaye \033[0m \n");
-    Robot.actionneur(1, 1);
-    go_to({.x=20,.y=20});
-    Robot.actionneur(0, 1);
-    go_to({.x=40,.y=20});
-  }
+  //Module Manche à air
+  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
+  Robot.detection('a', '1');
+  go_to({.x=70,.y=110 });
+  go_to({.x=23,.y=178});
+  Robot.actionneur(1, 1);
+  go_to({.x=20,.y=20});
+  Robot.actionneur(0, 1);
+  go_to({.x=40,.y=20});
 
   //Module Manche à air
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");

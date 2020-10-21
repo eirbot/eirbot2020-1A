@@ -106,15 +106,15 @@ void function_Asserv(void)
     ConsVD=((commande_Angle/Te)*RA)+((commande_Dis/Te));
 
     //limiteur acceleration
-    aG = ConsVG - old_ConsVG;
-    aD = ConsVD - old_ConsVD;
-    aG_max_tmp = max(aG_max_tmp, aG);
-    if(abs(aG) > A_MAX) {
-        ConsVG = old_ConsVG + sign(aG)*A_MAX;
-    }
-    if(abs(aD) > A_MAX) {
-        ConsVD = old_ConsVD + sign(aD)*A_MAX;
-    }
+    // aG = ConsVG - old_ConsVG;
+    // aD = ConsVD - old_ConsVD;
+    // aG_max_tmp = max(aG_max_tmp, aG);
+    // if(abs(aG) > A_MAX) {
+    //     ConsVG = old_ConsVG + sign(aG)*A_MAX;
+    // }
+    // if(abs(aD) > A_MAX) {
+    //     ConsVD = old_ConsVD + sign(aD)*A_MAX;
+    // }
 
     old_ConsVG = ConsVG;
     old_ConsVD = ConsVD;

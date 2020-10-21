@@ -2,8 +2,8 @@
 #include "actionneur_nucleo.hpp"
 #include "mbed.h"
 
-//#define DEBUG_ASS
-#define DEBUG_PRO
+#define DEBUG_ASS
+//#define DEBUG_PRO
 
 Protocole::Protocole() {
     memset(readBuffer, 0, sizeof(readBuffer));
@@ -57,7 +57,7 @@ void Protocole::readByte() {
 void Protocole::update_state() {
     #ifdef DEBUG_ASS
       debug_serial->printf(update_debug_string());
-      print_dbg();
+      //print_dbg();
     #endif
     if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
         order_ready_flag = false;

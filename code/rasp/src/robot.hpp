@@ -3,6 +3,7 @@
 
 #include "navigation/navigation.hpp"
 #include "interactions/actionneur.hpp"
+#include "interactions/low_level.hpp"
 using namespace std;
 
 /**
@@ -56,7 +57,11 @@ class Robot{
                 int depart();
                 /**
                  * @brief Gère la communication avec la boussole et la caméra*/
-                int communication();
+                int communication_phare();
+
+                /**
+                 * @brief Gère la communication avec le phare*/
+                int communication_boussole();
                 /**
                  * @brief En cours de construction*/
                 // void pince(int activation);

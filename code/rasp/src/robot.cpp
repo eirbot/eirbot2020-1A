@@ -3,9 +3,12 @@
 
 struct shape dimension_robot={32,32};
 
+extern int pc;
+
+LowLevel LowLevel;
+
 Robot::Robot():dimension(dimension_robot)
 {
-
 }
 
 Robot::~Robot()
@@ -15,7 +18,17 @@ Robot::~Robot()
 
 string Robot::calibration()
 {
-    return "blue";
+    if (pc==0) {
+        if(LowLevel.is_equipe_bleu()==0){
+            return "blue";
+        }
+        else{
+            return "yellow";
+        }
+    }
+    else{
+        return "blue";
+    }
 }
 
  void Robot::move(Node src, Node dest, vector<obstacle> list_obstacles)
@@ -78,9 +91,24 @@ void Robot::pavillon(int activation)
     }
 }
 
-int Robot::communication()
+int Robot::communication_phare()
 {
-    return 1;
+    if (!pc) {
+        return LowLevel.phare_active();
+    }
+    else{
+        return 1;
+    }
+}
+
+int Robot::communication_boussole()
+{
+    if (!pc) {
+        return LowLevel.boussole_nord();
+    }
+    else{
+        return 0;
+    }
 }
 
  void pince(int activation)
@@ -90,5 +118,10 @@ int Robot::communication()
 
 int Robot::depart()
 {
-    return 0;
+    if(!pc){
+        return LowLevel.is_depart();
+    }
+    else{
+        return 1;
+    }
 }

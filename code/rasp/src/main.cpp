@@ -23,6 +23,7 @@ int robot_adv;
 int timeout_after_timeout;
 string side = "blue";
 bool in_port=false;
+int pc=1;
 std::chrono::steady_clock::time_point BeginMeasurement;
 
 //Définition des points d'interets
@@ -52,6 +53,7 @@ void setup()
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
   side=Robot.calibration();
+  printf("Je suis du côté %c \n",side[0]);
 
   printf("Je vérifie que mes bras fonctionnent \n");
   Robot.actionneur(0, 1);
@@ -59,9 +61,10 @@ void setup()
   Robot.actionneur(1, 1);
   Robot.actionneur(1, 0);
 
-  while (Robot.depart()==1) {
+  while (Robot.depart()==0) {
       printf("Je suis pret en attente du départ ! \n");
   }
+  BeginMeasurement=steady_clock::now();
   struct itimerval timer;
   timer.it_value.tv_sec=95;
   timer.it_value.tv_usec=0;
@@ -74,10 +77,10 @@ void timer_handler (int signum)
 {
   printf("TIMED OUT ! \n");
   if (in_port==false) {
-    if (Robot.communication()==0) {
+    if (Robot.communication_phare()==0) {
       go_to({.x=20,.y=50});
     }
-    else if(Robot.communication()==1){
+    else if(Robot.communication_phare()==1){
       go_to({.x=20,.y=150});
     }
   }
@@ -102,46 +105,41 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   Robot.actionneur(0,1);
   go_to({.x=40,.y=20});
   Robot.actionneur(0, 0);
+  if (Robot.communication_phare()==false) {
+    Robot.actionneur(1, 1);
+    go_to({.x=20,.y=20});
+    Robot.actionneur(1,0);
+  }
 
   //Module Manche à air
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
   Robot.detection('a', '1');
   go_to({.x=70,.y=110 });
+  Robot.detection('a', '0');
   go_to({.x=23,.y=178});
   Robot.actionneur(1, 1);
-  go_to({.x=20,.y=20});
+  go_to({.x=53,.y=178});
   Robot.actionneur(0, 1);
-  go_to({.x=40,.y=20});
-
-  //Module Manche à air
-  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
   Robot.detection('a', '1');
-  Robot.move({(short) 40, (short) 20, 0,0,0,0,0},Manche_1_blue,list_obstacles);
-  Robot.actionneur(1, 1);
-  printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
-  go_to({.x=53,.y=180});
-  Robot.actionneur(1, 0);
-  Robot.detection('a', '0');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
-  int boussole=Robot.communication();
+  int boussole=Robot.communication_boussole();
   vector<obstacle> list_obstacles_no_ecocup = fillVector_no_ecocup();
 
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
   Node position={(short) 53,(short) 184,0,0,0,0,0};
-  if (Robot.communication()==0) {
-    Robot.move(position,Port_N,list_obstacles_no_ecocup);
-  }
-  else if(Robot.communication()==1){
+  if (boussole==false) {
     Robot.move(position,Port_S,list_obstacles_no_ecocup);
+  }
+  else if(boussole==true){
+    Robot.move(position,Port_N,list_obstacles_no_ecocup);
   }
   in_port=true;
   auto delai = steady_clock::now() - BeginMeasurement;
   std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
-  while (steady_clock::now()- BeginMeasurement < milliseconds{95000}) {
+  while (1) {
 
   }
-  Robot.pavillon(1);
 }
 
 // void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)

@@ -51,9 +51,9 @@
 #define KI_MG 0.15//0.15  //coefficient intégral Asserv Vitesse Moteur Gauche
 #define KP_MD 14//14 //coefficient proportionnel Asserv Vitesse Moteur Droit
 #define KI_MD 0.15//0.15 //coefficient intégral  Asserv Vitesse Moteur Droit
-#define KP_Pos  0.0007 //0.0007 coefficient proportionnel Asserv Position (Distance)
-#define KI_Pos 0//coefficient intégral Asserv Position (Distance)
-#define KD_Pos 0//coefficient intégral Asserv Position (Distance)
+#define KP_Pos   0.00175 //0.0007 coefficient proportionnel Asserv Position (Distance)
+#define KI_Pos   0//0 coefficient intégral Asserv Position (Distance)
+#define KD_Pos   1//1 coefficient dérivé Asserv Position (Distance)
 
 
 void range(float*commande, int max, int min); //limite la plage d'une valeur entre min et max

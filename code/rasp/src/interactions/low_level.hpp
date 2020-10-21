@@ -7,7 +7,7 @@
  * @author PtitLu
  */
 //BCM numbering
-const int TEAM_SWITCH_INPUT = 17;
+const int TEAM_SWITCH_INPUT = 17; //bleu = 0 , jaune = 1
 const int TEAM_LED_OUTPUT = 26;
 const int GO_INPUT = 27;
 const int PHARE_INPUT = 5; //FIXME lequel est lequel ?
@@ -47,8 +47,6 @@ class LowLevel {
         bool boussole_nord();
 
     private:
-        int *input_pins;
-        int *output_pins;
         int setup();
         void set_mode();
         void write();

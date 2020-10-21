@@ -23,6 +23,8 @@ float VG=0;
 // Distance et Angle relatif au robot
 float Distance=0;
 float Angle=0;
+float old_Distance=0;
+float old_Angle=0;
 float ConsV=0;
 float ConsW=0;
 float ConsVG=0;
@@ -79,8 +81,8 @@ void init_asserv() {
 
 
 void set_pwm() {
-    if(commande_PWMD_V != 0) commande_PWMD_V += 3;
-    if(commande_PWMG_V != 0) commande_PWMG_V += 3;
+    if(commande_PWMD_V != 0) commande_PWMD_V += 4;
+    if(commande_PWMG_V != 0) commande_PWMG_V += 4;
     dirMG=fonc_direction(commande_PWMG_V/100); //TODO offset 3 quand != 0
     pwmMG.write(abs(commande_PWMG_V/100));
     dirMD=fonc_direction(commande_PWMD_V/100);
@@ -131,6 +133,8 @@ void reset_consigne() {
     Cons_Angle = 0;
     Distance = 0;
     Angle = 0;
+    old_Distance = 0;
+    old_Angle = 0;
 }
 
 // ---------- FSM -----------
@@ -167,18 +171,20 @@ void set_state(enum asserv_state s) {
         case PO_STOP:
         case STOP:
             get_XY(&x_0, &y_0);
-            alpha0 = alpha0 + Angle;
-            reset_consigne();
-            reset=1;
+            alpha0 = alpha0 + Angle - old_Angle;
+            old_Distance = Distance;
+            old_Angle = Angle;
+            //reset_consigne();
+            //reset=1;
             // Cons_Dis = Distance; //prend les parametres courants comme consigne
             // Cons_Angle = Angle;
             break;
         case ROT:
         case PO_ANGLE:
-            Cons_Angle = Obj_Angle;
+            Cons_Angle += Obj_Angle;
             break;
         case PO_DISTANCE:
-            Cons_Dis = Obj_Dist;
+            Cons_Dis += Obj_Dist;
             break;
         case RES:
             reset = 1;
@@ -217,13 +223,13 @@ float XY_to_Angle(float x, float y) {
 
 //XY en m
 void get_XY(float *x, float *y) {
-    *x = x_0 + Distance * cos(alpha0+Angle);
-    *y = y_0 - Distance * sin(alpha0+Angle);
+    *x = x_0 + (Distance - old_Distance) * cos(alpha0+Angle-old_Angle);
+    *y = y_0 - (Distance - old_Distance) * sin(alpha0+Angle-old_Angle);
 }
 
 //angle en degré
 float get_angle() {
-    return (alpha0 + Angle)*180/M_PI; //Angle=0 normalement
+    return (alpha0 + Angle - old_Angle)*180/M_PI; //Angle=0 normalement
 }
 
 //---------- deplacement -------------
@@ -326,14 +332,14 @@ char * update_debug_string() {
     //          "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s ",
     //          x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
 
-    snprintf(debug_string, 256, "aG_max=%5.2f aG=%5.2f aD=%5.2f ConsVG=%5.2f ConsVD=%5.2f oldConsVG=%f\r\n", aG_max_tmp, aG, aD, ConsVG, ConsVD, old_ConsVG);
+    snprintf(debug_string, 256, "ConsVG=%5.3f ConsVD=%5.3f D=%5.3f A=%5.3f OD=%5.3f OA=%5.3f\r\n", ConsVG, ConsVD, Distance-old_Distance, Angle - old_Angle, Obj_Dist, Obj_Angle);
     return debug_string;
 
 }
 
 void print_debug_asserv(Serial &pc,char c)
 {
-    pc.printf("aG_max=%5.2f aG=%5.2f aD=%5.2f VG=%5.2f VD=%5.2f\r\n", aG_max_tmp, aG, aD, VG, VD);
+    pc.printf("aG_max=%5.3f aG=%5.3f aD=%5.3f VG=%5.3f VD=%5.2f\r\n", aG_max_tmp, aG, aD, VG, VD);
     // pc.printf("c==%c VG=%f VD=%f ConsVG=%f ConsVD=%f Vitesse=%f W=%f Distance=%f Angle=%f cmd_G=%f cmd_D=%f T=%f  \n\r",c,VG,VD,ConsVG,ConsVD,Vitesse,W,Distance,(Angle*(180/PI)),commande_PWMG_V,commande_PWMD_V,T);
     // pc.printf("c==%c Distance=%f Angle=%f  ",
     //           c, Distance, (Angle*(180/PI)));

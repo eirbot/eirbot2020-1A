@@ -13,6 +13,8 @@
 * @author SD
 */
 
+void parse_opts(int argc, char *argv[], int *pc, string *side);
+
 /**
 * @brief Initialisation des différents éléments
  */

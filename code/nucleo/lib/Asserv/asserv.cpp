@@ -81,8 +81,6 @@ void init_asserv() {
 
 
 void set_pwm() {
-    if(commande_PWMD_V != 0) commande_PWMD_V += 4;
-    if(commande_PWMG_V != 0) commande_PWMG_V += 4;
     dirMG=fonc_direction(commande_PWMG_V/100); //TODO offset 3 quand != 0
     pwmMG.write(abs(commande_PWMG_V/100));
     dirMD=fonc_direction(commande_PWMD_V/100);

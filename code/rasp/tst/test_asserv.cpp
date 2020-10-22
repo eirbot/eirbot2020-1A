@@ -6,7 +6,7 @@ void test_asserv()
     struct position src = {0,0};
     struct position dest = {50,50};
     int back=-5;
-    back=go_to(dest,src);
+    back=go_to(dest);
     assert(back!=-5);
 
     struct position back_pos={-5,-5};
@@ -19,7 +19,5 @@ void test_asserv()
 
     printf("\n>> Test non complets dont les fonctions nécessitent des modifications <<\n");
     rotate(50);
-    initialise_x();
-    initialise_y();
     TEST_END;
 }

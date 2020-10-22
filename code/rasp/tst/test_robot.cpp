@@ -5,16 +5,11 @@ void test_robot()
 {
     TEST_BEGIN;
     Robot Robot;
-    Node src = {23,184,0,0,0,0,0};
-    Node dest= {184,23,0,0,0,0,0};
+    Node src = {16,80,0,0,0,0,0};
+    Node dest= {80,80,0,0,0,0,0};
     assert(Robot.dimension.width==32 && Robot.dimension.length==32);
 
     Robot.calibration();
-
-    struct position position=Robot.position();
-    position.x=30;
-    position.y=16;
-    dest ={(short) position.x,(short) position.y,0,0,0,0,0};
 
     vector<obstacle> list_obstacles;
     list_obstacles=fillVector();
@@ -29,14 +24,5 @@ void test_robot()
 
     Robot.actionneur(1,1);
 
-    //Robot.pavillon(1);
-    float begin_time=0;
-    float delai=0;
-    float end=0;
-    int temps=0;
-    printf("Test sur le temps pris pas le programme \n");
-    Robot.move(src, dest,list_obstacles);
-   
-    //Robot.pince(1);
     TEST_END;
 }

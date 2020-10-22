@@ -132,6 +132,15 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset)
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_MD*Err+KI_MD*S_Err;
+    if(Commande > 0) {
+      Commande += 4;
+    }
+    else if(Commande < 0) {
+      Commande -= 4;
+    }
+    else {
+      Commande = 0;
+    }
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
   return  Commande;
@@ -157,6 +166,15 @@ float Asserv_Position(const float Position, const float ConsPosition,int reset,i
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_Pos*Err+KI_Pos*S_Err+KD_Pos*diff_Err;
+    if(Commande > 0) {
+      Commande += 4;
+    }
+    else if(Commande < 0) {
+      Commande -= 4;
+    }
+    else {
+      Commande = 0;
+    }
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
   return Commande;

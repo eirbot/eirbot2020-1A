@@ -46,11 +46,6 @@ class LowLevel {
          */
         bool boussole_nord();
 
-    private:
-        int setup();
-        void set_mode();
-        void write();
-        void read();
 };
 
 

@@ -57,6 +57,7 @@ void parse_opts(int argc, char *argv[], int *pc, string *side){
 //Initialisation
 void setup()
 {
+  LowLevel LowLevel;
   printf("Je commence la calibration des GP2 \n");
   printf("Systèmes de detection .................................... ");
   Robot.detection('a', '1');
@@ -72,30 +73,32 @@ void setup()
   Robot.actionneur(1, 1);
   Robot.actionneur(1, 0);
 
-  while (Robot.depart()==0) {
-      printf("Je suis pret en attente du départ ! \n");
+  while (Robot.depart()==false) {
+    printf("Je suis pret en attente du départ ! \n");
   }
   BeginMeasurement=steady_clock::now();
-  struct itimerval timer;
-  timer.it_value.tv_sec=95;
-  timer.it_value.tv_usec=0;
-  timer.it_interval.tv_sec=0;
-  timer.it_interval.tv_usec=0;
-  setitimer(ITIMER_VIRTUAL, &timer, 0);
 }
 
-void timer_handler (int signum)
+void port_now (std::chrono::steady_clock::time_point BeginMeasurement)
 {
-  printf("TIMED OUT ! \n");
-  if (in_port==false) {
-    if (Robot.communication_phare()==0) {
+  Robot.detection('a', '0');
+  while ((steady_clock::now()-BeginMeasurement)<milliseconds{95000}) {
+
+  }
+  auto delai = steady_clock::now() - BeginMeasurement;
+  std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
+  Robot.pavillon(1);
+  if(in_port==false){
+  if (Robot.communication_boussole()==0) {
       go_to({.x=20,.y=50});
     }
-    else if(Robot.communication_phare()==1){
+    else if(Robot.communication_boussole()==1){
       go_to({.x=20,.y=150});
     }
   }
-  Robot.pavillon(1);
+    while (1) {
+
+    }
 }
 
 //Boucle de jeu
@@ -108,11 +111,12 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   //Module Phare
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
-  Robot.move(pos_node,Phare_blue_waypoint,list_obstacles);
-
+  // Robot.move(pos_node,Phare_blue_waypoint,list_obstacles);
+  go_to({.x=50,.y=45});
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
   Robot.detection('a', '0');
-  Robot.move(Phare_blue_waypoint,Phare_blue,list_obstacles);
+  go_to({.x=20,.y=20});
+  // Robot.move(Phare_blue_waypoint,Phare_blue,list_obstacles);
   Robot.actionneur(0,1);
   go_to({.x=40,.y=20});
   Robot.actionneur(0, 0);
@@ -125,10 +129,19 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   //Module Manche à air
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
   Robot.detection('a', '1');
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now(BeginMeasurement);
+  }
   go_to({.x=70,.y=110 });
   Robot.detection('a', '0');
+    if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now(BeginMeasurement);
+  }
   go_to({.x=23,.y=178});
   Robot.actionneur(1, 1);
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now(BeginMeasurement);
+  }
   go_to({.x=53,.y=178});
   Robot.actionneur(0, 1);
   Robot.detection('a', '1');
@@ -139,18 +152,22 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
   Node position={(short) 53,(short) 184,0,0,0,0,0};
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now(BeginMeasurement);
+  }
   if (boussole==false) {
-    Robot.move(position,Port_S,list_obstacles_no_ecocup);
+    go_to({.x=20,.y=50});
   }
   else if(boussole==true){
-    Robot.move(position,Port_N,list_obstacles_no_ecocup);
+    go_to({.x=20,.y=150});
   }
   in_port=true;
   auto delai = steady_clock::now() - BeginMeasurement;
   std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
-  while (1) {
+  while (steady_clock::now()-BeginMeasurement < milliseconds{85000}) {
 
   }
+  port_now(BeginMeasurement);
 }
 
 // void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
@@ -230,10 +247,6 @@ class Protocole Protocole("/dev/ttyACM0");
 int main(int argc, char *argv[]) {
   parse_opts(argc, argv, &pc, &side);
   setup();
-  struct sigaction sa;
-  memset(&sa,0, sizeof(sa));
-  sa.sa_handler = &timer_handler;
-  sigaction(SIGVTALRM, &sa,0);
   if (side=="blue") {
     loop_blue(BeginMeasurement);
   }

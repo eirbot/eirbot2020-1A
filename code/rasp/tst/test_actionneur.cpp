@@ -3,9 +3,10 @@
 void test_actionneur()
 {
     TEST_BEGIN;
+    Actionneur Actionneur;
     printf("\n>> Test non complets dont les fonctions nécessitent des modifications <<\n");
-    Droit_activation();
-    Droit_desactivation();
-    Pavillon();
+    Actionneur.Droit_activation();
+    Actionneur.Droit_desactivation();
+    Actionneur.Pavillon();
     TEST_END;
 }

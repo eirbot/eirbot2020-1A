@@ -94,10 +94,11 @@ void Robot::pavillon(int activation)
 int Robot::communication_phare()
 {
     if (!pc) {
+        return 1;
         return LowLevel.phare_active();
     }
     else{
-        return 1;
+        return 0;
     }
 }
 

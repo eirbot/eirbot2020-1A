@@ -27,48 +27,71 @@ LowLevel::~LowLevel() {
 
 bool LowLevel::is_depart()
 {
-    return std::system("gpio -g read 27");
+    FILE *f = popen("gpio -g read 27", "r");
+    char ret[512] = {0};
+    fgets(ret,512,f);
+    printf("%c \n",ret[0]);
+    if (ret[0]=='1') {
+        return true;
+    }
+    else{
+        return false;
+    }
+    pclose(f);
 }
 
 
 bool LowLevel::is_equipe_bleu()
 {
-    int back=std::system("gpio -g read 17");
-    if (back==1) {
+    FILE *f = popen("gpio -g read 17", "r");
+    char ret[512] = {0};
+    fgets(ret,512,f);
+    printf("%c \n",ret[0]);
+    if (ret[0]=='1') {
         std::system("gpio -g mode 26 1");
     }
-    return back;
+
+    if (ret[0]=='1') {
+        return true;
+    }
+    else{
+        return false;
+    }
+    pclose(f);
 }
 
 
 bool LowLevel::phare_active()
 {
-    return std::system("gpio -g read 5");
+    FILE *f = popen("gpio -g read 5", "r");
+    char ret[512] = {0};
+    fgets(ret,512,f);
+    printf("%c \n",ret[0]);
+    if (ret[0]=='1') {
+        return true;
+    }
+    else{
+        return false;
+    }
+    pclose(f);
+
 }
 
 
 bool LowLevel::boussole_nord()
 {
-    return std::system("gpio -g read 11");
+    FILE *f = popen("gpio -g read 11", "r");
+    char ret[512] = {0};
+    fgets(ret,512,f);
+    printf("%c \n",ret[0]);
+    if (ret[0]=='1') {
+        return true;
+    }
+    else{
+        return false;
+    }
+    pclose(f);
 }
 
-//-------- PRIVATE ---------
-
-int LowLevel::setup() {
-//TODO init input and outputs
-    return 0;
-}
-
-void LowLevel::set_mode() {
-
-}
-
-void LowLevel::write() {
-
-}
-
-void LowLevel::read() {
-
-}
 
 //TODO send_command()

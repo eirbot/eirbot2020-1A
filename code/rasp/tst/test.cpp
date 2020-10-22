@@ -8,6 +8,7 @@ using namespace std;
 #include "test_protocole.hpp"
 #include "test_ecocup.hpp"
 #include "test_robot.hpp"
+#include "test_lowlevel.hpp"
 
 class Protocole Protocole("/dev/ttyACM0");
 
@@ -23,14 +24,15 @@ int timeout;
 int robot_adv;
 int timeout_after_timeout;
 int which_side=0;
+int pc=1;
 
 
 int main(int argc, char *argv[]) {
   // test_navigation();
-  // test_test();
-  // asserv_detection();
   // test_actionneur();
-  test_protocole(argc,argv);
-  //test_ecocup();
+  // //test_protocole(argc,argv);
+  // //test_ecocup();
   // test_robot();
+  // test_asserv();
+  test_lowlevel();
 }

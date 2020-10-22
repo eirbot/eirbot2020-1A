@@ -34,7 +34,6 @@ void test_navigation()
     assert(test_path[0].x==Phare.x && test_path[0].y==Phare.y);
     assert(test_path[test_path.size()-1].x==Manche_1.x);
     assert(test_path[test_path.size()-1].y==Manche_1.y);
-    good_port(test_path[test_path.size()-1].x, test_path[test_path.size()-1].y, Port.x, Port.y);
     print_success();
 
     printf("Test si la desination est un obstacle ... \n");
@@ -54,7 +53,6 @@ void test_navigation()
     test_path=test_navigation.Astar(Navigation(Manche_2), Navigation(Phare),list_obstacles);
     test_path=test_navigation.Astar(Navigation(Phare), Navigation(Port),list_obstacles);
     assert(test_path[test_path.size()-1].x==Port.x && test_path[test_path.size()-1].y==Port.y);
-    good_port(test_path[test_path.size()-1].x, test_path[test_path.size()-1].y, Port.x, Port.y);
     print_success();
 
     printf("Test sur l'affichage d'un chemin ... \n");

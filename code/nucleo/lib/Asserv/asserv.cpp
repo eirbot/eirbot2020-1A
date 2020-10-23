@@ -79,8 +79,7 @@ void init_asserv() {
 
 
 void set_pwm() {
-    if(commande_PWMD_V != 0) commande_PWMD_V += 3;
-    if(commande_PWMG_V != 0) commande_PWMG_V += 3;
+
     dirMG=fonc_direction(commande_PWMG_V/100); //TODO offset 3 quand != 0
     pwmMG.write(abs(commande_PWMG_V/100));
     dirMD=fonc_direction(commande_PWMD_V/100);
@@ -106,15 +105,15 @@ void function_Asserv(void)
     ConsVD=((commande_Angle/Te)*RA)+((commande_Dis/Te));
 
     //limiteur acceleration
-    aG = ConsVG - old_ConsVG;
-    aD = ConsVD - old_ConsVD;
-    aG_max_tmp = max(aG_max_tmp, aG);
-    if(abs(aG) > A_MAX) {
-        ConsVG = old_ConsVG + sign(aG)*A_MAX;
-    }
-    if(abs(aD) > A_MAX) {
-        ConsVD = old_ConsVD + sign(aD)*A_MAX;
-    }
+    // aG = ConsVG - old_ConsVG;
+    // aD = ConsVD - old_ConsVD;
+    // aG_max_tmp = max(aG_max_tmp, aG);
+    // if(abs(aG) > A_MAX) {
+    //     ConsVG = old_ConsVG + sign(aG)*A_MAX;
+    // }
+    // if(abs(aD) > A_MAX) {
+    //     ConsVD = old_ConsVD + sign(aD)*A_MAX;
+    // }
 
     old_ConsVG = ConsVG;
     old_ConsVD = ConsVD;

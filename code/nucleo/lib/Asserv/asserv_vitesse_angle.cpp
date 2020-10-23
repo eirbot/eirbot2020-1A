@@ -6,12 +6,15 @@
 const float correc = 5/19.92;
 
 
+// #define KP_Angle 0.00083// 0.00082 coefficient proportionnel Asserv Position (Angle)
+// #define KI_Angle 0// 0.000008 coefficient intégral Asserv Position (Angle)
+// #define KD_Angle 0//40//coefficient dérivé Asserv Position (Angle)
 // #define KP_Angle 0.00175// 0.00175 coefficient proportionnel Asserv Position (Angle)
 // #define KI_Angle 0.000001// 0.000001 coefficient intégral Asserv Position (Angle)
 // #define KD_Angle 40//40//coefficient dérivé Asserv Position (Angle)
-float KP_Angle = 0.00175;// 0.00082 coefficient proportionnel Asserv Position (Angle)
-float KI_Angle =  0.000001; // coefficient intégral Asserv Position (Angle)
-float KD_Angle = 40;//40//coefficient dérivé Asserv Position (Angle)
+float KP_Angle = 0.00083;// 0.00082 coefficient proportionnel Asserv Position (Angle)
+float KI_Angle =  0; // coefficient intégral Asserv Position (Angle)
+float KD_Angle = 0;//40//coefficient dérivé Asserv Position (Angle)
 
 void set_KA(float kp, float ki, float kd) {
   KP_Angle = kp;
@@ -114,6 +117,15 @@ float Asserv_V_MG(const float VG, const float ConsVG, int reset)
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_MG*Err+KI_MG*S_Err;
+    if(Commande > 0) {
+      Commande += 4;
+    }
+    else if(Commande < 0) {
+      Commande -= 4;
+    }
+    else {
+      Commande = 0;
+    }
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
   return  Commande;
@@ -132,6 +144,15 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset)
     S_Err=S_Err+Err;
     range(&S_Err,MAX_LIM_ERR_INTE, MIN_LIM_ERR_INTE);
     Commande=KP_MD*Err+KI_MD*S_Err;
+    if(Commande > 0) {
+      Commande += 4;
+    }
+    else if(Commande < 0) {
+      Commande -= 4;
+    }
+    else {
+      Commande = 0;
+    }
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
   return  Commande;

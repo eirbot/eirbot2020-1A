@@ -65,6 +65,7 @@ void setup()
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
   side=Robot.calibration();
+  side="blue";
   printf("Je suis du côté %c \n",side[0]);
 
   printf("Je vérifie que mes bras fonctionnent \n");
@@ -131,7 +132,6 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   Navigation Navigation;
   int temps=0;
   vector<obstacle> list_obstacles = fillVector();
-  go_to({.x=20,.y=80});
   //Module Phare
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
@@ -163,13 +163,21 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   go_to({.x=20,.y=178});
   Robot.actionneur(1, 1);
-  Robot.rotation(360);
+    if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_blue(BeginMeasurement);
+  }
+  Robot.rotation(180);
+  Robot.actionneur(1, 0);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
   go_to({.x=48,.y=178});
-  Robot.rotation(360);
-  Robot.actionneur(0, 1);
+  Robot.actionneur(1, 1);
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_blue(BeginMeasurement);
+  }
+  Robot.rotation(180);
+  Robot.actionneur(1,0);
   Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");

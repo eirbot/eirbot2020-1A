@@ -409,11 +409,12 @@ void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_ob
         return;
     }
     if(back==1){
-        struct position my_position=robot_position();
-        struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
-        struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
-        vector<Node> result=Astar(node_position,node_dest,list_obstacles);
-        Navigate_to_asserv(result,dest,list_obstacles);
+        go_to({dest.node.x,dest.node.y});
+        // struct position my_position=robot_position();
+        // struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
+        // struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
+        // vector<Node> result=Astar(node_position,node_dest,list_obstacles);
+        // Navigate_to_asserv(result,dest,list_obstacles);
     }
     if(back==2){
         print_detection();

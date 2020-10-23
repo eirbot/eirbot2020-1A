@@ -55,6 +55,7 @@ Protocole::Protocole(std::string device) {
 
     usleep(10000);
     tcflush(serial_port, TCIOFLUSH);
+    send("RESET\n");
 }
 
 Protocole::~Protocole() {

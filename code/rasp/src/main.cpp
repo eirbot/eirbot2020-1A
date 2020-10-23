@@ -73,13 +73,14 @@ void setup()
   Robot.actionneur(1, 1);
   Robot.actionneur(1, 0);
 
+  go_to({.x=20,.y=80});
   while (Robot.depart()==false) {
-    printf("Je suis pret en attente du départ ! \n");
+    printf("Je suis pret en attente du départ ! \r");
   }
   BeginMeasurement=steady_clock::now();
 }
 
-void port_now (std::chrono::steady_clock::time_point BeginMeasurement)
+void port_now_blue (std::chrono::steady_clock::time_point BeginMeasurement)
 {
   Robot.detection('a', '0');
   while ((steady_clock::now()-BeginMeasurement)<milliseconds{95000}) {
@@ -100,6 +101,29 @@ void port_now (std::chrono::steady_clock::time_point BeginMeasurement)
 
     }
 }
+
+void port_now_yellow (std::chrono::steady_clock::time_point BeginMeasurement)
+{
+  Robot.detection('a', '0');
+  while ((steady_clock::now()-BeginMeasurement)<milliseconds{95000}) {
+
+  }
+  auto delai = steady_clock::now() - BeginMeasurement;
+  std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
+  Robot.pavillon(1);
+  if(in_port==false){
+  if (Robot.communication_boussole()==0) {
+      go_to({.x=20,.y=150});
+    }
+    else if(Robot.communication_boussole()==1){
+      go_to({.x=20,.y=50});
+    }
+  }
+    while (1) {
+
+    }
+}
+
 
 //Boucle de jeu
 void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
@@ -130,19 +154,21 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
   Robot.detection('a', '1');
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-    port_now(BeginMeasurement);
+    port_now_blue(BeginMeasurement);
   }
   go_to({.x=70,.y=110 });
   Robot.detection('a', '0');
     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-    port_now(BeginMeasurement);
+    port_now_blue(BeginMeasurement);
   }
-  go_to({.x=23,.y=178});
+  go_to({.x=20,.y=178});
   Robot.actionneur(1, 1);
+  Robot.rotation(360);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-    port_now(BeginMeasurement);
+    port_now_blue(BeginMeasurement);
   }
-  go_to({.x=53,.y=178});
+  go_to({.x=48,.y=178});
+  Robot.rotation(360);
   Robot.actionneur(0, 1);
   Robot.detection('a', '1');
 
@@ -153,7 +179,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
   Node position={(short) 53,(short) 184,0,0,0,0,0};
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-    port_now(BeginMeasurement);
+    port_now_blue(BeginMeasurement);
   }
   if (boussole==false) {
     go_to({.x=20,.y=50});
@@ -167,79 +193,80 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   while (steady_clock::now()-BeginMeasurement < milliseconds{85000}) {
 
   }
-  port_now(BeginMeasurement);
+  port_now_blue(BeginMeasurement);
+}
+//Boucle de jeu
+void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
+{
+  Navigation Navigation;
+  int temps=0;
+  vector<obstacle> list_obstacles = fillVector();
+  //Module Phare
+  printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
+  Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
+  // Robot.move(pos_node,Phare_yellow_waypoint,list_obstacles);
+  go_to({.x=50,.y=155});
+  printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
+  Robot.detection('a', '0');
+  go_to({.x=20,.y=180});
+  // Robot.move(Phare_yellow_waypoint,Phare_yellow,list_obstacles);
+  Robot.actionneur(0,1);
+  go_to({.x=40,.y=180});
+  Robot.actionneur(1, 0);
+  if (Robot.communication_phare()==false) {
+    Robot.actionneur(1, 1);
+    go_to({.x=20,.y=180});
+    Robot.actionneur(0,0);
+  }
+
+  //Module Manche à air
+  printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
+  Robot.detection('a', '1');
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_yellow(BeginMeasurement);
+  }
+  go_to({.x=70,.y=70});
+  Robot.detection('a', '0');
+    if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_yellow(BeginMeasurement);
+  }
+  go_to({.x=20,.y=22});
+  Robot.actionneur(0, 1);
+  Robot.rotation(-180);
+  Robot.actionneur(0, 0);
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_yellow(BeginMeasurement);
+  }
+  go_to({.x=48,.y=22});
+  Robot.actionneur(0, 1);
+  Robot.rotation(-180);
+  Robot.actionneur(0, 0);
+  Robot.detection('a', '1');
+
+  printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
+  int boussole=Robot.communication_boussole();
+  vector<obstacle> list_obstacles_no_ecocup = fillVector_no_ecocup();
+
+  printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
+  Node position={(short) 53,(short) 184,0,0,0,0,0};
+  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_yellow(BeginMeasurement);
+  }
+  if (boussole==false) {
+    go_to({.x=20,.y=150});
+  }
+  else if(boussole==true){
+    go_to({.x=20,.y=50});
+  }
+  in_port=true;
+  auto delai = steady_clock::now() - BeginMeasurement;
+  std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
+  while (steady_clock::now()-BeginMeasurement < milliseconds{85000}) {
+
+  }
+  port_now_yellow(BeginMeasurement);
 }
 
-// void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
-// {
-//   bool in_port=false;
-//   Navigation Navigation;
-//   int temps=0;
-//   vector<obstacle> list_obstacles = fillVector();
-
-//     go_to({.x=20,.y=80});
-//     //Module Phare
-//     printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
-//     Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
-//     Robot.move(pos_node,Phare_yellow_waypoint,list_obstacles);
-
-//     printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
-//     Robot.detection('a', '0');
-//     Robot.move(Phare_yellow_waypoint,Phare_yellow,list_obstacles);
-//     Robot.actionneur(0,1);
-//     go_to({.x=40,.y=20});
-//     Robot.actionneur(0, 0);
-
-//     if (!Robot.communication()) {
-//       printf("\033[34mLe phare n'a pas été activé, je réessaye \033[0m \n");
-//       Robot.actionneur(1, 1);
-//       go_to({.x=20,.y=20});
-//       Robot.actionneur(0, 1);
-//       go_to({.x=40,.y=20});
-//     }
-
-//     //Module Manche à air
-//     printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-//     Robot.detection('a', '1');
-//     Robot.move({(short) 40, (short) 20, 0,0,0,0,0},Manche_1_yellow,list_obstacles);
-//     Robot.actionneur(1, 1);
-//     printf("\033[33mJe pars de MANCHE_1 et je vais au MANCHE_2 \033[0m \n");
-//     go_to({.x=53,.y=180});
-//     Robot.actionneur(1, 0);
-//     Robot.detection('a', '0');
-
-//   //Lecture de la boussole
-//   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
-//   int boussole=Robot.communication();
-//   vector<obstacle> list_obstacles_no_ecocup = fillVector_no_ecocup();
-
-//   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
-//   Node position={(short) 63,(short) 184,0,0,0,0,0};
-//   if (Robot.communication()==0) {
-//     Robot.move(position,Port_N,list_obstacles_no_ecocup);
-//   }
-//   else if(Robot.communication()==1){
-//     Robot.move(position,Port_S,list_obstacles_no_ecocup);
-//   }
-//   in_port=true;
-//   auto delai = steady_clock::now() - BeginMeasurement;
-//   std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
-
-
-
-
-//   if (in_port==false) {
-//     if (Robot.communication()==0) {
-//       go_to({.x=20,.y=50});
-//     }
-//     else if(Robot.communication()==1){
-//       go_to({.x=20,.y=150});
-//     }
-//   }
-//   Robot.pavillon(1);
-//   delai = steady_clock::now() - BeginMeasurement;
-//   std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
-// }
 
 
 class Protocole Protocole("/dev/ttyACM0");
@@ -251,7 +278,7 @@ int main(int argc, char *argv[]) {
     loop_blue(BeginMeasurement);
   }
   else if(side=="yellow") {
-    // loop_yellow(BeginMeasurement);
+    loop_yellow(BeginMeasurement);
   }
 
 

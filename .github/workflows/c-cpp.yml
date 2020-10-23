@@ -28,8 +28,7 @@ jobs:
         cd code 
         cd build
         cmake .. 
-        cd ../../
-        make code
+        make project
       
   Test:
     runs-on: ubuntu-latest

@@ -182,7 +182,7 @@ enum Protocole::Etat Protocole::get_etats_GP2(char etats[3]) {
 //rotation
 enum Protocole::Etat Protocole::set_angle(short angle) {
     send("SRO%hd\n", angle); // angle absolu en deg
-    if(update_buffer(5) == -1) return Etat::TIME_OUT;
+    if(update_buffer(30) == -1) return Etat::TIME_OUT;
     if(strcmp(readBuffer, "RROOK\n") == 0) {
         //printf("Confirmation set rotation\n");
         return Etat::OK;

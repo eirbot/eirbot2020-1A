@@ -118,14 +118,14 @@ void Protocole::parse() {
         go_XY(tmp_x, tmp_y);
         state = WAIT_ASSERV;
         last_order = PO;
-        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), 15);
+        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), PROTO_TIMEOUT_DIST);
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
         tmp_angle = (float)angle;
         rotate(tmp_angle);
         state = WAIT_ASSERV;
         last_order = RO;
-        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), 15);
+        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), PROTO_TIMEOUT_ROT);
     }
     else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
         //GP2_on()

@@ -5,6 +5,11 @@
 #include "asserv.hpp"
 #include "asserv_vitesse_angle.hpp"
 
+//temps en seconde avant que la requete expire
+#define PROTO_TIMEOUT_DIST 20
+#define PROTO_TIMEOUT_ROT 20
+
+
 /**
  * @file Protocole_nucleo.hpp
  * @brief Fichier principal du projet permet de communiquer entre la raspberry et la nucléo. Ce fichier est l'implémentation côté nucléo

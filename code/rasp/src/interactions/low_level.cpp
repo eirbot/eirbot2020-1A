@@ -42,6 +42,9 @@ bool LowLevel::is_equipe_bleu()
     if (ret[0]=='1') {
         std::system("gpio -g write 26 1");
     }
+    else {
+        std::system("gpio -g write 26 0");
+    }
     pclose(f);
     return ret[0]=='1';
 }

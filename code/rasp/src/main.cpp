@@ -65,16 +65,26 @@ void setup()
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
   side=Robot.calibration();
-  side="blue";
   printf("Je suis du côté %c \n",side[0]);
-
+  if (side=="blue") {
+    go_to({.x=16,.y=80});
+  }
+  else if(side=="yellow"){
+    go_to({.x=16,.y=120});
+  }
   printf("Je vérifie que mes bras fonctionnent \n");
   Robot.actionneur(0, 1);
   Robot.actionneur(0, 0);
   Robot.actionneur(1, 1);
   Robot.actionneur(1, 0);
 
-  go_to({.x=20,.y=80});
+  if (side=="blue") {
+    go_to({.x=20,.y=80});
+  }
+  else if(side == "yellow")
+  {
+    go_to({.x=20,.y=120});
+  }
   while (Robot.depart()==false) {
     printf("Je suis pret en attente du départ ! \r");
   }
@@ -135,12 +145,10 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   //Module Phare
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
-  // Robot.move(pos_node,Phare_blue_waypoint,list_obstacles);
   go_to({.x=50,.y=45});
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
   Robot.detection('a', '0');
   go_to({.x=20,.y=20});
-  // Robot.move(Phare_blue_waypoint,Phare_blue,list_obstacles);
   Robot.actionneur(0,1);
   go_to({.x=40,.y=20});
   Robot.actionneur(0, 0);
@@ -171,7 +179,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
-  go_to({.x=48,.y=178});
+  go_to({.x=45,.y=178});
   Robot.actionneur(1, 1);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
@@ -182,10 +190,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
   int boussole=Robot.communication_boussole();
-  vector<obstacle> list_obstacles_no_ecocup = fillVector_no_ecocup();
-
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
-  Node position={(short) 53,(short) 184,0,0,0,0,0};
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
@@ -212,17 +217,15 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   //Module Phare
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
-  // Robot.move(pos_node,Phare_yellow_waypoint,list_obstacles);
   go_to({.x=50,.y=155});
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
   Robot.detection('a', '0');
   go_to({.x=20,.y=180});
-  // Robot.move(Phare_yellow_waypoint,Phare_yellow,list_obstacles);
-  Robot.actionneur(0,1);
+  Robot.actionneur(1,1);
   go_to({.x=40,.y=180});
   Robot.actionneur(1, 0);
   if (Robot.communication_phare()==false) {
-    Robot.actionneur(1, 1);
+    Robot.actionneur(0, 1);
     go_to({.x=20,.y=180});
     Robot.actionneur(0,0);
   }
@@ -240,23 +243,27 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   go_to({.x=20,.y=22});
   Robot.actionneur(0, 1);
+      if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_yellow(BeginMeasurement);
+  }
+
   Robot.rotation(-180);
   Robot.actionneur(0, 0);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
-  go_to({.x=48,.y=22});
+  go_to({.x=45,.y=22});
   Robot.actionneur(0, 1);
+    if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
+    port_now_yellow(BeginMeasurement);
+  }
   Robot.rotation(-180);
   Robot.actionneur(0, 0);
   Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
   int boussole=Robot.communication_boussole();
-  vector<obstacle> list_obstacles_no_ecocup = fillVector_no_ecocup();
-
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
-  Node position={(short) 53,(short) 184,0,0,0,0,0};
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }

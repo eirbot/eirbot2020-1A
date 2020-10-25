@@ -58,10 +58,6 @@ void parse_opts(int argc, char *argv[], int *pc, string *side){
 void setup()
 {
   LowLevel LowLevel;
-  printf("Je commence la calibration des GP2 \n");
-  printf("Systèmes de detection .................................... ");
-  Robot.detection('a', '1');
-
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
   side=Robot.calibration();
@@ -72,6 +68,10 @@ void setup()
   else if(side=="yellow"){
     go_to({.x=16,.y=120});
   }
+  printf("Je commence la calibration des GP2 \n");
+  printf("Systèmes de detection .................................... ");
+  Robot.detection('a', '1');
+
   printf("Je vérifie que mes bras fonctionnent \n");
   Robot.actionneur(0, 1);
   Robot.actionneur(0, 0);

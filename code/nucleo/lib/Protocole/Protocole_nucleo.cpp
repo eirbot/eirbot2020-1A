@@ -5,6 +5,8 @@
 #define DEBUG_ASS
 //#define DEBUG_PRO
 
+Timeout timeout_order;
+
 Protocole::Protocole() {
     memset(readBuffer, 0, sizeof(readBuffer));
     _serial = new RawSerial(USBTX, USBRX);
@@ -115,10 +117,15 @@ void Protocole::parse() {
     if(sscanf(readBuffer, "SPO%hd,%hd\n", &x, &y)) {
         tmp_x = ((float)x)/100;
         tmp_y = ((float)y)/100;
-        go_XY(tmp_x, tmp_y);
-        state = WAIT_ASSERV;
-        last_order = PO;
-        timeout_order.attach(callback(this, &Protocole::set_timeout_flag), PROTO_TIMEOUT_DIST);
+        if(state == INIT) {
+            set_X0Y0(tmp_x, tmp_y);
+        }
+        else {
+            go_XY(tmp_x, tmp_y);
+            state = WAIT_ASSERV;
+            last_order = PO;
+            timeout_order.attach(callback(this, &Protocole::set_timeout_flag), PROTO_TIMEOUT_DIST);
+        }
     }
     else if(sscanf(readBuffer, "SRO%hd\n", &angle)) {
         tmp_angle = (float)angle;
@@ -157,6 +164,7 @@ void Protocole::parse() {
     }
     else if(strcmp(readBuffer, "RESET\n") == 0) {
         set_state(RES);
+        state = INIT;
     }
     else if(sscanf(readBuffer, "SKA%f,%f,%f\n", &KP_a, &KI_a, &KD_a)) {
         set_KA(KP_a, KI_a, KD_a);

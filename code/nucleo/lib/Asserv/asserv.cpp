@@ -225,6 +225,11 @@ float get_angle() {
     return (alpha0 + Angle)*180/M_PI; //Angle=0 normalement
 }
 
+void set_X0Y0(float lX0, float lY0) {
+    x_0 = lX0;
+    y_0 = lY0;
+}
+
 //---------- deplacement -------------
 /*
  * go_XY

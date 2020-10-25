@@ -15,7 +15,7 @@ Protocole::Protocole() {
     debug_serial->baud(9600);
     debug_serial->printf("DEBUG\n");
     enable_callback(true);
-    Protocole::state = WAIT_ORDER;
+    Protocole::state = INIT;
     Protocole::last_order = OTHER;
 }
 
@@ -61,7 +61,7 @@ void Protocole::update_state() {
       debug_serial->printf(update_debug_string());
       //print_dbg();
     #endif
-    if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
+    if((Protocole::state == INIT || Protocole::state == WAIT_ORDER) && order_ready_flag == true) {
         order_ready_flag = false;
         parse();
     }
@@ -119,6 +119,7 @@ void Protocole::parse() {
         tmp_y = ((float)y)/100;
         if(state == INIT) {
             set_X0Y0(tmp_x, tmp_y);
+            _serial->printf("RPOOK\n");
         }
         else {
             go_XY(tmp_x, tmp_y);

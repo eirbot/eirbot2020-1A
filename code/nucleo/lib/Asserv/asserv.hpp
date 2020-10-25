@@ -38,6 +38,7 @@ float XY_to_Distance(float x, float y);
 float XY_to_Angle(float x, float y);
 
 //set
+void set_X0Y0(float lX0, float lY0);
 void go_XY(float x_d, float y_d);
 void rotate(float angle);
 

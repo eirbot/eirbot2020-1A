@@ -120,6 +120,7 @@ void Protocole::parse() {
         if(state == INIT) {
             set_X0Y0(tmp_x, tmp_y);
             _serial->printf("RPOOK\n");
+            state = WAIT_ORDER;
         }
         else {
             go_XY(tmp_x, tmp_y);
@@ -141,9 +142,20 @@ void Protocole::parse() {
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
         if(actionneur_id == '0') {
-            //activate_manche();
+            if(actionneur_etat == '1') {
+                activate_bras_droit(); //FIXME c le bien le droit ?
+            }
+            else {
+                desactivate_bras_droit();
+            }
         }
         else if(actionneur_id == '1') {
+            if(actionneur_etat == '1') {
+                activate_bras_gauche(); //FIXME c le bien le gauche ?
+            }
+            else {
+                desactivate_bras_gauche();
+            }
         }
         else if(actionneur_id == '2') {
             activate_pavillon();
@@ -166,6 +178,7 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "RESET\n") == 0) {
         set_state(RES);
         state = INIT;
+        timeout_order.detach();
     }
     else if(sscanf(readBuffer, "SKA%f,%f,%f\n", &KP_a, &KI_a, &KD_a)) {
         set_KA(KP_a, KI_a, KD_a);

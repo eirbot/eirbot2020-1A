@@ -21,6 +21,7 @@ Protocole protocole=Protocole();
 int main()
 {
   //pc.printf("Hello ! \n\r");
+  init_bras_pwm();
   desactivate_pavillon();
   init_asserv();
   //pc.attach(&conCharReceived, Serial::RxIrq);

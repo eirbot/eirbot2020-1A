@@ -1,17 +1,34 @@
 #include "actionneur_nucleo.hpp"
+#include "pinout.hpp"
 
-DigitalOut pavillon_pin(LED1); //PG_0
+DigitalOut pavillon_pin(PC_6); //PG_0
+PwmOut servoGauche(PA_3);
+PwmOut servoDroit(PA_0);
 Timeout timeout_pavillon;
 
-void activate_manche(PwmOut servo)
+
+void init_bras_pwm() {
+    servoGauche.period_ms(20);         // Initialisation période
+    servoDroit.period_ms(20);         // Initialisation période
+    desactivate_bras_droit();
+    desactivate_bras_gauche();
+}
+
+void activate_bras_droit() {
+    servoDroit.pulsewidth_us(1500);   //90°
+}
+void desactivate_bras_droit() {
+    servoDroit.pulsewidth_us(500);   // Initialisation en position 0
+
+}
+
+void activate_bras_gauche()
 {
-    //exemple fonctionnel
-    servo.period_ms(60);         // Initialisation période
-    servo.pulsewidth_us(1000);   // Initialisation en position 0
-    wait_us(300000);
-    servo.pulsewidth_us(1500);
-    wait_us(300000);
-    servo.pulsewidth_us(2000);
+    servoGauche.pulsewidth_us(1500);  // 90°
+}
+
+void desactivate_bras_gauche() {
+    servoGauche.pulsewidth_us(500);   // Initialisation en position 0
 }
 
 void desactivate_pavillon() {

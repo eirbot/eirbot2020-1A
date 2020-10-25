@@ -23,10 +23,11 @@ void desactivate_pavillon();
  * @param servo: Le servomoteur associé au pavillon*/
 void activate_pavillon();
 
-/**
- * @brief Sort ou rentre le pavillon
- * @param serv: Le servomoteur associé au manche*/
-void activate_manche(PwmOut serv); //Met le bras pour le manche dans l'autre configuration
 
+void init_bras_pwm();
+void activate_bras_droit();
+void desactivate_bras_droit();
+void activate_bras_gauche();
+void desactivate_bras_gauche();
 
 #endif // __ACTIONNEUR_H_

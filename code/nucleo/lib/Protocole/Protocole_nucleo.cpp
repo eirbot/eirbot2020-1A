@@ -5,6 +5,8 @@
 #define DEBUG_ASS
 //#define DEBUG_PRO
 
+Timeout timeout_order;
+
 Protocole::Protocole() {
     memset(readBuffer, 0, sizeof(readBuffer));
     _serial = new RawSerial(USBTX, USBRX);

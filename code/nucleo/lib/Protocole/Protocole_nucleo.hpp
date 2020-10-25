@@ -54,7 +54,6 @@ class Protocole
 
         RawSerial *_serial;
         RawSerial *debug_serial;
-        Timeout timeout_order;
         void enable_callback(bool enable);
         void set_timeout_flag();
         void parse();

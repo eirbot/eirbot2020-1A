@@ -51,6 +51,7 @@ class Protocole
         bool order_ready_flag = false;
         bool timeout_flag = false;
         bool obstacle_flag = false;
+        bool GP2_enable = false;
 
         RawSerial *_serial;
         RawSerial *debug_serial;

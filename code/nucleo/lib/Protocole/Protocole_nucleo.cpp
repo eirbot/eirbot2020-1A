@@ -19,6 +19,9 @@ Protocole::Protocole() {
     enable_callback(true);
     Protocole::state = INIT;
     Protocole::last_order = OTHER;
+    GP2_etats[0] = '0';
+    GP2_etats[1] = '0';
+    GP2_etats[2] = '0';
 }
 
 Protocole::~Protocole() {
@@ -63,9 +66,19 @@ void Protocole::update_state() {
       debug_serial->printf(update_debug_string());
       //print_dbg();
     #endif
+
+    //TODO fonction update pos
+    float tmp_x = 0;
+    float tmp_y = 0;
+    get_XY(&tmp_x, &tmp_y);
+    x = (short)(tmp_x*100);
+    y = (short)(tmp_y*100);
+
+    obstacle_flag = process_obstacle(x, y, (short)get_angle(), GP2_etats);
+
     #ifdef DEBUG_DETECT
       debug_serial->printf(update_debug_GP2());
-      //print_dbg();
+      debug_serial->printf("%d\n", obstacle_flag);
     #endif
     if((Protocole::state == INIT || Protocole::state == WAIT_ORDER) && order_ready_flag == true) {
         order_ready_flag = false;
@@ -98,6 +111,13 @@ void Protocole::update_state() {
             timeout_flag = false;
             state = WAIT_ORDER;
             timeout_order.detach();
+        }
+        else if(obstacle_flag == true && GP2_enable == true) {
+            _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
+            timeout_order.detach();
+            obstacle_flag = false;
+            state = WAIT_ORDER;
+            set_state(STOP);
         }
     }
     else if(obstacle_flag == true) {
@@ -143,13 +163,18 @@ void Protocole::parse() {
         timeout_order.attach(callback(this, &Protocole::set_timeout_flag), PROTO_TIMEOUT_ROT);
     }
     else if(sscanf(readBuffer, "SGA%c\n", &GP2_on)) {
-        //GP2_on()
+        if(GP2_on == '1') {
+            GP2_enable = true;
+        }
+        else if (GP2_on == '0') {
+            GP2_enable = false;
+        }
         _serial->printf("RGAOK\n");
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
         if(actionneur_id == '0') {
             if(actionneur_etat == '1') {
-                activate_bras_droit(); //FIXME c le bien le droit ?
+                activate_bras_droit();
             }
             else {
                 desactivate_bras_droit();
@@ -157,7 +182,7 @@ void Protocole::parse() {
         }
         else if(actionneur_id == '1') {
             if(actionneur_etat == '1') {
-                activate_bras_gauche(); //FIXME c le bien le gauche ?
+                activate_bras_gauche();
             }
             else {
                 desactivate_bras_gauche();
@@ -179,6 +204,7 @@ void Protocole::parse() {
         _serial->printf("VRO%hd\n", (short)get_angle());
     }
     else if(strcmp(readBuffer, "GGE\n") == 0) {
+        get_etat_GP2(GP2_etats, 1); //1=avant
         _serial->printf("VGE%c,%c,%c\n", GP2_etats[0], GP2_etats[1], GP2_etats[2]);
     }
     else if(strcmp(readBuffer, "RESET\n") == 0) {

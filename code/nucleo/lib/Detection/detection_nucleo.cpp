@@ -1,6 +1,8 @@
 #include "detection_nucleo.hpp"
 #include "pinout.hpp"
 
+const float SEUIL = 0.3;
+
 //avant
 AnalogIn gp2_a1(GP2_A1_PIN);
 AnalogIn gp2_a2(GP2_A2_PIN);
@@ -11,8 +13,6 @@ AnalogIn gp2_r1(GP2_R1_PIN);
 AnalogIn gp2_r2(GP2_R2_PIN);
 AnalogIn gp2_r3(GP2_R3_PIN);
 
-float seuils[] = {0.3, 0.3, 0.3,     //avant
-                  0.3, 0.3, 0.3};    //arriere
 AnalogIn pins[] = {gp2_a1, gp2_a2, gp2_a3,
                    gp2_r1, gp2_r2, gp2_r3};
 
@@ -20,19 +20,29 @@ char debug_str_GP2[256];
 
 //return true if we must STOP
 bool GP2_update(bool avant) {
+    return false;
+}
+
+bool get_etat_GP2(char etats[3], bool avant) {
+    bool flag = false;
+    float read_tmp;
     for(int i = 0; i < 3; i++) {
-        if(avant == true) {
-            if(pins[i].read() < seuils[i+3]) {
-                return true;
-            }
+        if(avant) {
+            read_tmp = pins[i].read();
         }
         else {
-            if(pins[i+3].read() < seuils[i+3]) {
-                return true;
-            }
+            read_tmp = pins[i+3].read();
+        }
+
+        if(read_tmp > SEUIL) {
+            etats[i] = '1';
+            flag = true;
+        }
+        else {
+            etats[i] = '0';
         }
     }
-    return false;
+    return flag;
 }
 
 

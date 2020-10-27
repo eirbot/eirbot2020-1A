@@ -4,6 +4,7 @@
 
 const float SEUIL = 0.3;
 float x_ob_dbg, y_ob_dbg, alpha_dbg;
+bool flag_dbg;
 
 //avant
 AnalogIn gp2_a1(GP2_A1_PIN);
@@ -19,6 +20,8 @@ AnalogIn pins[] = {gp2_a1, gp2_a2, gp2_a3,
                    gp2_r1, gp2_r2, gp2_r3};
 
 char debug_str_GP2[256];
+int nb_sample = 0;
+int etats_lisse[] = {0,0,0};
 
 
 //return true if we must STOP
@@ -28,6 +31,7 @@ bool GP2_update(bool avant) {
 
 void get_etat_GP2(char etats[3], bool avant) {
     float read_tmp;
+    nb_sample += 1;
     for(int i = 0; i < 3; i++) {
         if(avant) {
             read_tmp = pins[i].read();
@@ -37,13 +41,22 @@ void get_etat_GP2(char etats[3], bool avant) {
         }
 
         if(read_tmp > SEUIL) {
-            etats[i] = '1';
+            etats_lisse[i] += 1;
         }
-        else {
-            etats[i] = '0';
+
+        etats[i] = '0';
+        if(nb_sample >= 10) {
+            if(etats_lisse[i] >= 10) {
+                etats[i] = '1';
+                etats_lisse[i] = 0;
+            }
         }
     }
+    if(nb_sample >= 10) {
+        nb_sample = 0;
+    }
 }
+
 
 bool process_obstacle(short x, short y, short alpha, char etats[3]) {
     get_etat_GP2(etats, 1); //1=avant
@@ -63,6 +76,7 @@ bool process_obstacle(short x, short y, short alpha, char etats[3]) {
         alpha-=22;
     }
     else {
+        flag_dbg = false;
         return false;
     }
 
@@ -72,15 +86,24 @@ bool process_obstacle(short x, short y, short alpha, char etats[3]) {
     y_ob_dbg = calcul_y;
     alpha_dbg = alpha;
     if (calcul_x >= 20 && calcul_y >= 20 && calcul_x <= 150 && calcul_y <= 180) {
+        flag_dbg = true;
         return true;
     }
     else{
+        flag_dbg = false;
         return false;
     }
 }
 
 char * update_debug_GP2() {
-    snprintf(debug_str_GP2, 256, "1:%f 2:%f 3:%f xo:%f yo:%f a:%d\r\n", gp2_a1.read(), gp2_a2.read(), gp2_a3.read(), x_ob_dbg, y_ob_dbg, alpha_dbg);
+    if(flag_dbg == true) {
+        // snprintf(debug_str_GP2, 256, "OBSTACLE\n");
+        snprintf(debug_str_GP2, 256, "n:%d 1:%f 2:%f 3:%f xo:%f yo:%f a:%f\r\n",
+                 nb_sample, gp2_a1.read(), gp2_a2.read(), gp2_a3.read(), x_ob_dbg, y_ob_dbg, alpha_dbg);
+    }
+    else {
+        snprintf(debug_str_GP2, 256, "n:%d\n", nb_sample);
+    }
     return debug_str_GP2;
 
 }

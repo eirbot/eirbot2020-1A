@@ -71,10 +71,10 @@ void Protocole::update_state() {
     float tmp_x = 0;
     float tmp_y = 0;
     get_XY(&tmp_x, &tmp_y);
-    x = (short)(tmp_x*100);
-    y = (short)(tmp_y*100);
+    // x = (short)(tmp_x*100);
+    // y = (short)(tmp_y*100);
 
-    obstacle_flag = process_obstacle(x, y, (short)get_angle(), GP2_etats);
+    obstacle_flag = process_obstacle((short)(tmp_x*100), (short)(tmp_y*100), (short)get_angle(), GP2_etats);
 
     #ifdef DEBUG_DETECT
       debug_serial->printf(update_debug_GP2());

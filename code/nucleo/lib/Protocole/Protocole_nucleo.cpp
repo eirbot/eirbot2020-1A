@@ -1,9 +1,11 @@
 #include "Protocole_nucleo.hpp"
 #include "actionneur_nucleo.hpp"
+#include "detection_nucleo.hpp"
 #include "mbed.h"
 
-#define DEBUG_ASS
+// #define DEBUG_ASS
 //#define DEBUG_PRO
+#define DEBUG_DETECT
 
 Timeout timeout_order;
 
@@ -15,7 +17,7 @@ Protocole::Protocole() {
     debug_serial->baud(9600);
     debug_serial->printf("DEBUG\n");
     enable_callback(true);
-    Protocole::state = WAIT_ORDER;
+    Protocole::state = INIT;
     Protocole::last_order = OTHER;
 }
 
@@ -61,7 +63,11 @@ void Protocole::update_state() {
       debug_serial->printf(update_debug_string());
       //print_dbg();
     #endif
-    if(Protocole::state == WAIT_ORDER && order_ready_flag == true) {
+    #ifdef DEBUG_DETECT
+      debug_serial->printf(update_debug_GP2());
+      //print_dbg();
+    #endif
+    if((Protocole::state == INIT || Protocole::state == WAIT_ORDER) && order_ready_flag == true) {
         order_ready_flag = false;
         parse();
     }
@@ -119,6 +125,8 @@ void Protocole::parse() {
         tmp_y = ((float)y)/100;
         if(state == INIT) {
             set_X0Y0(tmp_x, tmp_y);
+            _serial->printf("RPOOK\n");
+            state = WAIT_ORDER;
         }
         else {
             go_XY(tmp_x, tmp_y);
@@ -140,9 +148,20 @@ void Protocole::parse() {
     }
     else if(sscanf(readBuffer, "SAC%c,%c\n", &actionneur_id, &actionneur_etat)) {
         if(actionneur_id == '0') {
-            //activate_manche();
+            if(actionneur_etat == '1') {
+                activate_bras_droit(); //FIXME c le bien le droit ?
+            }
+            else {
+                desactivate_bras_droit();
+            }
         }
         else if(actionneur_id == '1') {
+            if(actionneur_etat == '1') {
+                activate_bras_gauche(); //FIXME c le bien le gauche ?
+            }
+            else {
+                desactivate_bras_gauche();
+            }
         }
         else if(actionneur_id == '2') {
             activate_pavillon();
@@ -165,6 +184,7 @@ void Protocole::parse() {
     else if(strcmp(readBuffer, "RESET\n") == 0) {
         set_state(RES);
         state = INIT;
+        timeout_order.detach();
     }
     else if(sscanf(readBuffer, "SKA%f,%f,%f\n", &KP_a, &KI_a, &KD_a)) {
         set_KA(KP_a, KI_a, KD_a);

@@ -21,11 +21,13 @@ Protocole protocole=Protocole();
 int main()
 {
   //pc.printf("Hello ! \n\r");
+  init_bras_pwm();
   desactivate_pavillon();
   init_asserv();
   //pc.attach(&conCharReceived, Serial::RxIrq);
   while(1) {
     protocole.update_state();
+    // GP2_update(true);
     //print_debug_asserv(pc,c);
     //wait_us(100000);
   }

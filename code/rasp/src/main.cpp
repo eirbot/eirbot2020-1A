@@ -58,10 +58,6 @@ void parse_opts(int argc, char *argv[], int *pc, string *side){
 void setup()
 {
   LowLevel LowLevel;
-  printf("Je commence la calibration des GP2 \n");
-  printf("Systèmes de detection .................................... ");
-  Robot.detection('a', '1');
-
   //Information sur le côté de la table
   printf("Je récupère l'information du côté de la table \n");
   side=Robot.calibration();
@@ -72,10 +68,20 @@ void setup()
   else if(side=="yellow"){
     go_to({.x=16,.y=120});
   }
+  printf("Je commence la calibration des GP2 \n");
+  printf("Systèmes de detection .................................... ");
+  Robot.detection('a', '1');
+
   printf("Je vérifie que mes bras fonctionnent \n");
   Robot.actionneur(0, 1);
-  Robot.actionneur(0, 0);
+  for (int i=0; i<100000; i++) {
+
+  }
   Robot.actionneur(1, 1);
+  for (int i=0; i<100000; i++) {
+
+  }
+  Robot.actionneur(0, 0);
   Robot.actionneur(1, 0);
 
   if (side=="blue") {
@@ -149,13 +155,13 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
   Robot.detection('a', '0');
   go_to({.x=20,.y=20});
-  Robot.actionneur(0,1);
-  go_to({.x=40,.y=20});
-  Robot.actionneur(0, 0);
+  Robot.actionneur(1,1);
+  go_to({.x=38,.y=20});
+  Robot.actionneur(1, 0);
   if (Robot.communication_phare()==false) {
-    Robot.actionneur(1, 1);
+    Robot.actionneur(0, 1);
     go_to({.x=20,.y=20});
-    Robot.actionneur(1,0);
+    Robot.actionneur(0,0);
   }
 
   //Module Manche à air
@@ -169,23 +175,23 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
-  go_to({.x=20,.y=178});
-  Robot.actionneur(1, 1);
+  go_to({.x=19,.y=178});
+  Robot.actionneur(0, 1);
     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
   Robot.rotation(180);
-  Robot.actionneur(1, 0);
+  Robot.actionneur(0, 0);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
-  go_to({.x=45,.y=178});
-  Robot.actionneur(1, 1);
+  go_to({.x=50,.y=178});
+  Robot.actionneur(0, 1);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
   Robot.rotation(180);
-  Robot.actionneur(1,0);
+  Robot.actionneur(0,0);
   Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");

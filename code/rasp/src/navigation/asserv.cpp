@@ -23,6 +23,7 @@ int go_to(struct position dest)
         GP2.disactivate('a');
         struct position position=robot_position();
         GP2.gp2Obstacle(etats,position,dest);
+        GP2.activate('a');
     }
     return asserv_back;
 }

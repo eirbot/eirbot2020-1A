@@ -37,5 +37,5 @@ void desactivate_pavillon() {
 
 void activate_pavillon() {
     pavillon_pin = 0; //logique inverse
-    timeout_pavillon.attach(&desactivate_pavillon, 7);
+    timeout_pavillon.attach(&desactivate_pavillon, 0.7);
 }

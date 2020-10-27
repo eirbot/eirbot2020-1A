@@ -59,30 +59,32 @@ void setup()
 {
   LowLevel LowLevel;
   //Information sur le côté de la table
-  printf("Je récupère l'information du côté de la table \n");
+  printf("Je récupère l'information du côté de la table............ \n");
   side=Robot.calibration();
-  printf("Je suis du côté %c \n",side[0]);
   if (side=="blue") {
+    printf("\033[34mJe suis du côté bleu !\033[0m \n");
     go_to({.x=16,.y=80});
   }
   else if(side=="yellow"){
+    printf("\033[33mJe suis du côté jaune !\033[0m \n");
     go_to({.x=16,.y=120});
   }
-  printf("Je commence la calibration des GP2 \n");
-  printf("Systèmes de detection .................................... ");
+  printf("Je commence la calibration des GP2........................\n");
   Robot.detection('a', '1');
 
-  printf("Je vérifie que mes bras fonctionnent \n");
+  printf("Je vérifie que mes bras fonctionnent......................\n");
   Robot.actionneur(0, 1);
   Robot.actionneur(0, 0);
   Robot.actionneur(1, 1);
   Robot.actionneur(1, 0);
 
+  printf("J'initialise l'afficheur de score ........................\n");
+  Robot.setup_score();
+  Robot.set_score(0);
   if (side=="blue") {
     go_to({.x=20,.y=80});
   }
-  else if(side == "yellow")
-  {
+  else if(side == "yellow"){
     go_to({.x=20,.y=120});
   }
   int i=0;
@@ -104,12 +106,15 @@ void port_now_blue (std::chrono::steady_clock::time_point BeginMeasurement)
   auto delai = steady_clock::now() - BeginMeasurement;
   std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
   Robot.pavillon(1);
+  Robot.add_score(10);
   if(in_port==false){
   if (Robot.communication_boussole()==0) {
-      go_to({.x=20,.y=50});
+    go_to({.x=20,.y=50});
+    Robot.add_score(10);
     }
     else if(Robot.communication_boussole()==1){
       go_to({.x=20,.y=150});
+      Robot.add_score(10);
     }
   }
     while (1) {
@@ -126,12 +131,15 @@ void port_now_yellow (std::chrono::steady_clock::time_point BeginMeasurement)
   auto delai = steady_clock::now() - BeginMeasurement;
   std::cout << "Temps total d'execution " << duration_cast<milliseconds>(delai).count() << " ms" << '\n';
   Robot.pavillon(1);
+  Robot.add_score(10);
   if(in_port==false){
   if (Robot.communication_boussole()==0) {
-      go_to({.x=20,.y=150});
-    }
+    go_to({.x=20,.y=150});
+    Robot.add_score(10);
+  }
     else if(Robot.communication_boussole()==1){
       go_to({.x=20,.y=50});
+      Robot.add_score(10);
     }
   }
     while (1) {
@@ -143,10 +151,7 @@ void port_now_yellow (std::chrono::steady_clock::time_point BeginMeasurement)
 //Boucle de jeu
 void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 {
-  Navigation Navigation;
   int temps=0;
-  vector<obstacle> list_obstacles = fillVector();
-  //Module Phare
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
   go_to({.x=50,.y=45});
@@ -160,6 +165,12 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
     Robot.actionneur(0, 1);
     go_to({.x=20,.y=20});
     Robot.actionneur(0,0);
+  }
+  if (Robot.communication_phare()==true) {
+    Robot.add_score(15);
+  }
+  else {
+    Robot.add_score(5);
   }
 
   //Module Manche à air
@@ -180,6 +191,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   Robot.rotation(180);
   Robot.actionneur(0, 0);
+  Robot.add_score(5);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
@@ -190,6 +202,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   Robot.rotation(180);
   Robot.actionneur(0,0);
+  Robot.add_score(10);
   Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
@@ -200,9 +213,11 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   if (boussole==false) {
     go_to({.x=20,.y=50});
+    Robot.add_score(10);
   }
   else if(boussole==true){
     go_to({.x=20,.y=150});
+    Robot.add_score(10);
   }
   in_port=true;
   auto delai = steady_clock::now() - BeginMeasurement;
@@ -215,10 +230,7 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 //Boucle de jeu
 void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
 {
-  Navigation Navigation;
   int temps=0;
-  vector<obstacle> list_obstacles = fillVector();
-  //Module Phare
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   Node pos_node={.x= (short) 20,.y= (short) 80, 0,0,0,0,0};
   go_to({.x=50,.y=155});
@@ -232,6 +244,12 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
     Robot.actionneur(1, 1);
     go_to({.x=20,.y=180});
     Robot.actionneur(1,0);
+  }
+  if (Robot.communication_phare()==true) {
+    Robot.add_score(15);
+  }
+  else {
+    Robot.add_score(5);
   }
 
   //Module Manche à air
@@ -253,6 +271,7 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
 
   Robot.rotation(-180);
   Robot.actionneur(1, 0);
+  Robot.add_score(5);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
@@ -263,6 +282,7 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   Robot.rotation(-180);
   Robot.actionneur(1, 0);
+  Robot.add_score(10);
   Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
@@ -273,9 +293,11 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   }
   if (boussole==false) {
     go_to({.x=20,.y=150});
+    Robot.add_score(10);
   }
   else if(boussole==true){
     go_to({.x=20,.y=50});
+    Robot.add_score(10);
   }
   in_port=true;
   auto delai = steady_clock::now() - BeginMeasurement;

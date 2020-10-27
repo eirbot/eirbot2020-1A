@@ -62,9 +62,13 @@ class Robot{
                 /**
                  * @brief Gère la communication avec le phare*/
                 int communication_boussole();
-                /**
-                 * @brief En cours de construction*/
-                // void pince(int activation);
+
+                void add_score(int add);
+                void setup_score();
+                void set_score(int score);
+
+        private :
+                int score;
 };
 
 #endif // __ROBOT_H_

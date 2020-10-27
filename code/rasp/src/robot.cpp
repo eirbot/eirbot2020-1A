@@ -125,3 +125,17 @@ int Robot::depart()
         return 1;
     }
 }
+
+void Robot::setup_score(){
+
+}
+
+void Robot::set_score(int score){
+    printf("J'affiche le score %d \n",score);
+
+}
+
+void Robot::add_score(int add){
+    Robot::score+=add;
+    set_score(Robot::score);
+}

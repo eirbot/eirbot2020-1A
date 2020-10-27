@@ -6,6 +6,7 @@ extern vector<obstacle> list_obstacles;
 
 int go_to(struct position dest)
 {
+    GP2 GP2;
     char etats[3];
     if(debug==1){
         debugPath.push_back({.x=(short) dest.x,.y= (short) dest.y,0,0,0,0,0});
@@ -19,8 +20,9 @@ int go_to(struct position dest)
         go_to({dest.x,dest.y});
     }
     else if (asserv_back==2) {
+        GP2.disactivate('a');
         struct position position=robot_position();
-        GP2::gp2Obstacle(etats,position,dest);
+        GP2.gp2Obstacle(etats,position,dest);
     }
     return asserv_back;
 }

@@ -15,18 +15,14 @@ int go_to(struct position dest)
     int timeout=40;
     int asserv_back=(int) Protocole.set_position((short) dest.x, (short) dest.y, etats,timeout);
     affichage(asserv_back);
-    return call_back(asserv_back);
-}
-
-int call_back(int asserv_back)
-{
-    if(asserv_back==1){
-        return 1;
+    if (asserv_back==1) {
+        go_to({dest.x,dest.y});
     }
-    if(asserv_back==2){
-        return 2;
+    else if (asserv_back==2) {
+        struct position position=robot_position();
+        GP2::gp2Obstacle(etats,position,dest);
     }
-    return 0;
+    return asserv_back;
 }
 
 void rotate(short angle)
@@ -58,16 +54,4 @@ short angle()
     printf("Envoie de la requete d'information sur l'angle ........... ");
     affichage(angle_back);
     return angle; //Pour l'instant
-}
-
-void initialise_x()
-{
-    printf("Envoie de la requete d'initialisation en x ............... ");
-    affichage(0);
-}
-
-void initialise_y()
-{
-    printf("Envoie de la requete d'initialisation en y ............... ");
-    affichage(0);
 }

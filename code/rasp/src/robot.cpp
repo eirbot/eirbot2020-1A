@@ -55,10 +55,10 @@ short Robot::angle_robot() //Renvoie l'angle du robot par rapport à la table (e
 void Robot::detection(char cote, char activation)
 {
     if (activation=='1') {
-        GP2::activate();
+        GP2::activate(cote);
     }
     if (activation=='0') {
-        GP2::disactivate();
+        GP2::disactivate(cote);
     }
 }
 

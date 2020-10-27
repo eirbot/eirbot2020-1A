@@ -323,7 +323,6 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
         }
         if (mv==1) {
             back=go_to({.x=position.x+dep_x,.y=position.y+dep_y});
-            back_effect(back, dest, list_obstacles);
             mv=0;
             position.y+=dep_y;
             position.x+=dep_x;
@@ -403,31 +402,6 @@ int Navigation::Navigate_to_asserv(vector<Node>usablePath, Navigation dest, vect
 }
 
 
-void Navigation::back_effect(int back, Navigation dest, vector<obstacle> list_obstacles)
-{
-    if(back==0){
-        return;
-    }
-    if(back==1){
-        go_to({dest.node.x,dest.node.y});
-        // struct position my_position=robot_position();
-        // struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
-        // struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
-        // vector<Node> result=Astar(node_position,node_dest,list_obstacles);
-        // Navigate_to_asserv(result,dest,list_obstacles);
-    }
-    if(back==2){
-        print_detection();
-        struct position my_position=robot_position();
-        list_obstacles=GP2::gp2Obstacle(list_obstacles,my_position);
-        struct Node node_position={.x=(short) my_position.x,.y= (short) my_position.y,0,0,0,0,0};
-        struct Node node_dest={.x=(short) dest.node.x, .y= (short) dest.node.y, 0, 0, 0, 0, 0};
-        vector<Node> result=Astar(node_position,node_dest,list_obstacles);
-        Navigate_to_asserv(result,dest,list_obstacles);
-
-    }
-}
-
 vector<Node> Navigation::one_step(Node src, Node dest, vector<obstacle> list_obstacles)
 {
   std::vector<Node> result;
@@ -435,13 +409,11 @@ vector<Node> Navigation::one_step(Node src, Node dest, vector<obstacle> list_obs
   result = Astar(src, dest, list_obstacles);
   if (result.size()!= 0) {
     back=Navigate_to_asserv(result,dest,list_obstacles);
-    back_effect(back,dest,list_obstacles);
     printf("\n");
   }
   else{
     list_obstacles=fillVector_no_ecocup();
     back=Navigate_to_asserv(result,dest,list_obstacles);
-    back_effect(back,dest,list_obstacles);
     list_obstacles=fillVector();
     printf("\n");
   }

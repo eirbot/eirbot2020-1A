@@ -74,14 +74,8 @@ void setup()
 
   printf("Je vérifie que mes bras fonctionnent \n");
   Robot.actionneur(0, 1);
-  for (int i=0; i<100000; i++) {
-
-  }
-  Robot.actionneur(1, 1);
-  for (int i=0; i<100000; i++) {
-
-  }
   Robot.actionneur(0, 0);
+  Robot.actionneur(1, 1);
   Robot.actionneur(1, 0);
 
   if (side=="blue") {
@@ -91,7 +85,11 @@ void setup()
   {
     go_to({.x=20,.y=120});
   }
-  while (Robot.depart()==false) {
+  int i=0;
+  while (i<=10) {
+    if(Robot.depart()==true){
+      i++;
+    }
     printf("Je suis pret en attente du départ ! \r");
   }
   BeginMeasurement=steady_clock::now();

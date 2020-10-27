@@ -10,6 +10,7 @@
 #include  "../affichage.hpp"
 #include "world.hpp"
 #include "protocole.hpp"
+#include "../interactions/detection.hpp"
 
 /**
  * @file asserv.hpp
@@ -55,11 +56,5 @@ struct position robot_position(); //Renvoie la position du robot
  * @brief Permet de demander l'information sur l'angle du robot par rapport à la table
  * @return un short entre 0 et 360° */
 short angle(); //Renvoie l'angle du robot par rapport à la table (entre 0 et 360)
-/**
- * @brief Demande d'effectuer la calibration par rapport au grand côté*/
-void initialise_x(); //Fait la calibration par rapport au grand coté de la table
-/**
- * @brief Demande d'effectuer la calibration par rapport au petit côté*/
-void initialise_y(); //Fait la calibration par rapport au petit coté de la table
 
 #endif

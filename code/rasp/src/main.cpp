@@ -221,13 +221,13 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
   Robot.detection('a', '0');
   go_to({.x=20,.y=180});
-  Robot.actionneur(1,1);
+  Robot.actionneur(0,1);
   go_to({.x=40,.y=180});
-  Robot.actionneur(1, 0);
+  Robot.actionneur(0, 0);
   if (Robot.communication_phare()==false) {
-    Robot.actionneur(0, 1);
+    Robot.actionneur(1, 1);
     go_to({.x=20,.y=180});
-    Robot.actionneur(0,0);
+    Robot.actionneur(1,0);
   }
 
   //Module Manche à air
@@ -242,23 +242,23 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
     port_now_yellow(BeginMeasurement);
   }
   go_to({.x=20,.y=22});
-  Robot.actionneur(0, 1);
+  Robot.actionneur(1, 1);
       if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
 
   Robot.rotation(-180);
-  Robot.actionneur(0, 0);
+  Robot.actionneur(1, 0);
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
   go_to({.x=45,.y=22});
-  Robot.actionneur(0, 1);
+  Robot.actionneur(1, 1);
     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
   Robot.rotation(-180);
-  Robot.actionneur(0, 0);
+  Robot.actionneur(1, 0);
   Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");

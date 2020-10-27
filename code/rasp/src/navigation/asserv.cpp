@@ -21,9 +21,9 @@ int go_to(struct position dest)
     }
     else if (asserv_back==2) {
         GP2.disactivate('a');
-        struct position position=robot_position();
-        GP2.gp2Obstacle(etats,position,dest);
+        go_to({30,100});
         GP2.activate('a');
+        go_to(dest);
     }
     return asserv_back;
 }

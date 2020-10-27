@@ -2,7 +2,6 @@
 
 #include "asserv.hpp"
 #include "actionneur_nucleo.hpp"
-#include "detection_nucleo.hpp"
 
 #include "Protocole_nucleo.hpp"
 
@@ -28,7 +27,7 @@ int main()
   //pc.attach(&conCharReceived, Serial::RxIrq);
   while(1) {
     protocole.update_state();
-    GP2_update(true);
+    // GP2_update(true);
     //print_debug_asserv(pc,c);
     //wait_us(100000);
   }

@@ -1,9 +1,11 @@
 #include "Protocole_nucleo.hpp"
 #include "actionneur_nucleo.hpp"
+#include "detection_nucleo.hpp"
 #include "mbed.h"
 
-#define DEBUG_ASS
+// #define DEBUG_ASS
 //#define DEBUG_PRO
+#define DEBUG_DETECT
 
 Timeout timeout_order;
 
@@ -59,6 +61,10 @@ void Protocole::readByte() {
 void Protocole::update_state() {
     #ifdef DEBUG_ASS
       debug_serial->printf(update_debug_string());
+      //print_dbg();
+    #endif
+    #ifdef DEBUG_DETECT
+      debug_serial->printf(update_debug_GP2());
       //print_dbg();
     #endif
     if((Protocole::state == INIT || Protocole::state == WAIT_ORDER) && order_ready_flag == true) {

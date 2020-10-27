@@ -16,6 +16,8 @@ float seuils[] = {0.3, 0.3, 0.3,     //avant
 AnalogIn pins[] = {gp2_a1, gp2_a2, gp2_a3,
                    gp2_r1, gp2_r2, gp2_r3};
 
+char debug_str_GP2[256];
+
 //return true if we must STOP
 bool GP2_update(bool avant) {
     for(int i = 0; i < 3; i++) {
@@ -31,4 +33,11 @@ bool GP2_update(bool avant) {
         }
     }
     return false;
+}
+
+
+char * update_debug_GP2() {
+    snprintf(debug_str_GP2, 256, "1:%f 2:%f 3:%f\r\n", gp2_a1.read(), gp2_a2.read(), gp2_a3.read());
+    return debug_str_GP2;
+
 }

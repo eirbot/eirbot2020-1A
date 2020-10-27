@@ -1,9 +1,9 @@
 #include "actionneur_nucleo.hpp"
 #include "pinout.hpp"
 
-DigitalOut pavillon_pin(PC_6); //PG_0
-PwmOut servoGauche(PA_3);
-PwmOut servoDroit(PA_0);
+DigitalOut pavillon_pin(PAVILLON_PIN); //PG_0
+PwmOut servoGauche(BRAS_G_PIN);
+PwmOut servoDroit(BRAS_D_PIN);
 Timeout timeout_pavillon;
 
 
@@ -15,16 +15,16 @@ void init_bras_pwm() {
 }
 
 void activate_bras_droit() {
-    servoDroit.pulsewidth_us(1500);   //90°
+    servoDroit.pulsewidth_us(600);   //90°
 }
 void desactivate_bras_droit() {
-    servoDroit.pulsewidth_us(500);   // Initialisation en position 0
+    servoDroit.pulsewidth_us(1500);   // Initialisation en position 0
 
 }
 
 void activate_bras_gauche()
 {
-    servoGauche.pulsewidth_us(1500);  // 90°
+    servoGauche.pulsewidth_us(1200);  // 90°
 }
 
 void desactivate_bras_gauche() {
@@ -37,5 +37,5 @@ void desactivate_pavillon() {
 
 void activate_pavillon() {
     pavillon_pin = 0; //logique inverse
-    timeout_pavillon.attach(&desactivate_pavillon, 1);
+    timeout_pavillon.attach(&desactivate_pavillon, 7);
 }

@@ -27,7 +27,7 @@
 #define GP2_R3_PIN PF_8
 
 //servo gauche PWM
-#define BRAS_G_PIN PA_3
+#define BRAS_G_PIN PB_11
 
 //servo droit PWM
 #define BRAS_D_PIN PA_0

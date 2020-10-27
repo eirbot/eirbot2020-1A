@@ -1,10 +1,6 @@
 #ifndef __ACTIONNEUR_H_
 #define __ACTIONNEUR_H_
 #include "mbed.h"
-#define SERVO_PWM_PERIOD 60000
-#define SERVO_INIT 4250
-#define SERVO_LEFT 1900
-#define SERVO_RIGHT 6550
 
 /**
  * @file actionneur_nucleo.hpp

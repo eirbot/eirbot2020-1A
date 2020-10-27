@@ -3,5 +3,6 @@
 
 #include "mbed.h"
 
+bool GP2_update(bool avant);
 
 #endif // __DETECTION_NUCLEO_H_

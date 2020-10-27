@@ -1,14 +1,15 @@
 #include "asserv.hpp"
+#include "pinout.hpp"
 
 // Timer timer;
 Ticker time_up;
 Timeout timeout_po_stop;
-PwmOut pwmMG(D5);
-DigitalOut dirMG(D4);
-DigitalOut breakMG(D3);
-PwmOut pwmMD(D6);
-DigitalOut dirMD(D2);
-DigitalOut breakMD(D7);
+PwmOut pwmMG(PWM_G_PIN);
+DigitalOut dirMG(dir_G_PIN);
+DigitalOut breakMG(break_G_PIN);
+PwmOut pwmMD(PWM_D_PIN);
+DigitalOut dirMD(dir_D_PIN);
+DigitalOut breakMD(break_D_PIN);
 Encoder Encoder_Droit=Encoder(TIM3);
 Encoder Encoder_Gauche=Encoder(TIM4);
 
@@ -330,7 +331,8 @@ char * update_debug_string() {
     //          "x_0=%4.2f y_0=%4.2f alpha_0=%4.2f Obj_Dist=%4.2f Obj_Angle=%5.2f Dist=%4.2f Angle=%4.2f fb_Dis=%1d fb_Angle=%1d etat=%6s ",
     //          x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
 
-    snprintf(debug_string, 256, "aG_max=%5.2f aG=%5.2f aD=%5.2f ConsVG=%5.2f ConsVD=%5.2f oldConsVG=%f\r\n", aG_max_tmp, aG, aD, ConsVG, ConsVD, old_ConsVG);
+    // snprintf(debug_string, 256, "aG_max=%5.2f aG=%5.2f aD=%5.2f ConsVG=%5.2f ConsVD=%5.2f oldConsVG=%f\r\n", aG_max_tmp, aG, aD, ConsVG, ConsVD, old_ConsVG);
+    snprintf(debug_string, 256, "VG=%f VD=%f \r\n", VG, VD);
     return debug_string;
 
 }

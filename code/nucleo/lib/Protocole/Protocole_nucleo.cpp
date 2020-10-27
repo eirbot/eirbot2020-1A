@@ -67,7 +67,14 @@ void Protocole::update_state() {
       //print_dbg();
     #endif
 
-    obstacle_flag = get_etat_GP2(GP2_etats, 1);
+    //TODO fonction update pos
+    float tmp_x = 0;
+    float tmp_y = 0;
+    get_XY(&tmp_x, &tmp_y);
+    x = (short)(tmp_x*100);
+    y = (short)(tmp_y*100);
+
+    obstacle_flag = process_obstacle(x, y, (short)get_angle(), GP2_etats);
 
     #ifdef DEBUG_DETECT
       debug_serial->printf(update_debug_GP2());

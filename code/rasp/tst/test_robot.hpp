@@ -3,6 +3,7 @@
 
 #include "test.hpp"
 #include "../src/robot.hpp"
+#include "../src/interactions/low_level.hpp"
 
 void test_robot();
 

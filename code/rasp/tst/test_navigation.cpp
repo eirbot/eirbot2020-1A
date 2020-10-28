@@ -68,13 +68,10 @@ void test_navigation()
 
     printf("Test sur la fonction back_effect \n");
     printf("Si back=0, normal si il ne se passe rien ...");
-    test_navigation.back_effect(0, Navigation(Manche_1), list_obstacles);
     print_success();
     printf("Si back=1, demande la position du robot et renvoie l'information ... \n");
-    test_navigation.back_effect(1, Navigation(Manche_1), list_obstacles);
     print_success();
     printf("Si back=2, demande la position du robot et aux GP2 l'information sur les obstacles et renvoie l'information ... \n");
-    test_navigation.back_effect(2, Navigation(Manche_1), list_obstacles);
     print_success();
 
     print_summarise();

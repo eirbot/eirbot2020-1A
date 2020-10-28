@@ -119,6 +119,12 @@ add_custom_target(final
   #COMMAND ssh pi@eirboat ./project
 )
 
+add_custom_target(finaltest
+  COMMAND scp ${CMAKE_CURRENT_BINARY_DIR}/bin/test pi@192.168.43.32:~
+  #COMMAND ssh pi@eirboat ./project
+)
+
+
 set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 

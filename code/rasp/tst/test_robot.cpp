@@ -23,6 +23,7 @@ void test_robot()
     // Robot.detection('a','1');
 
     // Robot.actionneur(1,1);
+    Robot.setup_score();
     Robot.set_score(120);
     TEST_END;
 }

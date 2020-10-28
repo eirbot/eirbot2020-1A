@@ -15,7 +15,7 @@ void init_bras_pwm() {
 }
 
 void activate_bras_droit() {
-    servoDroit.pulsewidth_us(600);   //90°
+    servoDroit.pulsewidth_us(400);   //90° old = 600
 }
 void desactivate_bras_droit() {
     servoDroit.pulsewidth_us(1500);   // Initialisation en position 0
@@ -24,7 +24,7 @@ void desactivate_bras_droit() {
 
 void activate_bras_gauche()
 {
-    servoGauche.pulsewidth_us(1200);  // 90°
+    servoGauche.pulsewidth_us(1400);  // 90° //old=1200
 }
 
 void desactivate_bras_gauche() {

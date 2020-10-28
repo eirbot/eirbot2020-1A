@@ -69,6 +69,8 @@ class Robot{
 
         private :
                 int score;
+                int serial_port_cmpt;
+                struct termios tty_cmpt;
 };
 
 #endif // __ROBOT_H_

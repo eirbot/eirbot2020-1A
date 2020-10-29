@@ -104,7 +104,7 @@ float lissage(const float in,float tab[],int len)
   return  (Sum/len);
 }
 
-float Asserv_V_MG(const float VG, const float ConsVG, int reset)
+float Asserv_V_MG(const float VG, const float ConsVG, int reset, float *ass_fbD)
 {
   float Err=0;
   float static S_Err=0;
@@ -128,10 +128,11 @@ float Asserv_V_MG(const float VG, const float ConsVG, int reset)
     }
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
+  *ass_fbD = S_Err;
   return  Commande;
 }
 
-float Asserv_V_MD(const float VD, const float ConsVD,int reset)
+float Asserv_V_MD(const float VD, const float ConsVD,int reset, float *ass_fbG)
 {
   float Err=0;
   float static S_Err=0;
@@ -155,6 +156,7 @@ float Asserv_V_MD(const float VD, const float ConsVD,int reset)
     }
     range((&Commande),MAX_LIM_COMMANDE,MIN_LIM_COMMANDE);
   }
+  *ass_fbG = S_Err;
   return  Commande;
 }
 float Asserv_Position(const float Position, const float ConsPosition,int reset,int *feedback)

@@ -4,6 +4,7 @@
 // Timer timer;
 Ticker time_up;
 Timeout timeout_po_stop;
+Timeout timeout_integral_panic;
 PwmOut pwmMG(PWM_G_PIN);
 DigitalOut dirMG(dir_G_PIN);
 DigitalOut breakMG(break_G_PIN);
@@ -68,7 +69,8 @@ float Obj_Angle;
 float Obj_Dist;
 
 char debug_string[256];
-
+float integral_fbG = 0;
+float integral_fbD = 0;
 
 // ------ asservissement --------
 void init_asserv() {
@@ -120,10 +122,16 @@ void function_Asserv(void)
     old_ConsVD = ConsVD;
     //ConsVG_liss=lissage(ConsVG,tab_lissage_MG,LEN_TAB_LISSAGE );
     //ConsVD_liss=lissage(ConsVD,tab_lissage_MD,LEN_TAB_LISSAGE );
-    commande_PWMG_V=Asserv_V_MG(VG,ConsVG,reset);
-    commande_PWMD_V=Asserv_V_MD(VD,ConsVD,reset);
+    commande_PWMG_V=Asserv_V_MG(VG,ConsVG,reset, &integral_fbG);
+    commande_PWMD_V=Asserv_V_MD(VD,ConsVD,reset, &integral_fbD);
     set_pwm();
-    if(feedback_Angle == 1 || feedback_Dis == 1) update_state();
+    if(integral_fbG > 400 || integral_fbD > 400) {
+        set_state(STOP);
+        timeout_integral_panic.attach(&reculer, 0.2);
+    }
+    else if(feedback_Angle == 1 || feedback_Dis == 1) {
+        update_state();
+    }
 }
 
 void reset_consigne() {
@@ -149,6 +157,9 @@ void update_state() {
     else if (etat_asserv == ROT && feedback_Angle == 1) {
         set_state(STOP);
     }
+    else if( etat_asserv == RECULER && feedback_Dis ==1) {
+        set_state(STOP);
+    }
     // else if (etat_asserv == STOP && feedback_Angle == 1 && feedback_Dis == 1) {
     //     set_state(RES);
     // }
@@ -157,6 +168,10 @@ void update_state() {
 
 void set_state_distance(void) { //void void pour un callback
     set_state(PO_DISTANCE);
+}
+
+void reculer(void) {
+    set_state(RECULER);
 }
 
 void set_state(enum asserv_state s) {
@@ -170,6 +185,8 @@ void set_state(enum asserv_state s) {
             alpha0 = alpha0 + Angle;
             reset_consigne();
             reset=1;
+            commande_PWMD_V=0; //FIXME a enlever si ca fout la merde
+            commande_PWMG_V=0;
             // Cons_Dis = Distance; //prend les parametres courants comme consigne
             // Cons_Angle = Angle;
             break;
@@ -179,6 +196,9 @@ void set_state(enum asserv_state s) {
             break;
         case PO_DISTANCE:
             Cons_Dis = Obj_Dist;
+            break;
+        case RECULER:
+            Cons_Dis = -0.03;
             break;
         case RES:
             reset = 1;
@@ -332,7 +352,8 @@ char * update_debug_string() {
     //          x_0, y_0, alpha0, Obj_Dist, Obj_Angle, Distance, Angle, feedback_Dis, feedback_Angle, etat_str);
 
     // snprintf(debug_string, 256, "aG_max=%5.2f aG=%5.2f aD=%5.2f ConsVG=%5.2f ConsVD=%5.2f oldConsVG=%f\r\n", aG_max_tmp, aG, aD, ConsVG, ConsVD, old_ConsVG);
-    snprintf(debug_string, 256, "VG=%f VD=%f \r\n", VG, VD);
+    snprintf(debug_string, 256, "VG=%f VD=%f intG=%f intD=%f \r\n",
+                                 VG, VD, integral_fbG, integral_fbD);
     return debug_string;
 
 }

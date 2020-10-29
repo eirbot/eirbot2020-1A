@@ -3,9 +3,9 @@
 #include "detection_nucleo.hpp"
 #include "mbed.h"
 
-// #define DEBUG_ASS
+#define DEBUG_ASS
 //#define DEBUG_PRO
-#define DEBUG_DETECT
+//#define DEBUG_DETECT
 
 Timeout timeout_order;
 

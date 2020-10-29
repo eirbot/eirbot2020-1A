@@ -156,13 +156,14 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   go_to({.x=50,.y=45});
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
-  go_to({.x=20,.y=21});
+  go_to({.x=20,.y=20});
   Robot.actionneur(1,1);
-  go_to({.x=37,.y=21});
+  go_to({.x=37,.y=22});
   Robot.actionneur(1, 0);
   if (Robot.communication_phare()==false) {
+    go_to({.x=37,.y=22});
     Robot.actionneur(0, 1);
-    go_to({.x=20,.y=21});
+    go_to({.x=20,.y=22});
     Robot.actionneur(0,0);
   }
   if (Robot.communication_phare()==true) {
@@ -174,42 +175,26 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
 
   //Module Manche à air
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-  // Robot.detection('a', '1');
+  Robot.detection('a', '1');
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
   go_to({.x=70,.y=110 });
   Robot.detection('a', '0');
-  //   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-  //   port_now_blue(BeginMeasurement);
-  // }
-  // go_to({.x=24,.y=178});
-  // Robot.actionneur(0, 1);
-  //   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-  //   port_now_blue(BeginMeasurement);
-  // }
-  // Robot.rotation(180);
-  // Robot.actionneur(0, 0);
-  // Robot.add_score(5);
-  // if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-  //   port_now_blue(BeginMeasurement);
-  // }
   Robot.actionneur(0, 1);
-  go_to({.x=58,.y=182});
+  go_to({.x=57,.y=182});
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_blue(BeginMeasurement);
   }
   Robot.rotation(180);
   Robot.actionneur(0,0);
   Robot.add_score(5);//10
-  Robot.detection('a', '1');
-
+  while (steady_clock::now() - BeginMeasurement < milliseconds{30000}) {
+    printf("J'attend la calibration de boussole \r");
+  }
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
   int boussole=Robot.communication_boussole();
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
-  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-    port_now_blue(BeginMeasurement);
-  }
   if (boussole==true) {
     go_to({.x=20,.y=50});
     Robot.add_score(10);
@@ -252,7 +237,7 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
 
   //Module Manche à air
   printf("\033[33mJe pars de PHARE et je vais à MANCHE_1 \033[0m \n");
-  // Robot.detection('a', '1');
+  Robot.detection('a', '1');
   if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
@@ -261,34 +246,18 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
-  // go_to({.x=24,.y=18});
-  // Robot.actionneur(1, 1);
-  //     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-  //   port_now_yellow(BeginMeasurement);
-  // }
-
-  // Robot.rotation(-180);
-  // Robot.actionneur(1, 0);
-  // Robot.add_score(5);
-  // if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-  //   port_now_yellow(BeginMeasurement);
-  // }
   Robot.actionneur(1, 1);
-  go_to({.x=60,.y=18});
+  go_to({.x=59,.y=18});
     if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
     port_now_yellow(BeginMeasurement);
   }
   Robot.rotation(-180);
   Robot.actionneur(1, 0);
   Robot.add_score(5);//10);
-  Robot.detection('a', '1');
 
   printf("\033[33mJe récupère l'information de la boussole \033[0m \n");
   int boussole=Robot.communication_boussole();
   printf("\033[33mJe pars du MANCHE_2 et je vais au PORT %d \033[0m \n",boussole);
-  if (steady_clock::now() - BeginMeasurement > milliseconds{85000}) {
-    port_now_yellow(BeginMeasurement);
-  }
   if (boussole==true) {
     go_to({.x=20,.y=150});
     Robot.add_score(10);

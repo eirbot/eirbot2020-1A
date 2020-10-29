@@ -3,6 +3,7 @@
 //Les printfs seront à modifier pour envoyer directement au protocol de comm.
 
 extern vector<obstacle> list_obstacles;
+int tentative=0;
 
 int go_to(struct position dest)
 {
@@ -21,9 +22,7 @@ int go_to(struct position dest)
     }
     else if (asserv_back==2) {
         GP2.disactivate('a');
-        go_to({30,100});
-        GP2.activate('a');
-        go_to(dest);
+        go_to({20,150});
     }
     return asserv_back;
 }

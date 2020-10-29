@@ -64,8 +64,8 @@ void lecture_VG_VD(float*VG,float*VD,const float Vitesse,const float W); //lectu
 void lecture_Distance_Angle(const float Vitesse,const float W,const float Te,float *Distance, float *Angle, int reset); //lecture de la distance parcourue, et de l'angle parcourue
 void get_posG(Encoder &Encoder_Gauche,int *posG); //supprime l'overflow à -32,768; 32,767 inc 
 void get_posD(Encoder &Encoder_Droit,int *posD);  //supprime l'overflow à -32,768; 32,767 inc
-float Asserv_V_MG(const float VG, const float ConsVG,int reset); //Asserv de Vitesse Moteur Gauche
-float Asserv_V_MD(const float VD, const float ConsVD,int reset); //Asserv de Vitesse Moteur Droit
+float Asserv_V_MG(const float VG, const float ConsVG,int reset, float *ass_fbG); //Asserv de Vitesse Moteur Gauche
+float Asserv_V_MD(const float VD, const float ConsVD,int reset, float *ass_fbD); //Asserv de Vitesse Moteur Droit
 float Asserv_Position(const float Position, const float ConsPosition,int reset,int *feedback); //Asserv de Position Distance
 float Asserv_Angle(const float Angle, const float ConsAngle,int reset,int *feedback); //Asserv de Position Angle
 float lissage(const float in,float tab[],int len);//Permet de crée une rampe sur le front des commandes de vitesse

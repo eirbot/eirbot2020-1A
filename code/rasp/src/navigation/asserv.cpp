@@ -18,7 +18,7 @@ int go_to(struct position dest)
     int asserv_back=(int) Protocole.set_position((short) dest.x, (short) dest.y, etats,timeout);
     affichage(asserv_back);
     if (asserv_back==1) {
-        go_to({dest.x,dest.y});
+        go_to({20,150});
     }
     else if (asserv_back==2) {
         GP2.disactivate('a');

@@ -160,12 +160,12 @@ void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)
   Robot.actionneur(1,1);
   go_to({.x=37,.y=22});
   Robot.actionneur(1, 0);
-  if (Robot.communication_phare()==false) {
-    go_to({.x=37,.y=22});
-    Robot.actionneur(0, 1);
-    go_to({.x=20,.y=22});
-    Robot.actionneur(0,0);
-  }
+  // if (Robot.communication_phare()==false) {
+  //   go_to({.x=37,.y=22});
+  //   Robot.actionneur(0, 1);
+  //   go_to({.x=20,.y=22});
+  //   Robot.actionneur(0,0);
+  // }
   if (Robot.communication_phare()==true) {
     Robot.add_score(15);
   }
@@ -223,11 +223,11 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   Robot.actionneur(0,1);
   go_to({.x=37,.y=179});
   Robot.actionneur(0, 0);
-  if (Robot.communication_phare()==false) {
-    Robot.actionneur(1, 1);
-    go_to({.x=20,.y=179});
-    Robot.actionneur(1,0);
-  }
+  // if (Robot.communication_phare()==false) {
+  //   Robot.actionneur(1, 1);
+  //   go_to({.x=20,.y=179});
+  //   Robot.actionneur(1,0);
+  // }
   if (Robot.communication_phare()==true) {
     Robot.add_score(15);
   }

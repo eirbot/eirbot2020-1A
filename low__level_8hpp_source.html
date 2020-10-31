@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.20"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Eirbot1A-2020:  Fichier source de code/rasp/src/interactions/low_level.hpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Eirbot1A-2020
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.20 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('low__level_8hpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">low_level.hpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="low__level_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __LOW_LEVEL_H_</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __LOW_LEVEL_H_</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">//BCM numbering</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> TEAM_SWITCH_INPUT = 17; <span class="comment">//bleu = 0 , jaune = 1</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> TEAM_LED_OUTPUT = 26;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> GO_INPUT = 27;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> PHARE_INPUT = 5; <span class="comment">//FIXME lequel est lequel ?</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">const</span> <span class="keywordtype">int</span> NORD_INPUT = 11; <span class="comment">//FIXME</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="class_low_level.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_low_level.html">LowLevel</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_low_level.html">LowLevel</a>();</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        ~<a class="code" href="class_low_level.html">LowLevel</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_low_level.html#afd2690801f1eb383f5d820635d378bdc">is_depart</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_low_level.html#a5e653c128b8a11d3b0955374bcf251be">is_equipe_bleu</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_low_level.html#ae0fd988d9b8905efa75a90db7f55dc08">phare_active</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_low_level.html#ae10cf1156db98424b80ca6fd09e9e423">boussole_nord</a>();</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif // __LOW_LEVEL_H_</span></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<div class="ttc" id="aclass_low_level_html"><div class="ttname"><a href="class_low_level.html">LowLevel</a></div><div class="ttdef"><b>Definition:</b> low_level.hpp:17</div></div>
+<div class="ttc" id="aclass_low_level_html_a5e653c128b8a11d3b0955374bcf251be"><div class="ttname"><a href="class_low_level.html#a5e653c128b8a11d3b0955374bcf251be">LowLevel::is_equipe_bleu</a></div><div class="ttdeci">bool is_equipe_bleu()</div><div class="ttdoc">est-ce qu'on est bleu ?</div><div class="ttdef"><b>Definition:</b> low_level.cpp:37</div></div>
+<div class="ttc" id="aclass_low_level_html_ae10cf1156db98424b80ca6fd09e9e423"><div class="ttname"><a href="class_low_level.html#ae10cf1156db98424b80ca6fd09e9e423">LowLevel::boussole_nord</a></div><div class="ttdeci">bool boussole_nord()</div><div class="ttdoc">est-ce qu'on se gare au nord ?</div><div class="ttdef"><b>Definition:</b> low_level.cpp:64</div></div>
+<div class="ttc" id="alow__level_8hpp_html"><div class="ttname"><a href="low__level_8hpp.html">low_level.hpp</a></div><div class="ttdoc">fonction bas niveau rasp (GPIO)</div></div>
+<div class="ttc" id="aclass_low_level_html_afd2690801f1eb383f5d820635d378bdc"><div class="ttname"><a href="class_low_level.html#afd2690801f1eb383f5d820635d378bdc">LowLevel::is_depart</a></div><div class="ttdeci">bool is_depart()</div><div class="ttdoc">est-ce que le jack est retiré ?</div><div class="ttdef"><b>Definition:</b> low_level.cpp:27</div></div>
+<div class="ttc" id="aclass_low_level_html_ae0fd988d9b8905efa75a90db7f55dc08"><div class="ttname"><a href="class_low_level.html#ae0fd988d9b8905efa75a90db7f55dc08">LowLevel::phare_active</a></div><div class="ttdeci">bool phare_active()</div><div class="ttdoc">est-ce que le phare est activé ?</div><div class="ttdef"><b>Definition:</b> low_level.cpp:53</div></div>
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_050edd66366d13764f98250ef6db77f6.html">code</a></li><li class="navelem"><a class="el" href="dir_9a4b001405259e117c44638f5f241852.html">rasp</a></li><li class="navelem"><a class="el" href="dir_1af11c3d65235ae85dffc8a9ff86f4de.html">src</a></li><li class="navelem"><a class="el" href="dir_32265e89cbbd4cd062433eaaca7d236a.html">interactions</a></li><li class="navelem"><a class="el" href="low__level_8hpp.html">low_level.hpp</a></li>
+    <li class="footer">Généré par <a href="http://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.8.20 </li>
+  </ul>
+</div>
+</body>
+</html>

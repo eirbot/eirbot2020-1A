@@ -1,5 +1,0 @@
-<map id="good_port" name="good_port">
-<area shape="rect" id="node1" title="Permet de savoir si le point actuel du robot est le point prévu." alt="" coords="5,31,84,57"/>
-<area shape="rect" id="node2" href="$affichage_8hpp.html#a793e2184d3289950f1e148a23d1c658a" title="Permet d&#39;afficher FAILED en rouge." alt="" coords="148,5,219,32"/>
-<area shape="rect" id="node3" href="$affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="132,56,235,83"/>
-</map>

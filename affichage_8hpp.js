@@ -3,7 +3,6 @@ var affichage_8hpp =
     [ "DETECTION", "affichage_8hpp.html#ae7fed13c90e6e25c6a2d1a523361e47c", null ],
     [ "TIMEOUT", "affichage_8hpp.html#a45ba202b05caf39795aeca91b0ae547e", null ],
     [ "affichage", "affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1", null ],
-    [ "good_port", "affichage_8hpp.html#a58f7adb50efdd61a5562031dc005bbe2", null ],
     [ "print_detection", "affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72", null ],
     [ "print_fail", "affichage_8hpp.html#a793e2184d3289950f1e148a23d1c658a", null ],
     [ "print_optimisated", "affichage_8hpp.html#a3178e1f67dea664279514d3598dcc220", null ],

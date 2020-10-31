@@ -100,25 +100,27 @@ $(document).ready(function(){initNavTree('rasp_2src_2navigation_2asserv_8hpp.htm
 <code>#include &quot;<a class="el" href="affichage_8hpp_source.html">../affichage.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="world_8hpp_source.html">world.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="protocole_8hpp_source.html">protocole.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="detection_8hpp_source.html">../interactions/detection.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de asserv.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp__incl.png" border="0" usemap="#acode_2rasp_2src_2navigation_2asserv_8hpp" alt=""/></div>
 <map name="code_2rasp_2src_2navigation_2asserv_8hpp" id="acode_2rasp_2src_2navigation_2asserv_8hpp">
-<area shape="rect" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="285,5,449,47"/>
+<area shape="rect" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="390,5,554,47"/>
 <area shape="rect" title=" " alt="" coords="5,95,77,121"/>
 <area shape="rect" title=" " alt="" coords="101,95,163,121"/>
 <area shape="rect" title=" " alt="" coords="187,95,237,121"/>
 <area shape="rect" title=" " alt="" coords="261,95,315,121"/>
 <area shape="rect" title=" " alt="" coords="339,95,394,121"/>
 <area shape="rect" href="affichage_8hpp.html" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="419,95,525,121"/>
-<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="549,95,627,121"/>
-<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="651,95,749,121"/>
-<area shape="rect" title=" " alt="" coords="374,169,434,196"/>
-<area shape="rect" title=" " alt="" coords="458,169,518,196"/>
-<area shape="rect" title=" " alt="" coords="559,169,617,196"/>
-<area shape="rect" title=" " alt="" coords="652,169,727,196"/>
-<area shape="rect" title=" " alt="" coords="751,169,806,196"/>
+<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="635,169,712,196"/>
+<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="805,95,904,121"/>
+<area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="601,95,781,121"/>
+<area shape="rect" title=" " alt="" coords="401,169,461,196"/>
+<area shape="rect" title=" " alt="" coords="485,169,545,196"/>
+<area shape="rect" title=" " alt="" coords="644,244,703,271"/>
+<area shape="rect" title=" " alt="" coords="744,169,819,196"/>
+<area shape="rect" title=" " alt="" coords="843,169,898,196"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -126,7 +128,7 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 <div class="dyncontent">
 <div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp__dep__incl.png" border="0" usemap="#acode_2rasp_2src_2navigation_2asserv_8hppdep" alt=""/></div>
 <map name="code_2rasp_2src_2navigation_2asserv_8hppdep" id="acode_2rasp_2src_2navigation_2asserv_8hppdep">
-<area shape="rect" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="345,5,509,47"/>
+<area shape="rect" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="249,5,413,47"/>
 <area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="149,95,321,136"/>
 <area shape="rect" href="navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="5,184,169,225"/>
 <area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="345,95,509,136"/>
@@ -154,9 +156,9 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a8e52451626296ff3d31c441d10ffb742"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742">go_to</a> (struct <a class="el" href="structposition.html">position</a> dest, struct <a class="el" href="structposition.html">position</a> src)</td></tr>
-<tr class="memdesc:a8e52451626296ff3d31c441d10ffb742"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de transmettre au protocole l'ordre de se déplacer.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a8e52451626296ff3d31c441d10ffb742"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5210b89697121b05874fa4e305e49d4b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#a5210b89697121b05874fa4e305e49d4b">go_to</a> (struct <a class="el" href="structposition.html">position</a> dest)</td></tr>
+<tr class="memdesc:a5210b89697121b05874fa4e305e49d4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de transmettre au protocole l'ordre de se déplacer.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#a5210b89697121b05874fa4e305e49d4b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a5210b89697121b05874fa4e305e49d4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad90cc2e0321d980f54e651a1619837a7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#ad90cc2e0321d980f54e651a1619837a7">call_back</a> (int asserv_back)</td></tr>
 <tr class="memdesc:ad90cc2e0321d980f54e651a1619837a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'analyser le retour de l'asservissement et d'adopter un comportement en conséquence.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#ad90cc2e0321d980f54e651a1619837a7">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ad90cc2e0321d980f54e651a1619837a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,14 +171,6 @@ struct <a class="el" href="structposition.html">position</a>&#160;</td><td class
 <tr class="memitem:abee464b9088832cf77edcf925eda6a6e"><td class="memItemLeft" align="right" valign="top">short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">angle</a> ()</td></tr>
 <tr class="memdesc:abee464b9088832cf77edcf925eda6a6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de demander l'information sur l'angle du robot par rapport à la table.  <a href="rasp_2src_2navigation_2asserv_8hpp.html#abee464b9088832cf77edcf925eda6a6e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:abee464b9088832cf77edcf925eda6a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe0739d6ab90305d7e6862c575cf53e4"><td class="memItemLeft" align="right" valign="top"><a id="abe0739d6ab90305d7e6862c575cf53e4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#abe0739d6ab90305d7e6862c575cf53e4">initialise_x</a> ()</td></tr>
-<tr class="memdesc:abe0739d6ab90305d7e6862c575cf53e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande d'effectuer la calibration par rapport au grand côté <br /></td></tr>
-<tr class="separator:abe0739d6ab90305d7e6862c575cf53e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4361ec3252e99f3787a2c88d7fa15fdd"><td class="memItemLeft" align="right" valign="top"><a id="a4361ec3252e99f3787a2c88d7fa15fdd"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rasp_2src_2navigation_2asserv_8hpp.html#a4361ec3252e99f3787a2c88d7fa15fdd">initialise_y</a> ()</td></tr>
-<tr class="memdesc:a4361ec3252e99f3787a2c88d7fa15fdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Demande d'effectuer la calibration par rapport au petit côté <br /></td></tr>
-<tr class="separator:a4361ec3252e99f3787a2c88d7fa15fdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -230,11 +224,11 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph" alt=""/></div>
 <map name="rasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_abee464b9088832cf77edcf925eda6a6e_icgraph">
-<area shape="rect" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="336,81,389,108"/>
-<area shape="rect" href="class_robot.html#a597c41844d4f4e12014b515843f3abb8" title="Demande l&#39;angle du robot par rapport à la table." alt="" coords="159,5,288,32"/>
-<area shape="rect" href="class_g_p2.html#a0316cb1e2bd8e748c0ef76e06c954c40" title="Une intéruption qui s&#39;active lorsque l&#39;un des GP2 activé détecte quelque chose." alt="" coords="160,56,287,83"/>
-<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="196,107,251,133"/>
-<area shape="rect" href="class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,132,111,159"/>
+<area shape="rect" title="Permet de demander l&#39;information sur l&#39;angle du robot par rapport à la table." alt="" coords="461,56,515,83"/>
+<area shape="rect" href="class_robot.html#a597c41844d4f4e12014b515843f3abb8" title="Demande l&#39;angle du robot par rapport à la table." alt="" coords="284,5,413,32"/>
+<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html#a1bf9d70fe47a174b76a9335c403c9672" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="321,56,376,83"/>
+<area shape="rect" href="class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="131,81,236,108"/>
+<area shape="rect" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,81,83,108"/>
 </map>
 </div>
 
@@ -266,8 +260,8 @@ Voici le graphe des appelants de cette fonction :</div>
 
 </div>
 </div>
-<a id="a8e52451626296ff3d31c441d10ffb742"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8e52451626296ff3d31c441d10ffb742">&#9670;&nbsp;</a></span>go_to()</h2>
+<a id="a5210b89697121b05874fa4e305e49d4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5210b89697121b05874fa4e305e49d4b">&#9670;&nbsp;</a></span>go_to()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -276,18 +270,8 @@ Voici le graphe des appelants de cette fonction :</div>
           <td class="memname">int go_to </td>
           <td>(</td>
           <td class="paramtype">struct <a class="el" href="structposition.html">position</a>&#160;</td>
-          <td class="paramname"><em>dest</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"><em>dest</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">struct <a class="el" href="structposition.html">position</a>&#160;</td>
-          <td class="paramname"><em>src</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -304,15 +288,15 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dynheader">
 Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
-<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph" alt=""/></div>
-<map name="rasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_a8e52451626296ff3d31c441d10ffb742_icgraph">
+<div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_a5210b89697121b05874fa4e305e49d4b_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_a5210b89697121b05874fa4e305e49d4b_icgraph" alt=""/></div>
+<map name="rasp_2src_2navigation_2asserv_8hpp_a5210b89697121b05874fa4e305e49d4b_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_a5210b89697121b05874fa4e305e49d4b_icgraph">
 <area shape="rect" title="Permet de transmettre au protocole l&#39;ordre de se déplacer." alt="" coords="673,64,728,91"/>
-<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="15,5,92,32"/>
+<area shape="rect" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="515,5,593,32"/>
 <area shape="rect" href="class_navigation.html#a322f076e4f3cfd218d110c7b3165c945" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="483,57,625,98"/>
 <area shape="rect" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="527,123,581,149"/>
-<area shape="rect" href="class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="292,60,435,87"/>
-<area shape="rect" href="class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,56,244,83"/>
-<area shape="rect" href="ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,56,101,83"/>
+<area shape="rect" href="class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="292,64,435,91"/>
+<area shape="rect" href="class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,64,244,91"/>
+<area shape="rect" href="ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,64,101,91"/>
 </map>
 </div>
 
@@ -362,8 +346,9 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="rasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph.png" border="0" usemap="#arasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph" alt=""/></div>
 <map name="rasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph" id="arasp_2src_2navigation_2asserv_8hpp_a1bf9d70fe47a174b76a9335c403c9672_icgraph">
-<area shape="rect" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="159,5,213,32"/>
-<area shape="rect" href="class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="5,5,111,32"/>
+<area shape="rect" title="Permet d&#39;ordonner la rotation du robot." alt="" coords="284,5,339,32"/>
+<area shape="rect" href="class_robot.html#a00fd06b78b32a34e92c20694e90594bd" title="Fait une rotation du robot." alt="" coords="131,5,236,32"/>
+<area shape="rect" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
 </map>
 </div>
 

@@ -82,7 +82,6 @@ $(document).ready(function(){initNavTree('actionneur__nucleo_8hpp.html',''); ini
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Fonctions</a>  </div>
   <div class="headertitle">
 <div class="title">Référence du fichier actionneur_nucleo.hpp</div>  </div>
@@ -104,21 +103,6 @@ Graphe des dépendances par inclusion de actionneur_nucleo.hpp:</div>
 </div>
 <p><a href="actionneur__nucleo_8hpp_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a19af851da768a5c71e74cac1ab733ca7"><td class="memItemLeft" align="right" valign="top"><a id="a19af851da768a5c71e74cac1ab733ca7"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SERVO_PWM_PERIOD</b>&#160;&#160;&#160;60000</td></tr>
-<tr class="separator:a19af851da768a5c71e74cac1ab733ca7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b98004c1f96750ba1e0fc5e8f509423"><td class="memItemLeft" align="right" valign="top"><a id="a2b98004c1f96750ba1e0fc5e8f509423"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SERVO_INIT</b>&#160;&#160;&#160;4250</td></tr>
-<tr class="separator:a2b98004c1f96750ba1e0fc5e8f509423"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d0ffe66e4e37785419f435378b0f223"><td class="memItemLeft" align="right" valign="top"><a id="a3d0ffe66e4e37785419f435378b0f223"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SERVO_LEFT</b>&#160;&#160;&#160;1900</td></tr>
-<tr class="separator:a3d0ffe66e4e37785419f435378b0f223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2a7cd990460512f2695d999a0cbd45d"><td class="memItemLeft" align="right" valign="top"><a id="ae2a7cd990460512f2695d999a0cbd45d"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SERVO_RIGHT</b>&#160;&#160;&#160;6550</td></tr>
-<tr class="separator:ae2a7cd990460512f2695d999a0cbd45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:a2371b55ab8cba4ab6da9dc45a39ea22a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur__nucleo_8hpp.html#a2371b55ab8cba4ab6da9dc45a39ea22a">desactivate_pavillon</a> ()</td></tr>
@@ -127,40 +111,26 @@ Fonctions</h2></td></tr>
 <tr class="memitem:a920512aa494f20595db8d4cf2dad4168"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur__nucleo_8hpp.html#a920512aa494f20595db8d4cf2dad4168">activate_pavillon</a> ()</td></tr>
 <tr class="memdesc:a920512aa494f20595db8d4cf2dad4168"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort le pavillon.  <a href="actionneur__nucleo_8hpp.html#a920512aa494f20595db8d4cf2dad4168">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a920512aa494f20595db8d4cf2dad4168"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a961bc08eebb5ace65e4ccf886fdacb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur__nucleo_8hpp.html#a9a961bc08eebb5ace65e4ccf886fdacb">activate_manche</a> (PwmOut serv)</td></tr>
-<tr class="memdesc:a9a961bc08eebb5ace65e4ccf886fdacb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sort ou rentre le pavillon.  <a href="actionneur__nucleo_8hpp.html#a9a961bc08eebb5ace65e4ccf886fdacb">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a9a961bc08eebb5ace65e4ccf886fdacb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36e253dc3519b420a60141009197e987"><td class="memItemLeft" align="right" valign="top"><a id="a36e253dc3519b420a60141009197e987"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>init_bras_pwm</b> ()</td></tr>
+<tr class="separator:a36e253dc3519b420a60141009197e987"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea200d7711e445800f7c549e4b34a791"><td class="memItemLeft" align="right" valign="top"><a id="aea200d7711e445800f7c549e4b34a791"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>activate_bras_droit</b> ()</td></tr>
+<tr class="separator:aea200d7711e445800f7c549e4b34a791"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ce57fb7e151291edc84b19bff4aaae3"><td class="memItemLeft" align="right" valign="top"><a id="a7ce57fb7e151291edc84b19bff4aaae3"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>desactivate_bras_droit</b> ()</td></tr>
+<tr class="separator:a7ce57fb7e151291edc84b19bff4aaae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7778d4cda9596f0a7d621d19acabc520"><td class="memItemLeft" align="right" valign="top"><a id="a7778d4cda9596f0a7d621d19acabc520"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>activate_bras_gauche</b> ()</td></tr>
+<tr class="separator:a7778d4cda9596f0a7d621d19acabc520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac487ceebfc151830e542f5b7f6dfcf5b"><td class="memItemLeft" align="right" valign="top"><a id="ac487ceebfc151830e542f5b7f6dfcf5b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>desactivate_bras_gauche</b> ()</td></tr>
+<tr class="separator:ac487ceebfc151830e542f5b7f6dfcf5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Contient les fonctions permettant d'activer ou désactiver les actionneurs. </p>
 <dl class="section author"><dt>Auteur</dt><dd></dd></dl>
 </div><h2 class="groupheader">Documentation des fonctions</h2>
-<a id="a9a961bc08eebb5ace65e4ccf886fdacb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9a961bc08eebb5ace65e4ccf886fdacb">&#9670;&nbsp;</a></span>activate_manche()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void activate_manche </td>
-          <td>(</td>
-          <td class="paramtype">PwmOut&#160;</td>
-          <td class="paramname"><em>serv</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sort ou rentre le pavillon. </p>
-<dl class="params"><dt>Paramètres</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">serv</td><td>Le servomoteur associé au manche </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a id="a920512aa494f20595db8d4cf2dad4168"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a920512aa494f20595db8d4cf2dad4168">&#9670;&nbsp;</a></span>activate_pavillon()</h2>
 

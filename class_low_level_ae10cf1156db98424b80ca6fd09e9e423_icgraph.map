@@ -1,0 +1,5 @@
+<map id="LowLevel::boussole_nord" name="LowLevel::boussole_nord">
+<area shape="rect" id="node1" title="est&#45;ce qu&#39;on se gare au nord ?" alt="" coords="329,13,499,39"/>
+<area shape="rect" id="node2" href="$class_robot.html#a87d2982b507762dd59f5314898c10f77" title="Gère la communication avec le phare." alt="" coords="131,5,281,47"/>
+<area shape="rect" id="node3" href="$main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,13,83,39"/>
+</map>

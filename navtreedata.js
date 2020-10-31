@@ -44,7 +44,6 @@ var NAVTREE =
       [ "Membres de fichier", "globals.html", [
         [ "Tout", "globals.html", null ],
         [ "Fonctions", "globals_func.html", null ],
-        [ "Énumérations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -53,8 +52,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_asserv_2detection__nucleo_8hpp_source.html",
-"test__navigation_8hpp_source.html"
+"_protocole_8hpp_source.html",
+"test__robot_8hpp_source.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

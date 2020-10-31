@@ -1,0 +1,5 @@
+<map id="LowLevel::is_equipe_bleu" name="LowLevel::is_equipe_bleu">
+<area shape="rect" id="node1" title="est&#45;ce qu&#39;on est bleu ?" alt="" coords="277,5,448,32"/>
+<area shape="rect" id="node2" href="$class_robot.html#a5576c61d402b24745f87b6098cadc87b" title="Récupère l&#39;information sur le côté de la table." alt="" coords="108,5,229,32"/>
+<area shape="rect" id="node3" href="$main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="5,5,60,32"/>
+</map>

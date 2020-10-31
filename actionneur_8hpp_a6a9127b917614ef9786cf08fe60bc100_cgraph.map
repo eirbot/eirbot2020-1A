@@ -1,9 +1,0 @@
-<map id="Gauche_desactivation" name="Gauche_desactivation">
-<area shape="rect" id="node1" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="5,81,156,108"/>
-<area shape="rect" id="node2" href="$affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="251,56,325,83"/>
-<area shape="rect" id="node7" href="$class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="204,107,372,133"/>
-<area shape="rect" id="node3" href="$affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="420,5,527,32"/>
-<area shape="rect" id="node4" href="$affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="422,56,525,83"/>
-<area shape="rect" id="node5" href="$affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="425,107,522,133"/>
-<area shape="rect" id="node6" href="$affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="575,107,693,133"/>
-</map>

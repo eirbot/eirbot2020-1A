@@ -1,0 +1,4 @@
+<map id="Actionneur::Pavillon" name="Actionneur::Pavillon">
+<area shape="rect" id="node1" title="Permet de demander au protocole l&#39;activation du pavillon." alt="" coords="160,5,296,32"/>
+<area shape="rect" id="node2" href="$class_robot.html#af4262ce9dc40e12f28d76a003745d69c" title="Active le pavillon." alt="" coords="5,5,112,32"/>
+</map>

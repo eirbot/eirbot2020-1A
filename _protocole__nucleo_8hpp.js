@@ -1,6 +1,8 @@
 var _protocole__nucleo_8hpp =
 [
     [ "Protocole", "class_protocole.html", "class_protocole" ],
+    [ "PROTO_TIMEOUT_DIST", "_protocole__nucleo_8hpp.html#a0af9abfcc90d6ca0b5e59d457a1d8999", null ],
+    [ "PROTO_TIMEOUT_ROT", "_protocole__nucleo_8hpp.html#aae011416a1e948ebb5757e9d6dada618", null ],
     [ "order", "_protocole__nucleo_8hpp.html#a9f4e8630516f3da89537313b4c828759", [
       [ "PO", "_protocole__nucleo_8hpp.html#a9f4e8630516f3da89537313b4c828759ab4a40ef9f64717b9524b76ab7d247baf", null ],
       [ "RO", "_protocole__nucleo_8hpp.html#a9f4e8630516f3da89537313b4c828759a42e9aa764b9ee7ecf7e668462de6f96d", null ],

@@ -1,4 +1,5 @@
 <map id="Robot::actionneur" name="Robot::actionneur">
-<area shape="rect" id="node1" title="Sort ou rentre un actionneur." alt="" coords="131,5,253,32"/>
-<area shape="rect" id="node2" href="$main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node1" title="Sort ou rentre un actionneur." alt="" coords="131,31,253,57"/>
+<area shape="rect" id="node2" href="$main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
+<area shape="rect" id="node3" href="$main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="17,56,71,83"/>
 </map>

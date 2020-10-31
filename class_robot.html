@@ -109,10 +109,10 @@ Fonctions membres publiques</h2></td></tr>
 <tr class="memitem:a540b3cc3e57f989b43b3c2285657179d"><td class="memItemLeft" align="right" valign="top"><a id="a540b3cc3e57f989b43b3c2285657179d"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Robot</b> (<a class="el" href="structshape.html">shape</a> <a class="el" href="class_robot.html#a8dc1aa549267e390378dad28c2294643">dimension</a>)</td></tr>
 <tr class="separator:a540b3cc3e57f989b43b3c2285657179d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad470bdef874c4b07c16d866bfe19e7c6"><td class="memItemLeft" align="right" valign="top"><a id="ad470bdef874c4b07c16d866bfe19e7c6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#ad470bdef874c4b07c16d866bfe19e7c6">calibration</a> ()</td></tr>
-<tr class="memdesc:ad470bdef874c4b07c16d866bfe19e7c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calibre en x et en y le robot. <br /></td></tr>
-<tr class="separator:ad470bdef874c4b07c16d866bfe19e7c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5576c61d402b24745f87b6098cadc87b"><td class="memItemLeft" align="right" valign="top"><a id="a5576c61d402b24745f87b6098cadc87b"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#a5576c61d402b24745f87b6098cadc87b">calibration</a> ()</td></tr>
+<tr class="memdesc:a5576c61d402b24745f87b6098cadc87b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Récupère l'information sur le côté de la table. <br /></td></tr>
+<tr class="separator:a5576c61d402b24745f87b6098cadc87b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37251aca559a54b6a62798d5842907e6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#a37251aca559a54b6a62798d5842907e6">move</a> (<a class="el" href="struct_node.html">Node</a> src, <a class="el" href="struct_node.html">Node</a> dest, vector&lt; <a class="el" href="structobstacle.html">obstacle</a> &gt; list_obstacles)</td></tr>
 <tr class="memdesc:a37251aca559a54b6a62798d5842907e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Déplace le robot en utilisant l'Astar.  <a href="class_robot.html#a37251aca559a54b6a62798d5842907e6">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a37251aca559a54b6a62798d5842907e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -137,10 +137,26 @@ short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cla
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#af4262ce9dc40e12f28d76a003745d69c">pavillon</a> (int activation)</td></tr>
 <tr class="memdesc:af4262ce9dc40e12f28d76a003745d69c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Active le pavillon. <br /></td></tr>
 <tr class="separator:af4262ce9dc40e12f28d76a003745d69c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a713fd5f6e2436a7f1fdb47188c1dcf15"><td class="memItemLeft" align="right" valign="top"><a id="a713fd5f6e2436a7f1fdb47188c1dcf15"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#a713fd5f6e2436a7f1fdb47188c1dcf15">pince</a> (int activation)</td></tr>
-<tr class="memdesc:a713fd5f6e2436a7f1fdb47188c1dcf15"><td class="mdescLeft">&#160;</td><td class="mdescRight">En cours de construction. <br /></td></tr>
-<tr class="separator:a713fd5f6e2436a7f1fdb47188c1dcf15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0cb5668a8b427f93538e3a9be17aee7"><td class="memItemLeft" align="right" valign="top"><a id="ad0cb5668a8b427f93538e3a9be17aee7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>depart</b> ()</td></tr>
+<tr class="separator:ad0cb5668a8b427f93538e3a9be17aee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b38f66725e5eaa679da7bd6c18c159"><td class="memItemLeft" align="right" valign="top"><a id="a45b38f66725e5eaa679da7bd6c18c159"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#a45b38f66725e5eaa679da7bd6c18c159">communication_phare</a> ()</td></tr>
+<tr class="memdesc:a45b38f66725e5eaa679da7bd6c18c159"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère la communication avec la boussole et la caméra. <br /></td></tr>
+<tr class="separator:a45b38f66725e5eaa679da7bd6c18c159"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87d2982b507762dd59f5314898c10f77"><td class="memItemLeft" align="right" valign="top"><a id="a87d2982b507762dd59f5314898c10f77"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_robot.html#a87d2982b507762dd59f5314898c10f77">communication_boussole</a> ()</td></tr>
+<tr class="memdesc:a87d2982b507762dd59f5314898c10f77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gère la communication avec le phare. <br /></td></tr>
+<tr class="separator:a87d2982b507762dd59f5314898c10f77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac38e110cae40431450ee2c65f7c77f3d"><td class="memItemLeft" align="right" valign="top"><a id="ac38e110cae40431450ee2c65f7c77f3d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>add_score</b> (int add)</td></tr>
+<tr class="separator:ac38e110cae40431450ee2c65f7c77f3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7a6ab89576d10606986d8035139f05b"><td class="memItemLeft" align="right" valign="top"><a id="ad7a6ab89576d10606986d8035139f05b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setup_score</b> ()</td></tr>
+<tr class="separator:ad7a6ab89576d10606986d8035139f05b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4c829394459be98661eec8e5d102ed8e"><td class="memItemLeft" align="right" valign="top"><a id="a4c829394459be98661eec8e5d102ed8e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>set_score</b> (int score)</td></tr>
+<tr class="separator:a4c829394459be98661eec8e5d102ed8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Attributs publics</h2></td></tr>
@@ -191,16 +207,17 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_a59ef019371b0abc50dd1e57c523d78da_cgraph.png" border="0" usemap="#aclass_robot_a59ef019371b0abc50dd1e57c523d78da_cgraph" alt=""/></div>
 <map name="class_robot_a59ef019371b0abc50dd1e57c523d78da_cgraph" id="aclass_robot_a59ef019371b0abc50dd1e57c523d78da_cgraph">
-<area shape="rect" title="Sort ou rentre un actionneur." alt="" coords="5,81,128,108"/>
-<area shape="rect" href="actionneur_8hpp.html#aae672dba7511eaf30098642047d5e669" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="195,31,307,57"/>
-<area shape="rect" href="actionneur_8hpp.html#a67dc27880f7a17b2b88fe1a8072e2422" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="186,81,317,108"/>
-<area shape="rect" href="actionneur_8hpp.html#a6a9127b917614ef9786cf08fe60bc100" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="176,132,327,159"/>
-<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="422,56,495,83"/>
-<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="375,107,543,133"/>
-<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="591,5,697,32"/>
-<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="593,56,695,83"/>
-<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="595,107,693,133"/>
-<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="745,107,864,133"/>
+<area shape="rect" title="Sort ou rentre un actionneur." alt="" coords="5,107,128,134"/>
+<area shape="rect" href="class_actionneur.html#a70656e0ba843a0da72b70ed49fb9b506" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="187,137,367,163"/>
+<area shape="rect" href="class_actionneur.html#ab4d33cfa921d46cef875e18577a35ed5" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="176,187,377,214"/>
+<area shape="rect" href="class_actionneur.html#a84f4964f70046ccf3c006f09b19fa1d5" title="Permet de demander au protocole la sortie de l&#39;actionneur." alt="" coords="209,5,344,47"/>
+<area shape="rect" href="class_actionneur.html#a286474d4e0a40d92af9ce486fdba632d" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="209,71,344,112"/>
+<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="473,81,546,107"/>
+<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="425,133,593,159"/>
+<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="641,30,748,57"/>
+<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="643,81,746,107"/>
+<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="646,131,743,158"/>
+<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="796,131,915,158"/>
 </map>
 </div>
 <div class="dynheader">
@@ -208,8 +225,9 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_a59ef019371b0abc50dd1e57c523d78da_icgraph.png" border="0" usemap="#aclass_robot_a59ef019371b0abc50dd1e57c523d78da_icgraph" alt=""/></div>
 <map name="class_robot_a59ef019371b0abc50dd1e57c523d78da_icgraph" id="aclass_robot_a59ef019371b0abc50dd1e57c523d78da_icgraph">
-<area shape="rect" title="Sort ou rentre un actionneur." alt="" coords="131,5,253,32"/>
-<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
+<area shape="rect" title="Sort ou rentre un actionneur." alt="" coords="131,31,253,57"/>
+<area shape="rect" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
+<area shape="rect" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="17,56,71,83"/>
 </map>
 </div>
 
@@ -255,8 +273,8 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="center"><img src="class_robot_a7e259d83b3908bf68280831b0a820921_cgraph.png" border="0" usemap="#aclass_robot_a7e259d83b3908bf68280831b0a820921_cgraph" alt=""/></div>
 <map name="class_robot_a7e259d83b3908bf68280831b0a820921_cgraph" id="aclass_robot_a7e259d83b3908bf68280831b0a820921_cgraph">
 <area shape="rect" title="Active ou désactive la détection." alt="" coords="5,81,120,108"/>
-<area shape="rect" href="class_g_p2.html#ab94061c392ddbeb748e0d7c009f26b87" title="Active la détection." alt="" coords="177,56,277,83"/>
-<area shape="rect" href="class_g_p2.html#a212815a662a969b059b448c970e990ab" title="Désactive la détection." alt="" coords="168,107,285,133"/>
+<area shape="rect" href="class_g_p2.html#a3f5a7245a97d17f2c14773b8a855a76f" title="Active la détection." alt="" coords="177,56,277,83"/>
+<area shape="rect" href="class_g_p2.html#a39fd202ec8906e61a8813f4d646d4a23" title="Désactive la détection." alt="" coords="168,107,285,133"/>
 <area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="394,56,467,83"/>
 <area shape="rect" href="class_protocole.html#a77ed59dcb9d7b29706c041bc237856cf" title="Permet de demander l&#39;activation où la désactivation des GP2." alt="" coords="333,107,528,133"/>
 <area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="576,5,683,32"/>
@@ -270,8 +288,9 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_a7e259d83b3908bf68280831b0a820921_icgraph.png" border="0" usemap="#aclass_robot_a7e259d83b3908bf68280831b0a820921_icgraph" alt=""/></div>
 <map name="class_robot_a7e259d83b3908bf68280831b0a820921_icgraph" id="aclass_robot_a7e259d83b3908bf68280831b0a820921_icgraph">
-<area shape="rect" title="Active ou désactive la détection." alt="" coords="108,5,223,32"/>
-<area shape="rect" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="5,5,60,32"/>
+<area shape="rect" title="Active ou désactive la détection." alt="" coords="131,31,245,57"/>
+<area shape="rect" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
+<area shape="rect" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d" title="Initialisation des différents éléments." alt="" coords="17,56,71,83"/>
 </map>
 </div>
 
@@ -323,16 +342,17 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_a37251aca559a54b6a62798d5842907e6_cgraph.png" border="0" usemap="#aclass_robot_a37251aca559a54b6a62798d5842907e6_cgraph" alt=""/></div>
 <map name="class_robot_a37251aca559a54b6a62798d5842907e6_cgraph" id="aclass_robot_a37251aca559a54b6a62798d5842907e6_cgraph">
-<area shape="rect" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="5,149,100,176"/>
-<area shape="rect" href="class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="148,149,291,176"/>
-<area shape="rect" href="class_navigation.html#aa99ae7455bef2dcc724ab166d8a921ca" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="349,77,471,104"/>
-<area shape="rect" href="class_navigation.html#a4da44ead5f6b4fb643f140986cb343fb" title="Permet de prendre un branchement dans la stratégie en fonction du retour du protocole,..." alt="" coords="529,157,687,184"/>
-<area shape="rect" href="class_navigation.html#a322f076e4f3cfd218d110c7b3165c945" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="339,201,481,242"/>
-<area shape="rect" href="world_8hpp.html#a8132d25297b896fef1d6b07651311e92" title="Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle." alt="" coords="577,5,639,32"/>
-<area shape="rect" href="class_navigation.html#ac43b6d801ab9fc58e8dfaffa60c62f74" title="Permet de transformer une grille représentant la table en un chemin Cette fonction est utilisée dans ..." alt="" coords="533,56,683,83"/>
-<area shape="rect" href="affichage_8hpp.html#a793e2184d3289950f1e148a23d1c658a" title="Permet d&#39;afficher FAILED en rouge." alt="" coords="573,107,643,133"/>
-<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html#a8e52451626296ff3d31c441d10ffb742" title="Permet de transmettre au protocole l&#39;ordre de se déplacer." alt="" coords="581,208,635,235"/>
-<area shape="rect" href="class_navigation.html#a536879339d1a6355c5268438366b3a79" title="Permet d&#39;afficher un chemin calculé par l&#39;Astar." alt="" coords="533,259,683,285"/>
+<area shape="rect" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="5,106,100,133"/>
+<area shape="rect" href="class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="148,106,291,133"/>
+<area shape="rect" href="class_navigation.html#aa99ae7455bef2dcc724ab166d8a921ca" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="349,30,471,57"/>
+<area shape="rect" href="world_8hpp.html#a7d85f9973eb806711bd51c9f7ea0bd23" title="Permet de remplir un vecteur avec la liste des obstacles, c&#39;est ici que l&#39;on ajoute ou enlève des obs..." alt="" coords="374,81,446,108"/>
+<area shape="rect" href="world_8hpp.html#ac7be71c5bbc7e3981d298b5c73d5a114" title="Cette fonction permet de gérer un cas particulier où l&#39;on détecte un robot et que l&#39;Astar n&#39;arrive pl..." alt="" coords="339,132,481,158"/>
+<area shape="rect" href="class_navigation.html#a322f076e4f3cfd218d110c7b3165c945" title="Permet de convertir un chemin en informations transmettables à l&#39;asservissement. L&#39;idée générale est ..." alt="" coords="339,183,481,224"/>
+<area shape="rect" href="world_8hpp.html#a8132d25297b896fef1d6b07651311e92" title="Permet de savoir, si le robot est dans une position si il entre en collision avec un obstacle." alt="" coords="727,89,788,116"/>
+<area shape="rect" href="class_navigation.html#ac43b6d801ab9fc58e8dfaffa60c62f74" title="Permet de transformer une grille représentant la table en un chemin Cette fonction est utilisée dans ..." alt="" coords="529,34,679,61"/>
+<area shape="rect" href="affichage_8hpp.html#a793e2184d3289950f1e148a23d1c658a" title="Permet d&#39;afficher FAILED en rouge." alt="" coords="569,85,639,112"/>
+<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html#a5210b89697121b05874fa4e305e49d4b" title="Permet de transmettre au protocole l&#39;ordre de se déplacer." alt="" coords="577,140,631,166"/>
+<area shape="rect" href="class_navigation.html#a536879339d1a6355c5268438366b3a79" title="Permet d&#39;afficher un chemin calculé par l&#39;Astar." alt="" coords="529,190,679,217"/>
 </map>
 </div>
 <div class="dynheader">
@@ -340,9 +360,8 @@ Voici le graphe des appelants de cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="class_robot_a37251aca559a54b6a62798d5842907e6_icgraph.png" border="0" usemap="#aclass_robot_a37251aca559a54b6a62798d5842907e6_icgraph" alt=""/></div>
 <map name="class_robot_a37251aca559a54b6a62798d5842907e6_icgraph" id="aclass_robot_a37251aca559a54b6a62798d5842907e6_icgraph">
-<area shape="rect" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,31,244,57"/>
+<area shape="rect" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,5,244,32"/>
 <area shape="rect" href="ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,5,101,32"/>
-<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="15,56,92,83"/>
 </map>
 </div>
 
@@ -386,6 +405,15 @@ Voici le graphe d'appel pour cette fonction :</div>
 <area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="639,183,737,209"/>
 <area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="789,183,908,209"/>
 <area shape="rect" href="class_protocole.html#ac37f03c8ae6be93abb47aff9afc3a381" title="Permet de demander une rotation du robot." alt="" coords="261,157,400,184"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="class_robot_a00fd06b78b32a34e92c20694e90594bd_icgraph.png" border="0" usemap="#aclass_robot_a00fd06b78b32a34e92c20694e90594bd_icgraph" alt=""/></div>
+<map name="class_robot_a00fd06b78b32a34e92c20694e90594bd_icgraph" id="aclass_robot_a00fd06b78b32a34e92c20694e90594bd_icgraph">
+<area shape="rect" title="Fait une rotation du robot." alt="" coords="131,5,236,32"/>
+<area shape="rect" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
 </map>
 </div>
 

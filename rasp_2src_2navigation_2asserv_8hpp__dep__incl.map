@@ -1,5 +1,5 @@
 <map id="code/rasp/src/navigation/asserv.hpp" name="code/rasp/src/navigation/asserv.hpp">
-<area shape="rect" id="node1" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="345,5,509,47"/>
+<area shape="rect" id="node1" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="249,5,413,47"/>
 <area shape="rect" id="node2" href="$detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="149,95,321,136"/>
 <area shape="rect" id="node3" href="$navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="5,184,169,225"/>
 <area shape="rect" id="node11" href="$protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="345,95,509,136"/>

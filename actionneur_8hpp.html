@@ -82,7 +82,7 @@ $(document).ready(function(){initNavTree('actionneur_8hpp.html',''); initResizab
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Fonctions</a>  </div>
+<a href="#nested-classes">Classes</a>  </div>
   <div class="headertitle">
 <div class="title">Référence du fichier actionneur.hpp</div>  </div>
 </div><!--header-->
@@ -96,21 +96,22 @@ Graphe des dépendances par inclusion de actionneur.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="actionneur_8hpp__incl.png" border="0" usemap="#acode_2rasp_2src_2interactions_2actionneur_8hpp" alt=""/></div>
 <map name="code_2rasp_2src_2interactions_2actionneur_8hpp" id="acode_2rasp_2src_2interactions_2actionneur_8hpp">
-<area shape="rect" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="154,5,326,47"/>
-<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="154,95,326,121"/>
-<area shape="rect" title=" " alt="" coords="67,169,141,196"/>
-<area shape="rect" title=" " alt="" coords="166,169,221,196"/>
-<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="245,169,331,196"/>
+<area shape="rect" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="233,5,405,47"/>
+<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="233,95,405,121"/>
+<area shape="rect" title=" " alt="" coords="145,169,220,196"/>
+<area shape="rect" title=" " alt="" coords="245,169,299,196"/>
+<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="324,169,409,196"/>
 <area shape="rect" title=" " alt="" coords="5,244,77,271"/>
 <area shape="rect" title=" " alt="" coords="101,244,163,271"/>
 <area shape="rect" title=" " alt="" coords="187,244,237,271"/>
 <area shape="rect" title=" " alt="" coords="261,244,315,271"/>
 <area shape="rect" title=" " alt="" coords="339,244,394,271"/>
 <area shape="rect" href="affichage_8hpp.html" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="419,244,525,271"/>
-<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="549,244,627,271"/>
-<area shape="rect" title=" " alt="" coords="374,319,434,345"/>
-<area shape="rect" title=" " alt="" coords="458,319,518,345"/>
-<area shape="rect" title=" " alt="" coords="559,319,617,345"/>
+<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="620,319,697,345"/>
+<area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="601,244,781,271"/>
+<area shape="rect" title=" " alt="" coords="389,319,449,345"/>
+<area shape="rect" title=" " alt="" coords="473,319,533,345"/>
+<area shape="rect" title=" " alt="" coords="629,393,688,420"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -130,229 +131,16 @@ Ce graphe montre quels fichiers incluent directement ou indirectement ce fichier
 </div>
 <p><a href="actionneur_8hpp_source.html">Aller au code source de ce fichier.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Fonctions</h2></td></tr>
-<tr class="memitem:a67dc27880f7a17b2b88fe1a8072e2422"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur_8hpp.html#a67dc27880f7a17b2b88fe1a8072e2422">Gauche_activation</a> ()</td></tr>
-<tr class="memdesc:a67dc27880f7a17b2b88fe1a8072e2422"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contient toutes les méthodes permettant de gérer les actionneurs du robot.  <a href="actionneur_8hpp.html#a67dc27880f7a17b2b88fe1a8072e2422">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a67dc27880f7a17b2b88fe1a8072e2422"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a9127b917614ef9786cf08fe60bc100"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur_8hpp.html#a6a9127b917614ef9786cf08fe60bc100">Gauche_desactivation</a> ()</td></tr>
-<tr class="memdesc:a6a9127b917614ef9786cf08fe60bc100"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de demander au protocole la rentrée de l'actionneur.  <a href="actionneur_8hpp.html#a6a9127b917614ef9786cf08fe60bc100">Plus de détails...</a><br /></td></tr>
-<tr class="separator:a6a9127b917614ef9786cf08fe60bc100"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aae672dba7511eaf30098642047d5e669"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur_8hpp.html#aae672dba7511eaf30098642047d5e669">Droit_activation</a> ()</td></tr>
-<tr class="memdesc:aae672dba7511eaf30098642047d5e669"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contient toutes les méthodes permettant de gérer les actionneurs du robot.  <a href="actionneur_8hpp.html#aae672dba7511eaf30098642047d5e669">Plus de détails...</a><br /></td></tr>
-<tr class="separator:aae672dba7511eaf30098642047d5e669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb8152505a10acfae01d8e86dada177e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur_8hpp.html#afb8152505a10acfae01d8e86dada177e">Droit_desactivation</a> ()</td></tr>
-<tr class="memdesc:afb8152505a10acfae01d8e86dada177e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de demander au protocole la rentrée de l'actionneur.  <a href="actionneur_8hpp.html#afb8152505a10acfae01d8e86dada177e">Plus de détails...</a><br /></td></tr>
-<tr class="separator:afb8152505a10acfae01d8e86dada177e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afe1845d64ec4917974b908eedc519411"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="actionneur_8hpp.html#afe1845d64ec4917974b908eedc519411">Pavillon</a> ()</td></tr>
-<tr class="memdesc:afe1845d64ec4917974b908eedc519411"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de demander au protocole l'activation du pavillon.  <a href="actionneur_8hpp.html#afe1845d64ec4917974b908eedc519411">Plus de détails...</a><br /></td></tr>
-<tr class="separator:afe1845d64ec4917974b908eedc519411"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_actionneur.html">Actionneur</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Contient toutes les méthodes permettant de gérer les actionneurs du robot.  <a href="class_actionneur.html#details">Plus de détails...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>Ce fichier contient la classe permettant de gérer les actionneurs. </p>
 <dl class="section author"><dt>Auteur</dt><dd>SD </dd></dl>
-</div><h2 class="groupheader">Documentation des fonctions</h2>
-<a id="aae672dba7511eaf30098642047d5e669"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae672dba7511eaf30098642047d5e669">&#9670;&nbsp;</a></span>Droit_activation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Droit_activation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Contient toutes les méthodes permettant de gérer les actionneurs du robot. </p>
-<p>Permet de demander au protocole la sortie de l'actionneur </p><dl class="section return"><dt>Renvoie</dt><dd>Rien, à modifier pour la compatibilité avec le protocole </dd></dl>
-<div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_aae672dba7511eaf30098642047d5e669_cgraph.png" border="0" usemap="#aactionneur_8hpp_aae672dba7511eaf30098642047d5e669_cgraph" alt=""/></div>
-<map name="actionneur_8hpp_aae672dba7511eaf30098642047d5e669_cgraph" id="aactionneur_8hpp_aae672dba7511eaf30098642047d5e669_cgraph">
-<area shape="rect" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="5,81,117,108"/>
-<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="213,56,286,83"/>
-<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="165,107,333,133"/>
-<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="381,5,488,32"/>
-<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="383,56,486,83"/>
-<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="386,107,483,133"/>
-<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="536,107,655,133"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_aae672dba7511eaf30098642047d5e669_icgraph.png" border="0" usemap="#aactionneur_8hpp_aae672dba7511eaf30098642047d5e669_icgraph" alt=""/></div>
-<map name="actionneur_8hpp_aae672dba7511eaf30098642047d5e669_icgraph" id="aactionneur_8hpp_aae672dba7511eaf30098642047d5e669_icgraph">
-<area shape="rect" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="301,5,413,32"/>
-<area shape="rect" href="class_robot.html#a59ef019371b0abc50dd1e57c523d78da" title="Sort ou rentre un actionneur." alt="" coords="131,5,253,32"/>
-<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="afb8152505a10acfae01d8e86dada177e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afb8152505a10acfae01d8e86dada177e">&#9670;&nbsp;</a></span>Droit_desactivation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Droit_desactivation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Permet de demander au protocole la rentrée de l'actionneur. </p>
-<dl class="section return"><dt>Renvoie</dt><dd>Rien, à modifier pour la compatibilité avec le protocole </dd></dl>
-<div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_afb8152505a10acfae01d8e86dada177e_cgraph.png" border="0" usemap="#aactionneur_8hpp_afb8152505a10acfae01d8e86dada177e_cgraph" alt=""/></div>
-<map name="actionneur_8hpp_afb8152505a10acfae01d8e86dada177e_cgraph" id="aactionneur_8hpp_afb8152505a10acfae01d8e86dada177e_cgraph">
-<area shape="rect" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="5,81,139,108"/>
-<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="234,56,307,83"/>
-<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="187,107,355,133"/>
-<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="403,5,509,32"/>
-<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="405,56,507,83"/>
-<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="407,107,505,133"/>
-<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="557,107,676,133"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a67dc27880f7a17b2b88fe1a8072e2422"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a67dc27880f7a17b2b88fe1a8072e2422">&#9670;&nbsp;</a></span>Gauche_activation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Gauche_activation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Contient toutes les méthodes permettant de gérer les actionneurs du robot. </p>
-<p>Permet de demander au protocole la sortie de l'actionneur </p><dl class="section return"><dt>Renvoie</dt><dd>Rien, à modifier pour la compatibilité avec le protocole </dd></dl>
-<div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_cgraph.png" border="0" usemap="#aactionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_cgraph" alt=""/></div>
-<map name="actionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_cgraph" id="aactionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_cgraph">
-<area shape="rect" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="5,81,136,108"/>
-<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="231,56,305,83"/>
-<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="184,107,352,133"/>
-<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="400,5,507,32"/>
-<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="402,56,505,83"/>
-<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="405,107,502,133"/>
-<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="555,107,673,133"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_icgraph.png" border="0" usemap="#aactionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_icgraph" alt=""/></div>
-<map name="actionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_icgraph" id="aactionneur_8hpp_a67dc27880f7a17b2b88fe1a8072e2422_icgraph">
-<area shape="rect" title="Contient toutes les méthodes permettant de gérer les actionneurs du robot." alt="" coords="301,5,432,32"/>
-<area shape="rect" href="class_robot.html#a59ef019371b0abc50dd1e57c523d78da" title="Sort ou rentre un actionneur." alt="" coords="131,5,253,32"/>
-<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="a6a9127b917614ef9786cf08fe60bc100"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a9127b917614ef9786cf08fe60bc100">&#9670;&nbsp;</a></span>Gauche_desactivation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Gauche_desactivation </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Permet de demander au protocole la rentrée de l'actionneur. </p>
-<dl class="section return"><dt>Renvoie</dt><dd>Rien, à modifier pour la compatibilité avec le protocole </dd></dl>
-<div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_cgraph.png" border="0" usemap="#aactionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_cgraph" alt=""/></div>
-<map name="actionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_cgraph" id="aactionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_cgraph">
-<area shape="rect" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="5,81,156,108"/>
-<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="251,56,325,83"/>
-<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="204,107,372,133"/>
-<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="420,5,527,32"/>
-<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="422,56,525,83"/>
-<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="425,107,522,133"/>
-<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="575,107,693,133"/>
-</map>
-</div>
-<div class="dynheader">
-Voici le graphe des appelants de cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_icgraph.png" border="0" usemap="#aactionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_icgraph" alt=""/></div>
-<map name="actionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_icgraph" id="aactionneur_8hpp_a6a9127b917614ef9786cf08fe60bc100_icgraph">
-<area shape="rect" title="Permet de demander au protocole la rentrée de l&#39;actionneur." alt="" coords="301,5,452,32"/>
-<area shape="rect" href="class_robot.html#a59ef019371b0abc50dd1e57c523d78da" title="Sort ou rentre un actionneur." alt="" coords="131,5,253,32"/>
-<area shape="rect" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="5,5,83,32"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="afe1845d64ec4917974b908eedc519411"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe1845d64ec4917974b908eedc519411">&#9670;&nbsp;</a></span>Pavillon()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Pavillon </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Permet de demander au protocole l'activation du pavillon. </p>
-<dl class="section return"><dt>Renvoie</dt><dd>Rien, à modifier pour la compatibilité avec le protocole </dd></dl>
-<div class="dynheader">
-Voici le graphe d'appel pour cette fonction :</div>
-<div class="dyncontent">
-<div class="center"><img src="actionneur_8hpp_afe1845d64ec4917974b908eedc519411_cgraph.png" border="0" usemap="#aactionneur_8hpp_afe1845d64ec4917974b908eedc519411_cgraph" alt=""/></div>
-<map name="actionneur_8hpp_afe1845d64ec4917974b908eedc519411_cgraph" id="aactionneur_8hpp_afe1845d64ec4917974b908eedc519411_cgraph">
-<area shape="rect" title="Permet de demander au protocole l&#39;activation du pavillon." alt="" coords="5,81,73,108"/>
-<area shape="rect" href="affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="169,56,242,83"/>
-<area shape="rect" href="class_protocole.html#a8ba2b9b867f641841a4714385cf38c17" title="Permet de demander le déploiement d&#39;un actionneur." alt="" coords="121,107,289,133"/>
-<area shape="rect" href="affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="337,5,444,32"/>
-<area shape="rect" href="affichage_8hpp.html#a0d34406ad5d7127fd4d376ed66f3e27b" title="Permet d&#39;afficher SUCCESS en vert." alt="" coords="339,56,442,83"/>
-<area shape="rect" href="affichage_8hpp.html#ae43d1cf111dfc04a0eaff8c1b4899a93" title="Permet d&#39;afficher TIMEOUT en rouge." alt="" coords="342,107,439,133"/>
-<area shape="rect" href="affichage_8hpp.html#a346d6e5b9d13e7d74355d9e1322f4a87" title="Permet d&#39;afficher un résumé d&#39;une éxecution. Permet d&#39;afficher le nombre de succès,..." alt="" coords="492,107,611,133"/>
-</map>
-</div>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

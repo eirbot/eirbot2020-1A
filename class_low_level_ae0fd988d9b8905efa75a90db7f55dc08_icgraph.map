@@ -1,0 +1,5 @@
+<map id="LowLevel::phare_active" name="LowLevel::phare_active">
+<area shape="rect" id="node1" title="est&#45;ce que le phare est activé ?" alt="" coords="329,13,488,39"/>
+<area shape="rect" id="node2" href="$class_robot.html#a45b38f66725e5eaa679da7bd6c18c159" title="Gère la communication avec la boussole et la caméra." alt="" coords="131,5,281,47"/>
+<area shape="rect" id="node3" href="$main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b" title="Boucle principale du projet." alt="" coords="5,13,83,39"/>
+</map>

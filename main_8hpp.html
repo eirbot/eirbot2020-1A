@@ -90,36 +90,43 @@ $(document).ready(function(){initNavTree('main_8hpp.html',''); initResizable(); 
 
 <p>Fichier principal pour l'execution de notre projet.  
 <a href="#details">Plus de détails...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="ecocup_8hpp_source.html">interactions/ecocup.hpp</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;ctime&gt;</code><br />
+<code>#include &lt;chrono&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="ecocup_8hpp_source.html">interactions/ecocup.hpp</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="robot_8hpp_source.html">robot.hpp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Graphe des dépendances par inclusion de main.hpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="main_8hpp__incl.png" border="0" usemap="#acode_2rasp_2src_2main_8hpp" alt=""/></div>
 <map name="code_2rasp_2src_2main_8hpp" id="acode_2rasp_2src_2main_8hpp">
-<area shape="rect" title="Fichier principal pour l&#39;execution de notre projet." alt="" coords="369,5,526,32"/>
-<area shape="rect" href="ecocup_8hpp.html" title="Fichier codant les techniques utilisées pour ramasser les écocups." alt="" coords="309,80,468,107"/>
-<area shape="rect" href="robot_8hpp.html" title=" " alt="" coords="463,155,549,181"/>
-<area shape="rect" href="ecocup__pdv_8hpp.html" title="Implémentation (en C) du problème du voyageur avec le système de colonie de fourmis." alt="" coords="129,379,245,405"/>
-<area shape="rect" title=" " alt="" coords="87,453,149,480"/>
-<area shape="rect" title=" " alt="" coords="541,528,601,555"/>
-<area shape="rect" title=" " alt="" coords="5,453,63,480"/>
-<area shape="rect" title=" " alt="" coords="225,453,286,480"/>
-<area shape="rect" href="navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="422,229,590,256"/>
-<area shape="rect" href="actionneur_8hpp.html" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="737,304,915,331"/>
-<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="527,379,613,405"/>
-<area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="352,304,532,331"/>
-<area shape="rect" title=" " alt="" coords="411,453,483,480"/>
-<area shape="rect" title=" " alt="" coords="507,453,558,480"/>
-<area shape="rect" title=" " alt="" coords="582,453,635,480"/>
-<area shape="rect" title=" " alt="" coords="660,453,715,480"/>
-<area shape="rect" href="affichage_8hpp.html" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="739,453,846,480"/>
-<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="310,453,387,480"/>
-<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="870,453,969,480"/>
-<area shape="rect" title=" " alt="" coords="763,528,823,555"/>
-<area shape="rect" title=" " alt="" coords="319,528,378,555"/>
-<area shape="rect" title=" " alt="" coords="949,528,1023,555"/>
-<area shape="rect" title=" " alt="" coords="869,528,924,555"/>
+<area shape="rect" title="Fichier principal pour l&#39;execution de notre projet." alt="" coords="207,5,365,32"/>
+<area shape="rect" title=" " alt="" coords="88,80,143,107"/>
+<area shape="rect" title=" " alt="" coords="167,80,229,107"/>
+<area shape="rect" title=" " alt="" coords="253,80,319,107"/>
+<area shape="rect" href="ecocup_8hpp.html" title="Fichier codant les techniques utilisées pour ramasser les écocups." alt="" coords="344,80,503,107"/>
+<area shape="rect" href="robot_8hpp.html" title=" " alt="" coords="498,155,583,181"/>
+<area shape="rect" href="ecocup__pdv_8hpp.html" title="Implémentation (en C) du problème du voyageur avec le système de colonie de fourmis." alt="" coords="129,304,245,331"/>
+<area shape="rect" title=" " alt="" coords="5,379,68,405"/>
+<area shape="rect" title=" " alt="" coords="204,453,264,480"/>
+<area shape="rect" title=" " alt="" coords="92,379,149,405"/>
+<area shape="rect" title=" " alt="" coords="225,379,286,405"/>
+<area shape="rect" href="navigation_8hpp.html" title="Ce fichier contient toutes les méthodes permettant de réaliser une recherche de chemin sur la table d..." alt="" coords="554,229,722,256"/>
+<area shape="rect" href="actionneur_8hpp.html" title="Ce fichier contient la classe permettant de gérer les actionneurs." alt="" coords="892,304,1069,331"/>
+<area shape="rect" href="low__level_8hpp.html" title="fonction bas niveau rasp (GPIO)" alt="" coords="359,229,530,256"/>
+<area shape="rect" href="rasp_2src_2navigation_2asserv_8hpp.html" title="Fichier d&#39;interface avec l&#39;asservissement, permet d&#39;utiliser le protocole de communication pour deman..." alt="" coords="653,304,738,331"/>
+<area shape="rect" href="detection_8hpp.html" title="Fichier permettant d&#39;interfacer avec les GP2." alt="" coords="441,379,621,405"/>
+<area shape="rect" title=" " alt="" coords="697,379,769,405"/>
+<area shape="rect" title=" " alt="" coords="793,379,843,405"/>
+<area shape="rect" title=" " alt="" coords="867,379,921,405"/>
+<area shape="rect" title=" " alt="" coords="945,379,1000,405"/>
+<area shape="rect" href="affichage_8hpp.html" title="Ce fichier sert uniquement à réaliser un affichage correcte lors de l&#39;éxecution @authro SD." alt="" coords="310,379,417,405"/>
+<area shape="rect" href="world_8hpp.html" title="Permet definir la table de jeu et les différentes structures nécessaires au fonctionnement de la navi..." alt="" coords="557,453,634,480"/>
+<area shape="rect" href="protocole_8hpp.html" title="Fichier central du projet, permet de faire la communication entre la raspberry et la nucléo,..." alt="" coords="1025,379,1123,405"/>
+<area shape="rect" title=" " alt="" coords="333,453,393,480"/>
+<area shape="rect" title=" " alt="" coords="566,528,625,555"/>
+<area shape="rect" title=" " alt="" coords="991,453,1066,480"/>
+<area shape="rect" title=" " alt="" coords="1091,453,1145,480"/>
 </map>
 </div>
 </div>
@@ -127,17 +134,20 @@ Graphe des dépendances par inclusion de main.hpp:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
+<tr class="memitem:a23fc57d7f7517bdc0db10a606e8cc751"><td class="memItemLeft" align="right" valign="top"><a id="a23fc57d7f7517bdc0db10a606e8cc751"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>parse_opts</b> (int argc, char *argv[], int *pc, string *side)</td></tr>
+<tr class="separator:a23fc57d7f7517bdc0db10a606e8cc751"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top"><a id="a4fc01d736fe50cf5b977f755b675f11d"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
 <tr class="memdesc:a4fc01d736fe50cf5b977f755b675f11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisation des différents éléments. <br /></td></tr>
 <tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63e70deb00c73d2325da9380a1d01ae3"><td class="memItemLeft" align="right" valign="top"><a id="a63e70deb00c73d2325da9380a1d01ae3"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3">loop_blue</a> ()</td></tr>
-<tr class="memdesc:a63e70deb00c73d2325da9380a1d01ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boucle principale du projet. <br /></td></tr>
-<tr class="separator:a63e70deb00c73d2325da9380a1d01ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6a3337183fdff0ea92da4e438fc667b9"><td class="memItemLeft" align="right" valign="top"><a id="a6a3337183fdff0ea92da4e438fc667b9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>loop_yellow</b> ()</td></tr>
-<tr class="separator:a6a3337183fdff0ea92da4e438fc667b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8235c5c0bc9749b82fadbe69cc8973b"><td class="memItemLeft" align="right" valign="top"><a id="aa8235c5c0bc9749b82fadbe69cc8973b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b">loop_blue</a> (std::chrono::steady_clock::time_point BeginMeasurement)</td></tr>
+<tr class="memdesc:aa8235c5c0bc9749b82fadbe69cc8973b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Boucle principale du projet. <br /></td></tr>
+<tr class="separator:aa8235c5c0bc9749b82fadbe69cc8973b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45b6e4a4979183d1ebcfe0e327a133b2"><td class="memItemLeft" align="right" valign="top"><a id="a45b6e4a4979183d1ebcfe0e327a133b2"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>loop_yellow</b> (std::chrono::steady_clock::time_point BeginMeasurement)</td></tr>
+<tr class="separator:a45b6e4a4979183d1ebcfe0e327a133b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddf1224851353fc92bfbff6f499fa97"><td class="memItemLeft" align="right" valign="top"><a id="a0ddf1224851353fc92bfbff6f499fa97"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>main</b> (int argc, char *argv[])</td></tr>
 <tr class="separator:a0ddf1224851353fc92bfbff6f499fa97"><td class="memSeparator" colspan="2">&#160;</td></tr>

@@ -1,8 +1,7 @@
 <map id="Navigation::MakePath" name="Navigation::MakePath">
-<area shape="rect" id="node1" title="Permet de transformer une grille représentant la table en un chemin Cette fonction est utilisée dans ..." alt="" coords="652,31,801,57"/>
-<area shape="rect" id="node2" href="$class_navigation.html#aa99ae7455bef2dcc724ab166d8a921ca" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="483,31,604,57"/>
-<area shape="rect" id="node3" href="$class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="292,31,435,57"/>
-<area shape="rect" id="node4" href="$class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,31,244,57"/>
+<area shape="rect" id="node1" title="Permet de transformer une grille représentant la table en un chemin Cette fonction est utilisée dans ..." alt="" coords="652,5,801,32"/>
+<area shape="rect" id="node2" href="$class_navigation.html#aa99ae7455bef2dcc724ab166d8a921ca" title="Fonction principale de la classe, permet d&#39;effecteur une recherche de chemin entre deux points." alt="" coords="483,5,604,32"/>
+<area shape="rect" id="node3" href="$class_navigation.html#a1aee46eccd90cd20edb4d3b81f342930" title="Permet de réaliser une étape c&#39;est à dire un déplacement d&#39;un point principal à un autre point princi..." alt="" coords="292,5,435,32"/>
+<area shape="rect" id="node4" href="$class_robot.html#a37251aca559a54b6a62798d5842907e6" title="Déplace le robot en utilisant l&#39;Astar." alt="" coords="149,5,244,32"/>
 <area shape="rect" id="node5" href="$ecocup_8hpp.html#ac999d3b18119e99e943cce296b7e9a95" title="Permet de calculer le chemin le plus court pour ramasser les écocups." alt="" coords="5,5,101,32"/>
-<area shape="rect" id="node6" href="$main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3" title="Boucle principale du projet." alt="" coords="15,56,92,83"/>
 </map>

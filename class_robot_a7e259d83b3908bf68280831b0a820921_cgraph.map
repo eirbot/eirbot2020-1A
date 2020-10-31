@@ -1,7 +1,7 @@
 <map id="Robot::detection" name="Robot::detection">
 <area shape="rect" id="node1" title="Active ou désactive la détection." alt="" coords="5,81,120,108"/>
-<area shape="rect" id="node2" href="$class_g_p2.html#ab94061c392ddbeb748e0d7c009f26b87" title="Active la détection." alt="" coords="177,56,277,83"/>
-<area shape="rect" id="node9" href="$class_g_p2.html#a212815a662a969b059b448c970e990ab" title="Désactive la détection." alt="" coords="168,107,285,133"/>
+<area shape="rect" id="node2" href="$class_g_p2.html#a3f5a7245a97d17f2c14773b8a855a76f" title="Active la détection." alt="" coords="177,56,277,83"/>
+<area shape="rect" id="node9" href="$class_g_p2.html#a39fd202ec8906e61a8813f4d646d4a23" title="Désactive la détection." alt="" coords="168,107,285,133"/>
 <area shape="rect" id="node3" href="$affichage_8hpp.html#a3a5792a2c8d329867bb92201ed11d9d1" title="Permet d&#39;afficher timeout/success/fail en fonction du retour du protocole de communication." alt="" coords="394,56,467,83"/>
 <area shape="rect" id="node8" href="$class_protocole.html#a77ed59dcb9d7b29706c041bc237856cf" title="Permet de demander l&#39;activation où la désactivation des GP2." alt="" coords="333,107,528,133"/>
 <area shape="rect" id="node4" href="$affichage_8hpp.html#a4ceee6ebefab3ca6fc8d72282bcdcb72" title="Permet d&#39;afficher DETECTION en orange." alt="" coords="576,5,683,32"/>

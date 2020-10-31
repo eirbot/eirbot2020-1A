@@ -1,5 +1,6 @@
 <map id="code/nucleo/lib/Protocole/Protocole_nucleo.hpp" name="code/nucleo/lib/Protocole/Protocole_nucleo.hpp">
-<area shape="rect" id="node1" title="Fichier principal du projet permet de communiquer entre la raspberry et la nucléo...." alt="" coords="5,5,173,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="8,95,72,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="96,95,181,121"/>
+<area shape="rect" id="node1" title="Fichier principal du projet permet de communiquer entre la raspberry et la nucléo...." alt="" coords="52,5,220,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,95,69,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="93,95,179,121"/>
+<area shape="rect" id="node4" href="$asserv__vitesse__angle_8hpp_source.html" title=" " alt="" coords="203,95,375,121"/>
 </map>

@@ -88,24 +88,30 @@ $(document).ready(function(){initNavTree('main_8hpp_source.html',''); initResiza
 <a href="main_8hpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef __MAIN__</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define __MAIN__</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ecocup_8hpp.html">interactions/ecocup.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="robot_8hpp.html">robot.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a>();</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3">loop_blue</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> loop_yellow();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;chrono&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="ecocup_8hpp.html">interactions/ecocup.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="robot_8hpp.html">robot.hpp</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> parse_opts(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[], <span class="keywordtype">int</span> *pc, <span class="keywordtype">string</span> *side);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b">loop_blue</a>(std::chrono::steady_clock::time_point BeginMeasurement);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">int</span> main(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> *argv[]);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="arobot_8hpp_html"><div class="ttname"><a href="robot_8hpp.html">robot.hpp</a></div></div>
-<div class="ttc" id="amain_8hpp_html_a63e70deb00c73d2325da9380a1d01ae3"><div class="ttname"><a href="main_8hpp.html#a63e70deb00c73d2325da9380a1d01ae3">loop_blue</a></div><div class="ttdeci">void loop_blue()</div><div class="ttdoc">Boucle principale du projet.</div><div class="ttdef"><b>Definition:</b> main.cpp:82</div></div>
 <div class="ttc" id="aecocup_8hpp_html"><div class="ttname"><a href="ecocup_8hpp.html">ecocup.hpp</a></div><div class="ttdoc">Fichier codant les techniques utilisées pour ramasser les écocups.</div></div>
-<div class="ttc" id="amain_8hpp_html_a4fc01d736fe50cf5b977f755b675f11d"><div class="ttname"><a href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a></div><div class="ttdeci">void setup()</div><div class="ttdoc">Initialisation des différents éléments.</div><div class="ttdef"><b>Definition:</b> main.cpp:62</div></div>
+<div class="ttc" id="amain_8hpp_html_aa8235c5c0bc9749b82fadbe69cc8973b"><div class="ttname"><a href="main_8hpp.html#aa8235c5c0bc9749b82fadbe69cc8973b">loop_blue</a></div><div class="ttdeci">void loop_blue(std::chrono::steady_clock::time_point BeginMeasurement)</div><div class="ttdoc">Boucle principale du projet.</div><div class="ttdef"><b>Definition:</b> main.cpp:152</div></div>
+<div class="ttc" id="amain_8hpp_html_a4fc01d736fe50cf5b977f755b675f11d"><div class="ttname"><a href="main_8hpp.html#a4fc01d736fe50cf5b977f755b675f11d">setup</a></div><div class="ttdeci">void setup()</div><div class="ttdoc">Initialisation des différents éléments.</div><div class="ttdef"><b>Definition:</b> main.cpp:58</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

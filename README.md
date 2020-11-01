@@ -1,4 +1,4 @@
-# EIRBOT 2020-1A : Equipe EIRBOAT ![Code check](https://github.com/eirbot/eirbot2020-1A/workflows/Code%20check/badge.svg) ![Documentation](https://github.com/eirbot/eirbot2020-1A/workflows/Documentation/badge.svg) ![Valgrind](https://github.com/eirbot/eirbot2020-1A/workflows/Valgrind/badge.svg)
+# EIRBOT 2020-1A : Equipe EIRBOAT 
 
 ![alt text](loutreB&W.png)
 
@@ -66,9 +66,7 @@ Elle est de plus disponible sur notre [page web](https://eirbot.github.io/eirbot
 La mécanique du projet se base sur une architecture octogonale structuré par des
 profilés avec la notion d'étage. 
 
-<center>
 ![robot](meca/robot_brique.jpg)
-</center>
 
 ### Alimentation 
 Un autre étape cruciale de notre robot est la distribution de l'énergie dans ce dernier. Pour ce faire nous passons via une carte d'alimentation, so rôle est de distribuer aux différentes instances l'énergie nécessaire pour fonctionner. 

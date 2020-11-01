@@ -2,6 +2,10 @@
 
 ![alt text](loutreB&W.png)
 
+---
+
+Résultat de l'équipe à l'édition d'octobre 2020 : 24 ième / 51
+---
 
 Ceci est le dépôt de l'équipe de 1A de l'association de robotique Eirbot. La
 description de l'avancement des différents projets est disponible via la 
@@ -38,7 +42,7 @@ Depuis le dossier `build/`
 Pour compiler le projet il suffit de faire `make project` en ayant un compilateur
 de C++.
 
-Plusieurs méthodes permettent d'exécuter le projet. 
+Plusieurs méthodes permettent d'exécuter le projet.
 
 En local un `./project` suffit, si la nucléo est branchée via le port USB une
 simulation de communication est enclenchée (la nucléo renvoie toujours vrai à
@@ -59,23 +63,15 @@ Elle est de plus disponible sur notre [page web](https://eirbot.github.io/eirbot
 
 ## Description du projet 
 ### Mécanique
-Dans un premier temps nous avons la mécanique, le
-[schéma](https://github.com/eirbot/eirbot2020-1A/blob/master/meca/maquette_robot/AssemblageV2.stl)
-général se base sur une architecture octogonale, structuré par des profilés et
-via la notion d'étage.
+La mécanique du projet se base sur une architecture octogonale structuré par des
+profilés avec la notion d'étage. 
 
-Un porte batterie a été fait pour éviter que la batterie bouge pendant le
-déplacement 
-
-Le design des étages est en cours. 
-
-Le design des portes GP2 est en cours.
+<center>
+![robot](meca/robot_brique.jpg)
+</center>
 
 ### Alimentation 
 Un autre étape cruciale de notre robot est la distribution de l'énergie dans ce dernier. Pour ce faire nous passons via une carte d'alimentation, so rôle est de distribuer aux différentes instances l'énergie nécessaire pour fonctionner. 
-#### Schéma de principe
-![principe alimentation](https://raw.githubusercontent.com/eirbot/eirbot2020-1A/master/schema_bloc_connexions.png)
-#### Résultat
 ![résultat alimentation](https://github.com/eirbot/eirbot2020-1A/blob/master/reunion/alimentation.jpg)
 
 ### Actionneur
@@ -88,13 +84,8 @@ Tout d'abord des actionneurs simples utiles pour activer le phare et les manches
 Ensuite un actionneur représentant le pavillon et permettant de lever le
 drapeau.
 
-Finalement un pince est en cours de réflexion pour ramasser les ecocups
-
 ### Puissance 
 Une fois que nous pouvons alimenter tous les composants de notre robot nous devons encore permettre un contrôle de la puissance fournie au moteur, pour cela nous créons deux cartes possédant un pont en H, cela nous permet de délivrer la puissance nécessaire à nos moteurs pour nos robots.
-#### Schéma de conception
-
-#### Résultat
 
 ### Asservissement
 L'idée maintenant que nous avons une mécanique propre, nos différents modules aliméntés et que nous pouvons contrôler précsiement nos moteurs est de créer un asservissement. Le but de l'[asservissement](https://github.com/eirbot/eirbot2020-1A/tree/master/code/nucleo) est de récupérer les informations des encodeurs et de permettre au robot d'atteindre une certainne position tout en gérant l'angle, la puissance des moteurs etc.
@@ -141,7 +132,7 @@ communication entre la rasp et la nucleo.
 
 ## Phare
 En marge du robot nous devons réaliser l'expérience. L'objectif du phare est de se déployer pendant le match pour permettre d'atteindre une certainne hauteur. Cela est réalisé par un bras robotique imprimé en PLA. Ce dernier possède un design comme suit.
-![phare](https://eirbot.github.io/assets/images/phare_d.png)
+![phare](meca/phare.png)
 
 
 

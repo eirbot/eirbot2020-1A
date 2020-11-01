@@ -219,9 +219,9 @@ void loop_yellow(std::chrono::steady_clock::time_point BeginMeasurement)
   printf("\033[33mJe pars du PORT et je vais au WAYPOINT \033[0m \n");
   go_to({.x=50,.y=155});
   printf("\033[33mJe pars du WAYPOINT et je vais au PHARE \033[0m \n");
-  go_to({.x=20,.y=179});
+  go_to({.x=20,.y=178});
   Robot.actionneur(0,1);
-  go_to({.x=37,.y=179});
+  go_to({.x=37,.y=178});
   Robot.actionneur(0, 0);
   // if (Robot.communication_phare()==false) {
   //   Robot.actionneur(1, 1);
